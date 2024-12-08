@@ -56,8 +56,8 @@ npm install --global yarn
 ### Step 2: Clone the project
 
 ```bash
-git clone https://github.com/alexleboucher/docker-express-postgres-boilerplate
-cd docker-express-postgres-boilerplate
+git clone https://github.com/BinayakAdhikari/adaptNodeBE
+cd adaptNodeBE
 rm -rf .git # On Windows, use rd /s /q .git
 yarn install
 ```

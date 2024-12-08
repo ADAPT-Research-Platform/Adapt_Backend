@@ -14,7 +14,7 @@ const sessionStore = process.env.NODE_ENV === 'test' ? undefined : new (pgSessio
 
 export default session({
     store: sessionStore,
-    secret: 'docker-express-boilerplate-api',
+    secret: 'very-long-long-secret-string',
     saveUninitialized: false,
     resave: false,
     cookie: {
