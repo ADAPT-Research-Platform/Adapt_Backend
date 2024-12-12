@@ -6,6 +6,24 @@ import type {
   ExerciseCreateBody,
 } from '../../types/routes/modules';
 
+// Utility function to parse JSON strings into arrays
+const parseJsonArray = <T>(input: unknown, fieldName: string): T[] => {
+  if (typeof input === 'string') {
+    try {
+      return JSON.parse(input) as T[];
+    } catch (error) {
+      throw createHttpError(400, `${fieldName} must be a valid JSON array.`);
+    }
+  }
+
+  if (!Array.isArray(input)) {
+    throw createHttpError(400, `${fieldName} must be an array.`);
+  }
+
+  return input as T[];
+};
+
+// Validate the module creation body
 export const validateModuleCreateBody = (body: Partial<ModuleCreateBody>) => {
   const { name, chapters } = body;
 
@@ -19,11 +37,14 @@ export const validateModuleCreateBody = (body: Partial<ModuleCreateBody>) => {
     );
   }
 
-  if (!chapters || chapters.length === 0) {
-    throw createHttpError(400, 'At least one chapter is required');
+  // Parse and validate chapters
+  body.chapters = parseJsonArray<ChapterCreateBody>(chapters, 'Chapters');
+
+  if (body.chapters.length === 0) {
+    throw createHttpError(400, 'At least one chapter is required.');
   }
 
-  chapters.forEach((chapter, index) =>
+  body.chapters.forEach((chapter, index) =>
     validateChapterCreateBody(chapter, index)
   );
 
@@ -31,6 +52,7 @@ export const validateModuleCreateBody = (body: Partial<ModuleCreateBody>) => {
   return body as ModuleCreateBody;
 };
 
+// Validate a single chapter body
 export const validateChapterCreateBody = (
   body: Partial<ChapterCreateBody>,
   index?: number
@@ -67,16 +89,22 @@ export const validateChapterCreateBody = (
     );
   }
 
-  if (!exercises || exercises.length === 0) {
+  // Parse and validate exercises
+  body.exercises = parseJsonArray<ExerciseCreateBody>(
+    exercises,
+    `Exercises for Chapter${index !== undefined ? ` [${index + 1}]` : ''}`
+  );
+
+  if (body.exercises.length === 0) {
     throw createHttpError(
       400,
       `Chapter${
         index !== undefined ? ` [${index + 1}]` : ''
-      } must contain at least one exercise`
+      } must contain at least one exercise.`
     );
   }
 
-  exercises.forEach((exercise, exerciseIndex) =>
+  body.exercises.forEach((exercise, exerciseIndex) =>
     validateExerciseCreateBody(
       exercise,
       index !== undefined ? `${index + 1}.${exerciseIndex + 1}` : undefined
@@ -87,6 +115,7 @@ export const validateChapterCreateBody = (
   return body as ChapterCreateBody;
 };
 
+// Validate a single exercise body
 export const validateExerciseCreateBody = (
   body: Partial<ExerciseCreateBody>,
   index?: string

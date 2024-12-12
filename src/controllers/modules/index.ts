@@ -1,148 +1,178 @@
 import type { Response, Request } from 'express';
+import multer from 'multer';
+import path from 'path';
+import fs from 'fs';
 import createHttpError from 'http-errors';
 
 import { AppDataSource } from '../../data-source';
 import { Module } from '../../entities/module';
 import { Chapter } from '../../entities/chapter';
 import { Exercise } from '../../entities/exercise';
-import type { ModuleCreateBody, ModuleResponse } from '../../types/routes/modules';
+import type {
+  ModuleCreateBody,
+  ModuleResponse,
+} from '../../types/routes/modules';
 import { validateModuleCreateBody } from './validators';
 
-const create = async (
-  req: TypedRequestBody<ModuleCreateBody>,
-  res: Response
-) => {
-  // Validate the incoming request body
-  const {
-    name,
-    description,
-    isActive = true,
-    chapters,
-  } = validateModuleCreateBody(req.body);
+// Multer configuration for file uploads
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    const uploadPath = path.join(__dirname, '../../../uploads');
+    if (!fs.existsSync(uploadPath)) {
+      fs.mkdirSync(uploadPath, { recursive: true });
+    }
+    cb(null, uploadPath);
+  },
+  filename: (req, file, cb) => {
+    const uniqueName = `${Date.now()}-${file.originalname}`;
+    cb(null, uniqueName);
+  },
+});
 
-  // Create a query runner to control the transactions
-  const queryRunner = AppDataSource.createQueryRunner();
+const upload = multer({
+  storage,
+  fileFilter: (req, file, cb) => {
+    // Acceptable file extensions
+    const fileTypes = /md|jpeg|jpg|png|gif/;
 
-  // Connect the query runner to the database and start the transaction
-  await queryRunner.connect();
-  await queryRunner.startTransaction();
+    // Check file extension
+    const extName = fileTypes.test(path.extname(file.originalname).toLowerCase());
 
-  try {
-    const moduleRepo = queryRunner.manager.getRepository(Module);
+    // Check MIME type
+    const mimeType = file.mimetype === 'text/markdown' || file.mimetype === 'text/plain' ||
+      file.mimetype.startsWith('image/');
 
-    // Check for module name uniqueness
-    const moduleExists = await moduleRepo.exist({
-      where: { name },
-    });
-    if (moduleExists) {
-      throw createHttpError(409, 'Module name already exists');
+    if (extName && mimeType) {
+      cb(null, true);
+    } else {
+      cb(new Error('Only .md, .jpg, .jpeg, .png, and .gif files are allowed'));
+    }
+  },
+});
+
+// Updated `create` function to handle file uploads
+const create = (req: TypedRequestBody<ModuleCreateBody>, res: Response) => {
+  // Apply the multer middleware
+  upload.fields([
+    { name: 'chapterFiles', maxCount: 10 },
+    { name: 'exerciseFiles', maxCount: 20 },
+  ])(req, res, async (err) => {
+    if (err) {
+      return res.status(400).send({ message: err.message });
     }
 
-    // Create the new module
-    const newModule = new Module();
-    newModule.name = name;
-    newModule.description = description ?? null;
-    newModule.isActive = isActive;
+    // Access uploaded files
+    const chapterFiles = req.files?.['chapterFiles'] || [];
+    const exerciseFiles = req.files?.['exerciseFiles'] || [];
 
-    // Save the module first to generate its ID
-    await queryRunner.manager.save(newModule);
+    const {
+      name,
+      description,
+      isActive = true,
+      chapters,
+    } = validateModuleCreateBody(req.body);
 
-    // Loop through chapters and save them
-    for (const chapterData of chapters) {
-      const {
-        name: chapterName,
-        description: chapterDescription,
-        order,
-        isActive: chapterActive = true,
-        fileUrl,
-        exercises,
-      } = chapterData;
+    const queryRunner = AppDataSource.createQueryRunner();
 
-      const newChapter = new Chapter();
-      newChapter.name = chapterName;
-      newChapter.description = chapterDescription ?? null;
-      newChapter.order = order;
-      newChapter.isActive = chapterActive;
-      newChapter.fileUrl = fileUrl ?? null;
-      newChapter.module = newModule; // Associate with the module
+    await queryRunner.connect();
+    await queryRunner.startTransaction();
 
-      // Save the chapter to generate its ID
-      await queryRunner.manager.save(newChapter);
+    try {
+      const moduleRepo = queryRunner.manager.getRepository(Module);
 
-      // Loop through exercises and save them
-      for (const exerciseData of exercises) {
-        const {
-          title,
-          content,
-          order: exerciseOrder,
-          difficulty = 'Medium',
-          isActive: exerciseActive = true,
-          fileUrl: exerciseFileUrl,
-        } = exerciseData;
-
-        const newExercise = new Exercise();
-        newExercise.title = title;
-        
-        newExercise.content = content ?? null;
-        newExercise.order = exerciseOrder;
-        newExercise.difficulty = difficulty;
-        newExercise.isActive = exerciseActive;
-        newExercise.fileUrl = exerciseFileUrl ?? null;
-        newExercise.chapter = newChapter; // Associate with the chapter
-
-        await queryRunner.manager.save(newExercise);
+      // Check for module name uniqueness
+      const moduleExists = await moduleRepo.exist({
+        where: { name },
+      });
+      if (moduleExists) {
+        throw createHttpError(409, 'Module name already exists');
       }
+
+      // Create and save the module
+      const newModule = new Module();
+      newModule.name = name;
+      newModule.description = description ?? null;
+      newModule.isActive = isActive;
+      await queryRunner.manager.save(newModule);
+
+      // Save chapters and exercises
+      for (let i = 0; i < chapters.length; i++) {
+        const chapterData = chapters[i];
+        const chapterFilePath = chapterFiles[i]?.path || null;
+
+        const newChapter = new Chapter();
+        newChapter.name = chapterData.name;
+        newChapter.description = chapterData.description ?? null;
+        newChapter.order = chapterData.order;
+        newChapter.isActive = chapterData.isActive ?? true;
+        newChapter.fileUrl = chapterFilePath; // Save uploaded file path
+        newChapter.module = newModule;
+        await queryRunner.manager.save(newChapter);
+
+        // Save exercises
+        const { exercises } = chapterData;
+        for (let j = 0; j < exercises.length; j++) {
+          const exerciseData = exercises[j];
+          const exerciseFilePath = exerciseFiles[j]?.path || null;
+
+          const newExercise = new Exercise();
+          newExercise.title = exerciseData.title;
+          newExercise.content = exerciseData.content ?? null;
+          newExercise.order = exerciseData.order;
+          newExercise.difficulty = exerciseData.difficulty ?? 'Medium';
+          newExercise.isActive = exerciseData.isActive ?? true;
+          newExercise.fileUrl = exerciseFilePath; // Save uploaded file path
+          newExercise.chapter = newChapter;
+          await queryRunner.manager.save(newExercise);
+        }
+      }
+
+      await queryRunner.commitTransaction();
+      res.send({ id: newModule.id, message: 'Module created successfully' });
+    } catch (error) {
+      await queryRunner.rollbackTransaction();
+      throw error;
+    } finally {
+      await queryRunner.release();
     }
-
-    // Commit the transaction if no exceptions occurred
-    await queryRunner.commitTransaction();
-
-    res.send(newModule.id); // Return the ID of the created module
-  } catch (err) {
-    // Rollback the transaction in case of an exception
-    await queryRunner.rollbackTransaction();
-    throw err;
-  } finally {
-    // Release the query runner to free the connection
-    await queryRunner.release();
-  }
+  });
 };
 
 // Get all modules
 const getAll = async (_req: Request, res: Response<ModuleResponse[]>) => {
   const moduleRepo = AppDataSource.getRepository(Module);
   const modules = await moduleRepo.find({
-      relations: ['chapters', 'chapters.exercises'], // Fetch relations
+    relations: ['chapters', 'chapters.exercises'], // Fetch relations
   });
 
   const response: ModuleResponse[] = modules.map((module) => ({
-      id: module.id,
-      name: module.name,
-      description: module.description,
-      isActive: module.isActive,
-      createdAt: module.createdAt,
-      updatedAt: module.updatedAt,
-      chapters: module.chapters.map((chapter) => ({
-          id: chapter.id,
-          name: chapter.name,
-          description: chapter.description,
-          order: chapter.order,
-          isActive: chapter.isActive,
-          fileUrl: chapter.fileUrl,
-          createdAt: chapter.createdAt,
-          updatedAt: chapter.updatedAt,
-          exercises: chapter.exercises.map((exercise) => ({
-              id: exercise.id,
-              title: exercise.title,
-              content: exercise.content,
-              order: exercise.order,
-              difficulty: exercise.difficulty,
-              isActive: exercise.isActive,
-              fileUrl: exercise.fileUrl,
-              createdAt: exercise.createdAt,
-              updatedAt: exercise.updatedAt,
-          })),
+    id: module.id,
+    name: module.name,
+    description: module.description,
+    isActive: module.isActive,
+    createdAt: module.createdAt,
+    updatedAt: module.updatedAt,
+    chapters: module.chapters.map((chapter) => ({
+      id: chapter.id,
+      name: chapter.name,
+      description: chapter.description,
+      order: chapter.order,
+      isActive: chapter.isActive,
+      fileUrl: chapter.fileUrl,
+      createdAt: chapter.createdAt,
+      updatedAt: chapter.updatedAt,
+      exercises: chapter.exercises.map((exercise) => ({
+        id: exercise.id,
+        title: exercise.title,
+        content: exercise.content,
+        order: exercise.order,
+        difficulty: exercise.difficulty,
+        isActive: exercise.isActive,
+        fileUrl: exercise.fileUrl,
+        createdAt: exercise.createdAt,
+        updatedAt: exercise.updatedAt,
       })),
+    })),
   }));
 
   res.send(response);
@@ -154,42 +184,42 @@ const getById = async (req: Request, res: Response<ModuleResponse>) => {
 
   const moduleRepo = AppDataSource.getRepository(Module);
   const module = await moduleRepo.findOne({
-      where: { id },
-      relations: ['chapters', 'chapters.exercises'],
+    where: { id },
+    relations: ['chapters', 'chapters.exercises'],
   });
 
   if (!module) {
-      throw createHttpError(404, 'Module not found');
+    throw createHttpError(404, 'Module not found');
   }
 
   const response: ModuleResponse = {
-      id: module.id,
-      name: module.name,
-      description: module.description,
-      isActive: module.isActive,
-      createdAt: module.createdAt,
-      updatedAt: module.updatedAt,
-      chapters: module.chapters.map((chapter) => ({
-          id: chapter.id,
-          name: chapter.name,
-          description: chapter.description,
-          order: chapter.order,
-          isActive: chapter.isActive,
-          fileUrl: chapter.fileUrl,
-          createdAt: chapter.createdAt,
-          updatedAt: chapter.updatedAt,
-          exercises: chapter.exercises.map((exercise) => ({
-              id: exercise.id,
-              title: exercise.title,
-              content: exercise.content,
-              order: exercise.order,
-              difficulty: exercise.difficulty,
-              isActive: exercise.isActive,
-              fileUrl: exercise.fileUrl,
-              createdAt: exercise.createdAt,
-              updatedAt: exercise.updatedAt,
-          })),
+    id: module.id,
+    name: module.name,
+    description: module.description,
+    isActive: module.isActive,
+    createdAt: module.createdAt,
+    updatedAt: module.updatedAt,
+    chapters: module.chapters.map((chapter) => ({
+      id: chapter.id,
+      name: chapter.name,
+      description: chapter.description,
+      order: chapter.order,
+      isActive: chapter.isActive,
+      fileUrl: chapter.fileUrl,
+      createdAt: chapter.createdAt,
+      updatedAt: chapter.updatedAt,
+      exercises: chapter.exercises.map((exercise) => ({
+        id: exercise.id,
+        title: exercise.title,
+        content: exercise.content,
+        order: exercise.order,
+        difficulty: exercise.difficulty,
+        isActive: exercise.isActive,
+        fileUrl: exercise.fileUrl,
+        createdAt: exercise.createdAt,
+        updatedAt: exercise.updatedAt,
       })),
+    })),
   };
 
   res.send(response);
@@ -204,7 +234,7 @@ const update = async (req: Request, res: Response<{ message: string }>) => {
   const module = await moduleRepo.findOneBy({ id });
 
   if (!module) {
-      throw createHttpError(404, 'Module not found');
+    throw createHttpError(404, 'Module not found');
   }
 
   if (name !== undefined) module.name = name;
@@ -216,14 +246,17 @@ const update = async (req: Request, res: Response<{ message: string }>) => {
 };
 
 // Delete a module by ID
-const deleteModule = async (req: Request, res: Response<{ message: string }>) => {
+const deleteModule = async (
+  req: Request,
+  res: Response<{ message: string }>
+) => {
   const { id } = req.params;
 
   const moduleRepo = AppDataSource.getRepository(Module);
   const module = await moduleRepo.findOneBy({ id });
 
   if (!module) {
-      throw createHttpError(404, 'Module not found');
+    throw createHttpError(404, 'Module not found');
   }
 
   await moduleRepo.remove(module);
