@@ -11,6 +11,7 @@ import { Exercise } from '../../entities/exercise';
 import type {
   ModuleCreateBody,
   ModuleResponse,
+  ChapterUpdateBody,
 } from '../../types/routes/modules';
 import { validateModuleCreateBody } from './validators';
 
@@ -36,10 +37,14 @@ const upload = multer({
     const fileTypes = /md|jpeg|jpg|png|gif/;
 
     // Check file extension
-    const extName = fileTypes.test(path.extname(file.originalname).toLowerCase());
+    const extName = fileTypes.test(
+      path.extname(file.originalname).toLowerCase()
+    );
 
     // Check MIME type
-    const mimeType = file.mimetype === 'text/markdown' || file.mimetype === 'text/plain' ||
+    const mimeType =
+      file.mimetype === 'text/markdown' ||
+      file.mimetype === 'text/plain' ||
       file.mimetype.startsWith('image/');
 
     if (extName && mimeType) {
@@ -245,6 +250,172 @@ const update = async (req: Request, res: Response<{ message: string }>) => {
   res.send({ message: 'Module updated successfully' });
 };
 
+// Helper to delete old files
+const deleteFile = (filePath: string) => {
+  const fullPath = path.join(__dirname, '../../../', filePath);
+  if (fs.existsSync(fullPath)) {
+    fs.unlinkSync(fullPath);
+  }
+};
+
+const parseJsonArray = <T>(input: unknown, fieldName: string): T[] => {
+  if (typeof input === 'string') {
+    try {
+      return JSON.parse(input) as T[];
+    } catch {
+      throw createHttpError(400, `${fieldName} must be a valid JSON array.`);
+    }
+  }
+
+  if (!Array.isArray(input)) {
+    throw createHttpError(400, `${fieldName} must be an array.`);
+  }
+
+  return input as T[];
+};
+
+const updateModuleWithChapterAndExercise = (
+  req: Request,
+  res: Response<{ message: string }>
+) => {
+  upload.fields([
+    { name: 'chapterFiles', maxCount: 10 },
+    { name: 'exerciseFiles', maxCount: 20 },
+  ])(req, res, async (err) => {
+    if (err) {
+      return res.status(400).send({ message: err.message });
+    }
+
+    const { id } = req.params;
+    const { name, description, isActive } = req.body;
+
+    // Parse chapters as ChapterUpdateBody[]
+    const chapters: ChapterUpdateBody[] = parseJsonArray<ChapterUpdateBody>(
+      req.body.chapters,
+      'Chapters'
+    );
+
+    const chapterFiles = req.files?.['chapterFiles'] || [];
+    const exerciseFiles = req.files?.['exerciseFiles'] || [];
+
+    const moduleRepo = AppDataSource.getRepository(Module);
+    const chapterRepo = AppDataSource.getRepository(Chapter);
+    const exerciseRepo = AppDataSource.getRepository(Exercise);
+
+    const module = await moduleRepo.findOne({
+      where: { id },
+      relations: ['chapters', 'chapters.exercises'],
+    });
+
+    if (!module) {
+      throw createHttpError(404, 'Module not found');
+    }
+
+    // Update module fields
+    if (name !== undefined) module.name = name;
+    if (description !== undefined) module.description = description;
+    if (isActive !== undefined) module.isActive = isActive;
+
+    // Update chapters
+    for (const [index, chapterData] of chapters.entries()) {
+      const existingChapter = chapterData.id
+        ? module.chapters.find((c) => c.id === chapterData.id)
+        : undefined;
+
+      if (existingChapter) {
+        // Update existing chapter
+        existingChapter.name = chapterData.name ?? existingChapter.name;
+        existingChapter.description =
+          chapterData.description ?? existingChapter.description;
+        existingChapter.order = chapterData.order ?? existingChapter.order;
+        existingChapter.isActive =
+          chapterData.isActive ?? existingChapter.isActive;
+
+        // Handle file update for the chapter
+        const newChapterFile = chapterFiles[index]?.path;
+        if (newChapterFile) {
+          if (existingChapter.fileUrl) {
+            deleteFile(existingChapter.fileUrl); // Delete old file
+          }
+          existingChapter.fileUrl = `uploads/${path.basename(newChapterFile)}`;
+        }
+
+        await chapterRepo.save(existingChapter);
+      } else {
+        // Add new chapter
+        const newChapter = chapterRepo.create({
+          name: chapterData.name,
+          description: chapterData.description,
+          order: chapterData.order,
+          isActive: chapterData.isActive,
+          module,
+          fileUrl: chapterFiles[index]?.path
+            ? `uploads/${path.basename(chapterFiles[index].path)}`
+            : null,
+        });
+
+        await chapterRepo.save(newChapter);
+      }
+
+      // Update exercises for the chapter
+      for (const [exerciseIndex, exerciseData] of (
+        chapterData.exercises || []
+      ).entries()) {
+        const existingExercise = exerciseData.id
+          ? existingChapter?.exercises.find((e) => e.id === exerciseData.id)
+          : undefined;
+
+        if (existingExercise) {
+          // Update existing exercise
+          existingExercise.title = exerciseData.title ?? existingExercise.title;
+          existingExercise.content =
+            exerciseData.content ?? existingExercise.content;
+          existingExercise.order = exerciseData.order ?? existingExercise.order;
+          existingExercise.difficulty =
+            exerciseData.difficulty ?? existingExercise.difficulty;
+          existingExercise.isActive =
+            exerciseData.isActive ?? existingExercise.isActive;
+
+          // Handle file update for the exercise
+          const newExerciseFile = exerciseFiles[exerciseIndex]?.path;
+          if (newExerciseFile) {
+            if (existingExercise.fileUrl) {
+              deleteFile(existingExercise.fileUrl); // Delete old file
+            }
+            existingExercise.fileUrl = `uploads/${path.basename(
+              newExerciseFile
+            )}`;
+          }
+
+          await exerciseRepo.save(existingExercise);
+        } else {
+          // Add new exercise
+          const newExercise = exerciseRepo.create({
+            title: exerciseData.title,
+            content: exerciseData.content,
+            order: exerciseData.order,
+            difficulty: exerciseData.difficulty,
+            isActive: exerciseData.isActive,
+            chapter: existingChapter,
+            fileUrl: exerciseFiles[exerciseIndex]?.path
+              ? `uploads/${path.basename(exerciseFiles[exerciseIndex].path)}`
+              : null,
+          });
+
+          await exerciseRepo.save(newExercise);
+        }
+      }
+    }
+
+    // Save updated module
+    await moduleRepo.save(module);
+
+    res.send({
+      message: 'Module, chapters, and exercises updated successfully',
+    });
+  });
+};
+
 // Delete a module by ID
 const deleteModule = async (
   req: Request,
@@ -268,5 +439,6 @@ export default {
   getAll,
   getById,
   update,
+  updateModuleWithChapterAndExercise,
   delete: deleteModule,
 };
