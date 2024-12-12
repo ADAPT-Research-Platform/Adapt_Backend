@@ -2,24 +2,26 @@
 
 import express from 'express';
 
+import { asyncHandler } from '../utils/utils';
+
 import ModulesController from '../controllers/modules';
 
 const router = express.Router();
 
 // Create a module
-router.route('/').post(ModulesController.create);
+router.route('/').post(asyncHandler( ModulesController.create));
 
 // Get all modules
-router.route('/').get(ModulesController.getAll);
+router.route('/').get(asyncHandler(ModulesController.getAll));
 
 // Get a single module by ID
-router.route('/:id').get(ModulesController.getById);
+router.route('/:id').get(asyncHandler(ModulesController.getById));
 
 // Update a module by ID
-router.route('/:id').put(ModulesController.update);
+router.route('/:id').put(asyncHandler(ModulesController.update));
 
 // Update a module and it's chapter and exercise by ID
-router.route('/updateModuleWithChaptersAndExercise/:id').put(ModulesController.updateModuleWithChapterAndExercise);
+router.route('/updateModuleWithChaptersAndExercise/:id').put(asyncHandler(ModulesController.updateModuleWithChapterAndExercise));
 
 // Delete a module by ID
 router.route('/:id').delete(ModulesController.delete);

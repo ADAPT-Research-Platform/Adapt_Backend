@@ -3,27 +3,28 @@ import type { HttpError as IHttpError } from 'http-errors';
 import createHttpError, { isHttpError } from 'http-errors';
 
 export const errorHandler = (
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    err: any,
-    req: Request,
-    res: Response,
-    next: NextFunction,
+  err: unknown,
+  req: Request,
+  res: Response,
+  next: NextFunction
 ) => {
-    let error: IHttpError;
-    if (isHttpError(err)) {
-        error = err;
-    } else {
-        // if the error is not an HttpError, it means the error is not handled,
-        // so we throw an internal server error
-        console.error('Internal server error:', err.message);
-        error = createHttpError(500, err.message ?? 'Unexpected error');
-    }
+  let error: IHttpError;
 
-    const formatedError = {
-        message: error.message,
-        name: error.name,
-        status: error.status,
-    };
+  if (isHttpError(err)) {
+    error = err;
+  } else if (err instanceof Error) {
+    console.error('Internal server error:', err.stack);
+    error = createHttpError(500, err.message ?? 'Unexpected error');
+  } else {
+    console.error('Unhandled error:', err);
+    error = createHttpError(500, 'An unexpected error occurred');
+  }
 
-    res.status(error.statusCode).send(formatedError);
+  const formattedError = {
+    message: error.message,
+    name: error.name,
+    status: error.status,
+  };
+
+  res.status(error.status || 500).json(formattedError);
 };
