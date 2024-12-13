@@ -59,38 +59,50 @@ const createOrUpdateModuleProgress = async (
   }
 };
 
-// Get module progress for a user
 const getModuleProgress = async (
   req: Request,
   res: Response<ModuleProgressResponse[]>
 ) => {
   const userId = getUserId(req);
-  const moduleProgressRepo = AppDataSource.getRepository(ModuleProgress);
 
-  const progress = await moduleProgressRepo.find({
+  const progress = await AppDataSource.getRepository(ModuleProgress).find({
     where: { user: { id: userId } },
-    relations: ['chapterProgress', 'module'],
+    relations: [
+      'module',
+      'module.chapters',
+      'chapterProgress',
+      'chapterProgress.chapter',
+    ],
   });
 
-  const response: ModuleProgressResponse[] = progress.map((mp) => ({
-    id: mp.id,
-    moduleId: mp.module.id,
-    progressPercentage: mp.progressPercentage,
-    completionStatus: mp.completionStatus,
-    completedAt: mp.completedAt,
-    createdAt: mp.createdAt,
-    updatedAt: mp.updatedAt,
-    chaptersProgress: mp.chapterProgress.map((cp) => ({
-      id: cp.id,
-      chapterId: cp.chapter.id,
-      moduleProgressId: cp.moduleProgress.id,
-      progressPercentage: cp.progressPercentage,
-      completionStatus: cp.completionStatus,
-      completedAt: cp.completedAt,
-      createdAt: cp.createdAt,
-      updatedAt: cp.updatedAt,
-    })),
-  }));
+  const response: ModuleProgressResponse[] = progress.map((mp) => {
+    const chaptersProgress = mp.module.chapters.map((chapter) => {
+      const progress = mp.chapterProgress.find(
+        (cp) => cp.chapter.id === chapter.id
+      );
+      return {
+        id: progress?.id || `temp-${chapter.id}`,
+        chapterId: chapter.id,
+        moduleProgressId: mp.id,
+        progressPercentage: progress?.progressPercentage || 0,
+        completionStatus: progress?.completionStatus || 'Not Started',
+        completedAt: progress?.completedAt || null,
+        createdAt: progress?.createdAt || new Date(),
+        updatedAt: progress?.updatedAt || new Date(),
+      };
+    });
+
+    return {
+      id: mp.id,
+      moduleId: mp.module.id,
+      progressPercentage: mp.progressPercentage,
+      completionStatus: mp.completionStatus,
+      completedAt: mp.completedAt,
+      createdAt: mp.createdAt,
+      updatedAt: mp.updatedAt,
+      chaptersProgress,
+    };
+  });
 
   res.send(response);
 };
@@ -110,7 +122,10 @@ const createOrUpdateChapterProgress = async (
 
   const chapterProgressRepo = AppDataSource.getRepository(ChapterProgress);
   const existingProgress = await chapterProgressRepo.findOne({
-    where: { moduleProgress: { id: moduleProgressId }, chapter: { id: chapterId } },
+    where: {
+      moduleProgress: { id: moduleProgressId },
+      chapter: { id: chapterId },
+    },
   });
 
   if (existingProgress) {

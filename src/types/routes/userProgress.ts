@@ -40,5 +40,5 @@ export interface ModuleProgressResponse {
   completedAt: Date | null; // Timestamp when the module was completed
   createdAt: Date; // Timestamp of creation
   updatedAt: Date; // Timestamp of last update
-  chaptersProgress: ChapterProgressResponse[]; // Nested chapter progress records
+//   chaptersProgress: ChapterProgressResponse[]; // Nested chapter progress records
 }
