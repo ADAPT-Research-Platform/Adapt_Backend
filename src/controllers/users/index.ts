@@ -1,11 +1,12 @@
 import type { Response } from 'express';
 import createHttpError from 'http-errors';
 
+import { UserType } from '../../enums/enum';
+
 import { AppDataSource } from '../../data-source';
 import { User } from '../../entities/user';
 import type { UsersCreateBody } from '../../types/routes/users';
 import { validateCreateBody } from './validators';
-import { UserType } from 'src/enums/enum';
 
 const create = async (req: TypedRequestBody<UsersCreateBody>, res: Response) => {
     const { username, email, password } = validateCreateBody(req.body);
@@ -44,7 +45,7 @@ const create = async (req: TypedRequestBody<UsersCreateBody>, res: Response) => 
         await queryRunner.commitTransaction();
 
         res.send(newUser.id);
-    } catch (err) {
+    } catch (err) { 
         // As an exception occured, cancel the transaction
         await queryRunner.rollbackTransaction();
         throw err;
