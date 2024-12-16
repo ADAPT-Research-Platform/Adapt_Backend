@@ -10,7 +10,7 @@ export interface ChapterCreateBody {
   description?: string; // Optional description
   order: number; // The order of the chapter in the module
   isActive?: boolean; // Optional, defaults to true
-  fileUrl?: string; // Optional, URL of the markdown file
+  files?: FileCreateBody[]; // Optional: Uploaded files
   exercises: ExerciseCreateBody[]; // At least one exercise is required
 }
 
@@ -18,10 +18,11 @@ export interface ExerciseCreateBody {
   title: string;
   content?: string; // Optional content
   order: number; // The order of the exercise in the chapter
-  difficulty?: "Easy" | "Medium" | "Hard"; // Optional, defaults to 'Medium'
+  difficulty?: 'Easy' | 'Medium' | 'Hard'; // Optional, defaults to 'Medium'
   isActive?: boolean; // Optional, defaults to true
-  fileUrl?: string; // Optional, URL of the markdown file
+  files?: FileCreateBody[]; // Optional: Uploaded files
 }
+
 export interface ChapterUpdateBody extends ChapterCreateBody {
   id?: string; // Optional, as new chapters won't have an ID
   exercises: ExerciseUpdateBody[];
@@ -37,11 +38,11 @@ export interface ExerciseResponse {
   title: string;
   content: string | null;
   order: number;
-  difficulty: "Easy" | "Medium" | "Hard";
+  difficulty: 'Easy' | 'Medium' | 'Hard';
   isActive: boolean;
-  fileUrl: string | null;
   createdAt: Date;
   updatedAt: Date;
+  files: FileResponse[]; // Uploaded files for this exercise
 }
 
 // ChapterResponse
@@ -51,9 +52,9 @@ export interface ChapterResponse {
   description: string | null;
   order: number;
   isActive: boolean;
-  fileUrl: string | null;
   createdAt: Date;
   updatedAt: Date;
+  files: FileResponse[]; // Uploaded files for this chapter
   exercises: ExerciseResponse[]; // Nested exercises
 }
 
@@ -66,4 +67,14 @@ export interface ModuleResponse {
   createdAt: Date;
   updatedAt: Date;
   chapters: ChapterResponse[]; // Nested chapters
+}
+
+export interface FileCreateBody {
+  filePath: string; // Path to the uploaded file
+}
+
+export interface FileResponse {
+  id: string; // Unique identifier for the file
+  filePath: string; // Path to the uploaded file
+  uploadedAt: Date; // Upload timestamp
 }

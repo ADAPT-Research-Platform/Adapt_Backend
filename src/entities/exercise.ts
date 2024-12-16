@@ -6,13 +6,15 @@ import {
   UpdateDateColumn,
   DeleteDateColumn,
   ManyToOne,
-} from "typeorm";
+  OneToMany,
+} from 'typeorm';
 
-import { Chapter } from "./chapter";
+import { Chapter } from './chapter';
+import { File } from './file';
 
 @Entity()
 export class Exercise {
-  @PrimaryGeneratedColumn("uuid")
+  @PrimaryGeneratedColumn('uuid')
   id!: string;
 
   @CreateDateColumn({ nullable: false })
@@ -27,23 +29,26 @@ export class Exercise {
   @Column({ nullable: false, length: 255 })
   title!: string;
 
-  @Column({ type: "text", nullable: true })
+  @Column({ type: 'text', nullable: true })
   content!: string | null;
 
   @Column({ nullable: false })
   order!: number;
 
-  @Column({ type: "enum", enum: ["Easy", "Medium", "Hard"], default: "Medium" })
-  difficulty!: "Easy" | "Medium" | "Hard";
+  @Column({ type: 'enum', enum: ['Easy', 'Medium', 'Hard'], default: 'Medium' })
+  difficulty!: 'Easy' | 'Medium' | 'Hard';
 
   @Column({ default: true })
   isActive!: boolean;
 
   @Column({ type: 'text', nullable: true })
-    fileUrl!: string | null; 
+  fileUrl!: string | null;
 
   @ManyToOne(() => Chapter, (chapter) => chapter.exercises, {
-    onDelete: "CASCADE",
+    onDelete: 'CASCADE',
   })
   chapter!: Chapter;
+
+  @OneToMany(() => File, (file) => file.exercise, { cascade: true })
+  files!: File[];
 }

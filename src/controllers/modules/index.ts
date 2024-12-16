@@ -8,6 +8,8 @@ import { AppDataSource } from '../../data-source';
 import { Module } from '../../entities/module';
 import { Chapter } from '../../entities/chapter';
 import { Exercise } from '../../entities/exercise';
+import { File } from '../../entities/file';
+
 import type {
   ModuleCreateBody,
   ModuleResponse,
@@ -60,11 +62,11 @@ const create = async (
   req: TypedRequestBody<ModuleCreateBody>,
   res: Response
 ) => {
-  // Apply the multer middleware
+  // Apply the multer middleware for file uploads
   await new Promise<void>((resolve, reject) => {
     upload.fields([
-      { name: 'chapterFiles', maxCount: 10 },
-      { name: 'exerciseFiles', maxCount: 20 },
+      { name: 'chapterFiles', maxCount: 50 },
+      { name: 'exerciseFiles', maxCount: 100 },
     ])(req, res, (err) => {
       if (err) {
         reject(err);
@@ -78,12 +80,7 @@ const create = async (
   const chapterFiles = req.files?.['chapterFiles'] || [];
   const exerciseFiles = req.files?.['exerciseFiles'] || [];
 
-  const {
-    name,
-    description,
-    isActive = true,
-    chapters,
-  } = validateModuleCreateBody(req.body);
+  const { name, description, isActive = true, chapters } = validateModuleCreateBody(req.body);
 
   const queryRunner = AppDataSource.createQueryRunner();
 
@@ -92,11 +89,10 @@ const create = async (
 
   try {
     const moduleRepo = queryRunner.manager.getRepository(Module);
+    const fileRepo = queryRunner.manager.getRepository(File);
 
     // Check for module name uniqueness
-    const moduleExists = await moduleRepo.exist({
-      where: { name },
-    });
+    const moduleExists = await moduleRepo.exist({ where: { name } });
     if (moduleExists) {
       throw createHttpError(409, 'Module name already exists');
     }
@@ -111,22 +107,30 @@ const create = async (
     // Save chapters and exercises
     for (let i = 0; i < chapters.length; i++) {
       const chapterData = chapters[i];
-      const chapterFilePath = chapterFiles[i]?.path || null;
+      const chapterFileUploads = chapterFiles.slice(i * 10, (i + 1) * 10);
 
       const newChapter = new Chapter();
       newChapter.name = chapterData.name;
       newChapter.description = chapterData.description ?? null;
       newChapter.order = chapterData.order;
       newChapter.isActive = chapterData.isActive ?? true;
-      newChapter.fileUrl = chapterFilePath; // Save uploaded file path
       newChapter.module = newModule;
       await queryRunner.manager.save(newChapter);
 
+      // Save chapter files
+      if (chapterFileUploads.length > 0) {
+        for (const file of chapterFileUploads) {
+          const newFile = new File();
+          newFile.filePath = file.path;
+          newFile.chapter = newChapter;
+          await fileRepo.save(newFile);
+        }
+      }
+
       // Save exercises
-      const { exercises } = chapterData;
-      for (let j = 0; j < exercises.length; j++) {
-        const exerciseData = exercises[j];
-        const exerciseFilePath = exerciseFiles[j]?.path || null;
+      for (let j = 0; j < chapterData.exercises.length; j++) {
+        const exerciseData = chapterData.exercises[j];
+        const exerciseFileUploads = exerciseFiles.slice(j * 20, (j + 1) * 20);
 
         const newExercise = new Exercise();
         newExercise.title = exerciseData.title;
@@ -134,17 +138,30 @@ const create = async (
         newExercise.order = exerciseData.order;
         newExercise.difficulty = exerciseData.difficulty ?? 'Medium';
         newExercise.isActive = exerciseData.isActive ?? true;
-        newExercise.fileUrl = exerciseFilePath; // Save uploaded file path
         newExercise.chapter = newChapter;
         await queryRunner.manager.save(newExercise);
+
+        // Save exercise files
+        if (exerciseFileUploads.length > 0) {
+          for (const file of exerciseFileUploads) {
+            const newFile = new File();
+            newFile.filePath = file.path;
+            newFile.exercise = newExercise;
+            await fileRepo.save(newFile);
+          }
+        }
       }
     }
 
     await queryRunner.commitTransaction();
-    res.send({ id: newModule.id, message: 'Module created successfully' });
+    res.status(201).json({ id: newModule.id, message: 'Module created successfully' });
   } catch (error) {
     await queryRunner.rollbackTransaction();
-    throw error;
+    if (error instanceof Error) {
+      throw createHttpError(500, `Error creating module: ${error.message}`);
+    } else {
+      throw createHttpError(500, 'Error creating module');
+    }
   } finally {
     await queryRunner.release();
   }
@@ -154,7 +171,12 @@ const create = async (
 const getAll = async (_req: Request, res: Response<ModuleResponse[]>) => {
   const moduleRepo = AppDataSource.getRepository(Module);
   const modules = await moduleRepo.find({
-    relations: ['chapters', 'chapters.exercises'], // Fetch relations
+    relations: [
+      'chapters',
+      'chapters.files', // Include chapter files
+      'chapters.exercises',
+      'chapters.exercises.files', // Include exercise files
+    ],
   });
 
   const response: ModuleResponse[] = modules.map((module) => ({
@@ -170,9 +192,13 @@ const getAll = async (_req: Request, res: Response<ModuleResponse[]>) => {
       description: chapter.description,
       order: chapter.order,
       isActive: chapter.isActive,
-      fileUrl: chapter.fileUrl,
       createdAt: chapter.createdAt,
       updatedAt: chapter.updatedAt,
+      files: chapter.files.map((file) => ({
+        id: file.id,
+        filePath: file.filePath,
+        uploadedAt: file.uploadedAt,
+      })), // Map chapter files
       exercises: chapter.exercises.map((exercise) => ({
         id: exercise.id,
         title: exercise.title,
@@ -180,9 +206,13 @@ const getAll = async (_req: Request, res: Response<ModuleResponse[]>) => {
         order: exercise.order,
         difficulty: exercise.difficulty,
         isActive: exercise.isActive,
-        fileUrl: exercise.fileUrl,
         createdAt: exercise.createdAt,
         updatedAt: exercise.updatedAt,
+        files: exercise.files.map((file) => ({
+          id: file.id,
+          filePath: file.filePath,
+          uploadedAt: file.uploadedAt,
+        })), // Map exercise files
       })),
     })),
   }));
@@ -197,7 +227,12 @@ const getById = async (req: Request, res: Response<ModuleResponse>) => {
   const moduleRepo = AppDataSource.getRepository(Module);
   const module = await moduleRepo.findOne({
     where: { id },
-    relations: ['chapters', 'chapters.exercises'],
+    relations: [
+      'chapters',
+      'chapters.files', // Include chapter files
+      'chapters.exercises',
+      'chapters.exercises.files', // Include exercise files
+    ],
   });
 
   if (!module) {
@@ -217,9 +252,13 @@ const getById = async (req: Request, res: Response<ModuleResponse>) => {
       description: chapter.description,
       order: chapter.order,
       isActive: chapter.isActive,
-      fileUrl: chapter.fileUrl,
       createdAt: chapter.createdAt,
       updatedAt: chapter.updatedAt,
+      files: chapter.files.map((file) => ({
+        id: file.id,
+        filePath: file.filePath,
+        uploadedAt: file.uploadedAt,
+      })), // Map chapter files
       exercises: chapter.exercises.map((exercise) => ({
         id: exercise.id,
         title: exercise.title,
@@ -227,9 +266,13 @@ const getById = async (req: Request, res: Response<ModuleResponse>) => {
         order: exercise.order,
         difficulty: exercise.difficulty,
         isActive: exercise.isActive,
-        fileUrl: exercise.fileUrl,
         createdAt: exercise.createdAt,
         updatedAt: exercise.updatedAt,
+        files: exercise.files.map((file) => ({
+          id: file.id,
+          filePath: file.filePath,
+          uploadedAt: file.uploadedAt,
+        })), // Map exercise files
       })),
     })),
   };
