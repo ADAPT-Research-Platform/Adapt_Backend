@@ -80,7 +80,12 @@ const create = async (
   const chapterFiles = req.files?.['chapterFiles'] || [];
   const exerciseFiles = req.files?.['exerciseFiles'] || [];
 
-  const { name, description, isActive = true, chapters } = validateModuleCreateBody(req.body);
+  const {
+    name,
+    description,
+    isActive = true,
+    chapters,
+  } = validateModuleCreateBody(req.body);
 
   const queryRunner = AppDataSource.createQueryRunner();
 
@@ -154,7 +159,9 @@ const create = async (
     }
 
     await queryRunner.commitTransaction();
-    res.status(201).json({ id: newModule.id, message: 'Module created successfully' });
+    res
+      .status(201)
+      .json({ id: newModule.id, message: 'Module created successfully' });
   } catch (error) {
     await queryRunner.rollbackTransaction();
     if (error instanceof Error) {
@@ -330,8 +337,8 @@ const updateModuleWithChapterAndExercise = async (
 ) => {
   await new Promise<void>((resolve, reject) => {
     upload.fields([
-      { name: 'chapterFiles', maxCount: 10 },
-      { name: 'exerciseFiles', maxCount: 20 },
+      { name: 'chapterFiles', maxCount: 50 },
+      { name: 'exerciseFiles', maxCount: 100 },
     ])(req, res, (err) => {
       if (err) {
         reject(err);
@@ -344,7 +351,6 @@ const updateModuleWithChapterAndExercise = async (
   const { id } = req.params;
   const { name, description, isActive } = req.body;
 
-  // Parse chapters as ChapterUpdateBody[]
   const chapters: ChapterUpdateBody[] = parseJsonArray<ChapterUpdateBody>(
     req.body.chapters,
     'Chapters'
@@ -356,10 +362,16 @@ const updateModuleWithChapterAndExercise = async (
   const moduleRepo = AppDataSource.getRepository(Module);
   const chapterRepo = AppDataSource.getRepository(Chapter);
   const exerciseRepo = AppDataSource.getRepository(Exercise);
+  const fileRepo = AppDataSource.getRepository(File);
 
   const module = await moduleRepo.findOne({
     where: { id },
-    relations: ['chapters', 'chapters.exercises'],
+    relations: [
+      'chapters',
+      'chapters.files',
+      'chapters.exercises',
+      'chapters.exercises.files',
+    ],
   });
 
   if (!module) {
@@ -373,7 +385,7 @@ const updateModuleWithChapterAndExercise = async (
 
   // Update chapters
   for (const [index, chapterData] of chapters.entries()) {
-    const existingChapter = chapterData.id
+    let existingChapter = chapterData.id
       ? module.chapters.find((c) => c.id === chapterData.id)
       : undefined;
 
@@ -386,16 +398,23 @@ const updateModuleWithChapterAndExercise = async (
       existingChapter.isActive =
         chapterData.isActive ?? existingChapter.isActive;
 
-      // Handle file update for the chapter
-      const newChapterFile = chapterFiles[index]?.path;
-      if (newChapterFile) {
-        if (existingChapter.fileUrl) {
-          deleteFile(existingChapter.fileUrl); // Delete old file
-        }
-        existingChapter.fileUrl = `uploads/${path.basename(newChapterFile)}`;
+      await chapterRepo.save(existingChapter);
+
+      // Delete old chapter files from database and filesystem
+      const oldFiles = await fileRepo.find({ where: { chapter: { id: existingChapter.id } } });
+      for (const oldFile of oldFiles) {
+        deleteFile(oldFile.filePath); // Delete physical file
+        await fileRepo.remove(oldFile); // Delete file record
       }
 
-      await chapterRepo.save(existingChapter);
+      // Save new chapter files
+      const newChapterFiles = chapterFiles.slice(index * 10, (index + 1) * 10);
+      for (const file of newChapterFiles) {
+        const newFile = new File();
+        newFile.filePath = file.path;
+        newFile.chapter = existingChapter;
+        await fileRepo.save(newFile);
+      }
     } else {
       // Add new chapter
       const newChapter = chapterRepo.create({
@@ -404,22 +423,37 @@ const updateModuleWithChapterAndExercise = async (
         order: chapterData.order,
         isActive: chapterData.isActive,
         module,
-        fileUrl: chapterFiles[index]?.path
-          ? `uploads/${path.basename(chapterFiles[index].path)}`
-          : null,
       });
 
       await chapterRepo.save(newChapter);
+
+      // Save new chapter files
+      const newChapterFiles = chapterFiles.slice(index * 10, (index + 1) * 10);
+      for (const file of newChapterFiles) {
+        const newFile = new File();
+        newFile.filePath = file.path;
+        newFile.chapter = newChapter;
+        await fileRepo.save(newFile);
+      }
+      existingChapter = newChapter;
     }
 
     // Update exercises for the chapter
     for (const [exerciseIndex, exerciseData] of (
       chapterData.exercises || []
     ).entries()) {
+      // Ensure existingChapter is defined
+      if (!existingChapter) {
+        throw createHttpError(500, 'Existing chapter is undefined during exercise update.');
+      }
+    
+      // Ensure exercises array exists
+      existingChapter.exercises = existingChapter.exercises || [];
+    
       const existingExercise = exerciseData.id
-        ? existingChapter?.exercises.find((e) => e.id === exerciseData.id)
+        ? existingChapter.exercises.find((e) => e.id === exerciseData.id)
         : undefined;
-
+    
       if (existingExercise) {
         // Update existing exercise
         existingExercise.title = exerciseData.title ?? existingExercise.title;
@@ -430,19 +464,29 @@ const updateModuleWithChapterAndExercise = async (
           exerciseData.difficulty ?? existingExercise.difficulty;
         existingExercise.isActive =
           exerciseData.isActive ?? existingExercise.isActive;
-
-        // Handle file update for the exercise
-        const newExerciseFile = exerciseFiles[exerciseIndex]?.path;
-        if (newExerciseFile) {
-          if (existingExercise.fileUrl) {
-            deleteFile(existingExercise.fileUrl); // Delete old file
-          }
-          existingExercise.fileUrl = `uploads/${path.basename(
-            newExerciseFile
-          )}`;
-        }
-
+    
         await exerciseRepo.save(existingExercise);
+    
+        // Delete old exercise files
+        const oldExerciseFiles = await fileRepo.find({
+          where: { exercise: { id: existingExercise.id } },
+        });
+        for (const oldFile of oldExerciseFiles) {
+          deleteFile(oldFile.filePath);
+          await fileRepo.remove(oldFile);
+        }
+    
+        // Save new exercise files
+        const newExerciseFiles = exerciseFiles.slice(
+          exerciseIndex * 20,
+          (exerciseIndex + 1) * 20
+        );
+        for (const file of newExerciseFiles) {
+          const newFile = new File();
+          newFile.filePath = file.path;
+          newFile.exercise = existingExercise;
+          await fileRepo.save(newFile);
+        }
       } else {
         // Add new exercise
         const newExercise = exerciseRepo.create({
@@ -452,14 +496,23 @@ const updateModuleWithChapterAndExercise = async (
           difficulty: exerciseData.difficulty,
           isActive: exerciseData.isActive,
           chapter: existingChapter,
-          fileUrl: exerciseFiles[exerciseIndex]?.path
-            ? `uploads/${path.basename(exerciseFiles[exerciseIndex].path)}`
-            : null,
         });
-
+    
         await exerciseRepo.save(newExercise);
+    
+        // Save new exercise files
+        const newExerciseFiles = exerciseFiles.slice(
+          exerciseIndex * 20,
+          (exerciseIndex + 1) * 20
+        );
+        for (const file of newExerciseFiles) {
+          const newFile = new File();
+          newFile.filePath = file.path;
+          newFile.exercise = newExercise;
+          await fileRepo.save(newFile);
+        }
       }
-    }
+    }    
   }
 
   // Save updated module
