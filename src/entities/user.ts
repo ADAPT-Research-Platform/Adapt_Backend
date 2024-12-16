@@ -8,6 +8,8 @@ import {
 } from 'typeorm';
 import bcrypt from 'bcryptjs';
 
+import { UserType } from '../enums/enum';
+
 @Entity()
 export class User {
     @PrimaryGeneratedColumn('uuid')
@@ -30,6 +32,13 @@ export class User {
     
     @Column({ nullable: false })
     hashPassword!: string;
+
+    @Column({
+        type: 'enum',
+        enum: UserType,
+        default: UserType.USER,
+    })
+    role!: UserType;
 
     @Column({ nullable: false })
     salt!: string;

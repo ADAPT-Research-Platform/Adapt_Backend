@@ -5,6 +5,7 @@ import { AppDataSource } from '../../data-source';
 import { User } from '../../entities/user';
 import type { UsersCreateBody } from '../../types/routes/users';
 import { validateCreateBody } from './validators';
+import { UserType } from 'src/enums/enum';
 
 const create = async (req: TypedRequestBody<UsersCreateBody>, res: Response) => {
     const { username, email, password } = validateCreateBody(req.body);
@@ -35,6 +36,7 @@ const create = async (req: TypedRequestBody<UsersCreateBody>, res: Response) => 
         const newUser = new User();
         newUser.username = username;
         newUser.email = email;
+        newUser.role = UserType.USER;
         newUser.setPassword(password);
         await queryRunner.manager.save(newUser);
 
