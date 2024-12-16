@@ -12,16 +12,22 @@ import apiRoutes from '../routes/api';
 const createServer = () => {
   const app = express();
 
-  const corsOptions = {
+/*   const corsOptions = {
     origin: process.env.CORS_ORIGIN_ALLOWED?.split(',') || '*',
     credentials: true,
     optionsSuccessStatus: 200,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
-  };
+  }; */
+
+  app.use(cors({
+    origin: process.env.CORS_ORIGIN_ALLOWED || '*', // Allow all origins or specify allowed origins
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify allowed methods
+    allowedHeaders: ['Content-Type', 'Authorization'], // Specify allowed headers
+  }));
 
   app.use(morgan('dev'));
-  app.use(cors(corsOptions));
+ // app.use(cors(corsOptions));
   app.use(urlencoded({ extended: true }));
   app.use(json());
   app.use(helmet());
