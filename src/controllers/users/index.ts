@@ -20,7 +20,7 @@ const create = async (req: TypedRequestBody<UsersCreateBody>, res: Response) => 
 
     try {
         const userRepo = queryRunner.manager.getRepository(User);
-        const usernameExists = await userRepo.exist({
+        const usernameExists = await userRepo.exists({
             where: { username }
         });
         if (usernameExists) {

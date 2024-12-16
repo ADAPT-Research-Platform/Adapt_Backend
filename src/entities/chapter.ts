@@ -11,6 +11,7 @@ import {
 
 import { Module } from './module';
 import { Exercise } from './exercise';
+import { Comment } from './comment';
 
 @Entity()
 export class Chapter {
@@ -46,4 +47,7 @@ export class Chapter {
 
     @OneToMany(() => Exercise, (exercise) => exercise.chapter)
     exercises!: Exercise[];
+
+    @OneToMany(() => Comment, (comment) => comment.chapter)
+    comments!: Comment[];
 }
