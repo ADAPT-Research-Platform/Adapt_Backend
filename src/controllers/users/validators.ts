@@ -34,20 +34,14 @@ export const validateCreateBody = (body: Partial<UsersCreateBody>) => {
 };
 
 export const validateMoodCreateBody = (body: Partial<MoodCreateBody>) => {
-    const { userId, feeling, motivation, date } = body;
+    const { feeling, motivation } = body;
 
-    if (!userId || typeof userId !== 'string') {
-        throw createHttpError(400, 'Invalid or missing userId');
-    }
     if (!feeling || feeling < 1 || feeling > 5) {
         throw createHttpError(400, 'Feeling must be between 1 and 5');
     }
     if (!motivation || motivation < 1 || motivation > 5) {
         throw createHttpError(400, 'Motivation must be between 1 and 5');
     }
-    if (!date || isNaN(Date.parse(date))) {
-        throw createHttpError(400, 'Invalid date format');
-    }
 
-    return { userId, feeling, motivation, date };
+    return { feeling, motivation };
 };

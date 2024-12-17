@@ -11,7 +11,7 @@ import { AppDataSource } from '../../data-source';
 import { User } from '../../entities/user';
 import type { UsersCreateBody } from '../../types/routes/users';
 import type { MoodCreateBody } from '../../types/routes/mood';
-import { validateCreateBody, validateMoodCreateBody } from './validators';
+import { validateCreateBody } from './validators';
 
 const create = async (
   req: TypedRequestBody<UsersCreateBody>,
@@ -63,60 +63,51 @@ const create = async (
   }
 };
 
-export const createMood = async (
-  req: TypedRequestBody<MoodCreateBody>,
-  res: Response
-) => {
-  const { userId, feeling, motivation, date } = validateMoodCreateBody(
-    req.body
-  );
+export const createMood = async (req: Request, res: Response) => {
+  // Explicitly cast the request to include user
+  const { user } = req as Request & { user: { id: string } };
 
-  // Create a query runner to control the transaction
-  const queryRunner = AppDataSource.createQueryRunner();
-
-  await queryRunner.connect();
-  await queryRunner.startTransaction();
-
-  try {
-    const userRepo = queryRunner.manager.getRepository(User);
-    const moodRepo = queryRunner.manager.getRepository(Mood);
-
-    // Check if the user exists
-    const user = await userRepo.findOne({ where: { id: userId } });
-    if (!user) {
-      throw createHttpError(404, 'User not found');
-    }
-
-    // Check if the mood already exists for the given date
-    const existingMood = await moodRepo.findOne({
-      where: { user: { id: userId }, date: new Date(date) },
-    });
-    if (existingMood) {
-      throw createHttpError(409, 'Mood entry already exists for this date');
-    }
-
-    // Create new mood entry
-    const newMood = new Mood();
-    newMood.user = user;
-    newMood.feeling = feeling;
-    newMood.motivation = motivation;
-    newMood.date = new Date(date);
-
-    // Save the mood entry
-    await queryRunner.manager.save(newMood);
-
-    // Commit the transaction
-    await queryRunner.commitTransaction();
-
-    res.status(201).send({ id: newMood.id });
-  } catch (err) {
-    // Rollback the transaction on error
-    await queryRunner.rollbackTransaction();
-    throw err;
-  } finally {
-    // Release the query runner
-    await queryRunner.release();
+  if (!user) {
+    throw createHttpError(403, 'User must be authenticated');
   }
+
+  const userId = user.id; // Access user ID
+  const { feeling, motivation } = req.body as MoodCreateBody;
+
+  if (!feeling || !motivation) {
+    throw createHttpError(400, 'Feeling and motivation are required');
+  }
+  if (feeling < 1 || feeling > 5 || motivation < 1 || motivation > 5) {
+    throw createHttpError(
+      400,
+      'Feeling and motivation must be between 1 and 5'
+    );
+  }
+
+  const today = new Date().toISOString().split('T')[0];
+
+  const moodRepo = AppDataSource.getRepository(Mood);
+
+  const existingMood = await moodRepo.findOne({
+    where: { user: { id: userId }, date: new Date(today) },
+  });
+  if (existingMood) {
+    throw createHttpError(409, 'Mood entry already exists for today');
+  }
+
+  const mood = moodRepo.create({
+    user,
+    feeling,
+    motivation,
+    date: today,
+  });
+
+  await moodRepo.save(mood);
+
+  return res.status(201).json({
+    message: 'Mood recorded successfully',
+    moodId: mood.id,
+  });
 };
 
 export const getUserMood = async (req: Request, res: Response) => {
