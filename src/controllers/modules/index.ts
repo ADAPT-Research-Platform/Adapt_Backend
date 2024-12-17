@@ -309,9 +309,15 @@ const update = async (req: Request, res: Response<{ message: string }>) => {
 
 // Helper to delete old files
 const deleteFile = (filePath: string) => {
-  const fullPath = path.join(__dirname, '../../../', filePath);
+  // Use path.resolve to get the absolute path to the uploads folder
+  const uploadFolder = path.resolve(__dirname, '../../../uploads'); // Adjusted to root/uploads
+  const fullPath = path.join(uploadFolder, path.basename(filePath)); // Combines folder + filename
+  
   if (fs.existsSync(fullPath)) {
     fs.unlinkSync(fullPath);
+    console.log(`Deleted file: ${fullPath}`);
+  } else {
+    console.warn(`File not found: ${fullPath}`);
   }
 };
 
@@ -531,14 +537,48 @@ const deleteModule = async (
   const { id } = req.params;
 
   const moduleRepo = AppDataSource.getRepository(Module);
-  const module = await moduleRepo.findOneBy({ id });
+  const fileRepo = AppDataSource.getRepository(File);
+
+  // Find the module with all related data
+  const module = await moduleRepo.findOne({
+    where: { id },
+    relations: [
+      'chapters',
+      'chapters.files',
+      'chapters.exercises',
+      'chapters.exercises.files',
+    ],
+  });
 
   if (!module) {
     throw createHttpError(404, 'Module not found');
   }
 
-  await moduleRepo.remove(module);
-  res.send({ message: 'Module deleted successfully' });
+  try {
+    // Delete files associated with chapters and exercises
+    for (const chapter of module.chapters) {
+      // Delete chapter files
+      for (const file of chapter.files) {
+        deleteFile(file.filePath); // Delete from filesystem
+        await fileRepo.remove(file); // Delete file record
+      }
+
+      // Delete exercise files
+      for (const exercise of chapter.exercises) {
+        for (const file of exercise.files) {
+          deleteFile(file.filePath); // Delete from filesystem
+          await fileRepo.remove(file); // Delete file record
+        }
+      }
+    }
+
+    // Finally, remove the module
+    await moduleRepo.remove(module);
+
+    res.send({ message: 'Module and associated files deleted successfully' });
+  } catch (error) {
+    throw createHttpError(500, 'Error deleting module and files');
+  }
 };
 
 export default {
