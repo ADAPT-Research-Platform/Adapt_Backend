@@ -3,12 +3,14 @@ import {
     CreateDateColumn,
     DeleteDateColumn,
     Entity,
+    OneToMany,
     PrimaryGeneratedColumn,
     UpdateDateColumn,
 } from 'typeorm';
 import bcrypt from 'bcryptjs';
 
 import { UserType } from '../enums/enum';
+import { Mood } from './mood';
 
 @Entity()
 export class User {
@@ -42,6 +44,9 @@ export class User {
 
     @Column({ nullable: false })
     salt!: string;
+    
+    @OneToMany(() => Mood, (mood) => mood.user, { cascade: true })
+    moods!: Mood[];
     
     setPassword(password: string) {
         this.salt = bcrypt.genSaltSync(12);
