@@ -1,5 +1,7 @@
-import type { Response } from 'express';
+import type { Request, Response } from 'express';
 import createHttpError from 'http-errors';
+
+import { Between } from 'typeorm';
 
 import { Mood } from '../../entities/mood';
 
@@ -117,7 +119,47 @@ export const createMood = async (
   }
 };
 
+export const getUserMood = async (req: Request, res: Response) => {
+  // Explicitly cast the request to include userId
+  const { userId } = req as Request & { userId: string };
+
+  if (!userId) {
+    throw createHttpError(403, 'User must be authenticated');
+  }
+  console.log(userId);
+
+  // Check for 'days' query parameter with default value
+  const daysParam = req.query.days;
+  const days = daysParam ? parseInt(daysParam as string, 10) : 7; // Default to 7 days
+
+  if (isNaN(days) || days <= 0) {
+    throw createHttpError(400, '\'days\' must be a positive integer');
+  }
+
+  // Calculate the date range
+  const today = new Date();
+  const startDate = new Date();
+  startDate.setDate(today.getDate() - days);
+
+  const moodRepo = AppDataSource.getRepository(Mood);
+
+  // Query moods within the specified date range
+  const moods = await moodRepo.find({
+    where: {
+      user: { id: userId },
+      date: Between(startDate, today),
+    },
+    order: { date: 'DESC' },
+  });
+
+  return res.status(200).json({
+    message: `Mood entries for the last ${days} days`,
+    data: moods,
+  });
+};
+
 export default {
   create,
   createMood,
+  getUserMood,
 };
