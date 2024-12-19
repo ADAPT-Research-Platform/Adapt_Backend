@@ -1,17 +1,21 @@
 services:
   api:
     container_name: api
-    image: node:18-alpine
+    image: api  # This specifies the image name
+    build:
+      context: .        # Use the current directory for building the image
+      dockerfile: Dockerfile  # Specify the Dockerfile name (optional if default is `Dockerfile`)
     ports:
       - ${PORT}:${PORT}
     depends_on:
       - db
-    working_dir: /app
+    environment:
+      - PORT=${PORT}              # Ensure the environment matches your Dockerfile setup
     volumes:
-      - ./:/app
-      - ./uploads:/app/uploads 
-
-    stdin_open: true 
+      - ./uploads:/app/uploads
+    env_file:
+      - .env
+    stdin_open: true
     tty: true
 
   db:

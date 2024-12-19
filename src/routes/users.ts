@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { isAuthenticated } from '../../src/middlewares/auth';
+import { isAuthenticated } from '../middlewares/auth';
 
 import UsersController from '../controllers/users';
 
