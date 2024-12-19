@@ -8,6 +8,7 @@ import session from './session';
 import { errorHandler } from '../middlewares/errorHandler';
 import passport from './passport';
 import apiRoutes from '../routes/api';
+import logger from '../logger';
 
 const createServer = () => {
   const app = express();
@@ -20,7 +21,8 @@ const createServer = () => {
     allowedHeaders: ['Content-Type', 'Authorization'],
   };
 
-  app.use(morgan('dev'));
+  morgan.format('plain', ':method :url :status :response-time ms - :res[content-length]');
+  app.use(morgan('plain', { stream: { write: (message) => logger.info(message.trim()) } }));
   app.use(cors(corsOptions));
   app.use(urlencoded({ extended: true }));
   app.use(json());
