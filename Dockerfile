@@ -22,5 +22,9 @@ RUN yarn install --production --frozen-lockfile
 
 # Add a directory for uploads and ensure proper permissions
 RUN mkdir -p /app/uploads && chown -R node:node /app/uploads
+
+# Ensure logs directory exists and has the right permissions
+RUN mkdir -p /app/logs && chown -R node:node /app/logs
+
 EXPOSE ${PORT}
 CMD ["yarn", "start"]
