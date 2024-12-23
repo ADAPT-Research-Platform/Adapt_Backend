@@ -29,7 +29,10 @@ function uploadImageToCloudOrServer(imagePath: fs.PathLike): Promise<string> {
         fs.mkdirSync(uploadDir, { recursive: true });
       }
 
-      const destination = path.join(uploadDir, path.basename(imagePath.toString()));
+      const destination = path.join(
+        uploadDir,
+        path.basename(imagePath.toString())
+      );
 
       // Copy the file to the uploads directory
       fs.copyFileSync(imagePath, destination);
@@ -109,7 +112,7 @@ const create = async (
   const markdownFiles: Express.Multer.File[] = [];
   const imageFiles: { path: string }[] = [];
 
-  [...chapterFiles, ...exerciseFiles].forEach(file => {
+  [...chapterFiles, ...exerciseFiles].forEach((file) => {
     if (file.mimetype === 'text/markdown' || file.mimetype === 'text/plain') {
       markdownFiles.push(file);
     } else if (file.mimetype.startsWith('image/')) {
@@ -122,7 +125,12 @@ const create = async (
   }
 
   try {
-    const { description, name, isActive = true, chapters } = validateModuleCreateBody(req.body);
+    const {
+      description,
+      name,
+      isActive = true,
+      chapters,
+    } = validateModuleCreateBody(req.body);
 
     // Process each markdown file
     for (const markdownFile of markdownFiles) {
@@ -130,7 +138,9 @@ const create = async (
       let markdownContent = fs.readFileSync(markdownPath, 'utf-8');
 
       // Extract image links from markdown content
-      const imageLinks = [...markdownContent.matchAll(/!\[.*?\]\((.*?)\)/g)].map(match => match[1]);
+      const imageLinks = [
+        ...markdownContent.matchAll(/!\[.*?\]\((.*?)\)/g),
+      ].map((match) => match[1]);
 
       const uploadedImageUrls = await Promise.all(
         imageLinks.map(async (imagePath, index) => {
@@ -139,7 +149,9 @@ const create = async (
             return uploadImageToCloudOrServer(absolutePath);
           } else if (imageFiles[index]) {
             // Upload corresponding image from `imageFiles`
-            const uploadedUrl = await uploadImageToCloudOrServer(imageFiles[index].path);
+            const uploadedUrl = await uploadImageToCloudOrServer(
+              imageFiles[index].path
+            );
             return uploadedUrl;
           } else {
             throw new Error(`Image not found: ${imagePath}`);
@@ -149,12 +161,15 @@ const create = async (
 
       // Replace local image paths with uploaded image URLs in the markdown content
       imageLinks.forEach((imagePath, index) => {
-        markdownContent = markdownContent.replace(imagePath, uploadedImageUrls[index]);
+        markdownContent = markdownContent.replace(
+          imagePath,
+          uploadedImageUrls[index]
+        );
       });
 
       // Save the updated markdown file
-      const updatedMarkdownPath = markdownPath.replace(/\.md$/, '-updated.md');
-      fs.writeFileSync(updatedMarkdownPath, markdownContent, 'utf-8');
+      // Overwrite the original markdown file with updated content
+      fs.writeFileSync(markdownPath, markdownContent, 'utf-8');
     }
 
     const queryRunner = AppDataSource.createQueryRunner();
@@ -250,7 +265,10 @@ const create = async (
     }
   } catch (error) {
     if (error instanceof Error) {
-      throw createHttpError(500, `Error processing markdown file: ${error.message}`);
+      throw createHttpError(
+        500,
+        `Error processing markdown file: ${error.message}`
+      );
     } else {
       throw createHttpError(500, 'Error processing markdown file');
     }
