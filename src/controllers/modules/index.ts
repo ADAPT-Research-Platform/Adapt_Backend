@@ -17,6 +17,31 @@ import type {
 } from '../../types/routes/modules';
 import { validateModuleCreateBody } from './validators';
 
+// Utility function to upload images to the server or cloud
+// This saves images locally, but you can be replaced.
+function uploadImageToCloudOrServer(imagePath: fs.PathLike): Promise<string> {
+  return new Promise((resolve, reject) => {
+    try {
+      const uploadDir = path.join(__dirname, '../../../uploads/images');
+
+      // Ensure the directory exists
+      if (!fs.existsSync(uploadDir)) {
+        fs.mkdirSync(uploadDir, { recursive: true });
+      }
+
+      const destination = path.join(uploadDir, path.basename(imagePath.toString()));
+
+      // Copy the file to the uploads directory
+      fs.copyFileSync(imagePath, destination);
+
+      // Resolve the mock URL
+      resolve(`/uploads/images/${path.basename(imagePath.toString())}`);
+    } catch (err) {
+      reject(err);
+    }
+  });
+}
+
 // Multer configuration for file uploads
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -80,99 +105,314 @@ const create = async (
   const chapterFiles = req.files?.['chapterFiles'] || [];
   const exerciseFiles = req.files?.['exerciseFiles'] || [];
 
-  const {
-    name,
-    description,
-    isActive = true,
-    chapters,
-  } = validateModuleCreateBody(req.body);
+  // Separate markdown and image files from chapterFiles and exerciseFiles
+  const markdownFiles: Express.Multer.File[] = [];
+  const imageFiles: { path: string }[] = [];
 
-  const queryRunner = AppDataSource.createQueryRunner();
+  [...chapterFiles, ...exerciseFiles].forEach(file => {
+    if (file.mimetype === 'text/markdown' || file.mimetype === 'text/plain') {
+      markdownFiles.push(file);
+    } else if (file.mimetype.startsWith('image/')) {
+      imageFiles.push(file);
+    }
+  });
 
-  await queryRunner.connect();
-  await queryRunner.startTransaction();
+  if (markdownFiles.length === 0) {
+    throw createHttpError(400, 'At least one markdown file is required');
+  }
 
   try {
-    const moduleRepo = queryRunner.manager.getRepository(Module);
-    const fileRepo = queryRunner.manager.getRepository(File);
+    const { description, name, isActive = true, chapters } = validateModuleCreateBody(req.body);
 
-    // Check for module name uniqueness
-    const moduleExists = await moduleRepo.exist({ where: { name } });
-    if (moduleExists) {
-      throw createHttpError(409, 'Module name already exists');
+    // Process each markdown file
+    for (const markdownFile of markdownFiles) {
+      const markdownPath = markdownFile.path;
+      let markdownContent = fs.readFileSync(markdownPath, 'utf-8');
+
+      // Extract image links from markdown content
+      const imageLinks = [...markdownContent.matchAll(/!\[.*?\]\((.*?)\)/g)].map(match => match[1]);
+
+      const uploadedImageUrls = await Promise.all(
+        imageLinks.map(async (imagePath, index) => {
+          const absolutePath = path.resolve(imagePath);
+          if (fs.existsSync(absolutePath)) {
+            return uploadImageToCloudOrServer(absolutePath);
+          } else if (imageFiles[index]) {
+            // Upload corresponding image from `imageFiles`
+            const uploadedUrl = await uploadImageToCloudOrServer(imageFiles[index].path);
+            return uploadedUrl;
+          } else {
+            throw new Error(`Image not found: ${imagePath}`);
+          }
+        })
+      );
+
+      // Replace local image paths with uploaded image URLs in the markdown content
+      imageLinks.forEach((imagePath, index) => {
+        markdownContent = markdownContent.replace(imagePath, uploadedImageUrls[index]);
+      });
+
+      // Save the updated markdown file
+      const updatedMarkdownPath = markdownPath.replace(/\.md$/, '-updated.md');
+      fs.writeFileSync(updatedMarkdownPath, markdownContent, 'utf-8');
     }
 
-    // Create and save the module
-    const newModule = new Module();
-    newModule.name = name;
-    newModule.description = description ?? null;
-    newModule.isActive = isActive;
-    await queryRunner.manager.save(newModule);
+    const queryRunner = AppDataSource.createQueryRunner();
 
-    // Save chapters and exercises
-    for (let i = 0; i < chapters.length; i++) {
-      const chapterData = chapters[i];
-      const chapterFileUploads = chapterFiles.slice(i * 10, (i + 1) * 10);
+    await queryRunner.connect();
+    await queryRunner.startTransaction();
 
-      const newChapter = new Chapter();
-      newChapter.name = chapterData.name;
-      newChapter.description = chapterData.description ?? null;
-      newChapter.order = chapterData.order;
-      newChapter.isActive = chapterData.isActive ?? true;
-      newChapter.module = newModule;
-      await queryRunner.manager.save(newChapter);
+    try {
+      const moduleRepo = queryRunner.manager.getRepository(Module);
+      const fileRepo = queryRunner.manager.getRepository(File);
 
-      // Save chapter files
-      if (chapterFileUploads.length > 0) {
-        for (const file of chapterFileUploads) {
-          const newFile = new File();
-          newFile.filePath = file.path;
-          newFile.chapter = newChapter;
-          await fileRepo.save(newFile);
-        }
+      // Check for module name uniqueness
+      const moduleExists = await moduleRepo.exist({ where: { name } });
+      if (moduleExists) {
+        throw createHttpError(409, 'Module name already exists');
       }
 
-      // Save exercises
-      for (let j = 0; j < chapterData.exercises.length; j++) {
-        const exerciseData = chapterData.exercises[j];
-        const exerciseFileUploads = exerciseFiles.slice(j * 20, (j + 1) * 20);
+      // Create and save the module
+      const newModule = new Module();
+      if (name === undefined) {
+        throw createHttpError(400, 'Module name is required');
+      }
+      newModule.name = name;
+      newModule.description = description ?? null;
+      newModule.isActive = isActive;
+      await queryRunner.manager.save(newModule);
 
-        const newExercise = new Exercise();
-        newExercise.title = exerciseData.title;
-        newExercise.content = exerciseData.content ?? null;
-        newExercise.order = exerciseData.order;
-        newExercise.difficulty = exerciseData.difficulty ?? 'Medium';
-        newExercise.isActive = exerciseData.isActive ?? true;
-        newExercise.chapter = newChapter;
-        await queryRunner.manager.save(newExercise);
+      // Save chapters and exercises
+      if (!chapters) {
+        throw createHttpError(400, 'Chapters are required');
+      }
+      for (let i = 0; i < chapters.length; i++) {
+        const chapterData = chapters[i];
+        const chapterFileUploads = chapterFiles.slice(i * 10, (i + 1) * 10);
 
-        // Save exercise files
-        if (exerciseFileUploads.length > 0) {
-          for (const file of exerciseFileUploads) {
+        const newChapter = new Chapter();
+        newChapter.name = chapterData.name;
+        newChapter.description = chapterData.description ?? null;
+        newChapter.order = chapterData.order;
+        newChapter.isActive = chapterData.isActive ?? true;
+        newChapter.module = newModule;
+        await queryRunner.manager.save(newChapter);
+
+        // Save chapter files
+        if (chapterFileUploads.length > 0) {
+          for (const file of chapterFileUploads) {
             const newFile = new File();
             newFile.filePath = file.path;
-            newFile.exercise = newExercise;
+            newFile.chapter = newChapter;
             await fileRepo.save(newFile);
           }
         }
-      }
-    }
 
-    await queryRunner.commitTransaction();
-    res
-      .status(201)
-      .json({ id: newModule.id, message: 'Module created successfully' });
-  } catch (error) {
-    await queryRunner.rollbackTransaction();
-    if (error instanceof Error) {
-      throw createHttpError(500, `Error creating module: ${error.message}`);
-    } else {
-      throw createHttpError(500, 'Error creating module');
+        // Save exercises
+        for (let j = 0; j < chapterData.exercises.length; j++) {
+          const exerciseData = chapterData.exercises[j];
+          const exerciseFileUploads = exerciseFiles.slice(j * 20, (j + 1) * 20);
+
+          const newExercise = new Exercise();
+          newExercise.title = exerciseData.title;
+          newExercise.content = exerciseData.content ?? null;
+          newExercise.order = exerciseData.order;
+          newExercise.difficulty = exerciseData.difficulty ?? 'Medium';
+          newExercise.isActive = exerciseData.isActive ?? true;
+          newExercise.chapter = newChapter;
+          await queryRunner.manager.save(newExercise);
+
+          // Save exercise files
+          if (exerciseFileUploads.length > 0) {
+            for (const file of exerciseFileUploads) {
+              const newFile = new File();
+              newFile.filePath = file.path;
+              newFile.exercise = newExercise;
+              await fileRepo.save(newFile);
+            }
+          }
+        }
+      }
+
+      await queryRunner.commitTransaction();
+      res
+        .status(201)
+        .json({ id: newModule.id, message: 'Module created successfully' });
+    } catch (error) {
+      await queryRunner.rollbackTransaction();
+      if (error instanceof Error) {
+        throw createHttpError(500, `Error creating module: ${error.message}`);
+      } else {
+        throw createHttpError(500, 'Error creating module');
+      }
+    } finally {
+      await queryRunner.release();
     }
-  } finally {
-    await queryRunner.release();
+  } catch (error) {
+    if (error instanceof Error) {
+      throw createHttpError(500, `Error processing markdown file: ${error.message}`);
+    } else {
+      throw createHttpError(500, 'Error processing markdown file');
+    }
   }
 };
+
+// // Multer configuration for file uploads
+// const storage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     const uploadPath = path.join(__dirname, '../../../uploads');
+//     if (!fs.existsSync(uploadPath)) {
+//       fs.mkdirSync(uploadPath, { recursive: true });
+//     }
+//     cb(null, uploadPath);
+//   },
+//   filename: (req, file, cb) => {
+//     const uniqueName = `${Date.now()}-${file.originalname}`;
+//     cb(null, uniqueName);
+//   },
+// });
+
+// const upload = multer({
+//   storage,
+//   fileFilter: (req, file, cb) => {
+//     // Acceptable file extensions
+//     const fileTypes = /md|jpeg|jpg|png|gif/;
+
+//     // Check file extension
+//     const extName = fileTypes.test(
+//       path.extname(file.originalname).toLowerCase()
+//     );
+
+//     // Check MIME type
+//     const mimeType =
+//       file.mimetype === 'text/markdown' ||
+//       file.mimetype === 'text/plain' ||
+//       file.mimetype.startsWith('image/');
+
+//     if (extName && mimeType) {
+//       cb(null, true);
+//     } else {
+//       cb(new Error('Only .md, .jpg, .jpeg, .png, and .gif files are allowed'));
+//     }
+//   },
+// });
+
+// // Updated `create` function to handle file uploads
+// const create = async (
+//   req: TypedRequestBody<ModuleCreateBody>,
+//   res: Response
+// ) => {
+//   // Apply the multer middleware for file uploads
+//   await new Promise<void>((resolve, reject) => {
+//     upload.fields([
+//       { name: 'chapterFiles', maxCount: 50 },
+//       { name: 'exerciseFiles', maxCount: 100 },
+//     ])(req, res, (err) => {
+//       if (err) {
+//         reject(err);
+//       } else {
+//         resolve();
+//       }
+//     });
+//   });
+
+//   // Access uploaded files
+//   const chapterFiles = req.files?.['chapterFiles'] || [];
+//   const exerciseFiles = req.files?.['exerciseFiles'] || [];
+
+//   const {
+//     name,
+//     description,
+//     isActive = true,
+//     chapters,
+//   } = validateModuleCreateBody(req.body);
+
+//   const queryRunner = AppDataSource.createQueryRunner();
+
+//   await queryRunner.connect();
+//   await queryRunner.startTransaction();
+
+//   try {
+//     const moduleRepo = queryRunner.manager.getRepository(Module);
+//     const fileRepo = queryRunner.manager.getRepository(File);
+
+//     // Check for module name uniqueness
+//     const moduleExists = await moduleRepo.exist({ where: { name } });
+//     if (moduleExists) {
+//       throw createHttpError(409, 'Module name already exists');
+//     }
+
+//     // Create and save the module
+//     const newModule = new Module();
+//     newModule.name = name;
+//     newModule.description = description ?? null;
+//     newModule.isActive = isActive;
+//     await queryRunner.manager.save(newModule);
+
+//     // Save chapters and exercises
+//     for (let i = 0; i < chapters.length; i++) {
+//       const chapterData = chapters[i];
+//       const chapterFileUploads = chapterFiles.slice(i * 10, (i + 1) * 10);
+
+//       const newChapter = new Chapter();
+//       newChapter.name = chapterData.name;
+//       newChapter.description = chapterData.description ?? null;
+//       newChapter.order = chapterData.order;
+//       newChapter.isActive = chapterData.isActive ?? true;
+//       newChapter.module = newModule;
+//       await queryRunner.manager.save(newChapter);
+
+//       // Save chapter files
+//       if (chapterFileUploads.length > 0) {
+//         for (const file of chapterFileUploads) {
+//           const newFile = new File();
+//           newFile.filePath = file.path;
+//           newFile.chapter = newChapter;
+//           await fileRepo.save(newFile);
+//         }
+//       }
+
+//       // Save exercises
+//       for (let j = 0; j < chapterData.exercises.length; j++) {
+//         const exerciseData = chapterData.exercises[j];
+//         const exerciseFileUploads = exerciseFiles.slice(j * 20, (j + 1) * 20);
+
+//         const newExercise = new Exercise();
+//         newExercise.title = exerciseData.title;
+//         newExercise.content = exerciseData.content ?? null;
+//         newExercise.order = exerciseData.order;
+//         newExercise.difficulty = exerciseData.difficulty ?? 'Medium';
+//         newExercise.isActive = exerciseData.isActive ?? true;
+//         newExercise.chapter = newChapter;
+//         await queryRunner.manager.save(newExercise);
+
+//         // Save exercise files
+//         if (exerciseFileUploads.length > 0) {
+//           for (const file of exerciseFileUploads) {
+//             const newFile = new File();
+//             newFile.filePath = file.path;
+//             newFile.exercise = newExercise;
+//             await fileRepo.save(newFile);
+//           }
+//         }
+//       }
+//     }
+
+//     await queryRunner.commitTransaction();
+//     res
+//       .status(201)
+//       .json({ id: newModule.id, message: 'Module created successfully' });
+//   } catch (error) {
+//     await queryRunner.rollbackTransaction();
+//     if (error instanceof Error) {
+//       throw createHttpError(500, `Error creating module: ${error.message}`);
+//     } else {
+//       throw createHttpError(500, 'Error creating module');
+//     }
+//   } finally {
+//     await queryRunner.release();
+//   }
+// };
 
 // Get all modules
 const getAll = async (_req: Request, res: Response<ModuleResponse[]>) => {
@@ -312,7 +552,7 @@ const deleteFile = (filePath: string) => {
   // Use path.resolve to get the absolute path to the uploads folder
   const uploadFolder = path.resolve(__dirname, '../../../uploads'); // Adjusted to root/uploads
   const fullPath = path.join(uploadFolder, path.basename(filePath)); // Combines folder + filename
-  
+
   if (fs.existsSync(fullPath)) {
     fs.unlinkSync(fullPath);
     console.log(`Deleted file: ${fullPath}`);
@@ -407,7 +647,9 @@ const updateModuleWithChapterAndExercise = async (
       await chapterRepo.save(existingChapter);
 
       // Delete old chapter files from database and filesystem
-      const oldFiles = await fileRepo.find({ where: { chapter: { id: existingChapter.id } } });
+      const oldFiles = await fileRepo.find({
+        where: { chapter: { id: existingChapter.id } },
+      });
       for (const oldFile of oldFiles) {
         deleteFile(oldFile.filePath); // Delete physical file
         await fileRepo.remove(oldFile); // Delete file record
@@ -450,16 +692,19 @@ const updateModuleWithChapterAndExercise = async (
     ).entries()) {
       // Ensure existingChapter is defined
       if (!existingChapter) {
-        throw createHttpError(500, 'Existing chapter is undefined during exercise update.');
+        throw createHttpError(
+          500,
+          'Existing chapter is undefined during exercise update.'
+        );
       }
-    
+
       // Ensure exercises array exists
       existingChapter.exercises = existingChapter.exercises || [];
-    
+
       const existingExercise = exerciseData.id
         ? existingChapter.exercises.find((e) => e.id === exerciseData.id)
         : undefined;
-    
+
       if (existingExercise) {
         // Update existing exercise
         existingExercise.title = exerciseData.title ?? existingExercise.title;
@@ -470,9 +715,9 @@ const updateModuleWithChapterAndExercise = async (
           exerciseData.difficulty ?? existingExercise.difficulty;
         existingExercise.isActive =
           exerciseData.isActive ?? existingExercise.isActive;
-    
+
         await exerciseRepo.save(existingExercise);
-    
+
         // Delete old exercise files
         const oldExerciseFiles = await fileRepo.find({
           where: { exercise: { id: existingExercise.id } },
@@ -481,7 +726,7 @@ const updateModuleWithChapterAndExercise = async (
           deleteFile(oldFile.filePath);
           await fileRepo.remove(oldFile);
         }
-    
+
         // Save new exercise files
         const newExerciseFiles = exerciseFiles.slice(
           exerciseIndex * 20,
@@ -503,9 +748,9 @@ const updateModuleWithChapterAndExercise = async (
           isActive: exerciseData.isActive,
           chapter: existingChapter,
         });
-    
+
         await exerciseRepo.save(newExercise);
-    
+
         // Save new exercise files
         const newExerciseFiles = exerciseFiles.slice(
           exerciseIndex * 20,
@@ -518,7 +763,7 @@ const updateModuleWithChapterAndExercise = async (
           await fileRepo.save(newFile);
         }
       }
-    }    
+    }
   }
 
   // Save updated module
