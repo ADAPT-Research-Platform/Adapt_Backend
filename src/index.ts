@@ -3,6 +3,7 @@ import 'reflect-metadata';
 dotenv.config();
 
 import createServer from './config/server';
+import logger from './logger';
 import { AppDataSource } from './data-source';
 
 const host = process.env.HOST || '0.0.0.0';
@@ -13,7 +14,8 @@ const app = createServer();
 AppDataSource.initialize()
     .then(() => {
         app.listen({ host, port }, () => {
-            console.info(`⚡️ Server is running at http://${host}:${port}`);
+            logger.info('============================================================================================');
+            logger.info(`Server is started at http://${host}:${port}`);
         });
     })
-    .catch(console.error);
+    .catch(logger.error);

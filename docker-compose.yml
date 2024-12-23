@@ -13,6 +13,7 @@ services:
       - PORT=${PORT}              # Ensure the environment matches your Dockerfile setup
     volumes:
       - ./uploads:/app/uploads
+      - ./logs:/app/logs
     env_file:
       - .env
     stdin_open: true
