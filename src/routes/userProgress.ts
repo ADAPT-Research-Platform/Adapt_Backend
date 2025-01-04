@@ -28,4 +28,14 @@ router
   .route('/chapter-progress/:moduleProgressId')
   .get(isAuthenticated, asyncHandler(UserProgressController.getChapterProgress));
 
+// Crete file progress for a chapter
+router
+  .route('/file-progress')
+  .post(isAuthenticated, asyncHandler(UserProgressController.createOrUpdateFileProgress));
+
+// Get file progress for a chapter
+router
+  .route('/file-progress/:chapterProgressId')
+  .get(isAuthenticated, asyncHandler(UserProgressController.getFileProgress));
+
 export default router;

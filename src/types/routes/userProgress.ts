@@ -42,3 +42,20 @@ export interface ModuleProgressResponse {
   updatedAt: Date; // Timestamp of last update
 //   chaptersProgress: ChapterProgressResponse[]; // Nested chapter progress records
 }
+
+export interface FileProgressCreateBody {
+  chapterProgressId: string; // ID of the related ChapterProgress
+  fileId: string;           // ID of the related File
+  isCompleted?: boolean;    // Optional: Completion status of the file
+  completedAt?: Date | null; // Optional: Timestamp when the file was completed
+}
+
+export interface FileProgressResponse {
+  id: string;              // ID of the FileProgress record
+  chapterProgressId: string; // ID of the related ChapterProgress
+  fileId: string;          // ID of the related File
+  isCompleted: boolean;    // Indicates whether the file is completed
+  completedAt: Date | null; // Timestamp when the file was completed
+  createdAt: Date;       // Timestamp when the record was created
+  updatedAt: Date;       // Timestamp when the record was last updated
+}
