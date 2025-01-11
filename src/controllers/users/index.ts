@@ -154,10 +154,9 @@ export const getUserMood = async (req: Request, res: Response) => {
     order: { createdAt: 'DESC' },
   });
   
-  return res.status(200).json({
-    message: `Mood entries for the last ${days} days`,
-    data: moods,
-  });
+  return res.status(200).json(
+      moods,
+  );
 };
 
 export default {

@@ -55,6 +55,25 @@ const logout = (
     });
 };
 
+const get = (
+    req: Request,
+    res: Response<AuthLoginResponse>,
+    next: NextFunction,
+) => {
+    if (req.isAuthenticated()) {
+
+        return res.send({
+            id: req.user.id,
+            username: req.user.username,
+            email: req.user.email,
+        });
+    } else {
+        return next(
+            createHttpError(401, 'Unauthorized'),
+        );
+    }
+};
+
 const authenticated = (
     req: Request,
     res: Response,
@@ -69,5 +88,6 @@ const authenticated = (
 export default {
     login,
     logout,
+    get,
     authenticated,
 };

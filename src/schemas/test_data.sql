@@ -4,6 +4,7 @@ INSERT INTO "user" ("username", "email", "hashPassword", "salt") VALUES ('user2'
 INSERT INTO "user" ("username", "email", "hashPassword", "salt") VALUES ('user3', 'user3@example.com', 'hashedpassword3', 'salt3');
 INSERT INTO "user" ("username", "email", "hashPassword", "salt") VALUES ('user4', 'user4@example.com', 'hashedpassword4', 'salt4');
 INSERT INTO "user" ("username", "email", "hashPassword", "salt") VALUES ('user5', 'user5@example.com', 'hashedpassword5', 'salt5');
+INSERT INTO "user" ("username", "email", "hashPassword", "salt") VALUES ('perera123', 'risithmarshall@gmail.com', '$2a$12$sY6zwIplP07j07z5lLuhYOzLi4ERVjWnwhjKgwgWq.Pi1JUhc7bIq', '$2a$12$sY6zwIplP07j07z5lLuhYO');
 
 -- Table: module
 INSERT INTO "module" ("isActive") VALUES (true);
