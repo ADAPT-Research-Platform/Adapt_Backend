@@ -12,8 +12,8 @@ import { Chapter } from './chapter';
 
 @Entity()
 export class Module {
-    @PrimaryGeneratedColumn('uuid')
-    id!: string;
+    @PrimaryGeneratedColumn()
+    id!: number;
 
     @CreateDateColumn({ nullable: false })
     createdAt!: Date;
@@ -23,12 +23,6 @@ export class Module {
 
     @DeleteDateColumn({ nullable: true })
     deletedAt!: Date | null;
-
-    @Column({ nullable: false, unique: true, length: 255 })
-    name!: string;
-
-    @Column({ type: 'text', nullable: true })
-    description!: string | null;
 
     @Column({ default: true })
     isActive!: boolean;

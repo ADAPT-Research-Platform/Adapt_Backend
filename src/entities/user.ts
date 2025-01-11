@@ -2,8 +2,7 @@ import {
     Column,
     CreateDateColumn,
     DeleteDateColumn,
-    Entity,
-    OneToMany,
+    Entity, OneToMany,
     PrimaryGeneratedColumn,
     UpdateDateColumn,
 } from 'typeorm';
@@ -14,8 +13,8 @@ import { Mood } from './mood';
 
 @Entity()
 export class User {
-    @PrimaryGeneratedColumn('uuid')
-    id!: string;
+    @PrimaryGeneratedColumn()
+    id!: number;
 
     @CreateDateColumn({ nullable: false })
     createdAt!: Date;
@@ -26,28 +25,27 @@ export class User {
     @DeleteDateColumn({ nullable: true })
     deletedAt!: Date | null;
 
+    @Column({ default: true })
+    isActive!: boolean;
+
     @Column({ nullable: false, unique: true, length: 20 })
     username!: string;
 
     @Column({ nullable: false, unique: true, length: 255 })
     email!: string;
-    
-    @Column({ nullable: false })
-    hashPassword!: string;
 
-    @Column({
-        type: 'enum',
-        enum: UserType,
-        default: UserType.USER,
-    })
+    @Column({ type: 'enum', enum: UserType, default: UserType.CLIENT })
     role!: UserType;
 
     @Column({ nullable: false })
+    hashPassword!: string;
+
+    @Column({ nullable: false })
     salt!: string;
-    
+
     @OneToMany(() => Mood, (mood) => mood.user, { cascade: true })
     moods!: Mood[];
-    
+
     setPassword(password: string) {
         this.salt = bcrypt.genSaltSync(12);
         this.hashPassword = bcrypt.hashSync(password, this.salt);

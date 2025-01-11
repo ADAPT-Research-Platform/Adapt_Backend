@@ -2,21 +2,19 @@ import {
     Entity,
     PrimaryGeneratedColumn,
     Column,
-    ManyToOne,
     CreateDateColumn,
-    Unique,
+    Unique, ManyToOne,
 } from 'typeorm';
-
-import { User } from './user';
+import { User } from "./user";
 
 @Entity()
-@Unique(['user', 'date']) // Ensure one entry per user per day
+@Unique(['user', 'createdAt']) // Ensure one entry per user per day
 export class Mood {
-    @PrimaryGeneratedColumn('uuid')
-    id!: string;
+    @PrimaryGeneratedColumn()
+    id!: number;
 
-    @ManyToOne(() => User, (user) => user.moods, { nullable: false, onDelete: 'CASCADE' })
-    user!: User;
+    @CreateDateColumn({ nullable: false })
+    createdAt!: Date; // Timestamp of entry creation
 
     @Column({ type: 'int', nullable: false })
     feeling!: number; // User's feeling score (1-5)
@@ -24,9 +22,6 @@ export class Mood {
     @Column({ type: 'int', nullable: false })
     motivation!: number; // User's motivation score (1-5)
 
-    @Column({ type: 'date', nullable: false })
-    date!: Date; // Date of the mood entry (e.g., YYYY-MM-DD)
-
-    @CreateDateColumn({ nullable: false })
-    createdAt!: Date; // Timestamp of entry creation
+    @ManyToOne(() => User, (user) => user.moods, { nullable: false, onDelete: 'CASCADE' })
+    user!: User;
 }

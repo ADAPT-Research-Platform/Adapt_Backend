@@ -10,14 +10,12 @@ import {
 } from 'typeorm';
 
 import { Module } from './module';
-import { Exercise } from './exercise';
-import { Comment } from './comment';
-import { File } from './file';
+import { Section } from './section';
 
 @Entity()
 export class Chapter {
-  @PrimaryGeneratedColumn('uuid')
-  id!: string;
+  @PrimaryGeneratedColumn()
+  id!: number;
 
   @CreateDateColumn({ nullable: false })
   createdAt!: Date;
@@ -28,30 +26,15 @@ export class Chapter {
   @DeleteDateColumn({ nullable: true })
   deletedAt!: Date | null;
 
-  @Column({ nullable: false, length: 255 })
-  name!: string;
-
-  @Column({ type: 'text', nullable: true })
-  description!: string | null;
-
-  @Column({ nullable: false })
-  order!: number;
-
   @Column({ default: true })
   isActive!: boolean;
 
-  @Column({ type: 'text', nullable: true })
-  fileUrl!: string | null;
+  @Column({ nullable: false, length: 255 })
+  title!: string;
 
   @ManyToOne(() => Module, (module) => module.chapters, { onDelete: 'CASCADE' })
   module!: Module;
 
-  @OneToMany(() => Exercise, (exercise) => exercise.chapter)
-  exercises!: Exercise[];
-
-  @OneToMany(() => Comment, (comment) => comment.chapter)
-  comments!: Comment[];
-
-  @OneToMany(() => File, (file) => file.chapter, { cascade: true })
-  files!: File[];
+  @OneToMany(() => Section, (section) => section.chapter)
+  sections!: Section[];
 }

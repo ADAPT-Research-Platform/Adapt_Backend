@@ -10,12 +10,12 @@ import {
 } from 'typeorm';
 
 import { User } from './user';
-import { Chapter } from './chapter';
+import {Section} from './section';
 
 @Entity()
 export class Comment {
-    @PrimaryGeneratedColumn('uuid')
-    id!: string;
+    @PrimaryGeneratedColumn()
+    id!: number;
 
     @CreateDateColumn({ nullable: false })
     createdAt!: Date;
@@ -33,11 +33,11 @@ export class Comment {
     user!: User;
 
     @ManyToOne(() => Comment, (comment) => comment.replies, { nullable: true, onDelete: 'CASCADE' })
-    parentComment!: Comment | null;
+    parentId!: Comment | null;
 
-    @OneToMany(() => Comment, (comment) => comment.parentComment)
+    @OneToMany(() => Comment, (comment) => comment.parentId)
     replies!: Comment[];
 
-    @ManyToOne(() => Chapter, (chapter) => chapter.comments, { nullable: false, onDelete: 'CASCADE' })
-    chapter!: Chapter;
+    @ManyToOne(() => Section, (section) => section.comments, { nullable: false, onDelete: 'CASCADE' })
+    section!: Section;
 }
