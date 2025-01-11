@@ -33,39 +33,26 @@ export interface ExerciseUpdateBody extends ExerciseCreateBody {
 }
 
 // ExerciseResponse
-export interface ExerciseResponse {
-  id: string;
-  title: string;
-  content: string | null;
-  order: number;
-  difficulty: 'Easy' | 'Medium' | 'Hard';
-  isActive: boolean;
-  createdAt: Date;
+export interface SectionResponse {
+  id: number;
   updatedAt: Date;
-  files: FileResponse[]; // Uploaded files for this exercise
+  title: string;
+  folderUrl: string;
+  isExercise: boolean;
 }
 
 // ChapterResponse
 export interface ChapterResponse {
-  id: string;
-  name: string;
-  description: string | null;
-  order: number;
-  isActive: boolean;
-  createdAt: Date;
-  updatedAt: Date;
-  files: FileResponse[]; // Uploaded files for this chapter
-  exercises: ExerciseResponse[]; // Nested exercises
+  id: number;
+  title: string;
+  progress: number;
+  sections: SectionResponse[]; // Nested exercises
 }
 
 // ModuleResponse
 export interface ModuleResponse {
-  id: string;
-  name: string;
-  description: string | null;
-  isActive: boolean;
-  createdAt: Date;
-  updatedAt: Date;
+  id: number;
+  progress: number;
   chapters: ChapterResponse[]; // Nested chapters
 }
 

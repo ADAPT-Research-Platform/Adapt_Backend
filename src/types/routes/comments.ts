@@ -11,18 +11,18 @@ export interface UpdateCommentBody {
 }
 
 export interface CommentResponse {
-  id: string;
+  id: number;
   content: string;
   createdAt: Date;
   updatedAt: Date;
   user: {
-    id: string;
+    id: number;
     username: string;
   };
   replies?: CommentResponse[];
 }
 
 export interface GetCommentsResponse {
-  chapterId: string;
+  sectionId: number;
   comments: CommentResponse[];
 }

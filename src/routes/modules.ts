@@ -9,21 +9,21 @@ import ModulesController from '../controllers/modules';
 const router = express.Router();
 
 // Create a module
-router.route('/').post(asyncHandler( ModulesController.create));
+//router.route('/').post(asyncHandler( ModulesController.create));
 
 // Get all modules
-router.route('/').get(asyncHandler(ModulesController.getAll));
+router.route('/').get(asyncHandler(ModulesController.getAllModules));
 
 // Get a single module by ID
-router.route('/:id').get(asyncHandler(ModulesController.getById));
+//router.route('/:id').get(asyncHandler(ModulesController.getById));
 
 // Update a module by ID
-router.route('/:id').put(asyncHandler(ModulesController.update));
+//router.route('/:id').put(asyncHandler(ModulesController.update));
 
 // Update a module and it's chapter and exercise by ID
-router.route('/updateModuleWithChaptersAndExercise/:id').put(asyncHandler(ModulesController.updateModuleWithChapterAndExercise));
+//router.route('/updateModuleWithChaptersAndExercise/:id').put(asyncHandler(ModulesController.updateModuleWithChapterAndExercise));
 
 // Delete a module by ID
-router.route('/:id').delete(ModulesController.delete);
+//router.route('/:id').delete(ModulesController.delete);
 
 export default router;

@@ -50,7 +50,7 @@ export interface FileProgressCreateBody {
   completedAt?: Date | null; // Optional: Timestamp when the file was completed
 }
 
-export interface FileProgressResponse {
+export interface SectionProgressResponse {
   id: string;              // ID of the FileProgress record
   chapterProgressId: string; // ID of the related ChapterProgress
   fileId: string;          // ID of the related File

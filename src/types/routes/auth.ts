@@ -4,7 +4,7 @@ export interface AuthLoginBody {
 }
 
 export interface AuthLoginResponse {
-    id: string;
+    id: number;
     username: string;
     email: string;
 }
