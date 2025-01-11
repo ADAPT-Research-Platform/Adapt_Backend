@@ -5,7 +5,7 @@ import type { User } from '../../src/entities/user';
 declare module 'express-serve-static-core' {
   interface Request {
     user?: User;
-    userId?: string;
+    userId?: number;
     files?: {
       [fieldname: string]: Express.Multer.File[];
     };

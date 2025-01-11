@@ -4,6 +4,8 @@ import morgan from 'morgan';
 import helmet from 'helmet';
 import createHttpError from 'http-errors';
 
+import path from 'path';
+
 import session from './session';
 import { errorHandler } from '../middlewares/errorHandler';
 import passport from './passport';
@@ -34,6 +36,9 @@ const createServer = () => {
   app.use(passport.initialize());
   app.use(passport.session());
 
+  // Serve static files from the "uploads" directory
+  app.use('/app/uploads', express.static(path.join(process.cwd(), 'uploads')));
+  
   app.use(`/${process.env.API_ROUTES_PREFIX}`, apiRoutes);
   app.get('/*', (req, res) => {
     throw createHttpError(404, 'Resource Not Found');

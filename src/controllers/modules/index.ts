@@ -1,22 +1,13 @@
-import type { Response, Request } from 'express';
-import multer from 'multer';
-import path from 'path';
-import fs from 'fs';
+import type { Request, Response } from 'express';
 import createHttpError from 'http-errors';
 
 import { AppDataSource } from '../../data-source';
 import { Module } from '../../entities/module';
-import { Chapter } from '../../entities/chapter';
-import { Exercise } from '../../entities/exercise';
-import { File } from '../../entities/file';
 
-import type {
-  ModuleCreateBody,
-  ModuleResponse,
-  ChapterUpdateBody,
-} from '../../types/routes/modules';
-import { validateModuleCreateBody } from './validators';
+import type { ModuleResponse } from '../../types/routes/modules';
+import { Progress } from "../../entities/progress";
 
+/*
 // Utility function to upload images to the server or cloud
 // This saves images locally, but you can be replaced.
 function uploadImageToCloudOrServer(imagePath: fs.PathLike): Promise<string> {
@@ -228,7 +219,7 @@ const create = async (
           const exerciseData = chapterData.exercises[j];
           const exerciseFileUploads = exerciseFiles.slice(j * 20, (j + 1) * 20);
 
-          const newExercise = new Exercise();
+          const newExercise = new Section();
           newExercise.title = exerciseData.title;
           newExercise.content = exerciseData.content ?? null;
           newExercise.order = exerciseData.order;
@@ -430,54 +421,103 @@ const create = async (
 //   } finally {
 //     await queryRunner.release();
 //   }
-// };
+// };*/
+
+// Helper function to get user ID
+const getUserId = (req: Request): number => {
+  if (!req.user || !req.user.id) {
+    throw createHttpError(401, 'User not authenticated');
+  }
+  return req.user.id;
+};
+
+const getAllModules = async (_req: Request, res: Response) => {
+  const userId = getUserId(_req);
+  const moduleRepo = AppDataSource.getRepository(Module);
+
+  // Fetch all modules with chapters and sections
+  const modules = await moduleRepo.find({
+    where: { isActive: true },
+    relations: ['chapters', 'chapters.sections'],
+  });
+
+  // Calculate progress for each module and chapter
+  const progressRepo = AppDataSource.getRepository(Progress);
+
+  // Fetch module progress
+  const moduleProgress = await progressRepo
+      .createQueryBuilder('progress')
+      .select('progress.moduleId', 'moduleId')
+      .addSelect('AVG(progress.value)', 'moduleProgress')
+      .where('progress.userId = :userId', { userId: userId })
+      .groupBy('progress.moduleId')
+      .getRawMany();
+
+  // Fetch chapter progress
+  const chapterProgress = await progressRepo
+      .createQueryBuilder('progress')
+      .select('progress.chapterId', 'chapterId')
+      .addSelect('AVG(progress.value)', 'chapterProgress')
+      .where('progress.userId = :userId', { userId: userId })
+      .groupBy('progress.chapterId')
+      .getRawMany();
+
+  // Create a map for fast lookup
+  const moduleProgressMap = new Map<number, number>();
+  moduleProgress.forEach((item) =>
+      moduleProgressMap.set(item.moduleId, parseFloat(item.moduleProgress))
+  );
+
+  const chapterProgressMap = new Map<number, number>();
+  chapterProgress.forEach((item) =>
+      chapterProgressMap.set(item.chapterId, parseFloat(item.chapterProgress))
+  );
+
+  // Transform the response
+  const response: ModuleResponse[] = modules.map((module) => ({
+    id: module.id,
+    progress: moduleProgressMap.get(module.id) || 0, // Use module progress map
+    chapters: module.chapters.map((chapter) => ({
+      id: chapter.id,
+      title: chapter.title,
+      progress: chapterProgressMap.get(chapter.id) || 0, // Use chapter progress map
+      sections: chapter.sections.map((section) => ({
+        id: section.id,
+        updatedAt: section.updatedAt,
+        title: section.title,
+        folderUrl: section.folderUrl,
+        isExercise: section.isExercise,
+      })),
+    })),
+  }));
+
+  res.send(response);
+};
 
 // Get all modules
 const getAll = async (_req: Request, res: Response<ModuleResponse[]>) => {
   const moduleRepo = AppDataSource.getRepository(Module);
   const modules = await moduleRepo.find({
+    where: { isActive: true },
     relations: [
       'chapters',
-      'chapters.files', // Include chapter files
-      'chapters.exercises',
-      'chapters.exercises.files', // Include exercise files
+      'chapters.sections', // Include chapter files
     ],
   });
 
   const response: ModuleResponse[] = modules.map((module) => ({
     id: module.id,
-    name: module.name,
-    description: module.description,
-    isActive: module.isActive,
-    createdAt: module.createdAt,
-    updatedAt: module.updatedAt,
+    progress: 0,
     chapters: module.chapters.map((chapter) => ({
       id: chapter.id,
-      name: chapter.name,
-      description: chapter.description,
-      order: chapter.order,
-      isActive: chapter.isActive,
-      createdAt: chapter.createdAt,
-      updatedAt: chapter.updatedAt,
-      files: chapter.files.map((file) => ({
-        id: file.id,
-        filePath: file.filePath,
-        uploadedAt: file.uploadedAt,
-      })), // Map chapter files
-      exercises: chapter.exercises.map((exercise) => ({
-        id: exercise.id,
-        title: exercise.title,
-        content: exercise.content,
-        order: exercise.order,
-        difficulty: exercise.difficulty,
-        isActive: exercise.isActive,
-        createdAt: exercise.createdAt,
-        updatedAt: exercise.updatedAt,
-        files: exercise.files.map((file) => ({
-          id: file.id,
-          filePath: file.filePath,
-          uploadedAt: file.uploadedAt,
-        })), // Map exercise files
+      title: chapter.title,
+      progress: 0,
+      sections: chapter.sections.map((section) => ({
+        id: section.id,
+        updatedAt: section.updatedAt,
+        title: section.title,
+        folderUrl: section.folderUrl, // Map exercise files
+        isExercise: section.isExercise
       })),
     })),
   }));
@@ -488,15 +528,14 @@ const getAll = async (_req: Request, res: Response<ModuleResponse[]>) => {
 // Get a module by ID
 const getById = async (req: Request, res: Response<ModuleResponse>) => {
   const { id } = req.params;
+  const moduleId: number = parseInt(id, 10);
 
   const moduleRepo = AppDataSource.getRepository(Module);
   const module = await moduleRepo.findOne({
-    where: { id },
+    where: { id: moduleId },
     relations: [
       'chapters',
-      'chapters.files', // Include chapter files
-      'chapters.exercises',
-      'chapters.exercises.files', // Include exercise files
+      'chapters.sections', // Include chapter files
     ],
   });
 
@@ -506,38 +545,17 @@ const getById = async (req: Request, res: Response<ModuleResponse>) => {
 
   const response: ModuleResponse = {
     id: module.id,
-    name: module.name,
-    description: module.description,
-    isActive: module.isActive,
-    createdAt: module.createdAt,
-    updatedAt: module.updatedAt,
+    progress: 0,
     chapters: module.chapters.map((chapter) => ({
       id: chapter.id,
-      name: chapter.name,
-      description: chapter.description,
-      order: chapter.order,
-      isActive: chapter.isActive,
-      createdAt: chapter.createdAt,
-      updatedAt: chapter.updatedAt,
-      files: chapter.files.map((file) => ({
-        id: file.id,
-        filePath: file.filePath,
-        uploadedAt: file.uploadedAt,
-      })), // Map chapter files
-      exercises: chapter.exercises.map((exercise) => ({
-        id: exercise.id,
-        title: exercise.title,
-        content: exercise.content,
-        order: exercise.order,
-        difficulty: exercise.difficulty,
-        isActive: exercise.isActive,
-        createdAt: exercise.createdAt,
-        updatedAt: exercise.updatedAt,
-        files: exercise.files.map((file) => ({
-          id: file.id,
-          filePath: file.filePath,
-          uploadedAt: file.uploadedAt,
-        })), // Map exercise files
+      title: chapter.title,
+      progress: 0,
+      sections: chapter.sections.map((section) => ({
+        id: section.id,
+        updatedAt: section.updatedAt,
+        title: section.title,
+        folderUrl: section.folderUrl, // Map exercise files
+        isExercise: section.isExercise
       })),
     })),
   };
@@ -545,6 +563,7 @@ const getById = async (req: Request, res: Response<ModuleResponse>) => {
   res.send(response);
 };
 
+/*
 // Update a module by ID
 const update = async (req: Request, res: Response<{ message: string }>) => {
   const { id } = req.params;
@@ -625,7 +644,7 @@ const updateModuleWithChapterAndExercise = async (
 
   const moduleRepo = AppDataSource.getRepository(Module);
   const chapterRepo = AppDataSource.getRepository(Chapter);
-  const exerciseRepo = AppDataSource.getRepository(Exercise);
+  const exerciseRepo = AppDataSource.getRepository(Section);
   const fileRepo = AppDataSource.getRepository(File);
 
   const module = await moduleRepo.findOne({
@@ -843,12 +862,14 @@ const deleteModule = async (
     throw createHttpError(500, 'Error deleting module and files');
   }
 };
+*/
 
 export default {
-  create,
+  // create,
+  getAllModules,
   getAll,
   getById,
-  update,
-  updateModuleWithChapterAndExercise,
-  delete: deleteModule,
+  // update,
+  // updateModuleWithChapterAndExercise,
+  // delete: deleteModule,
 };

@@ -5,18 +5,14 @@ import { IsNull } from 'typeorm';
 import createHttpError from 'http-errors';
 
 import type {
-  AddCommentBody,
   CommentResponse,
-  GetCommentsResponse,
-  UpdateCommentBody,
+  GetCommentsResponse
 } from 'src/types/routes/comments';
 
 import { AppDataSource } from '../../data-source';
 import { Comment } from '../../entities/comment';
-import { Chapter } from '../../entities/chapter';
-import { User } from '../../entities/user';
 
-export const addComment = async (
+/* export const addComment = async (
   req: Request<object, object, AddCommentBody>,
   res: Response<CommentResponse>
 ) => {
@@ -75,16 +71,24 @@ export const addComment = async (
   } catch (error) {
     throw createHttpError(500, 'Error adding comment');
   }
+};*/
+
+const getUserId = (req: Request): number => {
+  if (!req.user || !req.user.id) {
+    throw createHttpError(401, 'User not authenticated');
+  }
+  return req.user.id;
 };
 
 export const getComments = async (
-  req: Request<{ chapterId: string }>,
+  req: Request,
   res: Response<GetCommentsResponse>
 ) => {
-  const { chapterId } = req.params;
+  const userId = getUserId(req);
+  const sectionId = parseInt(req.params.sectionId, 10);
 
-  if (!chapterId) {
-    throw createHttpError(400, 'Chapter ID is required.');
+  if (!sectionId) {
+    throw createHttpError(400, 'Section ID is required.');
   }
 
   try {
@@ -92,17 +96,17 @@ export const getComments = async (
 
     // Fetch root comments (comments without a parent)
     const rootComments = await commentRepo.find({
-      where: { chapter: { id: chapterId }, parentComment: IsNull() },
+      where: { section: { id: sectionId }, user: { id: userId }, parentId: IsNull() },
       relations: ['user'],
       order: { createdAt: 'ASC' }, // Optional: Order by creation time
     });
 
     // Recursive function to fetch replies
     const fetchReplies = async (
-      parentId: string
+      parentId: number
     ): Promise<CommentResponse[]> => {
       const replies = await commentRepo.find({
-        where: { parentComment: { id: parentId } },
+        where: { parentId: { id: parentId } },
         relations: ['user'],
         order: { createdAt: 'ASC' }, // Optional: Order by creation time
       });
@@ -138,7 +142,7 @@ export const getComments = async (
     );
 
     const response: GetCommentsResponse = {
-      chapterId,
+      sectionId: sectionId,
       comments: mappedComments,
     };
 
@@ -148,7 +152,7 @@ export const getComments = async (
   }
 };
 
-export const updateComment = async (
+/* export const updateComment = async (
   req: Request<{ commentId: string }, object, UpdateCommentBody>,
   res: Response<CommentResponse>
 ) => {
@@ -215,4 +219,4 @@ export const deleteComment = async (
   } catch (error) {
     throw createHttpError(500, 'Error deleting comment');
   }
-};
+};*/

@@ -40,7 +40,7 @@ passport.serializeUser((user: any, done: any) => {
 });
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-passport.deserializeUser(async (req: Request, id: string, done: any) => {
+passport.deserializeUser(async (req: Request, id: number, done: any) => {
     const userRepo = AppDataSource.getRepository(User);
     const user = await userRepo.findOneBy({ id });
 

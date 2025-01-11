@@ -14,51 +14,63 @@ import type { MoodCreateBody } from '../../types/routes/mood';
 import { validateCreateBody } from './validators';
 
 const create = async (
-  req: TypedRequestBody<UsersCreateBody>,
-  res: Response
+    req: TypedRequestBody<UsersCreateBody>,
+    res: Response
 ) => {
   const { username, email, password } = validateCreateBody(req.body);
 
-  // Create a query runner to control the transactions, it allows to cancel the transaction if we need to
+  // Create a query runner
   const queryRunner = AppDataSource.createQueryRunner();
 
-  // Connect the query runner to the database and start the transaction
-  await queryRunner.connect();
-  await queryRunner.startTransaction();
-
   try {
+    // Connect and start transaction
+    await queryRunner.connect();
+    await queryRunner.startTransaction();
+
     const userRepo = queryRunner.manager.getRepository(User);
-    const usernameExists = await userRepo.exists({
-      where: { username },
-    });
+
+    // Check if username already exists
+    const usernameExists = await userRepo.findOne({ where: { username } });
     if (usernameExists) {
       throw createHttpError(409, 'Username already exists');
     }
 
-    const emailExists = await userRepo.exist({
-      where: { email },
-    });
+    // Check if email already exists
+    const emailExists = await userRepo.findOne({ where: { email } });
     if (emailExists) {
       throw createHttpError(409, 'Email already exists');
     }
 
+    // Create and save the new user
     const newUser = new User();
     newUser.username = username;
     newUser.email = email;
-    newUser.role = UserType.USER;
+    newUser.role = UserType.CLIENT;
     newUser.setPassword(password);
     await queryRunner.manager.save(newUser);
 
-    // No exceptions occured, so we commit the transaction
+    // Commit the transaction
     await queryRunner.commitTransaction();
 
-    res.send(newUser.id);
+    res.status(201).send({ id: newUser.id });
   } catch (err) {
-    // As an exception occured, cancel the transaction
-    await queryRunner.rollbackTransaction();
-    throw err;
+    // Rollback the transaction on error
+    if (queryRunner.isTransactionActive) {
+      await queryRunner.rollbackTransaction();
+    }
+
+    // Log and handle the error
+    console.error('Error creating user:', err);
+    // Handle known error types
+    if (err instanceof createHttpError.HttpError) {
+      res.status(err.status).send(err.message);
+    } else if (err instanceof Error) {
+      res.status(500).send(err.message || 'Internal Server Error');
+    } else {
+      res.status(500).send('An unknown error occurred');
+    }
   } finally {
-    // We need to release the query runner to not keep a useless connection to the database
+    // Release the query runner
     await queryRunner.release();
   }
 };
@@ -89,7 +101,7 @@ export const createMood = async (req: Request, res: Response) => {
   const moodRepo = AppDataSource.getRepository(Mood);
 
   const existingMood = await moodRepo.findOne({
-    where: { user: { id: userId }, date: new Date(today) },
+    where: { user: { id: userId }, createdAt: new Date(today) },
   });
   if (existingMood) {
     throw createHttpError(409, 'Mood entry already exists for today');
@@ -98,8 +110,7 @@ export const createMood = async (req: Request, res: Response) => {
   const mood = moodRepo.create({
     user,
     feeling,
-    motivation,
-    date: today,
+    motivation
   });
 
   await moodRepo.save(mood);
@@ -112,7 +123,7 @@ export const createMood = async (req: Request, res: Response) => {
 
 export const getUserMood = async (req: Request, res: Response) => {
   // Explicitly cast the request to include userId
-  const { userId } = req as Request & { userId: string };
+  const { userId } = req as Request & { userId: number };
 
   if (!userId) {
     throw createHttpError(403, 'User must be authenticated');
@@ -138,11 +149,11 @@ export const getUserMood = async (req: Request, res: Response) => {
   const moods = await moodRepo.find({
     where: {
       user: { id: userId },
-      date: Between(startDate, today),
+      createdAt: Between(startDate, today),
     },
-    order: { date: 'DESC' },
+    order: { createdAt: 'DESC' },
   });
-
+  
   return res.status(200).json({
     message: `Mood entries for the last ${days} days`,
     data: moods,
