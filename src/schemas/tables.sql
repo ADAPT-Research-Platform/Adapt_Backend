@@ -11,7 +11,7 @@ CREATE TABLE "user" (
     "role" user_role NOT NULL DEFAULT 'client',
     "hashPassword" character varying NOT NULL,
     "salt" character varying NOT NULL,
-    "isVerified" boolean NOT NULL DEFAULT false,
+    "isVerified" boolean NOT NULL DEFAULT false
 );
 
 CREATE TABLE "module" (
@@ -64,13 +64,13 @@ CREATE TABLE "progress" (
 CREATE TABLE "comment" (
     "id" SERIAL PRIMARY KEY,
     "parentId" INT,
-    "userId" INT NOT NULL,
+    "sectionUserId" INT NOT NULL,
     "commentUserId" INT NOT NULL,
     "sectionId" INT NOT NULL,
     "createdAt" TIMESTAMP NOT NULL DEFAULT now(),
     "text" text NOT NULL,
     FOREIGN KEY ("parentId") REFERENCES "comment"("id") ON DELETE CASCADE ON UPDATE NO ACTION,
-    FOREIGN KEY ("userId") REFERENCES "user"("id") ON DELETE CASCADE ON UPDATE NO ACTION,
+    FOREIGN KEY ("sectionUserId") REFERENCES "user"("id") ON DELETE CASCADE ON UPDATE NO ACTION,
     FOREIGN KEY ("commentUserId") REFERENCES "user"("id"),
     FOREIGN KEY ("sectionId") REFERENCES "section"("id") ON DELETE CASCADE ON UPDATE NO ACTION
 );
