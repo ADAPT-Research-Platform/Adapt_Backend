@@ -10,7 +10,7 @@ const router = express.Router();
 // router.post('/', addComment);
 
 // Get comments for a chapter
-router.get('/:sectionId', getComments);
+router.get('/', getComments);
 
 // Update a comment
 // router.put('/:commentId', updateComment);

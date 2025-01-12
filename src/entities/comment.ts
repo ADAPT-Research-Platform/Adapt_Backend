@@ -1,16 +1,15 @@
 import {
     Column,
     CreateDateColumn,
-    DeleteDateColumn,
     Entity,
+    JoinColumn,
     ManyToOne,
     OneToMany,
     PrimaryGeneratedColumn,
-    UpdateDateColumn,
 } from 'typeorm';
 
 import { User } from './user';
-import {Section} from './section';
+import { Section } from './section';
 
 @Entity()
 export class Comment {
@@ -20,24 +19,25 @@ export class Comment {
     @CreateDateColumn({ nullable: false })
     createdAt!: Date;
 
-    @UpdateDateColumn({ nullable: false })
-    updatedAt!: Date;
-
-    @DeleteDateColumn({ nullable: true })
-    deletedAt!: Date | null;
-
     @Column({ type: 'text', nullable: false })
-    content!: string;
+    text!: string;
 
-    @ManyToOne(() => User, (user) => user, { nullable: false, onDelete: 'CASCADE' })
+    @ManyToOne(() => User, { nullable: false, onDelete: 'CASCADE' })
+    @JoinColumn({ name: 'userId' })
     user!: User;
 
-    @ManyToOne(() => Comment, (comment) => comment.replies, { nullable: true, onDelete: 'CASCADE' })
-    parentId!: Comment | null;
+    @ManyToOne(() => User, { nullable: false })
+    @JoinColumn({ name: 'commentUserId' })
+    commentUser!: User;
 
-    @OneToMany(() => Comment, (comment) => comment.parentId)
+    @ManyToOne(() => Comment, (comment) => comment.replies, { nullable: true, onDelete: 'CASCADE' })
+    @JoinColumn({ name: 'parentId' })
+    parent!: Comment | null;
+
+    @OneToMany(() => Comment, (comment) => comment.parent)
     replies!: Comment[];
 
     @ManyToOne(() => Section, (section) => section.comments, { nullable: false, onDelete: 'CASCADE' })
+    @JoinColumn({ name: 'sectionId' })
     section!: Section;
 }

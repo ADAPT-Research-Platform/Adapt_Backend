@@ -1,16 +1,17 @@
 import type { Request, Response } from 'express';
 
-import { IsNull } from 'typeorm';
+import type { FindOperator } from 'typeorm';
+import { Between , IsNull } from 'typeorm';
 
 import createHttpError from 'http-errors';
 
 import type {
-  CommentResponse,
-  GetCommentsResponse
+  CommentResponse
 } from 'src/types/routes/comments';
 
 import { AppDataSource } from '../../data-source';
 import { Comment } from '../../entities/comment';
+import logger from '../../logger';
 
 /* export const addComment = async (
   req: Request<object, object, AddCommentBody>,
@@ -80,24 +81,65 @@ const getUserId = (req: Request): number => {
   return req.user.id;
 };
 
+const getStartAndEndOfDate = (date: Date): { currentDate: Date; nextDate: Date } => {
+  const currentDate = new Date(date); // Clone the input date
+  currentDate.setHours(0, 0, 0, 0); // Set to the beginning of the day (midnight)
+
+  const nextDate = new Date(date); // Clone the input date
+  nextDate.setHours(23, 59, 59, 999); // Set to the last millisecond of the day
+
+  return { currentDate, nextDate };
+};
+
 export const getComments = async (
   req: Request,
-  res: Response<GetCommentsResponse>
+  res: Response<CommentResponse[]>
 ) => {
   const userId = getUserId(req);
-  const sectionId = parseInt(req.params.sectionId, 10);
+  const { sectionId, date } = req.query;
 
-  if (!sectionId) {
-    throw createHttpError(400, 'Section ID is required.');
+  if (!sectionId && !date) {
+    throw createHttpError(400, 'Either Section ID or Date must be provided.');
+  }
+
+  // Initialize the filter object
+  const filter: {
+    section?: { id: number };
+    createdAt?: FindOperator<Date>; // Use FindOperator to allow `Between()`
+    user: { id: number };
+    parent: FindOperator<null>;
+  } = { user: { id: userId }, parent: IsNull() };
+
+  // Add sectionId filter if provided
+  if (sectionId) {
+    const sectionIdNumber = parseInt(sectionId as string, 10);
+    if (isNaN(sectionIdNumber)) {
+      throw createHttpError(400, 'Invalid Section ID.');
+    }
+    filter.section = { id: sectionIdNumber };
+  }
+
+  // Add date filter if provided (comparing only the date part)
+  if (date) {
+    const parsedDate = new Date(date as string);
+    if (isNaN(parsedDate.getTime())) {
+      throw createHttpError(400, 'Invalid Date.');
+    }
+
+    const { currentDate, nextDate } = getStartAndEndOfDate(parsedDate);
+
+    logger.info(`${parsedDate} ${currentDate} ${nextDate}`);
+    filter.createdAt = Between(currentDate, nextDate);
   }
 
   try {
     const commentRepo = AppDataSource.getRepository(Comment);
 
     // Fetch root comments (comments without a parent)
+    logger.info(filter.createdAt);
     const rootComments = await commentRepo.find({
-      where: { section: { id: sectionId }, user: { id: userId }, parentId: IsNull() },
-      relations: ['user'],
+      where:filter,
+      relations: ['commentUser'],
       order: { createdAt: 'ASC' }, // Optional: Order by creation time
     });
 
@@ -106,21 +148,17 @@ export const getComments = async (
       parentId: number
     ): Promise<CommentResponse[]> => {
       const replies = await commentRepo.find({
-        where: { parentId: { id: parentId } },
-        relations: ['user'],
+        where: { parent: { id : parentId } },
+        relations: ['commentUser'],
         order: { createdAt: 'ASC' }, // Optional: Order by creation time
       });
 
       return Promise.all(
         replies.map(async (reply) => ({
           id: reply.id,
-          content: reply.content,
+          text: reply.text,
           createdAt: reply.createdAt,
-          updatedAt: reply.updatedAt,
-          user: {
-            id: reply.user.id,
-            username: reply.user.username,
-          },
+          commentUserName: reply.commentUser.username,
           replies: await fetchReplies(reply.id), // Recursive call
         }))
       );
@@ -130,24 +168,16 @@ export const getComments = async (
     const mappedComments: CommentResponse[] = await Promise.all(
       rootComments.map(async (comment) => ({
         id: comment.id,
-        content: comment.content,
+        text: comment.text,
         createdAt: comment.createdAt,
-        updatedAt: comment.updatedAt,
-        user: {
-          id: comment.user.id,
-          username: comment.user.username,
-        },
+        commentUserName: comment.commentUser.username,
         replies: await fetchReplies(comment.id),
       }))
     );
 
-    const response: GetCommentsResponse = {
-      sectionId: sectionId,
-      comments: mappedComments,
-    };
-
-    res.status(200).json(response);
+    res.status(200).json(mappedComments);
   } catch (error) {
+    logger.error(error);
     throw createHttpError(500, 'Error getting comments');
   }
 };

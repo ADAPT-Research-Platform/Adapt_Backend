@@ -12,17 +12,8 @@ export interface UpdateCommentBody {
 
 export interface CommentResponse {
   id: number;
-  content: string;
+  text: string;
   createdAt: Date;
-  updatedAt: Date;
-  user: {
-    id: number;
-    username: string;
-  };
+  commentUserName: string;
   replies?: CommentResponse[];
-}
-
-export interface GetCommentsResponse {
-  sectionId: number;
-  comments: CommentResponse[];
 }
