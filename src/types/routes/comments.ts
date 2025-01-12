@@ -1,8 +1,8 @@
 export interface AddCommentBody {
-  chapterId: string;
-  parentCommentId?: string;
-  content: string;
-  userId: string;
+  text: string;
+  sectionId: number;
+  sectionUserId?: number;
+  parentCommentId?: number;
 }
 
 export interface UpdateCommentBody {

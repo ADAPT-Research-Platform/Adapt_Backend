@@ -1,78 +1,101 @@
 import type { Request, Response } from 'express';
 
 import type { FindOperator } from 'typeorm';
-import { Between , IsNull } from 'typeorm';
+import { Between, IsNull } from 'typeorm';
 
 import createHttpError from 'http-errors';
 
-import type {
-  CommentResponse
-} from 'src/types/routes/comments';
+import type { AddCommentBody, CommentResponse } from 'src/types/routes/comments';
 
 import { AppDataSource } from '../../data-source';
 import { Comment } from '../../entities/comment';
 import logger from '../../logger';
+import { Section } from '../../entities/section';
+import { User } from '../../entities/user';
+import { UserType } from '../../enums/enum';
 
-/* export const addComment = async (
-  req: Request<object, object, AddCommentBody>,
+export const addComment = async (
+  req: TypedRequestBody<AddCommentBody>,
   res: Response<CommentResponse>
 ) => {
-  const { chapterId, parentCommentId, content, userId } = req.body;
+  const { text, sectionId, sectionUserId, parentCommentId } = req.body;
+  const userId = getUserId(req);
 
-  if (!chapterId || !content || !userId) {
-    throw createHttpError(
-      400,
-      'Chapter ID, content, and user ID are required.'
-    );
+  if (!text) {
+    throw createHttpError(400, 'Comment text not specified');
+  }
+
+  if (!sectionId && !parentCommentId) {
+    throw createHttpError(400, 'Section and Parent Comment Id not specified');
   }
 
   try {
-    const chapterRepo = AppDataSource.getRepository(Chapter);
+    const sectionRepo = AppDataSource.getRepository(Section);
     const userRepo = AppDataSource.getRepository(User);
     const commentRepo = AppDataSource.getRepository(Comment);
 
-    const chapter = await chapterRepo.findOne({ where: { id: chapterId } });
-    const user = await userRepo.findOne({ where: { id: userId } });
+    const commentUser = await userRepo.findOne({ where: { id: userId } });
 
-    if (!chapter || !user) {
-      throw createHttpError(404, 'Chapter or user not found.');
+    let sectionUser;
+    if(commentUser?.role === UserType.ADMIN) {
+      if (!sectionUserId) {
+        logger.info('Section User ID not specified by ADMIN');
+        throw createHttpError(404, 'SectionUserId Not specified by ADMIN');
+      }
+
+      if(sectionUserId !== userId){
+        sectionUser = await userRepo.findOne({ where: { id: sectionUserId } });
+        // Sends a notification to sectionUser
+        logger.info(`Send a comment notification to user: ${sectionUserId} on section: ${sectionId}`);
+      }
+    }else{
+      sectionUser = commentUser;
+    }
+
+    if (!sectionUser || !commentUser) {
+      throw createHttpError(404, 'Users not found.');
     }
 
     let parentComment = null;
+    let section = null;
     if (parentCommentId) {
-      parentComment = await commentRepo.findOne({
-        where: { id: parentCommentId },
-      });
+      parentComment = await commentRepo.findOne({ where: { id: parentCommentId }, relations: ['section'] });
       if (!parentComment) {
         throw createHttpError(404, 'Parent comment not found.');
       }
+
+      section = parentComment.section;
+    }else {
+      section = await sectionRepo.findOne({ where: { id: sectionId } });
+    }
+
+    if (!section) {
+      throw createHttpError(404, 'Comment Section not found.');
     }
 
     const comment = new Comment();
-    comment.content = content;
-    comment.chapter = chapter;
-    comment.user = user;
-    comment.parentComment = parentComment;
+    comment.text = text;
+    comment.section = section;
+    comment.sectionUser = sectionUser;
+    comment.commentUser = commentUser;
+    comment.parent = parentComment;
 
     const savedComment = await commentRepo.save(comment);
 
     // Build response as per the interface
     const response: CommentResponse = {
       id: savedComment.id,
-      content: savedComment.content,
+      text: savedComment.text,
       createdAt: savedComment.createdAt,
-      updatedAt: savedComment.updatedAt,
-      user: {
-        id: user.id,
-        username: user.username,
-      },
+      commentUserName: savedComment.commentUser.username,
     };
 
     res.status(201).json(response);
   } catch (error) {
+    logger.error(error);
     throw createHttpError(500, 'Error adding comment');
   }
-};*/
+};
 
 const getUserId = (req: Request): number => {
   if (!req.user || !req.user.id) {
@@ -106,9 +129,9 @@ export const getComments = async (
   const filter: {
     section?: { id: number };
     createdAt?: FindOperator<Date>; // Use FindOperator to allow `Between()`
-    user: { id: number };
+    sectionUser: { id: number };
     parent: FindOperator<null>;
-  } = { user: { id: userId }, parent: IsNull() };
+  } = { sectionUser: { id: userId }, parent: IsNull() };
 
   // Add sectionId filter if provided
   if (sectionId) {

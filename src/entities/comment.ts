@@ -23,8 +23,8 @@ export class Comment {
     text!: string;
 
     @ManyToOne(() => User, { nullable: false, onDelete: 'CASCADE' })
-    @JoinColumn({ name: 'userId' })
-    user!: User;
+    @JoinColumn({ name: 'sectionUserId' })
+    sectionUser!: User;
 
     @ManyToOne(() => User, { nullable: false })
     @JoinColumn({ name: 'commentUserId' })
