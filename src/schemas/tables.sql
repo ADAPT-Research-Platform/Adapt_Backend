@@ -10,7 +10,8 @@ CREATE TABLE "user" (
     "email" character varying(255) UNIQUE NOT NULL,
     "role" user_role NOT NULL DEFAULT 'client',
     "hashPassword" character varying NOT NULL,
-    "salt" character varying NOT NULL
+    "salt" character varying NOT NULL,
+    "isVerified" boolean NOT NULL DEFAULT false,
 );
 
 CREATE TABLE "module" (
@@ -71,6 +72,16 @@ CREATE TABLE "comment" (
     FOREIGN KEY ("parentId") REFERENCES "comment"("id") ON DELETE CASCADE ON UPDATE NO ACTION,
     FOREIGN KEY ("userId") REFERENCES "user"("id") ON DELETE CASCADE ON UPDATE NO ACTION,
     FOREIGN KEY ("commentUserId") REFERENCES "user"("id"),
+    FOREIGN KEY ("sectionId") REFERENCES "section"("id") ON DELETE CASCADE ON UPDATE NO ACTION
+);
+
+CREATE TABLE "answer" (
+    "id" SERIAL PRIMARY KEY,
+    "userId" INT NOT NULL,
+    "sectionId" INT NOT NULL,
+    "createdAt" TIMESTAMP NOT NULL DEFAULT now(),
+    "text" json NOT NULL,
+    FOREIGN KEY ("userId") REFERENCES "user"("id") ON DELETE CASCADE ON UPDATE NO ACTION,
     FOREIGN KEY ("sectionId") REFERENCES "section"("id") ON DELETE CASCADE ON UPDATE NO ACTION
 );
 

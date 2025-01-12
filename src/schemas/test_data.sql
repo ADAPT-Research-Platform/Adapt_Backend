@@ -1,7 +1,7 @@
 -- Table: user  -- Password apple123
 INSERT INTO "user" ("username", "email", "hashPassword", "salt", "role") VALUES ('LeonieKrol', 'user1@example.com', '$2a$12$sY6zwIplP07j07z5lLuhYOzLi4ERVjWnwhjKgwgWq.Pi1JUhc7bIq', '$2a$12$sY6zwIplP07j07z5lLuhYO','admin');
 INSERT INTO "user" ("username", "email", "hashPassword", "salt") VALUES ('BinayakAdhikari', 'user2@example.com', '$2a$12$sY6zwIplP07j07z5lLuhYOzLi4ERVjWnwhjKgwgWq.Pi1JUhc7bIq', '$2a$12$sY6zwIplP07j07z5lLuhYO');
-INSERT INTO "user" ("username", "email", "hashPassword", "salt") VALUES ('RisithPerera', 'risithmarshall@gmail.com', '$2a$12$sY6zwIplP07j07z5lLuhYOzLi4ERVjWnwhjKgwgWq.Pi1JUhc7bIq', '$2a$12$sY6zwIplP07j07z5lLuhYO');
+INSERT INTO "user" ("username", "email", "hashPassword", "salt", "isVerified") VALUES ('RisithPerera', 'risithmarshall@gmail.com', '$2a$12$sY6zwIplP07j07z5lLuhYOzLi4ERVjWnwhjKgwgWq.Pi1JUhc7bIq', '$2a$12$sY6zwIplP07j07z5lLuhYO', true);
 
 -- Table: module
 INSERT INTO "module" ("isActive") VALUES (true);
