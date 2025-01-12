@@ -12,6 +12,14 @@ import { User } from '../../entities/user';
 import type { UsersCreateBody } from '../../types/routes/users';
 import type { MoodCreateBody } from '../../types/routes/mood';
 import { validateCreateBody } from './validators';
+import logger from '../../logger';
+
+const getUserId = (req: Request): number => {
+  if (!req.user || !req.user.id) {
+    throw createHttpError(401, 'User not authenticated');
+  }
+  return req.user.id;
+};
 
 const create = async (
     req: TypedRequestBody<UsersCreateBody>,
@@ -122,41 +130,46 @@ export const createMood = async (req: Request, res: Response) => {
 };
 
 export const getUserMood = async (req: Request, res: Response) => {
-  // Explicitly cast the request to include userId
-  const { userId } = req as Request & { userId: number };
+  const userId = getUserId(req);
+  const { startDate, endDate } = req.query;
 
-  if (!userId) {
-    throw createHttpError(403, 'User must be authenticated');
+  if (!startDate && !endDate) {
+    throw createHttpError(400, 'Date Range is nor provided');
   }
-  console.log(userId);
-
-  // Check for 'days' query parameter with default value
-  const daysParam = req.query.days;
-  const days = daysParam ? parseInt(daysParam as string, 10) : 7; // Default to 7 days
-
-  if (isNaN(days) || days <= 0) {
-    throw createHttpError(400, '\'days\' must be a positive integer');
-  }
-
-  // Calculate the date range
-  const today = new Date();
-  const startDate = new Date();
-  startDate.setDate(today.getDate() - days);
-
-  const moodRepo = AppDataSource.getRepository(Mood);
-
-  // Query moods within the specified date range
-  const moods = await moodRepo.find({
-    where: {
-      user: { id: userId },
-      createdAt: Between(startDate, today),
-    },
-    order: { createdAt: 'DESC' },
-  });
   
-  return res.status(200).json(
-      moods,
-  );
+  const parsedStartDate = new Date(startDate as string);
+  if (isNaN(parsedStartDate.getTime())) {
+    throw createHttpError(400, 'Invalid Start Date.');
+  }
+
+  const parsedEndDate = new Date(endDate as string);
+  if (isNaN(parsedStartDate.getTime())) {
+    throw createHttpError(400, 'Invalid End Date.');
+  }
+  
+  try {
+    const moodRepo = AppDataSource.getRepository(Mood);
+  
+    // Query moods within the specified date range
+    logger.info(`${parsedStartDate.toISOString()} ${parsedEndDate.toISOString()}`);
+    const moods = await moodRepo.find({
+      where: {
+        user: { id: userId },
+        createdAt: Between(parsedStartDate, parsedEndDate),
+      },
+      order: { createdAt: 'DESC' },
+    });
+
+    // Generate a list of strings
+    const modeData: string[] = moods.map(
+      (comment) => `${comment.createdAt.toISOString()}|${comment.feeling}|${comment.motivation}`
+    );
+
+    res.status(200).json(modeData);
+  } catch (error) {
+    logger.error(error);
+    throw createHttpError(500, 'Error getting mode data');
+  }
 };
 
 export default {
