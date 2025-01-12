@@ -64,11 +64,13 @@ CREATE TABLE "comment" (
     "id" SERIAL PRIMARY KEY,
     "parentId" INT,
     "userId" INT NOT NULL,
+    "commentUserId" INT NOT NULL,
     "sectionId" INT NOT NULL,
     "createdAt" TIMESTAMP NOT NULL DEFAULT now(),
     "text" text NOT NULL,
     FOREIGN KEY ("parentId") REFERENCES "comment"("id") ON DELETE CASCADE ON UPDATE NO ACTION,
     FOREIGN KEY ("userId") REFERENCES "user"("id") ON DELETE CASCADE ON UPDATE NO ACTION,
+    FOREIGN KEY ("commentUserId") REFERENCES "user"("id"),
     FOREIGN KEY ("sectionId") REFERENCES "section"("id") ON DELETE CASCADE ON UPDATE NO ACTION
 );
 
