@@ -43,6 +43,9 @@ export class User {
     @Column({ nullable: false })
     salt!: string;
 
+    @Column({ default: false })
+    isVerified!: boolean;
+
     @OneToMany(() => Mood, (mood) => mood.user, { cascade: true })
     moods!: Mood[];
 
