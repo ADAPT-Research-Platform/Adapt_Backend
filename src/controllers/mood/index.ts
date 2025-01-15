@@ -5,7 +5,7 @@ import { Between } from 'typeorm';
 
 import { Mood } from '../../entities/mood';
 import { AppDataSource } from '../../data-source';
-import type { CreateMoodBody } from '../../types/routes/users';
+import type { CreateMoodBody } from '../../types/routes/mood';
 import logger from '../../logger';
 import { getUserId } from '../users';
 
