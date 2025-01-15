@@ -9,5 +9,6 @@ router.route('/login').post(isUnauthenticated, AuthController.login);
 router.route('/logout').post(isAuthenticated, AuthController.logout);
 router.route('/get').get(isAuthenticated, AuthController.get);
 router.route('/authenticated').get(AuthController.authenticated);
+router.route('/verify-cookie').get(AuthController.verifyCookie);
 
 export default router;

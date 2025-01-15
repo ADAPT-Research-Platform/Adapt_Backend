@@ -85,9 +85,50 @@ const authenticated = (
     }
 };
 
+const verifyCookie = (
+    req: Request,
+    res: Response,
+    next: NextFunction,
+) => {
+    // Extract and decode the cookie
+    const rawCookie = req.headers.cookie;
+
+    if (!rawCookie) {
+        return next(createHttpError(401, 'Unauthorized: No cookie provided'));
+    }
+
+    const sessionCookie = rawCookie.split('; ').find((c) => c.startsWith('s%3A'));
+
+    if (!sessionCookie) {
+        return next(createHttpError(401, 'Unauthorized: Invalid cookie'));
+    }
+
+    const decodedCookie = decodeURIComponent(sessionCookie);
+
+    const sessionId = decodedCookie.split('s:')[1]?.split('.')[0];
+
+    if (!sessionId) {
+        return next(createHttpError(401, 'Unauthorized: Malformed cookie'));
+    }
+
+    req.sessionStore.get(sessionId, (err, session) => {
+        if (err) {
+            console.error('Session retrieval error:', err);
+            return next(createHttpError(500, 'Internal Server Error'));
+        }
+
+        if (!session) {
+            return next(createHttpError(401, 'Unauthorized: Invalid session'));
+        }
+
+        res.status(200).send('Cookie is valid');
+    });
+};
+
 export default {
     login,
     logout,
     get,
     authenticated,
+    verifyCookie,
 };
