@@ -89,10 +89,11 @@ CREATE TABLE "answer" (
 );
 
 CREATE TABLE "mood" (
-    "id" SERIAL PRIMARY KEY,
     "userId" INT NOT NULL,
     "createdAt" TIMESTAMP NOT NULL DEFAULT now(),
+    "createdDate" DATE GENERATED ALWAYS AS ("createdAt"::DATE) STORED,
     "feeling" integer NOT NULL,
     "motivation" integer NOT NULL,
+    PRIMARY KEY ("userId", "createdDate"),
     FOREIGN KEY ("userId") REFERENCES "user"("id") ON DELETE CASCADE ON UPDATE NO ACTION
 );

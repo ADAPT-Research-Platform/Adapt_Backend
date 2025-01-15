@@ -6,6 +6,7 @@ import usersRoutes from './users';
 import modulesRoutes from './modules';
 import commentsRoutes from './comments';
 import answersRoutes from './answers';
+import moodRoutes from './mood';
 
 const router = express.Router();
 
@@ -14,6 +15,7 @@ router.use('/users', usersRoutes);
 router.use('/modules', modulesRoutes);
 router.use('/comments', commentsRoutes);
 router.use('/answers', answersRoutes);
+router.use('/moods', moodRoutes);
 
 router.route('/health').get((req, res) => res.send('Server is up!'));
 
