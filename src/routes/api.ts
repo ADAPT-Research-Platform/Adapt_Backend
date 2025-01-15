@@ -5,6 +5,7 @@ import authRoutes from './auth';
 import usersRoutes from './users';
 import modulesRoutes from './modules';
 import commentsRoutes from './comments';
+import answersRoutes from './answers';
 
 const router = express.Router();
 
@@ -12,6 +13,7 @@ router.use('/auth', authRoutes);
 router.use('/users', usersRoutes);
 router.use('/modules', modulesRoutes);
 router.use('/comments', commentsRoutes);
+router.use('/answers', answersRoutes);
 
 router.route('/health').get((req, res) => res.send('Server is up!'));
 

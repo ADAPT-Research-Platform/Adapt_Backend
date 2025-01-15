@@ -11,6 +11,7 @@ import {
 
 import { Chapter } from './chapter';
 import { Comment } from './comment';
+import {Answer} from "./answer";
 
 @Entity()
 export class Section {
@@ -43,4 +44,7 @@ export class Section {
 
   @OneToMany(() => Comment, (comment) => comment.section)
   comments!: Comment[];
+
+  @OneToMany(() => Answer, (answer) => answer.section)
+  answers!: Answer[];
 }
