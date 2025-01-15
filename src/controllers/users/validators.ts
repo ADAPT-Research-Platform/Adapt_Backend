@@ -2,7 +2,6 @@ import createHttpError from 'http-errors';
 import isEmail from 'validator/lib/isEmail';
 
 import type { UsersCreateBody } from '../../types/routes/users';
-import type { MoodCreateBody } from '../../types/routes/mood';
 
 export const validateCreateBody = (body: Partial<UsersCreateBody>) => {
     const { username, email, password } = body;
@@ -31,17 +30,4 @@ export const validateCreateBody = (body: Partial<UsersCreateBody>) => {
     // As the function checked the properties are not missing,
     // return the body as original type
     return body as UsersCreateBody;
-};
-
-export const validateMoodCreateBody = (body: Partial<MoodCreateBody>) => {
-    const { feeling, motivation } = body;
-
-    if (!feeling || feeling < 1 || feeling > 5) {
-        throw createHttpError(400, 'Feeling must be between 1 and 5');
-    }
-    if (!motivation || motivation < 1 || motivation > 5) {
-        throw createHttpError(400, 'Motivation must be between 1 and 5');
-    }
-
-    return { feeling, motivation };
 };

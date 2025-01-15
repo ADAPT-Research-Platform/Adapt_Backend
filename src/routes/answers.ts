@@ -1,14 +1,14 @@
 import express from 'express';
 
 import {
-  addAnswer,
+  createUpdateAnswer,
   getAnswer,
 } from '../controllers/answers';
 
 const router = express.Router();
 
 // Add a comment (root or reply)
-router.post('/', addAnswer);
+router.post('/', createUpdateAnswer);
 
 // Get comments for a chapter
 router.get('/', getAnswer);

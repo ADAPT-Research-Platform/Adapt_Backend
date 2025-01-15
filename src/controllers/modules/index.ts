@@ -6,6 +6,7 @@ import { Module } from '../../entities/module';
 
 import type { ModuleResponse } from '../../types/routes/modules';
 import { Progress } from "../../entities/progress";
+import {getUserId} from "../users";
 
 /*
 // Utility function to upload images to the server or cloud
@@ -422,14 +423,6 @@ const create = async (
 //     await queryRunner.release();
 //   }
 // };*/
-
-// Helper function to get user ID
-const getUserId = (req: Request): number => {
-  if (!req.user || !req.user.id) {
-    throw createHttpError(401, 'User not authenticated');
-  }
-  return req.user.id;
-};
 
 const getAllModules = async (_req: Request, res: Response) => {
   const userId = getUserId(_req);

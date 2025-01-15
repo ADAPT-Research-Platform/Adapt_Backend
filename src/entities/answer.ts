@@ -5,7 +5,6 @@ import {
   JoinColumn,
   ManyToOne,
   PrimaryColumn,
-  Unique,
   UpdateDateColumn,
 } from 'typeorm';
 
@@ -13,7 +12,6 @@ import { User } from './user';
 import { Section } from './section';
 
 @Entity()
-@Unique(['userId', 'sectionId']) // Composite unique constraint
 export class Answer {
   @PrimaryColumn({ type: 'int' })
   userId!: number;

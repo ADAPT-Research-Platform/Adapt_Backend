@@ -4,17 +4,11 @@ import createHttpError from 'http-errors';
 import { AppDataSource } from '../../data-source';
 import type { AddAnswerBody, GetAnswerBody } from '../../types/routes/answers';
 import { Answer } from '../../entities/answer';
+import {getUserId} from "../users";
 
-const getUserId = (req: Request): number => {
-  if (!req.user || !req.user.id) {
-    throw createHttpError(401, 'User not authenticated');
-  }
-  return req.user.id;
-};
-
-export const addAnswer = async (
+export const createUpdateAnswer = async (
   req: TypedRequestBody<AddAnswerBody>,
-  res: Response<GetAnswerBody | { error: string }>
+  res: Response<GetAnswerBody>
 ) => {
   const { sectionId, text } = req.body;
   const userId = getUserId(req);
@@ -47,11 +41,7 @@ export const addAnswer = async (
       // Commit transaction
       await queryRunner.commitTransaction();
 
-      return res.status(200).send({
-        sectionId: existingAnswer.sectionId,
-        updatedAt: existingAnswer.updatedAt,
-        text: existingAnswer.text,
-      });
+      return res.sendStatus(200);
     }
 
     // Create a new answer if it doesn't exist
@@ -60,16 +50,12 @@ export const addAnswer = async (
     newAnswer.sectionId = sectionId;
     newAnswer.text = text;
 
-    const savedAnswer = await queryRunner.manager.save(newAnswer);
+    await queryRunner.manager.save(newAnswer);
 
     // Commit transaction
     await queryRunner.commitTransaction();
 
-    res.status(201).send({
-      sectionId: savedAnswer.sectionId,
-      updatedAt: savedAnswer.updatedAt,
-      text: savedAnswer.text,
-    });
+    return res.sendStatus(201);
   } catch (err) {
     // Rollback transaction on error
     if (queryRunner.isTransactionActive) {

@@ -5,7 +5,7 @@ import { Between, IsNull } from 'typeorm';
 
 import createHttpError from 'http-errors';
 
-import type { AddCommentBody, CommentResponse } from 'src/types/routes/comments';
+import type { AddCommentBody, AddReplyBody, CommentResponse } from 'src/types/routes/comments';
 
 import { AppDataSource } from '../../data-source';
 import { Comment } from '../../entities/comment';
@@ -13,20 +13,21 @@ import logger from '../../logger';
 import { Section } from '../../entities/section';
 import { User } from '../../entities/user';
 import { UserType } from '../../enums/enum';
+import { getUserId } from '../users';
 
-export const addComment = async (
+export const createComment = async (
   req: TypedRequestBody<AddCommentBody>,
   res: Response<CommentResponse>
 ) => {
-  const { text, sectionId, sectionUserId, parentCommentId } = req.body;
+  const { text, sectionId, sectionUserId } = req.body;
   const userId = getUserId(req);
 
   if (!text) {
     throw createHttpError(400, 'Comment text not specified');
   }
 
-  if (!sectionId && !parentCommentId) {
-    throw createHttpError(400, 'Section and Parent Comment Id not specified');
+  if (!sectionId) {
+    throw createHttpError(400, 'Section Id not specified');
   }
 
   try {
@@ -35,11 +36,15 @@ export const addComment = async (
     const commentRepo = AppDataSource.getRepository(Comment);
 
     const commentUser = await userRepo.findOne({ where: { id: userId } });
+    if (!commentUser) {
+      throw createHttpError(404, 'User not found');
+    }
 
     let sectionUser;
-    if(commentUser?.role === UserType.ADMIN) {
+    if(commentUser.role === UserType.ADMIN) {
+      // Admin always need to specify section User
       if (!sectionUserId) {
-        logger.info('Section User ID not specified by ADMIN');
+        logger.error('Section User ID not specified by ADMIN');
         throw createHttpError(404, 'SectionUserId Not specified by ADMIN');
       }
 
@@ -52,22 +57,11 @@ export const addComment = async (
       sectionUser = commentUser;
     }
 
-    if (!sectionUser || !commentUser) {
-      throw createHttpError(404, 'Users not found.');
+    if (!sectionUser) {
+      throw createHttpError(404, 'Section User not found.');
     }
 
-    let parentComment = null;
-    let section = null;
-    if (parentCommentId) {
-      parentComment = await commentRepo.findOne({ where: { id: parentCommentId }, relations: ['section'] });
-      if (!parentComment) {
-        throw createHttpError(404, 'Parent comment not found.');
-      }
-
-      section = parentComment.section;
-    }else {
-      section = await sectionRepo.findOne({ where: { id: sectionId } });
-    }
+    const section = await sectionRepo.findOne({ where: { id: sectionId } });
 
     if (!section) {
       throw createHttpError(404, 'Comment Section not found.');
@@ -78,40 +72,66 @@ export const addComment = async (
     comment.section = section;
     comment.sectionUser = sectionUser;
     comment.commentUser = commentUser;
-    comment.parent = parentComment;
 
-    const savedComment = await commentRepo.save(comment);
+    await commentRepo.save(comment);
 
-    // Build response as per the interface
-    const response: CommentResponse = {
-      id: savedComment.id,
-      text: savedComment.text,
-      createdAt: savedComment.createdAt,
-      commentUserName: savedComment.commentUser.username,
-    };
-
-    res.status(201).json(response);
+    return res.sendStatus(201);
   } catch (error) {
     logger.error(error);
     throw createHttpError(500, 'Error adding comment');
   }
 };
 
-const getUserId = (req: Request): number => {
-  if (!req.user || !req.user.id) {
-    throw createHttpError(401, 'User not authenticated');
+export const createReply = async (
+  req: TypedRequestBody<AddReplyBody>,
+  res: Response<CommentResponse>
+) => {
+  const { text, parentCommentId } = req.body;
+  const userId = getUserId(req);
+
+  // Validate input
+  if (!text) {
+    throw createHttpError(400, 'Reply text not specified');
   }
-  return req.user.id;
-};
 
-const getStartAndEndOfDate = (date: Date): { currentDate: Date; nextDate: Date } => {
-  const currentDate = new Date(date); // Clone the input date
-  currentDate.setHours(0, 0, 0, 0); // Set to the beginning of the day (midnight)
+  if (!parentCommentId) {
+    throw createHttpError(400, 'Parent Comment ID not specified');
+  }
 
-  const nextDate = new Date(date); // Clone the input date
-  nextDate.setHours(23, 59, 59, 999); // Set to the last millisecond of the day
+  try {
+    const userRepo = AppDataSource.getRepository(User);
+    const commentRepo = AppDataSource.getRepository(Comment);
 
-  return { currentDate, nextDate };
+    // Fetch the user and parent comment
+    const commentUser = await userRepo.findOne({ where: { id: userId } });
+    if (!commentUser) {
+      throw createHttpError(404, 'User not found');
+    }
+
+    const parentComment = await commentRepo.findOne({
+      where: { id: parentCommentId },
+      relations: ['section', 'sectionUser'],
+    });
+    if (!parentComment) {
+      throw createHttpError(404, 'Parent comment not found');
+    }
+
+    // Create the reply
+    const comment = new Comment();
+    comment.text = text;
+    comment.parent = parentComment;
+    comment.section = parentComment.section;
+    comment.sectionUser = parentComment.sectionUser;
+    comment.commentUser = commentUser;
+
+    // Save the reply
+    await commentRepo.save(comment);
+
+    return res.sendStatus(201); // Created status with no response body
+  } catch (error) {
+    logger.error(error);
+    throw createHttpError(500, 'Error adding comment');
+  }
 };
 
 export const getComments = async (
@@ -205,49 +225,17 @@ export const getComments = async (
   }
 };
 
-/* export const updateComment = async (
-  req: Request<{ commentId: string }, object, UpdateCommentBody>,
-  res: Response<CommentResponse>
-) => {
-  const { commentId } = req.params;
-  const { content } = req.body;
+const getStartAndEndOfDate = (date: Date): { currentDate: Date; nextDate: Date } => {
+  const currentDate = new Date(date); // Clone the input date
+  currentDate.setHours(0, 0, 0, 0); // Set to the beginning of the day (midnight)
 
-  if (!commentId || !content) {
-    throw createHttpError(400, 'Comment ID and content are required.');
-  }
+  const nextDate = new Date(date); // Clone the input date
+  nextDate.setHours(23, 59, 59, 999); // Set to the last millisecond of the day
 
-  try {
-    const commentRepo = AppDataSource.getRepository(Comment);
-    const comment = await commentRepo.findOne({
-      where: { id: commentId },
-      relations: ['user'], // Include user data for response
-    });
-
-    if (!comment) {
-      throw createHttpError(404, 'Comment not found.');
-    }
-
-    comment.content = content;
-    const updatedComment = await commentRepo.save(comment);
-
-    // Build response as per the interface
-    const response: CommentResponse = {
-      id: updatedComment.id,
-      content: updatedComment.content,
-      createdAt: updatedComment.createdAt,
-      updatedAt: updatedComment.updatedAt,
-      user: {
-        id: comment.user.id,
-        username: comment.user.username,
-      },
-    };
-
-    res.status(200).json(response);
-  } catch (error) {
-    throw createHttpError(500, 'Error updating comment');
-  }
+  return { currentDate, nextDate };
 };
 
+/*
 export const deleteComment = async (
   req: Request<{ commentId: string }>,
   res: Response<{ message: string }>

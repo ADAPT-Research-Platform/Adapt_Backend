@@ -2,12 +2,11 @@ export interface AddCommentBody {
   text: string;
   sectionId: number;
   sectionUserId?: number;
-  parentCommentId?: number;
 }
 
-export interface UpdateCommentBody {
-  commentId: string;
-  content: string;
+export interface AddReplyBody {
+  text: string;
+  parentCommentId: number;
 }
 
 export interface CommentResponse {
