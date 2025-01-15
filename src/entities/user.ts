@@ -10,7 +10,7 @@ import bcrypt from 'bcryptjs';
 
 import { UserType } from '../enums/enum';
 import { Mood } from './mood';
-import {Answer} from "./answer";
+import { Answer } from './answer';
 
 @Entity()
 export class User {
