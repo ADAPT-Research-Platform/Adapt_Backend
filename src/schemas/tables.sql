@@ -76,11 +76,14 @@ CREATE TABLE "comment" (
 );
 
 CREATE TABLE "answer" (
-    "id" SERIAL PRIMARY KEY,
     "userId" INT NOT NULL,
     "sectionId" INT NOT NULL,
     "createdAt" TIMESTAMP NOT NULL DEFAULT now(),
+    "updatedAt" TIMESTAMP NOT NULL DEFAULT now(),
+    "deletedAt" TIMESTAMP,
+    "isActive" boolean NOT NULL DEFAULT true,
     "text" json NOT NULL,
+    PRIMARY KEY ("userId", "sectionId"),
     FOREIGN KEY ("userId") REFERENCES "user"("id") ON DELETE CASCADE ON UPDATE NO ACTION,
     FOREIGN KEY ("sectionId") REFERENCES "section"("id") ON DELETE CASCADE ON UPDATE NO ACTION
 );
