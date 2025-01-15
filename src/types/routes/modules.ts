@@ -39,20 +39,19 @@ export interface SectionResponse {
   title: string;
   folderUrl: string;
   isExercise: boolean;
+  progress: number;
 }
 
 // ChapterResponse
 export interface ChapterResponse {
   id: number;
   title: string;
-  progress: number;
   sections: SectionResponse[]; // Nested exercises
 }
 
 // ModuleResponse
 export interface ModuleResponse {
   id: number;
-  progress: number;
   chapters: ChapterResponse[]; // Nested chapters
 }
 

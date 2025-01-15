@@ -5,8 +5,11 @@ import { AppDataSource } from '../../data-source';
 import { Module } from '../../entities/module';
 
 import type { ModuleResponse } from '../../types/routes/modules';
-import { Progress } from "../../entities/progress";
-import {getUserId} from "../users";
+import { getUserId } from '../users';
+
+import type { CreateProgressBody } from '../../types/routes/progress';
+import { Progress } from '../../entities/progress';
+import logger from '../../logger';
 
 /*
 // Utility function to upload images to the server or cloud
@@ -424,9 +427,10 @@ const create = async (
 //   }
 // };*/
 
-const getAllModules = async (_req: Request, res: Response) => {
+export const getAllModules = async (_req: Request, res: Response) => {
   const userId = getUserId(_req);
   const moduleRepo = AppDataSource.getRepository(Module);
+  const progressRepo = AppDataSource.getRepository(Progress);
 
   // Fetch all modules with chapters and sections
   const modules = await moduleRepo.find({
@@ -434,83 +438,29 @@ const getAllModules = async (_req: Request, res: Response) => {
     relations: ['chapters', 'chapters.sections'],
   });
 
-  // Calculate progress for each module and chapter
-  const progressRepo = AppDataSource.getRepository(Progress);
+  // Fetch progress for the user
+  const userProgress = await progressRepo.find({
+    where: { userId },
+  });
 
-  // Fetch module progress
-  const moduleProgress = await progressRepo
-      .createQueryBuilder('progress')
-      .select('progress.moduleId', 'moduleId')
-      .addSelect('AVG(progress.value)', 'moduleProgress')
-      .where('progress.userId = :userId', { userId: userId })
-      .groupBy('progress.moduleId')
-      .getRawMany();
-
-  // Fetch chapter progress
-  const chapterProgress = await progressRepo
-      .createQueryBuilder('progress')
-      .select('progress.chapterId', 'chapterId')
-      .addSelect('AVG(progress.value)', 'chapterProgress')
-      .where('progress.userId = :userId', { userId: userId })
-      .groupBy('progress.chapterId')
-      .getRawMany();
-
-  // Create a map for fast lookup
-  const moduleProgressMap = new Map<number, number>();
-  moduleProgress.forEach((item) =>
-      moduleProgressMap.set(item.moduleId, parseFloat(item.moduleProgress))
-  );
-
-  const chapterProgressMap = new Map<number, number>();
-  chapterProgress.forEach((item) =>
-      chapterProgressMap.set(item.chapterId, parseFloat(item.chapterProgress))
+  // Create a progress map for quick lookup
+  const progressMap = new Map(
+    userProgress.map((progress) => [`${progress.sectionId}`, progress.value])
   );
 
   // Transform the response
   const response: ModuleResponse[] = modules.map((module) => ({
     id: module.id,
-    progress: moduleProgressMap.get(module.id) || 0, // Use module progress map
     chapters: module.chapters.map((chapter) => ({
       id: chapter.id,
       title: chapter.title,
-      progress: chapterProgressMap.get(chapter.id) || 0, // Use chapter progress map
       sections: chapter.sections.map((section) => ({
         id: section.id,
         updatedAt: section.updatedAt,
         title: section.title,
         folderUrl: section.folderUrl,
         isExercise: section.isExercise,
-      })),
-    })),
-  }));
-
-  res.send(response);
-};
-
-// Get all modules
-const getAll = async (_req: Request, res: Response<ModuleResponse[]>) => {
-  const moduleRepo = AppDataSource.getRepository(Module);
-  const modules = await moduleRepo.find({
-    where: { isActive: true },
-    relations: [
-      'chapters',
-      'chapters.sections', // Include chapter files
-    ],
-  });
-
-  const response: ModuleResponse[] = modules.map((module) => ({
-    id: module.id,
-    progress: 0,
-    chapters: module.chapters.map((chapter) => ({
-      id: chapter.id,
-      title: chapter.title,
-      progress: 0,
-      sections: chapter.sections.map((section) => ({
-        id: section.id,
-        updatedAt: section.updatedAt,
-        title: section.title,
-        folderUrl: section.folderUrl, // Map exercise files
-        isExercise: section.isExercise
+        progress: progressMap.get(`${section.id}`) || 0.0, // Default to 0 if no progress exists
       })),
     })),
   }));
@@ -519,6 +469,7 @@ const getAll = async (_req: Request, res: Response<ModuleResponse[]>) => {
 };
 
 // Get a module by ID
+/*
 const getById = async (req: Request, res: Response<ModuleResponse>) => {
   const { id } = req.params;
   const moduleId: number = parseInt(id, 10);
@@ -538,17 +489,16 @@ const getById = async (req: Request, res: Response<ModuleResponse>) => {
 
   const response: ModuleResponse = {
     id: module.id,
-    progress: 0,
     chapters: module.chapters.map((chapter) => ({
       id: chapter.id,
       title: chapter.title,
-      progress: 0,
       sections: chapter.sections.map((section) => ({
         id: section.id,
         updatedAt: section.updatedAt,
         title: section.title,
         folderUrl: section.folderUrl, // Map exercise files
-        isExercise: section.isExercise
+        isExercise: section.isExercise,
+        progress: 0.0, // Default to 0 if no progress exists
       })),
     })),
   };
@@ -556,7 +506,6 @@ const getById = async (req: Request, res: Response<ModuleResponse>) => {
   res.send(response);
 };
 
-/*
 // Update a module by ID
 const update = async (req: Request, res: Response<{ message: string }>) => {
   const { id } = req.params;
@@ -857,12 +806,49 @@ const deleteModule = async (
 };
 */
 
-export default {
-  // create,
-  getAllModules,
-  getAll,
-  getById,
-  // update,
-  // updateModuleWithChapterAndExercise,
-  // delete: deleteModule,
+export const createUpdateProgress = async (
+  req: TypedRequestBody<CreateProgressBody>,
+  res: Response
+) => {
+  const { sectionId, progress } = req.body;
+  const userId = getUserId(req);
+
+  // Input validation
+  if (!sectionId) {
+    throw createHttpError(400, 'Section id is required!');
+  }
+
+  // Input validation
+  if (!progress || progress < 0.0) {
+    throw createHttpError(400, 'Progress not defined correctly!');
+  }
+
+  const progressRepo = AppDataSource.getRepository(Progress);
+  
+  try {
+    // Check if a mood entry for today exists
+    const existingProgress = await progressRepo.findOne({
+      where: { userId, sectionId: sectionId },
+    });
+
+    if (existingProgress) {
+      // Update existing progress
+      existingProgress.value = progress;
+      await progressRepo.save(existingProgress);
+      return res.sendStatus(200); // Status 200 for updated entry
+    }
+
+    // Create a new mood entry
+    const newMood = progressRepo.create({
+      userId,
+      sectionId,
+      value: progress
+    });
+
+    await progressRepo.save(newMood);
+    return res.sendStatus(201); // Status 201 for new entry
+  } catch (err) {
+    logger.error('Error creating or updating section progress:', err);
+    throw createHttpError(500, 'An error occurred while processing your request.');
+  }
 };
