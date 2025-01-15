@@ -5,7 +5,8 @@ import express from 'express';
 import { asyncHandler } from '../utils/utils';
 
 import {
-  getAllModules,
+  getModuleById,
+  getModuleIdList,
 } from '../controllers/modules';
 
 const router = express.Router();
@@ -13,8 +14,11 @@ const router = express.Router();
 // Create a module
 //router.route('/').post(asyncHandler( ModulesController.create));
 
-// Get all modules
-router.route('/').get(asyncHandler(getAllModules));
+// Get modules id list
+router.route('/ids').get(asyncHandler(getModuleIdList));
+
+// Get module by id
+router.route('/').get(asyncHandler(getModuleById));
 
 // Get a single module by ID
 //router.route('/:id').get(asyncHandler(ModulesController.getById));
