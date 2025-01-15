@@ -7,6 +7,7 @@ import modulesRoutes from './modules';
 import commentsRoutes from './comments';
 import answersRoutes from './answers';
 import moodRoutes from './mood';
+import progressRoutes from './progress';
 import adminRoutes from './admin';
 
 const router = express.Router();
@@ -17,6 +18,7 @@ router.use('/modules', modulesRoutes);
 router.use('/comments', commentsRoutes);
 router.use('/answers', answersRoutes);
 router.use('/moods', moodRoutes);
+router.use('/progress', progressRoutes);
 router.use('/admin', adminRoutes);
 
 router.route('/health').get((req, res) => res.send('Server is up!'));

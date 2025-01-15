@@ -26,14 +26,6 @@ INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise", "isActiv
 INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise", "isActive") VALUES (2, 'Module_01/Chapter_02/Section_07', 'Was kann ich tun?', false, true);
 INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise", "isActive") VALUES (2, 'Module_01/Chapter_02/Section_08', 'Mein Fazit', true, true);
 
--- Table: progress
-INSERT INTO "progress" ("userId", "moduleId", "chapterId", "sectionId", "value") VALUES (3, 1, 1, 1, 75.5);
-INSERT INTO "progress" ("userId", "moduleId", "chapterId", "sectionId", "value") VALUES (3, 1, 1, 2, 45.0);
-INSERT INTO "progress" ("userId", "moduleId", "chapterId", "sectionId", "value") VALUES (3, 1, 1, 3, 45.0);
-INSERT INTO "progress" ("userId", "moduleId", "chapterId", "sectionId", "value") VALUES (3, 1, 2, 7, 20.5);
-INSERT INTO "progress" ("userId", "moduleId", "chapterId", "sectionId", "value") VALUES (3, 1, 2, 8, 65.5);
-INSERT INTO "progress" ("userId", "moduleId", "chapterId", "sectionId", "value") VALUES (3, 1, 2, 9, 35.5);
-
 -- Table: comment
 INSERT INTO "comment" ("parentId", "sectionUserId", "commentUserId", "sectionId", "createdAt", "text") VALUES (NULL, 3, 1, 1, '2025-01-01 09:15:00', 'Breathing exercises can be very effective!');
 INSERT INTO "comment" ("parentId", "sectionUserId", "commentUserId", "sectionId", "createdAt", "text") VALUES (   1, 3, 2, 1, '2025-01-02 10:00:00', 'I agree, deep breathing helps me calm down quickly.');

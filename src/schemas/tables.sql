@@ -48,16 +48,12 @@ CREATE TABLE "section" (
 
 CREATE TABLE "progress" (
     "userId" INT NOT NULL,
-    "moduleId" INT NOT NULL,
-    "chapterId" INT NOT NULL,
     "sectionId" INT NOT NULL,
     "createdAt" TIMESTAMP NOT NULL DEFAULT now(),
     "updatedAt" TIMESTAMP NOT NULL DEFAULT now(),
     "value" FLOAT DEFAULT 0.0,
-    PRIMARY KEY ("userId", "moduleId", "chapterId", "sectionId"),
+    PRIMARY KEY ("userId", "sectionId"),
     FOREIGN KEY ("userId") REFERENCES "user"("id") ON DELETE CASCADE ON UPDATE NO ACTION,
-    FOREIGN KEY ("moduleId") REFERENCES "module"("id") ON DELETE CASCADE ON UPDATE NO ACTION,
-    FOREIGN KEY ("chapterId") REFERENCES "chapter"("id") ON DELETE CASCADE ON UPDATE NO ACTION,
     FOREIGN KEY ("sectionId") REFERENCES "section"("id") ON DELETE CASCADE ON UPDATE NO ACTION
 );
 
