@@ -40,6 +40,7 @@ export interface SectionResponse {
   folderUrl: string;
   isExercise: boolean;
   progress: number;
+  numOfComments: number;
 }
 
 // ChapterResponse

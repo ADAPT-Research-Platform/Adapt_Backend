@@ -1,6 +1,8 @@
 import type { Request, Response } from 'express';
 import createHttpError from 'http-errors';
 
+import { In } from 'typeorm';
+
 import { AppDataSource } from '../../data-source';
 import { Module } from '../../entities/module';
 
@@ -10,6 +12,7 @@ import { getUserId } from '../users';
 import type { CreateProgressBody } from '../../types/routes/progress';
 import { Progress } from '../../entities/progress';
 import logger from '../../logger';
+import { Comment } from '../../entities/comment';
 
 /*
 // Utility function to upload images to the server or cloud
@@ -427,8 +430,26 @@ const create = async (
 //   }
 // };*/
 
-export const getAllModules = async (_req: Request, res: Response) => {
-  const userId = getUserId(_req);
+export const getModuleIdList = async (_req: Request, res: Response) => {
+  const moduleRepo = AppDataSource.getRepository(Module);
+
+  // Fetch all modules with chapters and sections
+  const modules = await moduleRepo.find({
+    where: { isActive: true },
+  });
+
+  // Generate a list of strings
+  const response: string[] = modules.map((data) => `${data.id}`);
+
+  res.send(response);
+};
+
+// Previous Method
+export const getModulesWithChapters = async (
+  req: Request,
+  res: Response<ModuleResponse[]>
+) => {
+  const userId = getUserId(req);
   const moduleRepo = AppDataSource.getRepository(Module);
   const progressRepo = AppDataSource.getRepository(Progress);
 
@@ -461,9 +482,92 @@ export const getAllModules = async (_req: Request, res: Response) => {
         folderUrl: section.folderUrl,
         isExercise: section.isExercise,
         progress: progressMap.get(`${section.id}`) || 0.0, // Default to 0 if no progress exists
+        numOfComments: 0
       })),
     })),
   }));
+
+  res.send(response);
+};
+
+export const getModuleById = async (
+  req: Request,
+  res: Response<ModuleResponse>
+) => {
+  const userId = getUserId(req);
+  const { moduleId } = req.query;
+  const moduleRepo = AppDataSource.getRepository(Module);
+  const progressRepo = AppDataSource.getRepository(Progress);
+  const commentRepo = AppDataSource.getRepository(Comment);
+
+  if (!moduleId) {
+    throw createHttpError(400, 'Module Id not defined!');
+  }
+
+  const moduleIdNumber = parseInt(moduleId as string, 10);
+  if (isNaN(moduleIdNumber)) {
+    throw createHttpError(400, 'Invalid Module ID.');
+  }
+
+  // Fetch all modules with chapters and sections
+  const module = await moduleRepo.findOne({
+    where: { id: moduleIdNumber, isActive: true },
+    relations: ['chapters', 'chapters.sections'],
+  });
+
+  if (!module) {
+    throw createHttpError(404, 'Module Not Found!');
+  }
+
+  // Extract section IDs from chapters
+  const sectionIdList = module.chapters
+    .flatMap((chapter) => chapter.sections) // Get all sections across all chapters
+    .map((section) => section.id); // Extract section IDs
+
+  // Fetch progress for the user and the specified sections
+  const userProgress = await progressRepo.find({
+    where: {
+      userId,
+      sectionId: In(sectionIdList), // Use the `In` operator to filter by section IDs
+    },
+  });
+
+  // Create a progress map for quick lookup
+  const progressMap = new Map(
+    userProgress.map((progress) => [`${progress.sectionId}`, progress.value])
+  );
+
+  // Fetch comment counts grouped by sectionId
+  const commentCounts = await commentRepo
+    .createQueryBuilder('comment')
+    .select('comment.sectionId', 'sectionId')
+    .addSelect('COUNT(comment.id)', 'commentCount')
+    .where('comment.sectionUserId = :userId', { userId })
+    .andWhere('comment.sectionId IN (:...sectionIds)', { sectionIds: sectionIdList })
+    .groupBy('comment.sectionId')
+    .getRawMany();
+
+  // Create a comment count map for quick lookup
+  const commentCountMap = new Map(
+    commentCounts.map((count) => [count.sectionId, parseInt(count.commentCount, 10)])
+  );
+
+  // Transform the response
+  const response: ModuleResponse = {
+    id: module.id,
+    chapters: module.chapters.map((chapter) => ({
+      id: chapter.id,
+      title: chapter.title,
+      sections: chapter.sections.map((section) => ({
+        id: section.id,
+        updatedAt: section.updatedAt,
+        title: section.title,
+        folderUrl: section.folderUrl,
+        isExercise: section.isExercise,
+        progress: progressMap.get(`${section.id}`) || 0.0, // Default to 0 if no progress exists
+        numOfComments: commentCountMap.get(section.id) || 0,
+      })),
+    })) };
 
   res.send(response);
 };
