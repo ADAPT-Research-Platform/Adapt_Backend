@@ -57,7 +57,7 @@ const logout = (
 
 const get = (
     req: Request,
-    res: Response<AuthLoginResponse>,
+    res: Response<AuthLoginResponse>,   
     next: NextFunction,
 ) => {
     if (req.isAuthenticated()) {
