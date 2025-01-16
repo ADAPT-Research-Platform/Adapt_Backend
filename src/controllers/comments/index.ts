@@ -5,7 +5,11 @@ import { Between, IsNull } from 'typeorm';
 
 import createHttpError from 'http-errors';
 
-import type { AddCommentBody, AddReplyBody, CommentResponse } from 'src/types/routes/comments';
+import type {
+  AddCommentBody,
+  AddReplyBody,
+  CommentResponse,
+} from 'src/types/routes/comments';
 
 import { AppDataSource } from '../../data-source';
 import { Comment } from '../../entities/comment';
@@ -41,19 +45,21 @@ export const createComment = async (
     }
 
     let sectionUser;
-    if(commentUser.role === UserType.ADMIN) {
+    if (commentUser.role === UserType.ADMIN) {
       // Admin always need to specify section User
       if (!sectionUserId) {
         logger.error('Section User ID not specified by ADMIN');
         throw createHttpError(404, 'SectionUserId Not specified by ADMIN');
       }
 
-      if(sectionUserId !== userId){
+      if (sectionUserId !== userId) {
         sectionUser = await userRepo.findOne({ where: { id: sectionUserId } });
         // Sends a notification to sectionUser
-        logger.info(`Send a comment notification to user: ${sectionUserId} on section: ${sectionId}`);
+        logger.info(
+          `Send a comment notification to user: ${sectionUserId} on section: ${sectionId}`
+        );
       }
-    }else{
+    } else {
       sectionUser = commentUser;
     }
 
@@ -181,7 +187,7 @@ export const getComments = async (
     // Fetch root comments (comments without a parent)
     logger.info(filter.createdAt);
     const rootComments = await commentRepo.find({
-      where:filter,
+      where: filter,
       relations: ['commentUser'],
       order: { createdAt: 'ASC' }, // Optional: Order by creation time
     });
@@ -191,7 +197,7 @@ export const getComments = async (
       parentId: number
     ): Promise<CommentResponse[]> => {
       const replies = await commentRepo.find({
-        where: { parent: { id : parentId } },
+        where: { parent: { id: parentId } },
         relations: ['commentUser'],
         order: { createdAt: 'ASC' }, // Optional: Order by creation time
       });
@@ -225,7 +231,9 @@ export const getComments = async (
   }
 };
 
-const getStartAndEndOfDate = (date: Date): { currentDate: Date; nextDate: Date } => {
+const getStartAndEndOfDate = (
+  date: Date
+): { currentDate: Date; nextDate: Date } => {
   const currentDate = new Date(date); // Clone the input date
   currentDate.setHours(0, 0, 0, 0); // Set to the beginning of the day (midnight)
 
