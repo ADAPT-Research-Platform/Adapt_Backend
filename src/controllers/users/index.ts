@@ -1,4 +1,4 @@
-import type { Request, Response } from 'express';
+import type { NextFunction, Request, Response } from 'express';
 import createHttpError from 'http-errors';
 
 import jwt from 'jsonwebtoken';
@@ -12,8 +12,9 @@ import { UserType } from '../../enums/enum';
 
 import { AppDataSource } from '../../data-source';
 import { User } from '../../entities/user';
-import type { UsersCreateBody } from '../../types/routes/users';
+import type { UsersCreateBody, UsersDeleteBody, UsersUpdateBody } from '../../types/routes/users';
 import { validateCreateBody } from './validators';
+import logger from '../../logger';
 
 export const getUserId = (req: Request): number => {
   if (!req.user || !req.user.id) {
@@ -68,10 +69,7 @@ const create = async (
     // Commit the transaction
     await queryRunner.commitTransaction();
 
-    res.status(201).send({
-      id: newUser.id,
-      message: 'User created. Please verify your email.',
-    });
+    return res.sendStatus(201);
   } catch (err) {
     // Rollback the transaction on error
     if (queryRunner.isTransactionActive) {
@@ -79,14 +77,171 @@ const create = async (
     }
 
     // Log and handle the error
-    console.error('Error creating user:', err);
+    logger.error('Error creating user:', err);
+
     // Handle known error types
     if (err instanceof createHttpError.HttpError) {
-      res.status(err.status).send(err.message);
-    } else if (err instanceof Error) {
-      res.status(500).send(err.message || 'Internal Server Error');
+      throw err;
     } else {
-      res.status(500).send('An unknown error occurred');
+      throw createHttpError(500, 'Internal Server Error!');
+    }
+  } finally {
+    // Release the query runner
+    await queryRunner.release();
+  }
+};
+
+const update = async (
+  req: TypedRequestBody<UsersUpdateBody>,
+  res: Response
+) => {
+  const userId = getUserId(req);
+  const { userName, currentPassword, newPassword } = req.body;
+
+  if (!currentPassword) {
+    throw createHttpError(400, 'Current password not provided');
+  }
+
+  // Create a query runner
+  const queryRunner = AppDataSource.createQueryRunner();
+
+  try {
+    // Connect and start transaction
+    await queryRunner.connect();
+    await queryRunner.startTransaction();
+
+    const userRepo = queryRunner.manager.getRepository(User);
+
+    // Fetch the user by id
+    const user = await userRepo.findOne({ where: { id: userId } });
+    if (!user) {
+      throw createHttpError(404, 'User not found');
+    }
+
+    // Verify the current password
+    if (!user.verifyPassword(currentPassword)) {
+      throw createHttpError(403, 'Current password is incorrect');
+    }
+
+    // Check if username already exists
+    if (user.username !== userName) {
+      const usernameExists = await userRepo.findOne({ where: { username: userName } });
+      if (usernameExists) {
+        throw createHttpError(409, 'Username already exists');
+      }
+    }
+
+    // Update user information if provided
+    if(userName){
+      user.username = userName;
+      user.updatedAt = new Date();
+    }
+
+    if (newPassword) {
+      user.setPassword(newPassword); // Update password
+      user.updatedAt = new Date();
+    }
+
+    await queryRunner.manager.save(user);
+
+    // Commit the transaction
+    await queryRunner.commitTransaction();
+
+    return res.sendStatus(200);
+  } catch (err) {
+    // Rollback the transaction on error
+    if (queryRunner.isTransactionActive) {
+      await queryRunner.rollbackTransaction();
+    }
+
+    // Log and handle the error
+    logger.error('Error updating user:', err);
+    
+    // Handle known error types
+    if (err instanceof createHttpError.HttpError) {
+      throw err;
+    } else {
+      throw createHttpError(500, 'Internal Server Error!');
+    }
+  } finally {
+    // Release the query runner
+    await queryRunner.release();
+  }
+};
+
+const disable = (
+  req: TypedRequestBody<UsersDeleteBody>,
+  res: Response,
+  next: NextFunction
+) => {
+
+  const userId = getUserId(req);
+  const { currentPassword } = req.body;
+
+  if (!currentPassword) {
+    throw createHttpError(400, 'Current password not provided');
+  }
+  
+  // Ensure the user is logged out first
+  req.logout((err) => {
+    if (err) {
+      return next(err);
+    }
+    
+    // Proceed with the deletion process only after logout
+    void handleUserDisable(userId, currentPassword, res);
+  });
+};
+
+const handleUserDisable = async (
+  userId: number,
+  currentPassword: string,
+  res: Response
+) => {
+  // Create a query runner
+  const queryRunner = AppDataSource.createQueryRunner();
+
+  try {
+    // Connect and start transaction
+    await queryRunner.connect();
+    await queryRunner.startTransaction();
+
+    const userRepo = queryRunner.manager.getRepository(User);
+
+    // Fetch the user by id
+    const user = await userRepo.findOne({ where: { id: userId } });
+    if (!user) {
+      throw createHttpError(404, 'User not found');
+    }
+
+    // Verify the current password
+    if (!user.verifyPassword(currentPassword)) {
+      throw createHttpError(403, 'Current password is incorrect');
+    }
+
+    // Soft delete the user (mark as deleted)
+    user.deletedAt = new Date();
+    user.isActive = false; // Optionally deactivate the user account
+    await queryRunner.manager.save(user);
+
+    // Commit the transaction
+    await queryRunner.commitTransaction();
+
+    return res.sendStatus(200);
+  } catch (err) {
+    // Rollback the transaction on error
+    if (queryRunner.isTransactionActive) {
+      await queryRunner.rollbackTransaction();
+    }
+
+    // Log and handle the error
+    logger.error('Error deleting user:', err);
+
+    // Handle known error types
+    if (err instanceof createHttpError.HttpError) {
+      throw err;
+    } else {
+      throw createHttpError(500, 'Internal Server Error!');
     }
   } finally {
     // Release the query runner
@@ -140,13 +295,14 @@ const verifyEmail = async (req: Request, res: Response) => {
       await queryRunner.rollbackTransaction();
     }
 
+    // Log and handle the error
+    logger.error('Error verifying email:', err);
+
     // Handle known error types
     if (err instanceof createHttpError.HttpError) {
-      res.status(err.status).send(err.message);
-    } else if (err instanceof Error) {
-      res.status(400).send(err.message || 'Invalid or expired token.');
+      throw err;
     } else {
-      res.status(500).send('An unknown error occurred.');
+      throw createHttpError(500, 'Internal Server Error!');
     }
   } finally {
     // Release the query runner
@@ -156,5 +312,7 @@ const verifyEmail = async (req: Request, res: Response) => {
 
 export default {
   create,
+  update,
+  disable,
   verifyEmail,
 };
