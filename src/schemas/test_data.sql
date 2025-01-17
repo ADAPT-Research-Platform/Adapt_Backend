@@ -7,24 +7,41 @@ INSERT INTO "user" ("username", "email", "hashPassword", "salt", "isVerified") V
 INSERT INTO "module" ("isActive") VALUES (true);
 
 -- Table: chapter
-INSERT INTO "chapter" ("moduleId", "title", "isActive") VALUES (1, 'Willkommen', true);
-INSERT INTO "chapter" ("moduleId", "title", "isActive") VALUES (1, 'Angst', true);
+INSERT INTO "chapter" ("moduleId", "title") VALUES (1, 'Willkommen');
+INSERT INTO "chapter" ("moduleId", "title") VALUES (1, 'Angst');
+INSERT INTO "chapter" ("moduleId", "title") VALUES (1, 'Title3');
+INSERT INTO "chapter" ("moduleId", "title") VALUES (1, 'Title4');
 
 -- Table: section
-INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise", "isActive") VALUES (1, 'module_01/chapter_01/section_01', 'Hallo und herzlich willkommen!', false, true);
-INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise", "isActive") VALUES (1, 'module_01/chapter_01/section_02', 'Zahlen und Fakten – Angst weltweit', false, true);
-INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise", "isActive") VALUES (1, 'module_01/chapter_01/section_03', 'Max und Hanna', false, true);
-INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise", "isActive") VALUES (1, 'module_01/chapter_01/section_04', 'Grundlagen der App', false, true);
-INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise", "isActive") VALUES (1, 'module_01/chapter_01/section_05', 'Ein kurzer Einstieg', false, true);
-INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise", "isActive") VALUES (1, 'module_01/chapter_01/section_06', 'Meine Ängste', true, true);
-INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise", "isActive") VALUES (2, 'module_01/chapter_02/section_01', 'Warum Angst wichtig ist', false, true);
-INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise", "isActive") VALUES (2, 'module_01/chapter_02/section_02', 'Wann Angst zu viel wird', false, true);
-INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise", "isActive") VALUES (2, 'module_01/chapter_02/section_03', 'Ist meine Angst noch normal?', false, true);
-INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise", "isActive") VALUES (2, 'module_01/chapter_02/section_04', 'Und jetzt?', false, true);
-INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise", "isActive") VALUES (2, 'module_01/chapter_02/section_05', 'Komponenten der Angst', true, true);
-INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise", "isActive") VALUES (2, 'module_01/chapter_02/section_06', 'Was vermittle ich meinem Kind?', true, true);
-INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise", "isActive") VALUES (2, 'module_01/chapter_02/section_07', 'Was kann ich tun?', false, true);
-INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise", "isActive") VALUES (2, 'module_01/chapter_02/section_08', 'Mein Fazit', true, true);
+INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (1, 'module_01/chapter_01/section_01', 'Hallo und herzlich willkommen!', false);
+INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (1, 'module_01/chapter_01/section_02', 'Zahlen und Fakten – Angst weltweit', false);
+INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (1, 'module_01/chapter_01/section_03', 'Max und Hanna', false);
+INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (1, 'module_01/chapter_01/section_04', 'Grundlagen der App', false);
+INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (1, 'module_01/chapter_01/section_05', 'Ein kurzer Einstieg', false);
+INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (1, 'module_01/chapter_01/section_06', 'Meine Ängste', true);
+INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (2, 'module_01/chapter_02/section_01', 'Warum Angst wichtig ist', false);
+INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (2, 'module_01/chapter_02/section_02', 'Wann Angst zu viel wird', false);
+INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (2, 'module_01/chapter_02/section_03', 'Ist meine Angst noch normal?', false);
+INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (2, 'module_01/chapter_02/section_04', 'Und jetzt?', false);
+INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (2, 'module_01/chapter_02/section_05', 'Komponenten der Angst', true);
+INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (2, 'module_01/chapter_02/section_06', 'Was vermittle ich meinem Kind?', true);
+INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (2, 'module_01/chapter_02/section_07', 'Was kann ich tun?', false);
+INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (2, 'module_01/chapter_02/section_08', 'Mein Fazit', true);
+INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (3, 'module_01/chapter_03/section_01', 'Mama, Papa, ihr seid Helden!', false);
+INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (3, 'module_01/chapter_03/section_02', 'Vorbilder', true);
+INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (3, 'module_01/chapter_03/section_03', 'Tipps und Tricks für Helden', false);
+INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (3, 'module_01/chapter_03/section_04', 'Atmen', true);
+INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (3, 'module_01/chapter_03/section_05', 'PMR für Zuhause', true);
+INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (3, 'module_01/chapter_03/section_06', 'Autogenes Training', false);
+INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (3, 'module_01/chapter_03/section_07', 'Unser Team', true);
+INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (4, 'module_01/chapter_04/section_01', 'Was ist Vermeidung?', false);
+INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (4, 'module_01/chapter_04/section_02', 'Verpasste Chancen', true);
+INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (4, 'module_01/chapter_04/section_03', 'Die Vermeidung herausfordern', false);
+INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (4, 'module_01/chapter_04/section_04', 'Wie erkläre ich das meinem Kind?', false);
+INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (4, 'module_01/chapter_04/section_05', 'Die Idee', false);
+INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (4, 'module_01/chapter_04/section_06', 'Kleine Schritte, große Wirkung', true);
+INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (4, 'module_01/chapter_04/section_07', 'Unser Team', true);
+INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (4, 'module_01/chapter_04/section_08', 'Rückschläge sind eine gute Gelegenheit...', false);
 
 -- Table: comment
 INSERT INTO "comment" ("parentId", "sectionUserId", "commentUserId", "sectionId", "createdAt", "text") VALUES (NULL, 3, 1, 1, '2025-01-01 09:15:00', 'Breathing exercises can be very effective!');
