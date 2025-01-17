@@ -98,10 +98,6 @@ const update = async (
   const userId = getUserId(req);
   const { userName, currentPassword, newPassword } = req.body;
 
-  if (!currentPassword) {
-    throw createHttpError(400, 'Current password not provided');
-  }
-
   // Create a query runner
   const queryRunner = AppDataSource.createQueryRunner();
 
@@ -115,33 +111,41 @@ const update = async (
     // Fetch the user by id
     const user = await userRepo.findOne({ where: { id: userId } });
     if (!user) {
-      throw createHttpError(404, 'User not found');
-    }
-
-    // Verify the current password
-    if (!user.verifyPassword(currentPassword)) {
-      throw createHttpError(403, 'Current password is incorrect');
+      throw createHttpError(404, 'User not found!');
     }
 
     // Check if username already exists
     if (user.username !== userName) {
       const usernameExists = await userRepo.findOne({ where: { username: userName } });
       if (usernameExists) {
-        throw createHttpError(409, 'Username already exists');
+        throw createHttpError(409, 'Username already exists!');
       }
     }
 
-    // Update user information if provided
-    if(userName){
-      user.username = userName;
-      user.updatedAt = new Date();
-    }
-
+    // Update password if provided
     if (newPassword) {
+      if (!currentPassword) {
+        throw createHttpError(400, 'Current password not provided!');
+      }
+
+      // Verify the current password
+      if (!user.verifyPassword(currentPassword)) {
+        throw createHttpError(403, 'Current password is incorrect!');
+      }
+
+      // Update username if provided
+      if(userName){
+        user.username = userName;
+      }
       user.setPassword(newPassword); // Update password
-      user.updatedAt = new Date();
+    }else{
+      // Update username if provided
+      if(userName){
+        user.username = userName;
+      }
     }
 
+    user.updatedAt = new Date();
     await queryRunner.manager.save(user);
 
     // Commit the transaction

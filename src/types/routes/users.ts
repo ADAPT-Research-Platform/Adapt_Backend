@@ -8,7 +8,7 @@ export interface UsersCreateBody {
 
 export interface UsersUpdateBody {
   userName?: string;
-  currentPassword: string;
+  currentPassword?: string;
   newPassword?: string;
 }
 
