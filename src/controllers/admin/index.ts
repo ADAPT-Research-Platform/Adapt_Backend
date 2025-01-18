@@ -83,7 +83,7 @@ const getUsersById = (req: Request, res: Response) => {
 const getUserProgress = async (req: Request, res: Response) => {
   const userProgressRepo = AppDataSource.getRepository(Progress);
   const sectionRepo = AppDataSource.getRepository(Section);
-  const commentRepo = AppDataSource.getRepository(Comment);
+  const commentRepo = AppDataSource. getRepository(Comment);
 
   const { userId } = req.params;
   const parsedUserId = parseInt(userId, 10);
