@@ -18,6 +18,7 @@ WORKDIR /app
 
 COPY --from=builder ./app/build ./build
 COPY package.json yarn.lock ./
+COPY ssl ./ssl
 RUN yarn install --production --frozen-lockfile
 
 # Add a directory for uploads and ensure proper permissions

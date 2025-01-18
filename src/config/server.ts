@@ -43,8 +43,8 @@ const createServer = () => {
   app.use(passport.session());
 
   // Serve static files from the "uploads" directory
-  app.use('/app/uploads', express.static(path.join(process.cwd(), 'uploads')));
-
+  app.use('/api/uploads', express.static(path.join(process.cwd(), 'uploads')));
+  
   app.use(`/${process.env.API_ROUTES_PREFIX}`, apiRoutes);
   app.get('/*', (req, res) => {
     throw createHttpError(404, 'Resource Not Found');

@@ -93,7 +93,7 @@ export const getMoods = async (req: Request, res: Response) => {
         user: { id: userId },
         createdDate: Between(parsedStartDate, parsedEndDate),
       },
-      order: { createdDate: 'DESC' },
+      order: { createdDate: 'ASC' },
     });
 
     // Generate a list of strings

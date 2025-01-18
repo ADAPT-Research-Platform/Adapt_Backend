@@ -23,7 +23,7 @@ const login = (
 
             if (!user) {
                 return next(
-                    createHttpError(401, 'Incorrect credentials'),
+                    createHttpError(401, 'Incorrect credentials!'),
                 );
             }
 
