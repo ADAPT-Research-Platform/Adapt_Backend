@@ -17,16 +17,33 @@ const app = createServer();
 
 // Load SSL certificate and private key
 const options = {
-  key: fs.readFileSync((path.join(process.cwd(), 'ssl/server.key'))),
-  cert: fs.readFileSync((path.join(process.cwd(), 'ssl/certificate.crt')))
+  key: fs.readFileSync(path.join(process.cwd(), 'ssl/server.key')),
+  cert: fs.readFileSync(path.join(process.cwd(), 'ssl/certificate.crt')),
 };
 
-AppDataSource.initialize()
-  .then(() => {
-    // Start HTTPS server
-    https.createServer(options, app).listen({ host, port }, () => {
-      logger.info('============================================================================================');
-      logger.info(`Server is started at https://${host}:${port}`);
-    });
-  })
-  .catch(logger.error);
+// If development mode, don't use HTTPS
+if (process.env.NODE_ENV === 'production') {
+  AppDataSource.initialize()
+    .then(() => {
+      // Start HTTPS server
+      https.createServer(options, app).listen({ host, port }, () => {
+        logger.info(
+          '============================================================================================'
+        );
+        logger.info(`Server is started at https://${host}:${port}`);
+      });
+    })
+    .catch(logger.error);
+} else {
+  AppDataSource.initialize()
+    .then(() => {
+      // Start HTTP server
+      app.listen({ host, port }, () => {
+        logger.info(
+          '============================================================================================'
+        );
+        logger.info(`Server is started at http://${host}:${port}`);
+      });
+    })
+    .catch(logger.error);
+}

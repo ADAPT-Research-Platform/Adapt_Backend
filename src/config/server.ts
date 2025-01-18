@@ -18,13 +18,19 @@ const createServer = () => {
   const corsOptions = {
     origin: process.env.CORS_ORIGIN_ALLOWED?.split(',') || '*',
     credentials: true,
-    optionsSuccessStatus: 200,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
   };
 
-  morgan.format('plain', ':method :url :status :response-time ms - :res[content-length]');
-  app.use(morgan('plain', { stream: { write: (message) => logger.info(message.trim()) } }));
+  morgan.format(
+    'plain',
+    ':method :url :status :response-time ms - :res[content-length]'
+  );
+  app.use(
+    morgan('plain', {
+      stream: { write: (message) => logger.info(message.trim()) },
+    })
+  );
   app.use(cors(corsOptions));
   app.use(urlencoded({ extended: true }));
   app.use(json());
