@@ -16,11 +16,12 @@ const createServer = () => {
   const app = express();
 
   const corsOptions = {
-    origin: process.env.CORS_ORIGIN_ALLOWED?.split(',') || '*',
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-  };
+    origin: process.env.CORS_ORIGIN_ALLOWED?.split(',') || '*', // Allow specified origins or all
+    credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
+    allowedHeaders: ['Content-Type', 'Authorization'], // Headers allowed in requests
+    exposedHeaders: ['Set-Cookie'], // Ensure cookies can be read by the client
+  };  
 
   morgan.format(
     'plain',
