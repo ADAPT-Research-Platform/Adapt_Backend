@@ -152,3 +152,8 @@ INSERT INTO "mood" ("userId", "createdAt", "feeling", "motivation") VALUES (3, '
 INSERT INTO "mood" ("userId", "createdAt", "feeling", "motivation") VALUES (3, '2025-01-04 14:21:45', 2, 3);
 INSERT INTO "mood" ("userId", "createdAt", "feeling", "motivation") VALUES (3, '2025-01-08 16:43:08', 1, 7);
 INSERT INTO "mood" ("userId", "createdAt", "feeling", "motivation") VALUES (3, '2025-01-12 19:46:38', 1, 10);
+
+-- Insert into the table "progress" the progress of the user
+INSERT INTO "progress" ("userId", "sectionId", "value") VALUES (3, 1, 0.5);
+INSERT INTO "progress" ("userId", "sectionId", "value") VALUES (3, 2, 0.5);
+INSERT INTO "progress" ("userId", "sectionId", "value") VALUES (3, 3, 0.5); 
