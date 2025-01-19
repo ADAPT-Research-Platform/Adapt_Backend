@@ -22,7 +22,7 @@ const createServer = () => {
     allowedHeaders: ['Content-Type', 'Authorization'], // Headers allowed in requests
     exposedHeaders: ['Set-Cookie'], // Ensure cookies can be read by the client
   };  
-
+  
   morgan.format(
     'plain',
     ':method :url :status :response-time ms - :res[content-length]'
@@ -45,7 +45,7 @@ const createServer = () => {
 
   // Serve static files from the "uploads" directory
   app.use('/api/uploads', express.static(path.join(process.cwd(), 'uploads')));
-  
+
   app.use(`/${process.env.API_ROUTES_PREFIX}`, apiRoutes);
   app.get('/*', (req, res) => {
     throw createHttpError(404, 'Resource Not Found');

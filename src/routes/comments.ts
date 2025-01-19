@@ -12,7 +12,7 @@ const router = express.Router();
 router.post('/', createComment);
 
 // Add a comment (root or reply)
-router.post('/reply', createReply);
+router.route('/reply').post(createReply);
 
 // Get comments for a chapter
 router.get('/', getComments);
