@@ -840,7 +840,7 @@ export const createUpdateProgress = async (
   }
 
   // Input validation
-  if (!progress || progress < 0.0) {
+  if (progress === undefined || progress < 0.0) {
     throw createHttpError(400, 'Progress not defined correctly!');
   }
 
