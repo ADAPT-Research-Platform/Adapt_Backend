@@ -7,4 +7,5 @@ export interface AuthLoginResponse {
     id: number;
     username: string;
     email: string;
+    isActive: boolean;
 }
