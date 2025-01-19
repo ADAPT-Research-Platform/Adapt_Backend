@@ -27,6 +27,19 @@ const login = (
                 );
             }
 
+            // Check if the user is verified and active
+            if (!user.isVerified) {
+                return next(
+                    createHttpError(403, 'Account is not verified.'),
+                );
+            }
+
+            if (!user.isActive) {
+                return next(
+                    createHttpError(403, 'Account is not active.'),
+                );
+            }
+
             req.logIn(user, (err) => {
                 if (err) {
                     return next(err);
@@ -36,6 +49,7 @@ const login = (
                     id: user.id,
                     username: user.username,
                     email: user.email,
+                    isActive: user.isActive
                 });
             });
         },
@@ -66,6 +80,7 @@ const get = (
             id: req.user.id,
             username: req.user.username,
             email: req.user.email,
+            isActive: req.user.isActive,
         });
     } else {
         return next(
