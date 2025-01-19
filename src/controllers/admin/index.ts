@@ -11,6 +11,7 @@ import { User } from '../../entities/user';
 import { Progress } from '../../entities/progress';
 import { Section } from '../../entities/section';
 import { Comment } from '../../entities/comment';
+import { Mood } from '../../entities/mood';
 
 // Get all users
 const getAllUsers = (req: Request, res: Response) => {
@@ -19,7 +20,7 @@ const getAllUsers = (req: Request, res: Response) => {
   // Get all users with role 'user', isActive = true, and isVerified = true
   userRepo
     .find({
-      where: { role: UserType.CLIENT, isActive: true, isVerified: true },
+      where: { role: UserType.CLIENT, isActive: true },
     })
     .then((users) => {
       // Map the database entities to the UsersGetResponse interface
@@ -165,8 +166,36 @@ const getUserProgress = async (req: Request, res: Response) => {
   }
 };
 
+// Get user mood by user ID
+const getUserMoodById = async (req: Request, res: Response) => {
+  const moodRepo = AppDataSource.getRepository(Mood);
+  const { userId } = req.params;
+
+  const parsedUserId = parseInt(userId, 10);
+  if (isNaN(parsedUserId) || parsedUserId < 1) {
+    return res.status(400).json({ message: 'Invalid user ID' });
+  }
+
+  try {
+    const moods = await moodRepo.find({
+      where: { userId: parsedUserId },
+      order: { createdAt: 'ASC' },
+    });
+
+    const moodData: string[] = moods.map(
+      (data) => `${data.createdAt}|${data.feeling}|${data.motivation}`
+    );
+
+    res.status(200).json(moodData);
+  } catch (err) {
+    console.error('Error fetching user mood:', err);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
 export default {
   getAllUsers,
   getUsersById,
   getUserProgress,
+  getUserMoodById,
 };
