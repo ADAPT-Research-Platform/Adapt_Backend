@@ -27,11 +27,11 @@ export const createComment = async (
   const userId = getUserId(req);
 
   if (!text) {
-    throw createHttpError(400, 'Comment text not specified');
+    throw createHttpError(400, 'Comment text not specified!');
   }
 
   if (!sectionId) {
-    throw createHttpError(400, 'Section Id not specified');
+    throw createHttpError(400, 'Section Id not specified!');
   }
 
   try {
@@ -41,30 +41,27 @@ export const createComment = async (
 
     const commentUser = await userRepo.findOne({ where: { id: userId } });
     if (!commentUser) {
-      throw createHttpError(404, 'User not found');
+      throw createHttpError(404, 'User not found!');
     }
 
     let sectionUser;
     if (commentUser.role === UserType.ADMIN) {
       // Admin always need to specify section User
       if (!sectionUserId) {
-        logger.error('Section User ID not specified by ADMIN');
-        throw createHttpError(404, 'SectionUserId Not specified by ADMIN');
+        throw createHttpError(404, 'SectionUserId Not specified by ADMIN!');
       }
 
       if (sectionUserId !== userId) {
         sectionUser = await userRepo.findOne({ where: { id: sectionUserId } });
         // Sends a notification to sectionUser
-        logger.info(
-          `Send a comment notification to user: ${sectionUserId} on section: ${sectionId}`
-        );
+        logger.info(`Send a comment notification to user: ${sectionUserId} on section: ${sectionId}`);
       }
     } else {
       sectionUser = commentUser;
     }
 
     if (!sectionUser) {
-      throw createHttpError(404, 'Section User not found.');
+      throw createHttpError(404, 'Section User not found!');
     }
 
     const section = await sectionRepo.findOne({ where: { id: sectionId } });
@@ -82,9 +79,15 @@ export const createComment = async (
     await commentRepo.save(comment);
 
     return res.sendStatus(201);
-  } catch (error) {
-    logger.error(error);
-    throw createHttpError(500, 'Error adding comment');
+  } catch (err) {
+    console.error('Error creating comment:', err);
+
+    // Handle errors gracefully
+    if (err instanceof createHttpError.HttpError) {
+      throw err;
+    } else {
+      throw createHttpError(500, 'Internal Server Error');
+    }
   }
 };
 
@@ -97,11 +100,11 @@ export const createReply = async (
 
   // Validate input
   if (!text) {
-    throw createHttpError(400, 'Reply text not specified');
+    throw createHttpError(400, 'Reply text not specified!');
   }
 
   if (!parentCommentId) {
-    throw createHttpError(400, 'Parent Comment ID not specified');
+    throw createHttpError(400, 'Parent Comment ID not specified!');
   }
 
   try {
@@ -111,15 +114,16 @@ export const createReply = async (
     // Fetch the user and parent comment
     const commentUser = await userRepo.findOne({ where: { id: userId } });
     if (!commentUser) {
-      throw createHttpError(404, 'User not found');
+      throw createHttpError(404, 'User not found!');
     }
 
     const parentComment = await commentRepo.findOne({
       where: { id: parentCommentId },
       relations: ['section', 'sectionUser'],
     });
+
     if (!parentComment) {
-      throw createHttpError(404, 'Parent comment not found');
+      throw createHttpError(404, 'Parent comment not found!');
     }
 
     // Create the reply
@@ -134,9 +138,15 @@ export const createReply = async (
     await commentRepo.save(comment);
 
     return res.sendStatus(201); // Created status with no response body
-  } catch (error) {
-    logger.error(error);
-    throw createHttpError(500, 'Error adding comment');
+  } catch (err) {
+    console.error('Error creating reply:', err);
+
+    // Handle errors gracefully
+    if (err instanceof createHttpError.HttpError) {
+      throw err;
+    } else {
+      throw createHttpError(500, 'Internal Server Error');
+    }
   }
 };
 
@@ -225,9 +235,15 @@ export const getComments = async (
     );
 
     res.status(200).json(mappedComments);
-  } catch (error) {
-    logger.error(error);
-    throw createHttpError(500, 'Error getting comments');
+  } catch (err) {
+    console.error('Error getting comment:', err);
+
+    // Handle errors gracefully
+    if (err instanceof createHttpError.HttpError) {
+      throw err;
+    } else {
+      throw createHttpError(500, 'Internal Server Error');
+    }
   }
 };
 

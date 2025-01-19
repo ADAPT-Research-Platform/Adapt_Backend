@@ -4,7 +4,7 @@ import createHttpError from 'http-errors';
 import { AppDataSource } from '../../data-source';
 import type { AddAnswerBody, GetAnswerBody } from '../../types/routes/answers';
 import { Answer } from '../../entities/answer';
-import {getUserId} from "../users";
+import { getUserId } from '../users';
 
 export const createUpdateAnswer = async (
   req: TypedRequestBody<AddAnswerBody>,
@@ -13,9 +13,12 @@ export const createUpdateAnswer = async (
   const { sectionId, text } = req.body;
   const userId = getUserId(req);
 
-  // Validate input
-  if (!text || !sectionId) {
-    throw createHttpError(400, 'Answer text or sectionId not specified');
+  if (!sectionId) {
+    throw createHttpError(400, 'Section not specified!');
+  }
+
+  if (!text) {
+    throw createHttpError(400, 'Answer map not specified!');
   }
 
   // Create a query runner for transactional operations
@@ -62,13 +65,13 @@ export const createUpdateAnswer = async (
       await queryRunner.rollbackTransaction();
     }
 
-    console.error('Error adding/updating answer:', err);
+    console.error('Error in Answer Add/Update:', err);
 
     // Handle errors gracefully
     if (err instanceof createHttpError.HttpError) {
-      throw createHttpError(err.status, err.message);
+      throw err;
     } else {
-      throw createHttpError(500, 'Internal Server Error');
+      throw createHttpError(500, 'Internal Server Error!');
     }
   } finally {
     // Release the query runner
@@ -84,12 +87,12 @@ export const getAnswer = async (
   const { sectionId } = req.query;
 
   if (!sectionId) {
-    throw createHttpError(400, 'Section id should be specified');
+    throw createHttpError(400, 'Section id should be specified!');
   }
 
   const sectionIdNumber = parseInt(sectionId as string, 10);
   if (isNaN(sectionIdNumber)) {
-    throw createHttpError(400, 'Invalid section id format');
+    throw createHttpError(400, 'Invalid Section Id!');
   }
 
   try {
@@ -115,7 +118,7 @@ export const getAnswer = async (
 
     // Handle errors gracefully
     if (err instanceof createHttpError.HttpError) {
-      throw createHttpError(err.status, err.message);
+      throw err;
     } else {
       throw createHttpError(500, 'Internal Server Error');
     }

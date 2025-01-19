@@ -21,8 +21,8 @@ export const createUpdateMood = async (
     throw createHttpError(400, 'Both feeling and motivation are required!');
   }
 
-  if (feeling < 1 || feeling > 4) {
-    // Valid values: 1 (Happy), 2 (Sad), 3 (Angry), 4 (Tired)
+  if (feeling < 0 || feeling > 4) {
+    // Valid values: 0(None), 1 (Happy), 2 (Sad), 3 (Angry), 4 (Tired)
     throw createHttpError(400, 'Feeling must be between 1 and 4');
   }
 
@@ -58,8 +58,14 @@ export const createUpdateMood = async (
     await moodRepo.save(newMood);
     return res.sendStatus(201); // Status 201 for new entry
   } catch (err) {
-    logger.error('Error creating or updating mood:', err);
-    throw createHttpError(500, 'An error occurred while processing your request.');
+    console.error('Error add/update mood by date:', err);
+
+    // Handle errors gracefully
+    if (err instanceof createHttpError.HttpError) {
+      throw err;
+    } else {
+      throw createHttpError(500, 'Internal Server Error');
+    }
   }
 };
 
@@ -68,26 +74,25 @@ export const getMoods = async (req: Request, res: Response) => {
   const { startDate, endDate } = req.query;
 
   if (!startDate && !endDate) {
-    throw createHttpError(400, 'Date Range is nor provided');
+    throw createHttpError(400, 'Date Range is nor provided!');
   }
 
   const parsedStartDate = new Date(startDate as string);
   if (isNaN(parsedStartDate.getTime())) {
-    throw createHttpError(400, 'Invalid Start Date.');
+    throw createHttpError(400, 'Invalid Start Date!');
   }
 
   const parsedEndDate = new Date(endDate as string);
   if (isNaN(parsedStartDate.getTime())) {
-    throw createHttpError(400, 'Invalid End Date.');
+    throw createHttpError(400, 'Invalid End Date!');
   }
 
   try {
     const moodRepo = AppDataSource.getRepository(Mood);
 
     // Query moods within the specified date range
-    logger.info(
-      `${parsedStartDate.toISOString()} ${parsedEndDate.toISOString()}`
-    );
+    logger.info(`StartDate: ${parsedStartDate.toISOString()} EndDate: ${parsedEndDate.toISOString()}`);
+
     const moods = await moodRepo.find({
       where: {
         user: { id: userId },
@@ -102,9 +107,15 @@ export const getMoods = async (req: Request, res: Response) => {
     );
 
     res.status(200).json(modeData);
-  } catch (error) {
-    logger.error('Error getting mood data:', error);
-    throw createHttpError(500, 'An error occurred while processing your request.');
+  } catch (err) {
+    console.error('Error get mood by date range:', err);
+
+    // Handle errors gracefully
+    if (err instanceof createHttpError.HttpError) {
+      throw err;
+    } else {
+      throw createHttpError(500, 'Internal Server Error');
+    }
   }
 };
 

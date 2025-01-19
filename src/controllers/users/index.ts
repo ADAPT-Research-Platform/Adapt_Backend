@@ -42,13 +42,13 @@ const create = async (
     // Check if username already exists
     const usernameExists = await userRepo.findOne({ where: { username } });
     if (usernameExists) {
-      throw createHttpError(409, 'Username already exists');
+      throw createHttpError(409, 'Username already exists!');
     }
 
     // Check if email already exists
     const emailExists = await userRepo.findOne({ where: { email } });
     if (emailExists) {
-      throw createHttpError(409, 'Email already exists');
+      throw createHttpError(409, 'Email already exists!');
     }
 
     // Create and save the new user
@@ -183,18 +183,30 @@ const disable = (
   const { currentPassword } = req.body;
 
   if (!currentPassword) {
-    throw createHttpError(400, 'Current password not provided');
+    throw createHttpError(400, 'Password not provided!');
   }
-  
-  // Ensure the user is logged out first
-  req.logout((err) => {
-    if (err) {
-      return next(err);
+
+  try {
+    // Ensure the user is logged out first
+    req.logout((err) => {
+      if (err) {
+        return next(err);
+      }
+
+      // Proceed with the deletion process only after logout
+      void handleUserDisable(userId, currentPassword, res);
+    });
+  } catch (err) {
+    // Log and handle the error
+    logger.error('Error deleting user:', err);
+
+    // Handle known error types
+    if (err instanceof createHttpError.HttpError) {
+      throw err;
+    } else {
+      throw createHttpError(500, 'Internal Server Error!');
     }
-    
-    // Proceed with the deletion process only after logout
-    void handleUserDisable(userId, currentPassword, res);
-  });
+  }
 };
 
 const handleUserDisable = async (
@@ -215,12 +227,12 @@ const handleUserDisable = async (
     // Fetch the user by id
     const user = await userRepo.findOne({ where: { id: userId } });
     if (!user) {
-      throw createHttpError(404, 'User not found');
+      throw createHttpError(404, 'User not found!');
     }
 
     // Verify the current password
     if (!user.verifyPassword(currentPassword)) {
-      throw createHttpError(403, 'Current password is incorrect');
+      throw createHttpError(403, 'Password is incorrect!');
     }
 
     // Soft delete the user (mark as deleted)
@@ -253,11 +265,14 @@ const handleUserDisable = async (
   }
 };
 
-const verifyEmail = async (req: Request, res: Response) => {
+const verifyEmail = async (
+  req: Request,
+  res: Response
+) => {
   const { token } = req.query;
 
   if (!token || typeof token !== 'string') {
-    return res.status(400).send('Invalid or missing token.');
+    throw createHttpError(400, 'Invalid or missing token!');
   }
 
   // Create a query runner
@@ -277,11 +292,11 @@ const verifyEmail = async (req: Request, res: Response) => {
     // Find the user by ID
     const user = await userRepo.findOne({ where: { id: Number(userId) } });
     if (!user) {
-      throw createHttpError(404, 'User not found.');
+      throw createHttpError(404, 'User not found!');
     }
 
     if (user.isVerified) {
-      throw createHttpError(400, 'Email already verified.');
+      throw createHttpError(400, 'Email already verified!');
     }
 
     // Mark the user as verified
@@ -292,7 +307,7 @@ const verifyEmail = async (req: Request, res: Response) => {
     await queryRunner.commitTransaction();
 
     // Send success response
-    res.status(200).send('Email verified successfully!');
+    return res.sendStatus(200);
   } catch (err) {
     // Rollback the transaction on error
     if (queryRunner.isTransactionActive) {

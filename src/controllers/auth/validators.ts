@@ -6,11 +6,11 @@ export const validateLoginBody = (body: Partial<AuthLoginBody>) => {
     const { login, password } = body;
 
     if (!login) {
-        throw createHttpError(400, 'Username or email address required');
+        throw createHttpError(400, 'Username or Email not provided!');
     }
 
     if (!password) {
-        throw createHttpError(400, 'Password required');
+        throw createHttpError(400, 'Password not provided!');
     }
 
     // As the function checked the properties are not missing,

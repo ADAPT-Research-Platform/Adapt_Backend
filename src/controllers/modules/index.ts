@@ -444,52 +444,6 @@ export const getModuleIdList = async (_req: Request, res: Response) => {
   res.send(response);
 };
 
-// Previous Method
-export const getModulesWithChapters = async (
-  req: Request,
-  res: Response<ModuleResponse[]>
-) => {
-  const userId = getUserId(req);
-  const moduleRepo = AppDataSource.getRepository(Module);
-  const progressRepo = AppDataSource.getRepository(Progress);
-
-  // Fetch all modules with chapters and sections
-  const modules = await moduleRepo.find({
-    where: { isActive: true },
-    relations: ['chapters', 'chapters.sections'],
-  });
-
-  // Fetch progress for the user
-  const userProgress = await progressRepo.find({
-    where: { userId },
-  });
-
-  // Create a progress map for quick lookup
-  const progressMap = new Map(
-    userProgress.map((progress) => [`${progress.sectionId}`, progress.value])
-  );
-
-  // Transform the response
-  const response: ModuleResponse[] = modules.map((module) => ({
-    id: module.id,
-    chapters: module.chapters.map((chapter) => ({
-      id: chapter.id,
-      title: chapter.title,
-      sections: chapter.sections.map((section) => ({
-        id: section.id,
-        updatedAt: section.updatedAt,
-        title: section.title,
-        folderUrl: section.folderUrl,
-        isExercise: section.isExercise,
-        progress: progressMap.get(`${section.id}`) || 0.0, // Default to 0 if no progress exists
-        numOfComments: 0
-      })),
-    })),
-  }));
-
-  res.send(response);
-};
-
 export const getModuleById = async (
   req: Request,
   res: Response<ModuleResponse>
@@ -572,44 +526,7 @@ export const getModuleById = async (
   res.send(response);
 };
 
-// Get a module by ID
 /*
-const getById = async (req: Request, res: Response<ModuleResponse>) => {
-  const { id } = req.params;
-  const moduleId: number = parseInt(id, 10);
-
-  const moduleRepo = AppDataSource.getRepository(Module);
-  const module = await moduleRepo.findOne({
-    where: { id: moduleId },
-    relations: [
-      'chapters',
-      'chapters.sections', // Include chapter files
-    ],
-  });
-
-  if (!module) {
-    throw createHttpError(404, 'Module not found');
-  }
-
-  const response: ModuleResponse = {
-    id: module.id,
-    chapters: module.chapters.map((chapter) => ({
-      id: chapter.id,
-      title: chapter.title,
-      sections: chapter.sections.map((section) => ({
-        id: section.id,
-        updatedAt: section.updatedAt,
-        title: section.title,
-        folderUrl: section.folderUrl, // Map exercise files
-        isExercise: section.isExercise,
-        progress: 0.0, // Default to 0 if no progress exists
-      })),
-    })),
-  };
-
-  res.send(response);
-};
-
 // Update a module by ID
 const update = async (req: Request, res: Response<{ message: string }>) => {
   const { id } = req.params;

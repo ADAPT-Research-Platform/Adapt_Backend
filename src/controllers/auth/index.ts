@@ -30,13 +30,13 @@ const login = (
             // Check if the user is verified and active
             if (!user.isVerified) {
                 return next(
-                    createHttpError(403, 'Account is not verified.'),
+                    createHttpError(403, 'Email not verified!'),
                 );
             }
 
             if (!user.isActive) {
                 return next(
-                    createHttpError(403, 'Account is not active.'),
+                    createHttpError(403, 'User not available!'),
                 );
             }
 
@@ -65,7 +65,7 @@ const logout = (
         if (err) {
             return next(err);
         }
-        req.session.destroy(() => res.send('You are now logged out'));
+        req.session.destroy(() => res.sendStatus(200));
     });
 };
 
