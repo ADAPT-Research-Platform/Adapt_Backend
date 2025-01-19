@@ -20,7 +20,7 @@ export default session({
     cookie: {
         secure: false, //process.env.NODE_ENV === 'production',
         httpOnly: false,
-        sameSite: 'none',
+        sameSite: 'strict',
         maxAge: 90 * 24 * 60 * 60 * 1000, // 3 months
     },
 });
