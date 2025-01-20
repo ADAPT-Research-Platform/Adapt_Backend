@@ -49,7 +49,8 @@ const login = (
                     id: user.id,
                     username: user.username,
                     email: user.email,
-                    isActive: user.isActive
+                    isActive: user.isActive,
+                    role: user.role,
                 });
             });
         },
@@ -81,6 +82,7 @@ const get = (
             username: req.user.username,
             email: req.user.email,
             isActive: req.user.isActive,
+            role: req.user.role,
         });
     } else {
         return next(
