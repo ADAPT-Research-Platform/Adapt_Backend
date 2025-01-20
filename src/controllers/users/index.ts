@@ -173,7 +173,7 @@ const update = async (
   }
 };
 
-const disable = (
+const disable = async (
   req: TypedRequestBody<UsersDeleteBody>,
   res: Response,
   next: NextFunction
@@ -183,37 +183,10 @@ const disable = (
   const { currentPassword } = req.body;
 
   if (!currentPassword) {
+    logger.warn('Password not provided!');
     throw createHttpError(400, 'Password not provided!');
   }
 
-  try {
-    // Ensure the user is logged out first
-    req.logout((err) => {
-      if (err) {
-        return next(err);
-      }
-
-      // Proceed with the deletion process only after logout
-      void handleUserDisable(userId, currentPassword, res);
-    });
-  } catch (err) {
-    // Log and handle the error
-    logger.error('Error deleting user:', err);
-
-    // Handle known error types
-    if (err instanceof createHttpError.HttpError) {
-      throw err;
-    } else {
-      throw createHttpError(500, 'Internal Server Error!');
-    }
-  }
-};
-
-const handleUserDisable = async (
-  userId: number,
-  currentPassword: string,
-  res: Response
-) => {
   // Create a query runner
   const queryRunner = AppDataSource.createQueryRunner();
 
@@ -235,6 +208,10 @@ const handleUserDisable = async (
       throw createHttpError(403, 'Password is incorrect!');
     }
 
+    if (!user.isActive) {
+      throw createHttpError(400, 'User is already deleted!');
+    }
+
     // Soft delete the user (mark as deleted)
     user.deletedAt = new Date();
     user.isActive = false; // Optionally deactivate the user account
@@ -243,7 +220,12 @@ const handleUserDisable = async (
     // Commit the transaction
     await queryRunner.commitTransaction();
 
-    return res.sendStatus(200);
+    req.logout((err) => {
+      if (err) {
+        return next(err);
+      }
+      req.session.destroy(() => res.sendStatus(200));
+    });
   } catch (err) {
     // Rollback the transaction on error
     if (queryRunner.isTransactionActive) {

@@ -17,7 +17,7 @@ export const createUpdateMood = async (
   const userId = getUserId(req);
 
   // Input validation
-  if (!feeling || !motivation) {
+  if (feeling === undefined || motivation === undefined) {
     throw createHttpError(400, 'Both feeling and motivation are required!');
   }
 
