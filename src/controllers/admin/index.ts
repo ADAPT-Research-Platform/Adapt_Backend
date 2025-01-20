@@ -2,8 +2,6 @@ import type { Request, Response } from 'express';
 
 import type { UsersGetResponse } from 'src/types/routes/users';
 
-import type { SectionComment, UserSection } from 'src/types/routes/progress';
-
 import { UserType } from '../../enums/enum';
 
 import { AppDataSource } from '../../data-source';
@@ -12,6 +10,7 @@ import { Progress } from '../../entities/progress';
 import { Section } from '../../entities/section';
 import { Comment } from '../../entities/comment';
 import { Mood } from '../../entities/mood';
+import type { ChapterData, ModuleData, NestedComment } from '../../types/commonTypes';
 
 // Get all users
 const getAllUsers = (req: Request, res: Response) => {
@@ -80,17 +79,17 @@ const getUsersById = (req: Request, res: Response) => {
     });
 };
 
-// Get user progress by user ID
-const getUserProgress = async (req: Request, res: Response) => {
+const getUserProgress = async (req: Request, res: Response): Promise<void> => {
   const userProgressRepo = AppDataSource.getRepository(Progress);
   const sectionRepo = AppDataSource.getRepository(Section);
-  const commentRepo = AppDataSource. getRepository(Comment);
+  const commentRepo = AppDataSource.getRepository(Comment);
 
   const { userId } = req.params;
   const parsedUserId = parseInt(userId, 10);
 
   if (isNaN(parsedUserId) || parsedUserId < 1) {
-    return res.status(400).json({ message: 'Invalid user ID' });
+    res.status(400).json({ message: 'Invalid user ID' });
+    return;
   }
 
   try {
@@ -99,67 +98,96 @@ const getUserProgress = async (req: Request, res: Response) => {
     });
 
     if (userProgress.length === 0) {
-      return res.status(404).json({ message: 'User progress not found' });
+      res.status(404).json({ message: 'User progress not found' });
+      return;
     }
 
-    const userSections: UserSection[] = await Promise.all(
-      userProgress.map(async (progress) => {
-        const section = await sectionRepo.findOne({
-          where: { id: progress.sectionId },
-        });
+    const sectionIds = userProgress.map(progress => progress.sectionId);
+    const sections = await sectionRepo.findByIds(sectionIds);
 
-        if (!section) {
-          throw new Error(`Section with ID ${progress.sectionId} not found`);
-        }
+    console.log('sectionIds:', sectionIds);
+    console.log('fetched sections:', sections);
 
-        const comments = await commentRepo
-          .createQueryBuilder('comment')
-          .leftJoinAndSelect('comment.replies', 'replies')
-          .leftJoinAndSelect('comment.parent', 'parent')
-          .leftJoinAndSelect('comment.sectionUser', 'sectionUser')
-          .leftJoinAndSelect('comment.commentUser', 'commentUser') // Fetch comment creator user
-          .where('comment.sectionId = :sectionId', { sectionId: section.id })
-          .andWhere('comment.sectionUser.id = :userId', {
-            userId: parsedUserId,
-          })
-          .getMany();
+    const comments = await commentRepo
+      .createQueryBuilder('comment')
+      .leftJoinAndSelect('comment.replies', 'replies')
+      .leftJoinAndSelect('comment.parent', 'parent')
+      .leftJoinAndSelect('comment.section', 'section') // Include section relation
+      .leftJoinAndSelect('comment.sectionUser', 'sectionUser')
+      .leftJoinAndSelect('comment.commentUser', 'commentUser')
+      .where('comment.sectionId IN (:...sectionIds)', { sectionIds })
+      .andWhere('comment.sectionUser.id = :userId', { userId: parsedUserId })
+      .getMany();
 
-        const buildNestedComments = (
-          parentId: number | null,
-          allComments: Comment[]
-        ): SectionComment[] =>
-          allComments
-            .filter(
-              (comment) =>
-                (comment.parent ? comment.parent.id : null) === parentId
-            )
-            .map((comment) => ({
-              parentId: comment.parent ? comment.parent.id : null,
-              commentId: comment.id,
-              sectionUserId: comment.sectionUser.id,
-              sectionUsername: comment.sectionUser.username, // Add section user's username
-              commentUserId: comment.commentUser.id,
-              commentUsername: comment.commentUser.username, // Add comment creator's username
-              text: comment.text,
-              createdAt: comment.createdAt.toISOString(),
-              replies: buildNestedComments(comment.id, allComments),
-            }));
+    comments.forEach(comment => {
+      if (!comment.section) {
+        console.warn(`Comment with ID ${comment.id} is missing a section.`);
+      }
+    });
 
-        const formattedComments = buildNestedComments(null, comments);
+    const buildNestedComments = (
+      parentId: number | null,
+      allComments: Comment[]
+    ): NestedComment[] =>
+      allComments
+        .filter(comment => (comment.parent?.id || null) === parentId)
+        .map(comment => ({
+          parentId: comment.parent?.id || null,
+          commentId: comment.id,
+          sectionUserId: comment.sectionUser.id,
+          sectionUsername: comment.sectionUser.username,
+          commentUserId: comment.commentUser.id,
+          commentUsername: comment.commentUser.username,
+          text: comment.text,
+          createdAt: comment.createdAt.toISOString(),
+          replies: buildNestedComments(comment.id, allComments),
+        }));
 
-        return {
-          userId: parsedUserId,
-          sectionId: section.id,
-          name: section.title,
-          createdAt: progress.createdAt.toISOString(),
-          updatedAt: progress.updatedAt.toISOString(),
-          progressPercentage: progress.value,
-          comments: formattedComments,
+    const modules: Record<string, { chapters: Record<string, ChapterData> }> = {};
+
+    userProgress.forEach(progress => {
+      const section = sections.find(s => s.id === progress.sectionId);
+      if (!section) {
+        console.warn(`Section with ID ${progress.sectionId} not found.`);
+        return;
+      }
+
+      const [moduleId, chapterId] = section.folderUrl.split('/').slice(0, 2);
+
+      if (!modules[moduleId]) {
+        modules[moduleId] = {
+          chapters: {},
         };
+      }
+
+      if (!modules[moduleId].chapters[chapterId]) {
+        modules[moduleId].chapters[chapterId] = {
+          chapterId,
+          sections: [],
+        };
+      }
+
+      const sectionComments = comments.filter(
+        comment => comment.section.id === section.id
+      );
+      modules[moduleId].chapters[chapterId].sections.push({
+        sectionId: section.id,
+        name: section.title,
+        createdAt: progress.createdAt.toISOString(),
+        updatedAt: progress.updatedAt.toISOString(),
+        progressPercentage: progress.value,
+        comments: buildNestedComments(null, sectionComments),
+      });
+    });
+
+    const formattedModules: ModuleData[] = Object.entries(modules).map(
+      ([moduleId, moduleData]) => ({
+        moduleId,
+        chapters: Object.values(moduleData.chapters),
       })
     );
 
-    res.status(200).json(userSections);
+    res.status(200).json(formattedModules);
   } catch (err) {
     console.error('Error fetching user progress:', err);
     res.status(500).json({ message: 'Internal server error' });
