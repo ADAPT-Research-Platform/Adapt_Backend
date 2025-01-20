@@ -9,4 +9,6 @@ router.route('/getUser/:id').get(AdminController.getUsersById);
 router.route('/getUserProgress/:userId').get(AdminController.getUserProgress);
 router.route('/getUserMoods/:userId').get(AdminController.getUserMoodById);
 
+router.route('/changeUserRole/:id').put(AdminController.changeUserRole);
+
 export default router;

@@ -19,7 +19,7 @@ const getAllUsers = (req: Request, res: Response) => {
   // Get all users with role 'user', isActive = true, and isVerified = true
   userRepo
     .find({
-      where: { role: UserType.CLIENT, isActive: true },
+      where: { isActive: true },
     })
     .then((users) => {
       // Map the database entities to the UsersGetResponse interface
@@ -221,9 +221,42 @@ const getUserMoodById = async (req: Request, res: Response) => {
   }
 };
 
+// Change user to to admin and vice versa
+const changeUserRole = async (req: Request, res: Response) => {
+  const userRepo = AppDataSource.getRepository(User);
+  const { id } = req.params;
+
+  const userId = parseInt(id, 10);
+  if (isNaN(userId) || userId < 1) {
+    return res.status(400).json({ message: 'Invalid user ID' });
+  }
+
+  try {
+    const user = await userRepo.findOneBy({ id: userId });
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    if (user.role === UserType.ADMIN) {
+      user.role = UserType.CLIENT;
+    } else {
+      user.role = UserType.ADMIN;
+    }
+
+    await userRepo.save(user);
+
+    res.status(200).json({ message: 'User role changed successfully' });
+  } catch (err) {
+    console.error('Error changing user role:', err);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
 export default {
   getAllUsers,
   getUsersById,
   getUserProgress,
   getUserMoodById,
+  changeUserRole,
 };
