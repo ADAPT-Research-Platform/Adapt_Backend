@@ -17,6 +17,7 @@ export type SectionData = {
   updatedAt: string;
   progressPercentage: number;
   comments: NestedComment[];
+  answers: Record<string, { question: string; answer: string }>; // Add answers property
 };
 
 export type ChapterData = {

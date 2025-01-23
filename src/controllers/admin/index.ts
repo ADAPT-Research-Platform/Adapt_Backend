@@ -2,6 +2,8 @@ import type { Request, Response } from 'express';
 
 import type { UsersGetResponse } from 'src/types/routes/users';
 
+import { In } from 'typeorm';
+
 import { UserType } from '../../enums/enum';
 
 import { AppDataSource } from '../../data-source';
@@ -10,7 +12,12 @@ import { Progress } from '../../entities/progress';
 import { Section } from '../../entities/section';
 import { Comment } from '../../entities/comment';
 import { Mood } from '../../entities/mood';
-import type { ChapterData, ModuleData, NestedComment } from '../../types/commonTypes';
+import { Answer } from '../../entities/answer';
+import type {
+  ChapterData,
+  ModuleData,
+  NestedComment,
+} from '../../types/commonTypes';
 
 // Get all users
 const getAllUsers = (req: Request, res: Response) => {
@@ -83,6 +90,7 @@ const getUserProgress = async (req: Request, res: Response): Promise<void> => {
   const userProgressRepo = AppDataSource.getRepository(Progress);
   const sectionRepo = AppDataSource.getRepository(Section);
   const commentRepo = AppDataSource.getRepository(Comment);
+  const answerRepo = AppDataSource.getRepository(Answer); // Repository for the answer table
 
   const { userId } = req.params;
   const parsedUserId = parseInt(userId, 10);
@@ -102,11 +110,8 @@ const getUserProgress = async (req: Request, res: Response): Promise<void> => {
       return;
     }
 
-    const sectionIds = userProgress.map(progress => progress.sectionId);
+    const sectionIds = userProgress.map((progress) => progress.sectionId);
     const sections = await sectionRepo.findByIds(sectionIds);
-
-    console.log('sectionIds:', sectionIds);
-    console.log('fetched sections:', sections);
 
     const comments = await commentRepo
       .createQueryBuilder('comment')
@@ -119,10 +124,8 @@ const getUserProgress = async (req: Request, res: Response): Promise<void> => {
       .andWhere('comment.sectionUser.id = :userId', { userId: parsedUserId })
       .getMany();
 
-    comments.forEach(comment => {
-      if (!comment.section) {
-        console.warn(`Comment with ID ${comment.id} is missing a section.`);
-      }
+    const answers = await answerRepo.find({
+      where: { sectionId: In(sectionIds), userId: parsedUserId }, // Fetch answers for the user and sections
     });
 
     const buildNestedComments = (
@@ -130,8 +133,8 @@ const getUserProgress = async (req: Request, res: Response): Promise<void> => {
       allComments: Comment[]
     ): NestedComment[] =>
       allComments
-        .filter(comment => (comment.parent?.id || null) === parentId)
-        .map(comment => ({
+        .filter((comment) => (comment.parent?.id || null) === parentId)
+        .map((comment) => ({
           parentId: comment.parent?.id || null,
           commentId: comment.id,
           sectionUserId: comment.sectionUser.id,
@@ -143,10 +146,11 @@ const getUserProgress = async (req: Request, res: Response): Promise<void> => {
           replies: buildNestedComments(comment.id, allComments),
         }));
 
-    const modules: Record<string, { chapters: Record<string, ChapterData> }> = {};
+    const modules: Record<string, { chapters: Record<string, ChapterData> }> =
+      {};
 
-    userProgress.forEach(progress => {
-      const section = sections.find(s => s.id === progress.sectionId);
+    userProgress.forEach((progress) => {
+      const section = sections.find((s) => s.id === progress.sectionId);
       if (!section) {
         console.warn(`Section with ID ${progress.sectionId} not found.`);
         return;
@@ -168,8 +172,49 @@ const getUserProgress = async (req: Request, res: Response): Promise<void> => {
       }
 
       const sectionComments = comments.filter(
-        comment => comment.section.id === section.id
+        (comment) => comment.section.id === section.id
       );
+
+      type AnswerValue = string | { question: string; answer: string };
+
+      const parseAnswers = (rawAnswers: Record<string, AnswerValue>): Record<string, { question: string; answer: string }> => {
+        const parsedAnswers: Record<string, { question: string; answer: string }> = {};
+      
+        Object.entries(rawAnswers).forEach(([key, value]) => {
+          if (typeof value === 'string') {
+            parsedAnswers[key] = {
+              question: `Default question for ${key}`,
+              answer: value,
+            };
+          } else if (typeof value === 'object' && value !== null && 'question' in value && 'answer' in value) {
+            parsedAnswers[key] = {
+              question: value.question,
+              answer: value.answer,
+            };
+          } else {
+            console.warn(`Unexpected format for key: ${key}, value:`, value);
+          }
+        });
+      
+        return parsedAnswers;
+      };      
+
+      const sectionAnswers = answers
+      .filter(answer => answer.sectionId === section.id)
+      .reduce((acc, answer) => {
+        if (
+          typeof answer.text === 'object' &&
+          answer.text !== null &&
+          !Array.isArray(answer.text)
+        ) {
+          const parsed = parseAnswers(answer.text as Record<string, AnswerValue>); // Cast after check
+          Object.assign(acc, parsed); // Merge parsed data into the accumulator
+        } else {
+          console.warn('Invalid answer.text format:', answer.text);
+        }
+        return acc;
+      }, {} as Record<string, { question: string; answer: string }>);
+    
       modules[moduleId].chapters[chapterId].sections.push({
         sectionId: section.id,
         name: section.title,
@@ -177,6 +222,7 @@ const getUserProgress = async (req: Request, res: Response): Promise<void> => {
         updatedAt: progress.updatedAt.toISOString(),
         progressPercentage: progress.value,
         comments: buildNestedComments(null, sectionComments),
+        answers: sectionAnswers, // Include answers here
       });
     });
 
