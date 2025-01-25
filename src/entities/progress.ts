@@ -12,7 +12,7 @@ export class Progress {
     userId!: number;
 
     @PrimaryColumn({ type: 'int' })
-    sectionId!: number;
+    chapterId!: number;
 
     @CreateDateColumn({ nullable: false })
     createdAt!: Date;

@@ -9,7 +9,7 @@ import {
   } from 'typeorm';
   
   import { User } from './user';
-  import { Section } from './section';
+  import { Chapter } from './chapter';
   
   @Entity()
   export class Comment {
@@ -23,8 +23,8 @@ import {
     text!: string;
   
     @ManyToOne(() => User, { nullable: false, onDelete: 'CASCADE' })
-    @JoinColumn({ name: 'sectionUserId' })
-    sectionUser!: User;
+    @JoinColumn({ name: 'chapterUserId' })
+    chapterUser!: User;
   
     @ManyToOne(() => User, { nullable: false, onDelete: 'CASCADE' })
     @JoinColumn({ name: 'commentUserId' })
@@ -40,8 +40,8 @@ import {
     @OneToMany(() => Comment, (comment) => comment.parent, { cascade: true })
     replies!: Comment[];
   
-    @ManyToOne(() => Section, (section) => section.comments, { nullable: false, onDelete: 'CASCADE' })
-    @JoinColumn({ name: 'sectionId' })
-    section!: Section;
+    @ManyToOne(() => Chapter, (chapter) => chapter.comments, { nullable: false, onDelete: 'CASCADE' })
+    @JoinColumn({ name: 'chapterId' })
+    chapter!: Chapter;
   }
   

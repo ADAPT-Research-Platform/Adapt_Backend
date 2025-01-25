@@ -9,8 +9,9 @@ import {
   OneToMany,
 } from 'typeorm';
 
-import { Module } from './module';
-import { Section } from './section';
+import { Comment } from './comment';
+import { Answer } from "./answer";
+import {Module} from "./module";
 
 @Entity()
 export class Chapter {
@@ -29,12 +30,21 @@ export class Chapter {
   @Column({ default: true })
   isActive!: boolean;
 
+  @Column({ type: 'text', nullable: false })
+  folderUrl!: string;
+
   @Column({ nullable: false, length: 255 })
   title!: string;
+
+  @Column({ default: true })
+  isExercise!: boolean;
 
   @ManyToOne(() => Module, (module) => module.chapters, { onDelete: 'CASCADE' })
   module!: Module;
 
-  @OneToMany(() => Section, (section) => section.chapter)
-  sections!: Section[];
+  @OneToMany(() => Comment, (comment) => comment.chapter)
+  comments!: Comment[];
+
+  @OneToMany(() => Answer, (answer) => answer.chapter)
+  answers!: Answer[];
 }

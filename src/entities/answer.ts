@@ -9,7 +9,7 @@ import {
 } from 'typeorm';
 
 import { User } from './user';
-import { Section } from './section';
+import { Chapter } from './chapter';
 
 @Entity()
 export class Answer {
@@ -17,7 +17,7 @@ export class Answer {
   userId!: number;
 
   @PrimaryColumn({ type: 'int' })
-  sectionId!: number;
+  chapterId!: number;
 
   @CreateDateColumn({ nullable: false })
   createdAt!: Date;
@@ -38,7 +38,7 @@ export class Answer {
   @JoinColumn({ name: 'userId' })
   user!: User;
 
-  @ManyToOne(() => Section, (section) => section.answers, { nullable: false, onDelete: 'CASCADE' })
-  @JoinColumn({ name: 'sectionId' })
-  section!: Section;
+  @ManyToOne(() => Chapter, (chapter) => chapter.answers, { nullable: false, onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'chapterId' })
+  chapter!: Chapter;
 }

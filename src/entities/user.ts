@@ -32,9 +32,6 @@ export class User {
     @Column({ nullable: false, unique: true, length: 20 })
     username!: string;
 
-    @Column({ nullable: false, unique: true, length: 255 })
-    email!: string;
-
     @Column({ type: 'enum', enum: UserType, default: UserType.CLIENT })
     role!: UserType;
 
@@ -43,9 +40,6 @@ export class User {
 
     @Column({ nullable: false })
     salt!: string;
-
-    @Column({ default: false })
-    isVerified!: boolean;
 
     @OneToMany(() => Mood, (mood) => mood.user, { cascade: true })
     moods!: Mood[];
