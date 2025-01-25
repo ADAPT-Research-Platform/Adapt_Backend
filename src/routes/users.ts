@@ -8,6 +8,4 @@ router.route('/').post(UsersController.create);
 router.route('/').put(UsersController.update);
 router.route('/').delete(UsersController.disable);
 
-router.route('/verify-email').get(UsersController.verifyEmail);
-
 export default router;

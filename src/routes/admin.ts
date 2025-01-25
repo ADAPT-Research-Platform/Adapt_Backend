@@ -6,9 +6,7 @@ const router = express.Router();
 
 router.route('/getAllUsers').get(AdminController.getAllUsers);
 router.route('/getUser/:id').get(AdminController.getUsersById);
-router.route('/getUserProgress/:userId').get(AdminController.getUserProgress);
+router.route('/getUserProgress/:userId').get(AdminController.getUserProgress); //TODO: Try to make this into little methods like the app.
 router.route('/getUserMoods/:userId').get(AdminController.getUserMoodById);
-
-router.route('/changeUserRole/:id').put(AdminController.changeUserRole);
 
 export default router;
