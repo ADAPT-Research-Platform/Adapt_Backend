@@ -6,10 +6,10 @@ import { In } from 'typeorm';
 import { AppDataSource } from '../../data-source';
 import { Module } from '../../entities/module';
 
-import type { ModuleResponse } from '../../types/routes/modules';
+import type { ModuleResponse } from '../../types/modules';
 import { getUserId } from '../users';
 
-import type { CreateProgressBody } from '../../types/routes/progress';
+import type { CreateProgressBody } from '../../types/progress';
 import { Progress } from '../../entities/progress';
 import logger from '../../logger';
 import { Comment } from '../../entities/comment';

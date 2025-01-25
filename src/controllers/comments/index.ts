@@ -9,7 +9,7 @@ import type {
   AddCommentBody,
   AddReplyBody,
   CommentResponse,
-} from 'src/types/routes/comments';
+} from 'src/types/comments';
 
 import { AppDataSource } from '../../data-source';
 import { Comment } from '../../entities/comment';

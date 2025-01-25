@@ -1,6 +1,6 @@
 import type { Request, Response } from 'express';
 
-import type { UsersGetResponse } from 'src/types/routes/users';
+import type { UsersGetResponse } from 'src/types/users';
 
 import { In } from 'typeorm';
 

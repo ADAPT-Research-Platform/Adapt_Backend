@@ -5,7 +5,7 @@ import { UserType } from '../../enums/enum';
 
 import { AppDataSource } from '../../data-source';
 import { User } from '../../entities/user';
-import type { UsersCreateBody, UsersDeleteBody, UsersUpdateBody } from '../../types/routes/users';
+import type { UsersCreateBody, UsersDeleteBody, UsersUpdateBody } from '../../types/users';
 import { validateCreateBody } from './validators';
 import logger from '../../logger';
 

@@ -4,7 +4,7 @@ import type {
   ModuleCreateBody,
   ChapterCreateBody,
   ExerciseCreateBody,
-} from '../../types/routes/modules';
+} from '../../types/modules';
 
 // Utility function to parse JSON strings into arrays
 const parseJsonArray = <T>(input: unknown, fieldName: string): T[] => {

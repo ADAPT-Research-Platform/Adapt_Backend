@@ -1,4 +1,4 @@
-import type { UserType } from '../../enums/enum';
+import type { UserType } from '../enums/enum';
 
 export interface UsersCreateBody {
     username: string;

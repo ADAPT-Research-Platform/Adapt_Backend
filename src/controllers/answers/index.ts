@@ -2,7 +2,7 @@ import type { Request, Response } from 'express';
 import createHttpError from 'http-errors';
 
 import { AppDataSource } from '../../data-source';
-import type { AddAnswerBody, GetAnswerBody } from '../../types/routes/answers';
+import type { AddAnswerBody, GetAnswerBody } from '../../types/answers';
 import { Answer } from '../../entities/answer';
 import { getUserId } from '../users';
 

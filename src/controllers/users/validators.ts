@@ -1,6 +1,6 @@
 import createHttpError from 'http-errors';
 
-import type { UsersCreateBody } from '../../types/routes/users';
+import type { UsersCreateBody } from '../../types/users';
 
 export const validateCreateBody = (body: Partial<UsersCreateBody>) => {
     const { username, password } = body;

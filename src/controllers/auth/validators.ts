@@ -1,6 +1,6 @@
 import createHttpError from 'http-errors';
 
-import type { AuthLoginBody } from '../../types/routes/auth';
+import type { AuthLoginBody } from '../../types/auth';
 
 export const validateLoginBody = (body: Partial<AuthLoginBody>) => {
     const { username, password } = body;
