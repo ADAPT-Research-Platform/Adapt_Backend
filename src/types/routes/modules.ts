@@ -23,17 +23,8 @@ export interface ExerciseCreateBody {
   files?: FileCreateBody[]; // Optional: Uploaded files
 }
 
-export interface ChapterUpdateBody extends ChapterCreateBody {
-  id?: string; // Optional, as new chapters won't have an ID
-  exercises: ExerciseUpdateBody[];
-}
-
-export interface ExerciseUpdateBody extends ExerciseCreateBody {
-  id?: string; // Optional, as new exercises won't have an ID
-}
-
 // ExerciseResponse
-export interface SectionResponse {
+export interface ChapterResponse {
   id: number;
   updatedAt: Date;
   title: string;
@@ -41,13 +32,6 @@ export interface SectionResponse {
   isExercise: boolean;
   progress: number;
   numOfComments: number;
-}
-
-// ChapterResponse
-export interface ChapterResponse {
-  id: number;
-  title: string;
-  sections: SectionResponse[]; // Nested exercises
 }
 
 // ModuleResponse

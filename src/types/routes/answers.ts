@@ -1,10 +1,10 @@
 export interface AddAnswerBody {
-  sectionId: number;
+  chapterId: number;
   text: object;
 }
 
 export interface GetAnswerBody {
-  sectionId: number;
+  chapterId: number;
   updatedAt: Date;
   text: object;
 }

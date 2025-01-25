@@ -1,7 +1,7 @@
 export interface AddCommentBody {
   text: string;
-  sectionId: number;
-  sectionUserId?: number;
+  chapterId: number;
+  chapterUserId?: number;
 }
 
 export interface AddReplyBody {
