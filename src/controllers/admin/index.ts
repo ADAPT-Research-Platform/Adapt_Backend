@@ -104,7 +104,10 @@ const getUserProgress = async (req: Request, res: Response): Promise<void> => {
     }
 
     const chapterIds = userProgress.map(progress => progress.chapterId);
-    const chapters = await chapterRepo.findByIds(chapterIds);
+    const chapters = await chapterRepo.find({
+      where: { id: In(chapterIds) },
+      relations: ['module'], // Explicitly load the `module` relation
+    });    
 
     const comments = await commentRepo
       .createQueryBuilder('comment')
@@ -193,6 +196,10 @@ const getUserProgress = async (req: Request, res: Response): Promise<void> => {
         }
         return acc;
       }, {} as Record<string, { question: string; answer: string }>);
+
+      if (!modules[moduleId]) {
+        modules[moduleId] = { moduleId: moduleId.toString(), chapters: [] };
+      }
 
       modules[moduleId].chapters.push( {
         chapterId: chapter.id,

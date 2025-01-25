@@ -11,7 +11,7 @@ import {
 
 import { Comment } from './comment';
 import { Answer } from "./answer";
-import {Module} from "./module";
+import { Module } from "./module";
 
 @Entity()
 export class Chapter {
