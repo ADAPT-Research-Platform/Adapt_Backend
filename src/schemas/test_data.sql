@@ -1,72 +1,83 @@
 -- Table: user  -- Password apple123
-INSERT INTO "user" ("username", "email", "hashPassword", "salt", "role") VALUES ('LeonieKrol', 'user1@example.com', '$2a$12$sY6zwIplP07j07z5lLuhYOzLi4ERVjWnwhjKgwgWq.Pi1JUhc7bIq', '$2a$12$sY6zwIplP07j07z5lLuhYO','admin');
-INSERT INTO "user" ("username", "email", "hashPassword", "salt") VALUES ('BinayakAdhikari', 'user2@example.com', '$2a$12$sY6zwIplP07j07z5lLuhYOzLi4ERVjWnwhjKgwgWq.Pi1JUhc7bIq', '$2a$12$sY6zwIplP07j07z5lLuhYO');
-INSERT INTO "user" ("username", "email", "hashPassword", "salt", "isVerified") VALUES ('RisithPerera', 'risithmarshall@gmail.com', '$2a$12$sY6zwIplP07j07z5lLuhYOzLi4ERVjWnwhjKgwgWq.Pi1JUhc7bIq', '$2a$12$sY6zwIplP07j07z5lLuhYO', true);
+INSERT INTO "user" ("username", "hashPassword", "salt", "role") VALUES ('Admin', '$2a$12$sY6zwIplP07j07z5lLuhYOzLi4ERVjWnwhjKgwgWq.Pi1JUhc7bIq', '$2a$12$sY6zwIplP07j07z5lLuhYO','admin');
+INSERT INTO "user" ("username", "hashPassword", "salt") VALUES ('User_02', '$2a$12$sY6zwIplP07j07z5lLuhYOzLi4ERVjWnwhjKgwgWq.Pi1JUhc7bIq', '$2a$12$sY6zwIplP07j07z5lLuhYO');
+INSERT INTO "user" ("username", "hashPassword", "salt") VALUES ('User_03', '$2a$12$sY6zwIplP07j07z5lLuhYOzLi4ERVjWnwhjKgwgWq.Pi1JUhc7bIq', '$2a$12$sY6zwIplP07j07z5lLuhYO');
 
 -- Table: module
 INSERT INTO "module" ("isActive") VALUES (true);
+INSERT INTO "module" ("isActive") VALUES (true);
+INSERT INTO "module" ("isActive") VALUES (true);
+INSERT INTO "module" ("isActive") VALUES (true);
+INSERT INTO "module" ("isActive") VALUES (true);
+INSERT INTO "module" ("isActive") VALUES (true);
 
 -- Table: chapter
-INSERT INTO "chapter" ("moduleId", "title") VALUES (1, 'Willkommen');
-INSERT INTO "chapter" ("moduleId", "title") VALUES (1, 'Angst');
-INSERT INTO "chapter" ("moduleId", "title") VALUES (1, 'Title3');
-INSERT INTO "chapter" ("moduleId", "title") VALUES (1, 'Title4');
-
--- Table: section
-INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (1, 'module_01/chapter_01/section_01', 'Hallo und herzlich willkommen!', false);
-INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (1, 'module_01/chapter_01/section_02', 'Zahlen und Fakten – Angst weltweit', false);
-INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (1, 'module_01/chapter_01/section_03', 'Max und Hanna', false);
-INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (1, 'module_01/chapter_01/section_04', 'Grundlagen der App', false);
-INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (1, 'module_01/chapter_01/section_05', 'Ein kurzer Einstieg', false);
-INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (1, 'module_01/chapter_01/section_06', 'Meine Ängste', true);
-INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (2, 'module_01/chapter_02/section_01', 'Warum Angst wichtig ist', false);
-INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (2, 'module_01/chapter_02/section_02', 'Wann Angst zu viel wird', false);
-INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (2, 'module_01/chapter_02/section_03', 'Ist meine Angst noch normal?', false);
-INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (2, 'module_01/chapter_02/section_04', 'Und jetzt?', false);
-INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (2, 'module_01/chapter_02/section_05', 'Komponenten der Angst', true);
-INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (2, 'module_01/chapter_02/section_06', 'Was vermittle ich meinem Kind?', true);
-INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (2, 'module_01/chapter_02/section_07', 'Was kann ich tun?', false);
-INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (2, 'module_01/chapter_02/section_08', 'Mein Fazit', true);
-INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (3, 'module_01/chapter_03/section_01', 'Mama, Papa, ihr seid Helden!', false);
-INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (3, 'module_01/chapter_03/section_02', 'Vorbilder', true);
-INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (3, 'module_01/chapter_03/section_03', 'Tipps und Tricks für Helden', false);
-INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (3, 'module_01/chapter_03/section_04', 'Atmen', true);
-INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (3, 'module_01/chapter_03/section_05', 'PMR für Zuhause', true);
-INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (3, 'module_01/chapter_03/section_06', 'Autogenes Training', false);
-INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (3, 'module_01/chapter_03/section_07', 'Unser Team', true);
-INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (4, 'module_01/chapter_04/section_01', 'Was ist Vermeidung?', false);
-INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (4, 'module_01/chapter_04/section_02', 'Verpasste Chancen', true);
-INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (4, 'module_01/chapter_04/section_03', 'Die Vermeidung herausfordern', false);
-INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (4, 'module_01/chapter_04/section_04', 'Wie erkläre ich das meinem Kind?', false);
-INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (4, 'module_01/chapter_04/section_05', 'Die Idee', false);
-INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (4, 'module_01/chapter_04/section_06', 'Kleine Schritte, große Wirkung', true);
-INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (4, 'module_01/chapter_04/section_07', 'Unser Team', true);
-INSERT INTO "section" ("chapterId", "folderUrl", "title", "isExercise") VALUES (4, 'module_01/chapter_04/section_08', 'Rückschläge sind eine gute Gelegenheit...', false);
+INSERT INTO "chapter" ("moduleId", "folderUrl", "title", "isExercise") VALUES (1, 'module_01/chapter_01', 'Hallo und herzlich willkommen!', false);
+INSERT INTO "chapter" ("moduleId", "folderUrl", "title", "isExercise") VALUES (1, 'module_01/chapter_02', 'Zahlen und Fakten', false);
+INSERT INTO "chapter" ("moduleId", "folderUrl", "title", "isExercise") VALUES (1, 'module_01/chapter_03', 'Max und Hanna', false);
+INSERT INTO "chapter" ("moduleId", "folderUrl", "title", "isExercise") VALUES (1, 'module_01/chapter_04', 'Grundlagen der App', false);
+INSERT INTO "chapter" ("moduleId", "folderUrl", "title", "isExercise") VALUES (1, 'module_01/chapter_05', 'Ein kurzer Einstieg', false);
+INSERT INTO "chapter" ("moduleId", "folderUrl", "title", "isExercise") VALUES (1, 'module_01/chapter_06', 'Meine Ängste', true);
+INSERT INTO "chapter" ("moduleId", "folderUrl", "title", "isExercise") VALUES (2, 'module_02/chapter_01', 'Warum Angst wichtig ist', false);
+INSERT INTO "chapter" ("moduleId", "folderUrl", "title", "isExercise") VALUES (2, 'module_02/chapter_02', 'Wann Angst zu viel wird', false);
+INSERT INTO "chapter" ("moduleId", "folderUrl", "title", "isExercise") VALUES (2, 'module_02/chapter_03', 'Ist meine Angst noch normal?', false);
+INSERT INTO "chapter" ("moduleId", "folderUrl", "title", "isExercise") VALUES (2, 'module_02/chapter_04', 'Und jetzt?', false);
+INSERT INTO "chapter" ("moduleId", "folderUrl", "title", "isExercise") VALUES (2, 'module_02/chapter_05', 'Komponenten der Angst', true);
+INSERT INTO "chapter" ("moduleId", "folderUrl", "title", "isExercise") VALUES (2, 'module_02/chapter_06', 'Was vermittle ich meinem Kind?', true);
+INSERT INTO "chapter" ("moduleId", "folderUrl", "title", "isExercise") VALUES (2, 'module_02/chapter_07', 'Was kann ich tun?', false);
+INSERT INTO "chapter" ("moduleId", "folderUrl", "title", "isExercise") VALUES (3, 'module_03/chapter_01', 'Mama, Papa, ihr seid Helden!', false);
+INSERT INTO "chapter" ("moduleId", "folderUrl", "title", "isExercise") VALUES (3, 'module_03/chapter_02', 'Vorbilder', true);
+INSERT INTO "chapter" ("moduleId", "folderUrl", "title", "isExercise") VALUES (3, 'module_03/chapter_03', 'Tipps und Tricks für Helden', false);
+INSERT INTO "chapter" ("moduleId", "folderUrl", "title", "isExercise") VALUES (3, 'module_03/chapter_04', 'Atmen', true);
+INSERT INTO "chapter" ("moduleId", "folderUrl", "title", "isExercise") VALUES (3, 'module_03/chapter_05', 'PMR für Zuhause', true);
+INSERT INTO "chapter" ("moduleId", "folderUrl", "title", "isExercise") VALUES (3, 'module_03/chapter_06', 'Autogenes Training', false);
+INSERT INTO "chapter" ("moduleId", "folderUrl", "title", "isExercise") VALUES (3, 'module_03/chapter_07', 'Unser Team', true);
+INSERT INTO "chapter" ("moduleId", "folderUrl", "title", "isExercise") VALUES (4, 'module_04/chapter_01', 'Was ist Vermeidung?', false);
+INSERT INTO "chapter" ("moduleId", "folderUrl", "title", "isExercise") VALUES (4, 'module_04/chapter_02', 'Verpasste Chancen', true);
+INSERT INTO "chapter" ("moduleId", "folderUrl", "title", "isExercise") VALUES (4, 'module_04/chapter_03', 'Die Vermeidung herausfordern', false);
+INSERT INTO "chapter" ("moduleId", "folderUrl", "title", "isExercise") VALUES (4, 'module_04/chapter_04', 'Wie erkläre ich das meinem Kind?', false);
+INSERT INTO "chapter" ("moduleId", "folderUrl", "title", "isExercise") VALUES (4, 'module_04/chapter_05', 'Die Idee', false);
+INSERT INTO "chapter" ("moduleId", "folderUrl", "title", "isExercise") VALUES (4, 'module_04/chapter_06', 'Kleine Schritte, große Wirkung', true);
+INSERT INTO "chapter" ("moduleId", "folderUrl", "title", "isExercise") VALUES (4, 'module_04/chapter_07', 'Unser Team', true);
+INSERT INTO "chapter" ("moduleId", "folderUrl", "title", "isExercise") VALUES (4, 'module_04/chapter_08', 'Rückschläge sind eine gute Gelegenheit...', false);
+INSERT INTO "chapter" ("moduleId", "folderUrl", "title", "isExercise") VALUES (5, 'module_05/chapter_01', 'Kontingenz', false);
+INSERT INTO "chapter" ("moduleId", "folderUrl", "title", "isExercise") VALUES (5, 'module_05/chapter_02', 'Förderliches Familienklima', true);
+INSERT INTO "chapter" ("moduleId", "folderUrl", "title", "isExercise") VALUES (5, 'module_05/chapter_03', 'Aufforderungen', false);
+INSERT INTO "chapter" ("moduleId", "folderUrl", "title", "isExercise") VALUES (5, 'module_05/chapter_04', 'Wenn es mal nicht gut läuft', false);
+INSERT INTO "chapter" ("moduleId", "folderUrl", "title", "isExercise") VALUES (5, 'module_05/chapter_05', 'Zuwendung', false);
+INSERT INTO "chapter" ("moduleId", "folderUrl", "title", "isExercise") VALUES (5, 'module_05/chapter_06', 'Loben', true);
+INSERT INTO "chapter" ("moduleId", "folderUrl", "title", "isExercise") VALUES (5, 'module_05/chapter_07', 'Check-up', false);
+INSERT INTO "chapter" ("moduleId", "folderUrl", "title", "isExercise") VALUES (6, 'module_06/chapter_01', 'Auf die Balance kommt es an', false);
+INSERT INTO "chapter" ("moduleId", "folderUrl", "title", "isExercise") VALUES (6, 'module_06/chapter_02', 'Was Autonomie bedeutet', false);
+INSERT INTO "chapter" ("moduleId", "folderUrl", "title", "isExercise") VALUES (6, 'module_06/chapter_03', 'Autonomie fördern', false);
+INSERT INTO "chapter" ("moduleId", "folderUrl", "title", "isExercise") VALUES (6, 'module_06/chapter_04', 'Entscheidungen treffen', true);
+INSERT INTO "chapter" ("moduleId", "folderUrl", "title", "isExercise") VALUES (6, 'module_06/chapter_05', 'Verantwortung geben', true);
+INSERT INTO "chapter" ("moduleId", "folderUrl", "title", "isExercise") VALUES (6, 'module_06/chapter_06', 'Fehler zulassen', true);
+INSERT INTO "chapter" ("moduleId", "folderUrl", "title", "isExercise") VALUES (6, 'module_06/chapter_07', 'Problemlösetraining', true);
+INSERT INTO "chapter" ("moduleId", "folderUrl", "title", "isExercise") VALUES (6, 'module_06/chapter_08', 'Tippps und Formulierungen', false);
 
 -- Table: comment
-INSERT INTO "comment" ("parentId", "sectionUserId", "commentUserId", "sectionId", "createdAt", "text") VALUES (NULL, 3, 1, 1, '2025-01-01 09:15:00', 'Breathing exercises can be very effective!');
-INSERT INTO "comment" ("parentId", "sectionUserId", "commentUserId", "sectionId", "createdAt", "text") VALUES (   1, 3, 2, 1, '2025-01-02 10:00:00', 'I agree, deep breathing helps me calm down quickly.');
-INSERT INTO "comment" ("parentId", "sectionUserId", "commentUserId", "sectionId", "createdAt", "text") VALUES (   1, 3, 3, 1, '2025-01-03 11:45:00', 'Adding mindfulness to breathing works wonders.');
-INSERT INTO "comment" ("parentId", "sectionUserId", "commentUserId", "sectionId", "createdAt", "text") VALUES (   1, 3, 2, 1, '2025-01-04 14:30:00', 'Yes which helps me to improve');
-INSERT INTO "comment" ("parentId", "sectionUserId", "commentUserId", "sectionId", "createdAt", "text") VALUES (   1, 3, 1, 1, '2025-01-05 16:20:00', 'Thanks');
-INSERT INTO "comment" ("parentId", "sectionUserId", "commentUserId", "sectionId", "createdAt", "text") VALUES (NULL, 3, 2, 1, '2025-01-06 09:15:00', 'Exercising regularly is my favorite way to reduce stress.');
-INSERT INTO "comment" ("parentId", "sectionUserId", "commentUserId", "sectionId", "createdAt", "text") VALUES (   6, 3, 1, 1, '2025-01-07 10:45:00', 'Same here! Even a short walk helps clear my mind.');
-INSERT INTO "comment" ("parentId", "sectionUserId", "commentUserId", "sectionId", "createdAt", "text") VALUES (   6, 3, 3, 1, '2025-01-08 13:00:00', 'Physical activity is a great outlet for anxiety.');
-
-INSERT INTO "comment" ("parentId", "sectionUserId", "commentUserId", "sectionId", "createdAt", "text") VALUES (NULL, 3, 3, 2, '2025-01-09 09:00:00', 'Breaking down fears into smaller steps works well.');
-INSERT INTO "comment" ("parentId", "sectionUserId", "commentUserId", "sectionId", "createdAt", "text") VALUES (   9, 3, 1, 2, '2025-01-10 10:30:00', 'I love this idea! Gradual exposure really builds confidence.');
-INSERT INTO "comment" ("parentId", "sectionUserId", "commentUserId", "sectionId", "createdAt", "text") VALUES (   9, 3, 2, 2, '2025-01-11 11:15:00', 'Yes, baby steps make things less overwhelming.');
-INSERT INTO "comment" ("parentId", "sectionUserId", "commentUserId", "sectionId", "createdAt", "text") VALUES (NULL, 3, 2, 2, '2025-01-11 14:45:00', 'Visualizing success helps me face tough situations.');
-INSERT INTO "comment" ("parentId", "sectionUserId", "commentUserId", "sectionId", "createdAt", "text") VALUES (  12, 3, 3, 2, '2025-01-12 15:30:00', 'That’s true. Positive imagery makes a big difference.');
-INSERT INTO "comment" ("parentId", "sectionUserId", "commentUserId", "sectionId", "createdAt", "text") VALUES (  12, 3, 1, 2, '2025-01-12 17:45:00', 'I find it inspiring and empowering as well!');
-
-INSERT INTO "comment" ("parentId", "sectionUserId", "commentUserId", "sectionId", "createdAt", "text") VALUES (NULL, 3, 1, 3, '2025-01-05 12:30:00', 'Therapy can be life-changing for anxiety management.');
-INSERT INTO "comment" ("parentId", "sectionUserId", "commentUserId", "sectionId", "createdAt", "text") VALUES (  15, 3, 2, 3, '2025-01-06 14:45:00', 'Agreed. Talking to a professional really helps.');
-INSERT INTO "comment" ("parentId", "sectionUserId", "commentUserId", "sectionId", "createdAt", "text") VALUES (  15, 3, 3, 3, '2025-01-07 09:00:00', 'Yes, cognitive behavioral therapy is particularly effective.');
-INSERT INTO "comment" ("parentId", "sectionUserId", "commentUserId", "sectionId", "createdAt", "text") VALUES (  15, 3, 1, 3, '2025-01-08 11:15:00', 'Thanks');
-INSERT INTO "comment" ("parentId", "sectionUserId", "commentUserId", "sectionId", "createdAt", "text") VALUES (NULL, 3, 2, 3, '2025-01-09 13:45:00', 'Maintaining a gratitude journal has been helpful for me.');
-INSERT INTO "comment" ("parentId", "sectionUserId", "commentUserId", "sectionId", "createdAt", "text") VALUES (  19, 3, 1, 3, '2025-01-10 14:30:00', 'Writing down positive things daily is a great habit.');
-INSERT INTO "comment" ("parentId", "sectionUserId", "commentUserId", "sectionId", "createdAt", "text") VALUES (  19, 3, 3, 3, '2025-01-11 15:45:00', 'It’s amazing how much it shifts your mindset over time.');
+INSERT INTO "comment" ("parentId", "chapterUserId", "commentUserId", "chapterId", "createdAt", "text") VALUES (NULL, 3, 1, 1, '2025-01-01 09:15:00', 'Breathing exercises can be very effective!');
+INSERT INTO "comment" ("parentId", "chapterUserId", "commentUserId", "chapterId", "createdAt", "text") VALUES (   1, 3, 2, 1, '2025-01-02 10:00:00', 'I agree, deep breathing helps me calm down quickly.');
+INSERT INTO "comment" ("parentId", "chapterUserId", "commentUserId", "chapterId", "createdAt", "text") VALUES (   1, 3, 3, 1, '2025-01-03 11:45:00', 'Adding mindfulness to breathing works wonders.');
+INSERT INTO "comment" ("parentId", "chapterUserId", "commentUserId", "chapterId", "createdAt", "text") VALUES (   1, 3, 2, 1, '2025-01-04 14:30:00', 'Yes which helps me to improve');
+INSERT INTO "comment" ("parentId", "chapterUserId", "commentUserId", "chapterId", "createdAt", "text") VALUES (   1, 3, 1, 1, '2025-01-05 16:20:00', 'Thanks');
+INSERT INTO "comment" ("parentId", "chapterUserId", "commentUserId", "chapterId", "createdAt", "text") VALUES (NULL, 3, 2, 1, '2025-01-06 09:15:00', 'Exercising regularly is my favorite way to reduce stress.');
+INSERT INTO "comment" ("parentId", "chapterUserId", "commentUserId", "chapterId", "createdAt", "text") VALUES (   6, 3, 1, 1, '2025-01-07 10:45:00', 'Same here! Even a short walk helps clear my mind.');
+INSERT INTO "comment" ("parentId", "chapterUserId", "commentUserId", "chapterId", "createdAt", "text") VALUES (   6, 3, 3, 1, '2025-01-08 13:00:00', 'Physical activity is a great outlet for anxiety.');
+INSERT INTO "comment" ("parentId", "chapterUserId", "commentUserId", "chapterId", "createdAt", "text") VALUES (NULL, 3, 3, 2, '2025-01-09 09:00:00', 'Breaking down fears into smaller steps works well.');
+INSERT INTO "comment" ("parentId", "chapterUserId", "commentUserId", "chapterId", "createdAt", "text") VALUES (   9, 3, 1, 2, '2025-01-10 10:30:00', 'I love this idea! Gradual exposure really builds confidence.');
+INSERT INTO "comment" ("parentId", "chapterUserId", "commentUserId", "chapterId", "createdAt", "text") VALUES (   9, 3, 2, 2, '2025-01-11 11:15:00', 'Yes, baby steps make things less overwhelming.');
+INSERT INTO "comment" ("parentId", "chapterUserId", "commentUserId", "chapterId", "createdAt", "text") VALUES (NULL, 3, 2, 2, '2025-01-11 14:45:00', 'Visualizing success helps me face tough situations.');
+INSERT INTO "comment" ("parentId", "chapterUserId", "commentUserId", "chapterId", "createdAt", "text") VALUES (  12, 3, 3, 2, '2025-01-12 15:30:00', 'That’s true. Positive imagery makes a big difference.');
+INSERT INTO "comment" ("parentId", "chapterUserId", "commentUserId", "chapterId", "createdAt", "text") VALUES (  12, 3, 1, 2, '2025-01-12 17:45:00', 'I find it inspiring and empowering as well!');
+INSERT INTO "comment" ("parentId", "chapterUserId", "commentUserId", "chapterId", "createdAt", "text") VALUES (NULL, 3, 1, 3, '2025-01-05 12:30:00', 'Therapy can be life-changing for anxiety management.');
+INSERT INTO "comment" ("parentId", "chapterUserId", "commentUserId", "chapterId", "createdAt", "text") VALUES (  15, 3, 2, 3, '2025-01-06 14:45:00', 'Agreed. Talking to a professional really helps.');
+INSERT INTO "comment" ("parentId", "chapterUserId", "commentUserId", "chapterId", "createdAt", "text") VALUES (  15, 3, 3, 3, '2025-01-07 09:00:00', 'Yes, cognitive behavioral therapy is particularly effective.');
+INSERT INTO "comment" ("parentId", "chapterUserId", "commentUserId", "chapterId", "createdAt", "text") VALUES (  15, 3, 1, 3, '2025-01-08 11:15:00', 'Thanks');
+INSERT INTO "comment" ("parentId", "chapterUserId", "commentUserId", "chapterId", "createdAt", "text") VALUES (NULL, 3, 2, 3, '2025-01-09 13:45:00', 'Maintaining a gratitude journal has been helpful for me.');
+INSERT INTO "comment" ("parentId", "chapterUserId", "commentUserId", "chapterId", "createdAt", "text") VALUES (  19, 3, 1, 3, '2025-01-10 14:30:00', 'Writing down positive things daily is a great habit.');
+INSERT INTO "comment" ("parentId", "chapterUserId", "commentUserId", "chapterId", "createdAt", "text") VALUES (  19, 3, 3, 3, '2025-01-11 15:45:00', 'It’s amazing how much it shifts your mindset over time.');
 
 -- Table: mood
 INSERT INTO "mood" ("userId", "createdAt", "feeling", "motivation") VALUES (3, '2023-12-05 01:41:02', 1, 4);
@@ -169,8 +180,3 @@ INSERT INTO "mood" ("userId", "createdAt", "feeling", "motivation") VALUES (3, '
 INSERT INTO "mood" ("userId", "createdAt", "feeling", "motivation") VALUES (3, '2025-01-04 14:21:45', 2, 3);
 INSERT INTO "mood" ("userId", "createdAt", "feeling", "motivation") VALUES (3, '2025-01-08 16:43:08', 1, 7);
 INSERT INTO "mood" ("userId", "createdAt", "feeling", "motivation") VALUES (3, '2025-01-12 19:46:38', 1, 10);
-
--- Insert into the table "progress" the progress of the user
-INSERT INTO "progress" ("userId", "sectionId", "value") VALUES (3, 1, 0.5);
-INSERT INTO "progress" ("userId", "sectionId", "value") VALUES (3, 2, 0.5);
-INSERT INTO "progress" ("userId", "sectionId", "value") VALUES (3, 3, 0.5); 
