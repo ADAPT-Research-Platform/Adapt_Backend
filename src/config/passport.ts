@@ -8,16 +8,16 @@ import { User } from '../entities/user';
 passport.use(
     new LocalStrategy(
         {
-            usernameField: 'login',
+            usernameField: 'username',
             passwordField: 'password',
         },
-        async (login, password, done) => {
+        async (username, password, done) => {
             try {
                 const userRepo = AppDataSource.getRepository(User);
                 
                 // Search a user whose username or email is the login parameter
                 const user = await userRepo.findOne({
-                    where: [{ username: login }, { email: login }],
+                    where: [{ username: username }],
                 });
 
                 // If the user doesn't exist or the password is wrong, return error as null and user as null

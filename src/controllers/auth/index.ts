@@ -27,13 +27,6 @@ const login = (
                 );
             }
 
-            // Check if the user is verified and active
-            if (!user.isVerified) {
-                return next(
-                    createHttpError(403, 'Email not verified!'),
-                );
-            }
-
             if (!user.isActive) {
                 return next(
                     createHttpError(403, 'User not available!'),
@@ -48,7 +41,6 @@ const login = (
                 return res.send({
                     id: user.id,
                     username: user.username,
-                    email: user.email,
                     isActive: user.isActive,
                     role: user.role,
                 });
@@ -80,7 +72,6 @@ const get = (
         return res.send({
             id: req.user.id,
             username: req.user.username,
-            email: req.user.email,
             isActive: req.user.isActive,
             role: req.user.role,
         });

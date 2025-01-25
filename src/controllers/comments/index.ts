@@ -14,7 +14,7 @@ import type {
 import { AppDataSource } from '../../data-source';
 import { Comment } from '../../entities/comment';
 import logger from '../../logger';
-import { Section } from '../../entities/section';
+import { Chapter } from '../../entities/chapter';
 import { User } from '../../entities/user';
 import { UserType } from '../../enums/enum';
 import { getUserId } from '../users';
@@ -23,19 +23,19 @@ export const createComment = async (
   req: TypedRequestBody<AddCommentBody>,
   res: Response<CommentResponse>
 ) => {
-  const { text, sectionId, sectionUserId } = req.body;
+  const { text, chapterId, chapterUserId } = req.body;
   const userId = getUserId(req);
 
   if (!text) {
     throw createHttpError(400, 'Comment text not specified!');
   }
 
-  if (!sectionId) {
-    throw createHttpError(400, 'Section Id not specified!');
+  if (!chapterId) {
+    throw createHttpError(400, 'Chapter Id not specified!');
   }
 
   try {
-    const sectionRepo = AppDataSource.getRepository(Section);
+    const chapterRepo = AppDataSource.getRepository(Chapter);
     const userRepo = AppDataSource.getRepository(User);
     const commentRepo = AppDataSource.getRepository(Comment);
 
@@ -44,36 +44,36 @@ export const createComment = async (
       throw createHttpError(404, 'User not found!');
     }
 
-    let sectionUser;
+    let chapterUser;
     if (commentUser.role === UserType.ADMIN) {
-      // Admin always need to specify section User
-      if (!sectionUserId) {
-        throw createHttpError(404, 'SectionUserId Not specified by ADMIN!');
+      // Admin always need to specify chapter User
+      if (!chapterUserId) {
+        throw createHttpError(404, 'ChapterUserId Not specified by ADMIN!');
       }
 
-      if (sectionUserId !== userId) {
-        sectionUser = await userRepo.findOne({ where: { id: sectionUserId } });
-        // Sends a notification to sectionUser
-        logger.info(`Send a comment notification to user: ${sectionUserId} on section: ${sectionId}`);
+      if (chapterUserId !== userId) {
+        chapterUser = await userRepo.findOne({ where: { id: chapterUserId } });
+        // Sends a notification to chapterUser
+        logger.info(`Send a comment notification to user: ${chapterUserId} on chapter: ${chapterId}`);
       }
     } else {
-      sectionUser = commentUser;
+      chapterUser = commentUser;
     }
 
-    if (!sectionUser) {
-      throw createHttpError(404, 'Section User not found!');
+    if (!chapterUser) {
+      throw createHttpError(404, 'Chapter User not found!');
     }
 
-    const section = await sectionRepo.findOne({ where: { id: sectionId } });
+    const chapter = await chapterRepo.findOne({ where: { id: chapterId } });
 
-    if (!section) {
-      throw createHttpError(404, 'Comment Section not found.');
+    if (!chapter) {
+      throw createHttpError(404, 'Comment Chapter not found.');
     }
 
     const comment = new Comment();
     comment.text = text;
-    comment.section = section;
-    comment.sectionUser = sectionUser;
+    comment.chapter = chapter;
+    comment.chapterUser = chapterUser;
     comment.commentUser = commentUser;
 
     await commentRepo.save(comment);
@@ -119,7 +119,7 @@ export const createReply = async (
 
     const parentComment = await commentRepo.findOne({
       where: { id: parentCommentId },
-      relations: ['section', 'sectionUser'],
+      relations: ['chapter', 'chapterUser'],
     });
 
     if (!parentComment) {
@@ -130,8 +130,8 @@ export const createReply = async (
     const comment = new Comment();
     comment.text = text;
     comment.parent = parentComment;
-    comment.section = parentComment.section;
-    comment.sectionUser = parentComment.sectionUser;
+    comment.chapter = parentComment.chapter;
+    comment.chapterUser = parentComment.chapterUser;
     comment.commentUser = commentUser;
 
     // Save the reply
@@ -155,27 +155,27 @@ export const getComments = async (
   res: Response<CommentResponse[]>
 ) => {
   const userId = getUserId(req);
-  const { sectionId, date } = req.query;
+  const { chapterId, date } = req.query;
 
-  if (!sectionId && !date) {
-    throw createHttpError(400, 'Either Section ID or Date must be provided.');
+  if (!chapterId && !date) {
+    throw createHttpError(400, 'Either Chapter ID or Date must be provided.');
   }
 
   // Initialize the filter object
   const filter: {
-    section?: { id: number };
+    chapter?: { id: number };
     createdAt?: FindOperator<Date>; // Use FindOperator to allow `Between()`
-    sectionUser: { id: number };
+    chapterUser: { id: number };
     parent: FindOperator<null>;
-  } = { sectionUser: { id: userId }, parent: IsNull() };
+  } = { chapterUser: { id: userId }, parent: IsNull() };
 
-  // Add sectionId filter if provided
-  if (sectionId) {
-    const sectionIdNumber = parseInt(sectionId as string, 10);
-    if (isNaN(sectionIdNumber)) {
-      throw createHttpError(400, 'Invalid Section ID.');
+  // Add chapterId filter if provided
+  if (chapterId) {
+    const chapterIdNumber = parseInt(chapterId as string, 10);
+    if (isNaN(chapterIdNumber)) {
+      throw createHttpError(400, 'Invalid Chapter ID.');
     }
-    filter.section = { id: sectionIdNumber };
+    filter.chapter = { id: chapterIdNumber };
   }
 
   // Add date filter if provided (comparing only the date part)

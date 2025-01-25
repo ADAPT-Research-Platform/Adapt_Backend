@@ -10,11 +10,11 @@ export const createUpdateAnswer = async (
   req: TypedRequestBody<AddAnswerBody>,
   res: Response<GetAnswerBody>
 ) => {
-  const { sectionId, text } = req.body;
+  const { chapterId, text } = req.body;
   const userId = getUserId(req);
 
-  if (!sectionId) {
-    throw createHttpError(400, 'Section not specified!');
+  if (!chapterId) {
+    throw createHttpError(400, 'Chapter not specified!');
   }
 
   if (!text) {
@@ -32,7 +32,7 @@ export const createUpdateAnswer = async (
 
     // Check if the answer already exists
     const existingAnswer = await answerRepo.findOne({
-      where: { userId, sectionId },
+      where: { userId, chapterId: chapterId },
     });
 
     if (existingAnswer) {
@@ -50,7 +50,7 @@ export const createUpdateAnswer = async (
     // Create a new answer if it doesn't exist
     const newAnswer = new Answer();
     newAnswer.userId = userId;
-    newAnswer.sectionId = sectionId;
+    newAnswer.chapterId = chapterId;
     newAnswer.text = text;
 
     await queryRunner.manager.save(newAnswer);
@@ -84,23 +84,23 @@ export const getAnswer = async (
   res: Response<GetAnswerBody>
 ) => {
   const userId = getUserId(req);
-  const { sectionId } = req.query;
+  const { chapterId } = req.query;
 
-  if (!sectionId) {
-    throw createHttpError(400, 'Section id should be specified!');
+  if (!chapterId) {
+    throw createHttpError(400, 'Chapter id should be specified!');
   }
 
-  const sectionIdNumber = parseInt(sectionId as string, 10);
-  if (isNaN(sectionIdNumber)) {
-    throw createHttpError(400, 'Invalid Section Id!');
+  const chapterIdNumber = parseInt(chapterId as string, 10);
+  if (isNaN(chapterIdNumber)) {
+    throw createHttpError(400, 'Invalid Chapter Id!');
   }
 
   try {
     const answerRepo = AppDataSource.getRepository(Answer);
 
-    // Fetch the answer for the given user and section
+    // Fetch the answer for the given user and chapter
     const answer = await answerRepo.findOne({
-      where: { userId, sectionId: sectionIdNumber },
+      where: { userId, chapterId: chapterIdNumber },
     });
 
     if (!answer) {
@@ -109,7 +109,7 @@ export const getAnswer = async (
 
     // Return the found answer
     res.status(200).send({
-      sectionId: answer.sectionId,
+      chapterId: answer.chapterId,
       updatedAt: answer.updatedAt,
       text: answer.text,
     });
