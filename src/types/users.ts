@@ -1,8 +1,8 @@
-import type { UserType } from '../enums/enum';
+import type { UserType } from "../enums/enum";
 
 export interface UsersCreateBody {
-    username: string;
-    password: string;
+  username: string;
+  password: string;
 }
 
 export interface UsersUpdateBody {
@@ -17,10 +17,14 @@ export interface UsersDeleteBody {
 
 // Interface for the response body of the get user by admin
 export interface UsersGetResponse {
-    id: number;
-    username: string;
-    role: UserType;
-    createdAt: Date;
-    updatedAt: Date;
-    isActive: boolean;
+  id: number;
+  username: string;
+  role: UserType;
+  createdAt: Date;
+  updatedAt: Date;
+  isActive: boolean;
+}
+
+export interface DisabledUsersGetResponse extends UsersGetResponse {
+  deletedAt: Date | null;
 }

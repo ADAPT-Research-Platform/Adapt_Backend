@@ -1,6 +1,9 @@
 import type { Request, Response } from 'express';
 
-import type { UsersGetResponse } from 'src/types/users';
+import type {
+  DisabledUsersGetResponse,
+  UsersGetResponse,
+} from 'src/types/users';
 
 import { In } from 'typeorm';
 
@@ -15,12 +18,13 @@ import { Mood } from '../../entities/mood';
 import { Answer } from '../../entities/answer';
 import type { ModuleData, NestedComment } from '../../types/commonTypes';
 import logger from '../../logger';
+import { UserType } from '../../enums/enum';
 
 // Get all users
 const getAllUsers = (req: Request, res: Response) => {
   const userRepo = AppDataSource.getRepository(User);
 
-  // Get all users with role 'user', isActive = true, and isVerified = true
+  // Get all users with role 'user', isActive = true
   userRepo
     .find({
       where: { isActive: true },
@@ -267,6 +271,7 @@ const getUserMoodById = async (req: Request, res: Response) => {
   }
 };
 
+// function to reset user password
 const resetUserPassword = async (
   req: TypedRequestBody<{ userId: number; newPassword: string }>,
   res: Response
@@ -326,10 +331,77 @@ const resetUserPassword = async (
   }
 };
 
+// Get all users
+const getAllDisabledUserAccount = (req: Request, res: Response) => {
+  const userRepo = AppDataSource.getRepository(User);
+
+  // Get all users with role 'user', isActive = false
+  userRepo
+    .find({
+      where: { isActive: false, role: UserType.CLIENT },
+      withDeleted: true, // Include soft-deleted rows
+    })
+    .then((users) => {
+      // Map the database entities to the UsersGetResponse interface
+      const userResponses: DisabledUsersGetResponse[] = users.map((user) => ({
+        id: user.id,
+        username: user.username,
+        role: user.role,
+        createdAt: user.createdAt,
+        updatedAt: user.updatedAt,
+        isActive: user.isActive,
+        deletedAt: user.deletedAt,
+      }));
+
+      res.status(200).json(userResponses);
+    })
+    .catch((err) => {
+      console.error('Database error:', err); // Log the error for debugging
+      res.status(500).json({ message: 'Internal server error' });
+    });
+};
+
+const deleteUserPermanently = (req: Request, res: Response) => {
+  const userRepo = AppDataSource.getRepository(User);
+  const { userId } = req.params; // Assuming the user ID is passed as a URL parameter
+
+  // Validate userId
+  if (!userId) {
+    return res.status(400).json({ message: 'User ID is required' });
+  }
+
+  userRepo
+    .findOne({
+      where: { id: Number(userId) },
+      withDeleted: true, // Include soft-deleted rows
+    })
+    .then(async (user) => {
+      if (!user) {
+        res.status(404).json({ message: 'User not found' });
+        return;
+      }
+
+      try {
+        // Permanently remove the user
+        await userRepo.remove(user);
+        res.status(200).json({ message: 'User deleted permanently' });
+      } catch (err) {
+        console.error('Error deleting user:', err); // Log the error for debugging
+        res.status(500).json({ message: 'Failed to delete user' });
+      }
+    })
+    .catch((err) => {
+      console.error('Database error:', err); // Log the error for debugging
+      res.status(500).json({ message: 'Internal server error' });
+    });
+};
+
 export default {
   getAllUsers,
   getUsersById,
   getUserProgress,
   getUserMoodById,
   resetUserPassword,
+  getAllDisabledUserAccount,
+  deleteUserPermanently
 };
