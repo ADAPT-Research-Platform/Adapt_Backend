@@ -4,7 +4,14 @@ import { createUpdateProgress } from '../controllers/modules';
 
 const router = express.Router();
 
-// Add/Update (root or reply)
+/**
+ * @swagger
+ * /progress:
+ *   post:
+ *     summary: Add or update user progress
+ *     tags:
+ *       - Progress
+ */
 router.post('/', createUpdateProgress);
 
 export default router;

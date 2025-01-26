@@ -7,10 +7,24 @@ import {
 
 const router = express.Router();
 
-// Add/Update (root or reply)
+/**
+ * @swagger
+ * /moods:
+ *   post:
+ *     summary: Add or update a mood entry
+ *     tags:
+ *       - Moods
+ */
 router.post('/', createUpdateMood);
 
-// Get comments for a chapter
+/**
+ * @swagger
+ * /moods:
+ *   get:
+ *     summary: Get mood entries
+ *     tags:
+ *       - Moods
+ */
 router.get('/', getMoods);
 
 export default router;

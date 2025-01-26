@@ -1,5 +1,3 @@
-// modules.routes.ts
-
 import express from 'express';
 
 import { asyncHandler } from '../utils/utils';
@@ -11,25 +9,100 @@ import {
 
 const router = express.Router();
 
-// Create a module
-//router.route('/').post(asyncHandler( ModulesController.create));
-
-// Get modules id list
+/**
+ * @swagger
+ * /modules/ids:
+ *   get:
+ *     summary: Get list of module IDs
+ *     tags:
+ *       - Modules
+ */
 router.route('/ids').get(asyncHandler(getModuleIdList));
 
-// Get module by id
+/**
+ * @swagger
+ * /modules:
+ *   get:
+ *     summary: Get module details by ID
+ *     tags:
+ *       - Modules
+ */
 router.route('/').get(asyncHandler(getModuleById));
 
-// Get a single module by ID
-//router.route('/:id').get(asyncHandler(ModulesController.getById));
+// Uncomment and add Swagger documentation for future routes:
 
-// Update a module by ID
-//router.route('/:id').put(asyncHandler(ModulesController.update));
+// /**
+//  * @swagger
+//  * /modules:
+//  *   post:
+//  *     summary: Create a new module
+//  *     tags:
+//  *       - Modules
+//  */
+// router.route('/').post(asyncHandler(ModulesController.create));
 
-// Update a module and it's chapter and exercise by ID
-//router.route('/updateModuleWithChaptersAndExercise/:id').put(asyncHandler(ModulesController.updateModuleWithChapterAndExercise));
+// /**
+//  * @swagger
+//  * /modules/{id}:
+//  *   get:
+//  *     summary: Get a single module by ID
+//  *     tags:
+//  *       - Modules
+//  *     parameters:
+//  *       - name: id
+//  *         in: path
+//  *         required: true
+//  *         schema:
+//  *           type: string
+//  */
+// router.route('/:id').get(asyncHandler(ModulesController.getById));
 
-// Delete a module by ID
-//router.route('/:id').delete(ModulesController.delete);
+// /**
+//  * @swagger
+//  * /modules/{id}:
+//  *   put:
+//  *     summary: Update a module by ID
+//  *     tags:
+//  *       - Modules
+//  *     parameters:
+//  *       - name: id
+//  *         in: path
+//  *         required: true
+//  *         schema:
+//  *           type: string
+//  */
+// router.route('/:id').put(asyncHandler(ModulesController.update));
+
+// /**
+//  * @swagger
+//  * /modules/updateModuleWithChaptersAndExercise/{id}:
+//  *   put:
+//  *     summary: Update a module, its chapters, and exercises by ID
+//  *     tags:
+//  *       - Modules
+//  *     parameters:
+//  *       - name: id
+//  *         in: path
+//  *         required: true
+//  *         schema:
+//  *           type: string
+//  */
+// router.route('/updateModuleWithChaptersAndExercise/:id').put(asyncHandler(ModulesController.updateModuleWithChapterAndExercise));
+
+// /**
+//  * @swagger
+//  * /modules/{id}:
+//  *   delete:
+//  *     summary: Delete a module by ID
+//  *     tags:
+//  *       - Modules
+//  *     parameters:
+//  *       - name: id
+//  *         in: path
+//  *         required: true
+//  *         schema:
+//  *           type: string
+//  */
+// router.route('/:id').delete(ModulesController.delete);
 
 export default router;

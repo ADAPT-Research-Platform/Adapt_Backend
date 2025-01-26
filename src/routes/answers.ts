@@ -7,10 +7,24 @@ import {
 
 const router = express.Router();
 
-// Add a comment (root or reply)
+/**
+ * @swagger
+ * /answers:
+ *   post:
+ *     summary: Add or update an answer
+ *     tags:
+ *       - Answers
+ */
 router.post('/', createUpdateAnswer);
 
-// Get comments for a chapter
+/**
+ * @swagger
+ * /answers:
+ *   get:
+ *     summary: Get answers for a chapter
+ *     tags:
+ *       - Answers
+ */
 router.get('/', getAnswer);
 
 export default router;

@@ -3,8 +3,11 @@ import express, { urlencoded, json } from 'express';
 import morgan from 'morgan';
 import helmet from 'helmet';
 import createHttpError from 'http-errors';
-
 import path from 'path';
+
+import swaggerJSDoc from 'swagger-jsdoc';
+
+import swaggerUi from 'swagger-ui-express';
 
 import session from './session';
 import { errorHandler } from '../middlewares/errorHandler';
@@ -45,6 +48,34 @@ const createServer = () => {
 
   // Serve static files from the "uploads" directory
   app.use('/api/uploads', express.static(path.join(process.cwd(), 'uploads')));
+
+  // Swagger configuration
+  const swaggerOptions = {
+    definition: {
+      openapi: '3.0.0',
+      info: {
+        title: 'API Documentation',
+        version: '1.0.0',
+        description: 'Documentation for the API',
+      },
+      servers: [
+        {
+          url: `http://${process.env.HOST}:${process.env.PORT}`,
+          description: 'Development server',
+        },
+      ],
+    },
+    apis: ['./src/routes/*.ts'],
+  };
+
+  const swaggerSpec = swaggerJSDoc(swaggerOptions);
+
+  // Serve Swagger documentation
+  app.use(
+    '/api-docs',
+    swaggerUi.serve,
+    swaggerUi.setup(swaggerSpec, { explorer: true })
+  );
 
   app.use(`/${process.env.API_ROUTES_PREFIX}`, apiRoutes);
   app.get('/*', (req, res) => {
