@@ -4,6 +4,8 @@ import type { UsersGetResponse } from 'src/types/users';
 
 import { In } from 'typeorm';
 
+import createHttpError from 'http-errors';
+
 import { AppDataSource } from '../../data-source';
 import { User } from '../../entities/user';
 import { Progress } from '../../entities/progress';
@@ -11,10 +13,8 @@ import { Chapter } from '../../entities/chapter';
 import { Comment } from '../../entities/comment';
 import { Mood } from '../../entities/mood';
 import { Answer } from '../../entities/answer';
-import type {
-  ModuleData,
-  NestedComment,
-} from '../../types/commonTypes';
+import type { ModuleData, NestedComment } from '../../types/commonTypes';
+import logger from '../../logger';
 
 // Get all users
 const getAllUsers = (req: Request, res: Response) => {
@@ -103,11 +103,11 @@ const getUserProgress = async (req: Request, res: Response): Promise<void> => {
       return;
     }
 
-    const chapterIds = userProgress.map(progress => progress.chapterId);
+    const chapterIds = userProgress.map((progress) => progress.chapterId);
     const chapters = await chapterRepo.find({
       where: { id: In(chapterIds) },
       relations: ['module'], // Explicitly load the `module` relation
-    });    
+    });
 
     const comments = await commentRepo
       .createQueryBuilder('comment')
@@ -116,7 +116,9 @@ const getUserProgress = async (req: Request, res: Response): Promise<void> => {
       .leftJoinAndSelect('comment.chapter', 'chapter') // Include chapter relation
       .leftJoinAndSelect('comment.chapterUser', 'chapterUser')
       .leftJoinAndSelect('comment.commentUser', 'commentUser')
-      .where('comment.chapterId IN (:...chapterIds)', { chapterIds: chapterIds })
+      .where('comment.chapterId IN (:...chapterIds)', {
+        chapterIds: chapterIds,
+      })
       .andWhere('comment.chapterUser.id = :userId', { userId: parsedUserId })
       .getMany();
 
@@ -159,8 +161,13 @@ const getUserProgress = async (req: Request, res: Response): Promise<void> => {
 
       type AnswerValue = string | { question: string; answer: string };
 
-      const parseAnswers = (rawAnswers: Record<string, AnswerValue>): Record<string, { question: string; answer: string }> => {
-        const parsedAnswers: Record<string, { question: string; answer: string }> = {};
+      const parseAnswers = (
+        rawAnswers: Record<string, AnswerValue>
+      ): Record<string, { question: string; answer: string }> => {
+        const parsedAnswers: Record<
+          string,
+          { question: string; answer: string }
+        > = {};
 
         Object.entries(rawAnswers).forEach(([key, value]) => {
           if (typeof value === 'string') {
@@ -168,7 +175,12 @@ const getUserProgress = async (req: Request, res: Response): Promise<void> => {
               question: `Default question for ${key}`,
               answer: value,
             };
-          } else if (typeof value === 'object' && value !== null && 'question' in value && 'answer' in value) {
+          } else if (
+            typeof value === 'object' &&
+            value !== null &&
+            'question' in value &&
+            'answer' in value
+          ) {
             parsedAnswers[key] = {
               question: value.question,
               answer: value.answer,
@@ -182,26 +194,28 @@ const getUserProgress = async (req: Request, res: Response): Promise<void> => {
       };
 
       const chapterAnswers = answers
-      .filter(answer => answer.chapterId === chapter.id)
-      .reduce((acc, answer) => {
-        if (
-          typeof answer.text === 'object' &&
-          answer.text !== null &&
-          !Array.isArray(answer.text)
-        ) {
-          const parsed = parseAnswers(answer.text as Record<string, AnswerValue>); // Cast after check
-          Object.assign(acc, parsed); // Merge parsed data into the accumulator
-        } else {
-          console.warn('Invalid answer.text format:', answer.text);
-        }
-        return acc;
-      }, {} as Record<string, { question: string; answer: string }>);
+        .filter((answer) => answer.chapterId === chapter.id)
+        .reduce((acc, answer) => {
+          if (
+            typeof answer.text === 'object' &&
+            answer.text !== null &&
+            !Array.isArray(answer.text)
+          ) {
+            const parsed = parseAnswers(
+              answer.text as Record<string, AnswerValue>
+            ); // Cast after check
+            Object.assign(acc, parsed); // Merge parsed data into the accumulator
+          } else {
+            console.warn('Invalid answer.text format:', answer.text);
+          }
+          return acc;
+        }, {} as Record<string, { question: string; answer: string }>);
 
       if (!modules[moduleId]) {
         modules[moduleId] = { moduleId: moduleId.toString(), chapters: [] };
       }
 
-      modules[moduleId].chapters.push( {
+      modules[moduleId].chapters.push({
         chapterId: chapter.id,
         name: chapter.title,
         createdAt: progress.createdAt.toISOString(),
@@ -253,9 +267,69 @@ const getUserMoodById = async (req: Request, res: Response) => {
   }
 };
 
+const resetUserPassword = async (
+  req: TypedRequestBody<{ userId: number; newPassword: string }>,
+  res: Response
+) => {
+  // Extract userId and newPassword from the request body
+  const { userId, newPassword } = req.body;
+
+  if (!userId || !newPassword) {
+    throw createHttpError(400, 'User ID and new password are required!');
+  }
+
+  // Create a query runner
+  const queryRunner = AppDataSource.createQueryRunner();
+
+  try {
+    // Connect and start transaction
+    await queryRunner.connect();
+    await queryRunner.startTransaction();
+
+    const userRepo = queryRunner.manager.getRepository(User);
+
+    // Fetch the user by ID
+    const user = await userRepo.findOne({ where: { id: userId } });
+    if (!user) {
+      throw createHttpError(404, 'User not found!');
+    }
+
+    // Set the new password
+    user.setPassword(newPassword); // Assumes `setPassword` hashes the password internally
+    user.updatedAt = new Date();
+
+    // Save the updated user
+    await queryRunner.manager.save(user);
+
+    // Commit the transaction
+    await queryRunner.commitTransaction();
+
+    return res.status(200).json({ message: 'Password reset successfully!' });
+  } catch (err) {
+    // Rollback the transaction on error
+    if (queryRunner.isTransactionActive) {
+      await queryRunner.rollbackTransaction();
+    }
+
+    // Log and handle the error
+    logger.error('Error resetting user password:', err);
+
+    // Handle known error types
+    if (err instanceof createHttpError.HttpError) {
+      throw err;
+    } else {
+      throw createHttpError(500, 'Internal Server Error!');
+    }
+  } finally {
+    // Release the query runner
+    await queryRunner.release();
+  }
+};
+
 export default {
   getAllUsers,
   getUsersById,
   getUserProgress,
-  getUserMoodById
+  getUserMoodById,
+  resetUserPassword,
 };

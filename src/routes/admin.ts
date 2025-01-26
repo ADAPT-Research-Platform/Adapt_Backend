@@ -8,5 +8,6 @@ router.route('/getAllUsers').get(AdminController.getAllUsers);
 router.route('/getUser/:id').get(AdminController.getUsersById);
 router.route('/getUserProgress/:userId').get(AdminController.getUserProgress); //TODO: Try to make this into little methods like the app.
 router.route('/getUserMoods/:userId').get(AdminController.getUserMoodById);
+router.route('/user/resetUserPassword').put(AdminController.resetUserPassword);
 
 export default router;
