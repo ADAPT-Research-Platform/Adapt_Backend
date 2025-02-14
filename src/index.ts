@@ -18,7 +18,8 @@ const app = createServer();
 // Load SSL certificate and private key
 const options = {
   key: fs.readFileSync(path.join(process.cwd(), 'ssl/server.key')),
-  cert: fs.readFileSync(path.join(process.cwd(), 'ssl/certificate.crt')),
+  cert: fs.readFileSync(path.join(process.cwd(), 'ssl/fullchain.pem')),  // Use full chain here
+  ca: fs.readFileSync(path.join(process.cwd(), 'ssl/harica-chain.pem'))  // Add the CA bundle
 };
 
 // If development mode, don't use HTTPS
