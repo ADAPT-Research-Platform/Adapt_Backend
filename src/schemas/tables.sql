@@ -12,6 +12,13 @@ CREATE TABLE "user" (
     "salt" character varying NOT NULL
 );
 
+CREATE TABLE "track" (
+    "userId" INTEGER NOT NULL,
+    "startedAt" TIMESTAMP NOT NULL,
+    "endedAt" TIMESTAMP,
+    PRIMARY KEY ("userId", "startedAt")
+);
+
 CREATE TABLE "module" (
     "id" SERIAL PRIMARY KEY,
     "createdAt" TIMESTAMP NOT NULL DEFAULT now(),
@@ -62,11 +69,9 @@ CREATE TABLE "answer" (
     "userId" INT NOT NULL,
     "chapterId" INT NOT NULL,
     "createdAt" TIMESTAMP NOT NULL DEFAULT now(),
-    "updatedAt" TIMESTAMP NOT NULL DEFAULT now(),
-    "deletedAt" TIMESTAMP,
     "isActive" boolean NOT NULL DEFAULT true,
     "text" json NOT NULL,
-    PRIMARY KEY ("userId", "chapterId"),
+    PRIMARY KEY ("userId", "chapterId", "createdAt"),
     FOREIGN KEY ("userId") REFERENCES "user"("id") ON DELETE CASCADE ON UPDATE NO ACTION,
     FOREIGN KEY ("chapterId") REFERENCES "chapter"("id") ON DELETE CASCADE ON UPDATE NO ACTION
 );

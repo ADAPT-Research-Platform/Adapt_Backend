@@ -11,6 +11,7 @@ import bcrypt from 'bcryptjs';
 import { UserType } from '../enums/enum';
 import { Mood } from './mood';
 import { Answer } from './answer';
+import { Track } from './track';
 
 @Entity()
 export class User {
@@ -47,6 +48,9 @@ export class User {
     @OneToMany(() => Answer, (answer) => answer.user)
     answers!: Answer[];
 
+    @OneToMany(() => Track, (track) => track.user)
+    tracks!: Track[];
+  
     setPassword(password: string) {
         this.salt = bcrypt.genSaltSync(12);
         this.hashPassword = bcrypt.hashSync(password, this.salt);

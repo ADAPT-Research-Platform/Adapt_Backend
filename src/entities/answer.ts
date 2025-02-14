@@ -1,11 +1,10 @@
 import {
   Column,
-  CreateDateColumn, DeleteDateColumn,
+  CreateDateColumn,
   Entity,
   JoinColumn,
   ManyToOne,
   PrimaryColumn,
-  UpdateDateColumn,
 } from 'typeorm';
 
 import { User } from './user';
@@ -21,12 +20,6 @@ export class Answer {
 
   @CreateDateColumn({ nullable: false })
   createdAt!: Date;
-
-  @UpdateDateColumn({ nullable: false })
-  updatedAt!: Date;
-
-  @DeleteDateColumn({ nullable: true })
-  deletedAt!: Date | null;
 
   @Column({ default: true })
   isActive!: boolean;

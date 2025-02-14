@@ -28,25 +28,6 @@ export const createUpdateAnswer = async (
     await queryRunner.connect();
     await queryRunner.startTransaction();
 
-    const answerRepo = queryRunner.manager.getRepository(Answer);
-
-    // Check if the answer already exists
-    const existingAnswer = await answerRepo.findOne({
-      where: { userId, chapterId: chapterId },
-    });
-
-    if (existingAnswer) {
-      // Update the existing answer
-      existingAnswer.text = text;
-      existingAnswer.updatedAt = new Date();
-      await queryRunner.manager.save(existingAnswer);
-
-      // Commit transaction
-      await queryRunner.commitTransaction();
-
-      return res.sendStatus(200);
-    }
-
     // Create a new answer if it doesn't exist
     const newAnswer = new Answer();
     newAnswer.userId = userId;
@@ -110,7 +91,7 @@ export const getAnswer = async (
     // Return the found answer
     res.status(200).send({
       chapterId: answer.chapterId,
-      updatedAt: answer.updatedAt,
+      updatedAt: answer.createdAt,
       text: answer.text,
     });
   } catch (err) {
