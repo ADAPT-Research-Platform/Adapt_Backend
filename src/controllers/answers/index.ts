@@ -1,10 +1,15 @@
 import type { Request, Response } from 'express';
 import createHttpError from 'http-errors';
 
+import { Between } from 'typeorm';
+
 import { AppDataSource } from '../../data-source';
 import type { AddAnswerBody, GetAnswerBody } from '../../types/answers';
 import { Answer } from '../../entities/answer';
 import { getUserId } from '../users';
+import logger from '../../logger';
+
+import { getStartAndEndOfDate } from '../comments';
 
 export const createUpdateAnswer = async (
   req: TypedRequestBody<AddAnswerBody>,
@@ -33,6 +38,7 @@ export const createUpdateAnswer = async (
     newAnswer.userId = userId;
     newAnswer.chapterId = chapterId;
     newAnswer.text = text;
+    newAnswer.createdAt = new Date();
 
     await queryRunner.manager.save(newAnswer);
 
@@ -46,7 +52,7 @@ export const createUpdateAnswer = async (
       await queryRunner.rollbackTransaction();
     }
 
-    console.error('Error in Answer Add/Update:', err);
+    console.error('Error in Answer Add:', err);
 
     // Handle errors gracefully
     if (err instanceof createHttpError.HttpError) {
@@ -60,7 +66,7 @@ export const createUpdateAnswer = async (
   }
 };
 
-export const getAnswer = async (
+export const getAnswerByChapterId = async (
   req: Request,
   res: Response<GetAnswerBody>
 ) => {
@@ -82,6 +88,8 @@ export const getAnswer = async (
     // Fetch the answer for the given user and chapter
     const answer = await answerRepo.findOne({
       where: { userId, chapterId: chapterIdNumber },
+      relations: ['chapter'],
+      order: { createdAt: 'DESC' }
     });
 
     if (!answer) {
@@ -91,6 +99,8 @@ export const getAnswer = async (
     // Return the found answer
     res.status(200).send({
       chapterId: answer.chapterId,
+      moduleId: answer.chapter.moduleId,
+      chapterIndex: answer.chapter.index,
       updatedAt: answer.createdAt,
       text: answer.text,
     });
@@ -106,3 +116,57 @@ export const getAnswer = async (
   }
 };
 
+export const getAnswersByDate = async (
+  req: Request,
+  res: Response<GetAnswerBody[]>
+) => {
+  const userId = getUserId(req);
+  const { date } = req.query;
+
+  if (!date) {
+    throw createHttpError(400, 'Date should be specified!');
+  }
+  
+  // Add date filter if provided (comparing only the date part)
+  const parsedDate = new Date(date as string);
+  if (isNaN(parsedDate.getTime())) {
+    throw createHttpError(400, 'Invalid Date.');
+  }
+
+  const { currentDate, nextDate } = getStartAndEndOfDate(parsedDate);
+
+  // Log date range to check correctness
+  logger.info(`Filter Range: ${currentDate.toISOString()} - ${nextDate.toISOString()}`);
+  
+  try {
+    const answerRepo = AppDataSource.getRepository(Answer);
+
+    // Fetch the answer for the given user and chapter
+    const answers = await answerRepo.find({
+      where: { userId, createdAt: Between(currentDate, nextDate) },
+      relations: ['chapter'],
+      order: { createdAt: 'DESC' }, // Ensure all records are fetched in order
+    });
+
+    logger.info(`Size: ${answers.length}`);
+
+    const mappedAnswers: GetAnswerBody[] = answers.map((answer) => ({
+      chapterId: answer.chapterId,
+      moduleId: answer.chapter.moduleId,
+      chapterIndex: answer.chapter.index,
+      updatedAt: answer.createdAt,
+      text: answer.text,
+    }));
+    
+    res.status(200).json(mappedAnswers);
+  } catch (err) {
+    console.error('Error fetching answer:', err);
+
+    // Handle errors gracefully
+    if (err instanceof createHttpError.HttpError) {
+      throw err;
+    } else {
+      throw createHttpError(500, 'Internal Server Error');
+    }
+  }
+};

@@ -14,7 +14,10 @@ import { Progress } from '../../entities/progress';
 import logger from '../../logger';
 import { Comment } from '../../entities/comment';
 
-export const getModuleIdList = async (_req: Request, res: Response) => {
+export const getModuleIdList = async (
+  _req: Request,
+  res: Response
+) => {
   const moduleRepo = AppDataSource.getRepository(Module);
 
   // Fetch all modules with chapters
@@ -94,6 +97,7 @@ export const getModuleById = async (
     id: module.id,
     chapters: module.chapters.map((chapter) => ({
       id: chapter.id,
+      index: chapter.index,
       updatedAt: chapter.updatedAt,
       title: chapter.title,
       folderUrl: chapter.folderUrl,
@@ -149,5 +153,31 @@ export const createUpdateProgress = async (
   } catch (err) {
     logger.error('Error creating or updating chapter progress:', err);
     throw createHttpError(500, 'An error occurred while processing your request.');
+  }
+};
+
+export const getDiaryDates = async (
+  req: Request,
+  res: Response<string[]>
+) => {
+  const userId = getUserId(req);
+
+  try {
+    const query = `
+      SELECT DISTINCT TO_CHAR("createdAt", 'YYYY-MM-DD') AS date FROM "comment"
+        WHERE "chapterUserId" = $1 AND "parentId" IS NULL
+      UNION
+      SELECT DISTINCT TO_CHAR("createdAt", 'YYYY-MM-DD') AS date FROM "answer"
+        WHERE "userId" = $2
+      ORDER BY date;
+    `;
+
+    const result = await AppDataSource.query(query, [userId, userId]);
+    // result is an array of objects like [{ date: '2025-01-15' }, { date: '2025-01-16' }]
+    const dates: string[] = result.map((row: { date: string }) => row.date);
+    res.status(200).json(dates);
+  } catch (error) {
+    console.error('Error fetching dates:', error);
+    res.status(500).json([]);
   }
 };

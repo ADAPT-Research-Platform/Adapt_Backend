@@ -198,7 +198,7 @@ export const getComments = async (
     logger.info(filter.createdAt);
     const rootComments = await commentRepo.find({
       where: filter,
-      relations: ['commentUser'],
+      relations: ['commentUser', 'chapter'],
       order: { createdAt: 'ASC' }, // Optional: Order by creation time
     });
 
@@ -208,13 +208,15 @@ export const getComments = async (
     ): Promise<CommentResponse[]> => {
       const replies = await commentRepo.find({
         where: { parent: { id: parentId } },
-        relations: ['commentUser'],
+        relations: ['commentUser', 'chapter'],
         order: { createdAt: 'ASC' }, // Optional: Order by creation time
       });
 
       return Promise.all(
         replies.map(async (reply) => ({
           id: reply.id,
+          moduleId: reply.chapter.moduleId,
+          chapterIndex: reply.chapter.index,
           text: reply.text,
           createdAt: reply.createdAt,
           commentUserName: reply.commentUser.username,
@@ -227,6 +229,8 @@ export const getComments = async (
     const mappedComments: CommentResponse[] = await Promise.all(
       rootComments.map(async (comment) => ({
         id: comment.id,
+        moduleId: comment.chapter.moduleId,
+        chapterIndex: comment.chapter.index,
         text: comment.text,
         createdAt: comment.createdAt,
         commentUserName: comment.commentUser.username,
@@ -247,41 +251,11 @@ export const getComments = async (
   }
 };
 
-const getStartAndEndOfDate = (
+export const getStartAndEndOfDate = (
   date: Date
 ): { currentDate: Date; nextDate: Date } => {
-  const currentDate = new Date(date); // Clone the input date
-  currentDate.setHours(0, 0, 0, 0); // Set to the beginning of the day (midnight)
-
-  const nextDate = new Date(date); // Clone the input date
-  nextDate.setHours(23, 59, 59, 999); // Set to the last millisecond of the day
+  const currentDate = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+  const nextDate = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), 23, 59, 59, 999));
 
   return { currentDate, nextDate };
 };
-
-/*
-export const deleteComment = async (
-  req: Request<{ commentId: string }>,
-  res: Response<{ message: string }>
-) => {
-  const { commentId } = req.params;
-
-  if (!commentId) {
-    return res.status(400).json({ message: 'Comment ID is required.' });
-  }
-
-  try {
-    const commentRepo = AppDataSource.getRepository(Comment);
-    const comment = await commentRepo.findOne({ where: { id: commentId } });
-
-    if (!comment) {
-      return res.status(404).json({ message: 'Comment not found.' });
-    }
-
-    await commentRepo.softDelete(comment.id);
-
-    res.status(200).json({ message: 'Comment deleted successfully.' });
-  } catch (error) {
-    throw createHttpError(500, 'Error deleting comment');
-  }
-};*/
