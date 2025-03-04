@@ -2,7 +2,8 @@ import express from 'express';
 
 import {
   createUpdateAnswer,
-  getAnswer,
+  getAnswerByChapterId,
+  getAnswersByDate,
 } from '../controllers/answers';
 
 const router = express.Router();
@@ -21,10 +22,20 @@ router.post('/', createUpdateAnswer);
  * @swagger
  * /answers:
  *   get:
- *     summary: Get answers for a chapter
+ *     summary: Get answer for a chapter
  *     tags:
  *       - Answers
  */
-router.get('/', getAnswer);
+router.get('/getByChapterId', getAnswerByChapterId);
+
+/**
+ * @swagger
+ * /answers:
+ *   get:
+ *     summary: Get answers by a date
+ *     tags:
+ *       - Answers
+ */
+router.get('/getByDate', getAnswersByDate);
 
 export default router;

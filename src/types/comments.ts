@@ -11,6 +11,8 @@ export interface AddReplyBody {
 
 export interface CommentResponse {
   id: number;
+  moduleId: number;
+  chapterIndex: number;
   text: string;
   createdAt: Date;
   commentUserName: string;

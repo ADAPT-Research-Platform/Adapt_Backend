@@ -26,6 +26,7 @@ export interface ExerciseCreateBody {
 // ExerciseResponse
 export interface ChapterResponse {
   id: number;
+  index: number;
   updatedAt: Date;
   title: string;
   folderUrl: string;

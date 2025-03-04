@@ -5,6 +5,8 @@ export interface AddAnswerBody {
 
 export interface GetAnswerBody {
   chapterId: number;
+  moduleId: number;
+  chapterIndex: number;
   updatedAt: Date;
   text: object;
 }

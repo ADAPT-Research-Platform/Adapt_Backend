@@ -3,6 +3,7 @@ import express from 'express';
 import { asyncHandler } from '../utils/utils';
 
 import {
+  getDiaryDates,
   getModuleById,
   getModuleIdList,
 } from '../controllers/modules';
@@ -28,6 +29,16 @@ router.route('/ids').get(asyncHandler(getModuleIdList));
  *       - Modules
  */
 router.route('/').get(asyncHandler(getModuleById));
+
+/**
+ * @swagger
+ * /modules:
+ *   get:
+ *     summary: Get module details by ID
+ *     tags:
+ *       - Modules
+ */
+router.route('/diaryDates').get(asyncHandler(getDiaryDates));
 
 // Uncomment and add Swagger documentation for future routes:
 

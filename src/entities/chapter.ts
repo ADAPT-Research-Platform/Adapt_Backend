@@ -10,13 +10,19 @@ import {
 } from 'typeorm';
 
 import { Comment } from './comment';
-import { Answer } from "./answer";
-import { Module } from "./module";
+import { Answer } from './answer';
+import { Module } from './module';
 
 @Entity()
 export class Chapter {
   @PrimaryGeneratedColumn()
   id!: number;
+
+  @Column({ type: 'int' })
+  moduleId!: number;
+
+  @Column({ type: 'int' })
+  index!: number;
 
   @CreateDateColumn({ nullable: false })
   createdAt!: Date;

@@ -1,6 +1,5 @@
 import {
   Column,
-  CreateDateColumn,
   Entity,
   JoinColumn,
   ManyToOne,
@@ -18,7 +17,7 @@ export class Answer {
   @PrimaryColumn({ type: 'int' })
   chapterId!: number;
 
-  @CreateDateColumn({ nullable: false })
+  @PrimaryColumn({ type: 'timestamp' })
   createdAt!: Date;
 
   @Column({ default: true })
