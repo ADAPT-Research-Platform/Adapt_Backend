@@ -30,6 +30,7 @@ CREATE TABLE "module" (
 CREATE TABLE "chapter" (
     "id" SERIAL PRIMARY KEY,
     "moduleId" INT NOT NULL,
+    "index" INT NOT NULL,
     "createdAt" TIMESTAMP NOT NULL DEFAULT now(),
     "updatedAt" TIMESTAMP NOT NULL DEFAULT now(),
     "deletedAt" TIMESTAMP,
