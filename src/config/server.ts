@@ -13,7 +13,7 @@ import session from './session';
 import { errorHandler } from '../middlewares/errorHandler';
 import passport from './passport';
 import apiRoutes from '../routes/api';
-import logger from '../logger';
+import logger from '../utils/logger';
 
 const createServer = () => {
   const app = express();

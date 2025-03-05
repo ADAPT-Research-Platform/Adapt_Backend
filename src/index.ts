@@ -7,7 +7,7 @@ import * as https from 'node:https';
 import path from 'path';
 
 import createServer from './config/server';
-import logger from './logger';
+import logger from './utils/logger';
 import { AppDataSource } from './data-source';
 
 const host = process.env.HOST || '0.0.0.0';

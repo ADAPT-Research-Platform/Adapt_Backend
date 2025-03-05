@@ -1,10 +1,10 @@
 import type { Response } from 'express';
 import createHttpError from 'http-errors';
 
-import { AppDataSource } from '../../data-source';
-import { getUserId } from '../users';
-import type { CreateUserTrackBody } from '../../types/track';
-import { Track } from '../../entities/track';
+import { AppDataSource } from '../data-source';
+import { getUserId } from './users_controller';
+import type { CreateUserTrackBody } from '../types/track';
+import { Track } from '../entities/track';
 
 export const createTrack = async (
   req: TypedRequestBody<CreateUserTrackBody>,

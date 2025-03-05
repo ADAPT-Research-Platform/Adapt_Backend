@@ -3,9 +3,8 @@ import type { HttpError } from 'http-errors';
 import createHttpError from 'http-errors';
 import passport from 'passport';
 
-import type { AuthLoginBody, AuthLoginResponse } from '../../types/auth';
-import type { User } from '../../entities/user';
-import { validateLoginBody } from './validators';
+import type { AuthLoginBody, AuthLoginResponse } from '../types/auth';
+import type { User } from '../entities/user';
 
 const login = (
     req: TypedRequestBody<AuthLoginBody>,
@@ -133,10 +132,27 @@ const verifyCookie = (
     });
 };
 
+const validateLoginBody = (body: Partial<AuthLoginBody>) => {
+  const { username, password } = body;
+
+  if (!username) {
+    throw createHttpError(400, 'Username or Email not provided!');
+  }
+
+  if (!password) {
+    throw createHttpError(400, 'Password not provided!');
+  }
+
+  // As the function checked the properties are not missing,
+  // return the body as original type
+  return body as AuthLoginBody;
+};
+
 export default {
     login,
     logout,
     get,
     authenticated,
     verifyCookie,
+    validateLoginBody,
 };

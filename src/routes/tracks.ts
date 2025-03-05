@@ -2,7 +2,7 @@ import express from 'express';
 
 import {
   createTrack,
-} from '../controllers/tracks';
+} from '../controllers/tracks_controller';
 
 const router = express.Router();
 

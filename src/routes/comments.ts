@@ -4,7 +4,7 @@ import {
   createComment,
   createReply,
   getComments,
-} from '../controllers/comments';
+} from '../controllers/comments_controller';
 
 const router = express.Router();
 

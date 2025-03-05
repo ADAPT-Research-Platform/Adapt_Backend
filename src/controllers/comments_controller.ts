@@ -11,13 +11,13 @@ import type {
   CommentResponse,
 } from 'src/types/comments';
 
-import { AppDataSource } from '../../data-source';
-import { Comment } from '../../entities/comment';
-import logger from '../../logger';
-import { Chapter } from '../../entities/chapter';
-import { User } from '../../entities/user';
-import { UserType } from '../../enums/enum';
-import { getUserId } from '../users';
+import { AppDataSource } from '../data-source';
+import { Comment } from '../entities/comment';
+import logger from '../utils/logger';
+import { Chapter } from '../entities/chapter';
+import { User } from '../entities/user';
+import { UserType } from '../enums/enum';
+import { getUserId } from './users_controller';
 
 export const createComment = async (
   req: TypedRequestBody<AddCommentBody>,

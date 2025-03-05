@@ -1,13 +1,12 @@
 import type { NextFunction, Request, Response } from 'express';
 import createHttpError from 'http-errors';
 
-import { UserType } from '../../enums/enum';
+import { UserType } from '../enums/enum';
 
-import { AppDataSource } from '../../data-source';
-import { User } from '../../entities/user';
-import type { UsersCreateBody, UsersDeleteBody, UsersUpdateBody } from '../../types/users';
-import { validateCreateBody } from './validators';
-import logger from '../../logger';
+import { AppDataSource } from '../data-source';
+import { User } from '../entities/user';
+import type { UsersCreateBody, UsersDeleteBody, UsersUpdateBody } from '../types/users';
+import logger from '../utils/logger';
 
 export const getUserId = (req: Request): number => {
   if (!req.user || !req.user.id) {
@@ -224,6 +223,28 @@ const disable = async (
     // Release the query runner
     await queryRunner.release();
   }
+};
+
+const validateCreateBody = (body: Partial<UsersCreateBody>) => {
+  const { username, password } = body;
+
+  if (!username) {
+    throw createHttpError(400, 'Username required');
+  }
+  if (username.length < 5) {
+    throw createHttpError(400, 'Username must contain at least 5 characters');
+  }
+
+  if (!password) {
+    throw createHttpError(400, 'Password required');
+  }
+  if (password.length < 8) {
+    throw createHttpError(400, 'Password must contain at least 8 characters');
+  }
+
+  // As the function checked the properties are not missing,
+  // return the body as original type
+  return body as UsersCreateBody;
 };
 
 export default {

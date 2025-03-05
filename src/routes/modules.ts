@@ -6,7 +6,7 @@ import {
   getDiaryDates,
   getModuleById,
   getModuleIdList,
-} from '../controllers/modules';
+} from '../controllers/modules_controller';
 
 const router = express.Router();
 

@@ -4,7 +4,7 @@ import {
   createUpdateAnswer,
   getAnswerByChapterId,
   getAnswersByDate,
-} from '../controllers/answers';
+} from '../controllers/answers_controller';
 
 const router = express.Router();
 

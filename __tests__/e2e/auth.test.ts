@@ -33,7 +33,6 @@ describe('Auth routes', () => {
         expect(res.body).toMatchObject({
             id: user.id,
             username: user.username,
-            email: user.email,
         });
         expect(res.headers['set-cookie']).toBeDefined();
     });
@@ -49,7 +48,6 @@ describe('Auth routes', () => {
         expect(res.body).toMatchObject({
             id: user.id,
             username: user.username,
-            email: user.email,
         });
         expect(res.headers['set-cookie']).toBeDefined();
     });

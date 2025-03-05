@@ -3,7 +3,7 @@ import express from 'express';
 import {
   createUpdateMood,
   getMoods,
-} from '../controllers/mood';
+} from '../controllers/mood_controller';
 
 const router = express.Router();
 

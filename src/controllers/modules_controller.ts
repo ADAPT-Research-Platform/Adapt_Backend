@@ -3,16 +3,16 @@ import createHttpError from 'http-errors';
 
 import { In } from 'typeorm';
 
-import { AppDataSource } from '../../data-source';
-import { Module } from '../../entities/module';
+import { AppDataSource } from '../data-source';
+import { Module } from '../entities/module';
 
-import type { ModuleResponse } from '../../types/modules';
-import { getUserId } from '../users';
+import type { ModuleResponse } from '../types/modules';
+import { getUserId } from './users_controller';
 
-import type { CreateProgressBody } from '../../types/progress';
-import { Progress } from '../../entities/progress';
-import logger from '../../logger';
-import { Comment } from '../../entities/comment';
+import type { CreateProgressBody } from '../types/progress';
+import { Progress } from '../entities/progress';
+import logger from '../utils/logger';
+import { Comment } from '../entities/comment';
 
 export const getModuleIdList = async (
   _req: Request,

@@ -3,13 +3,13 @@ import createHttpError from 'http-errors';
 
 import { Between } from 'typeorm';
 
-import { AppDataSource } from '../../data-source';
-import type { AddAnswerBody, GetAnswerBody } from '../../types/answers';
-import { Answer } from '../../entities/answer';
-import { getUserId } from '../users';
-import logger from '../../logger';
+import { AppDataSource } from '../data-source';
+import type { AddAnswerBody, GetAnswerBody } from '../types/answers';
+import { Answer } from '../entities/answer';
+import { getUserId } from './users_controller';
+import logger from '../utils/logger';
 
-import { getStartAndEndOfDate } from '../comments';
+import { getStartAndEndOfDate } from './comments_controller';
 
 export const createUpdateAnswer = async (
   req: TypedRequestBody<AddAnswerBody>,

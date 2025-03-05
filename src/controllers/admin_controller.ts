@@ -9,16 +9,16 @@ import { In } from 'typeorm';
 
 import createHttpError from 'http-errors';
 
-import { AppDataSource } from '../../data-source';
-import { User } from '../../entities/user';
-import { Progress } from '../../entities/progress';
-import { Chapter } from '../../entities/chapter';
-import { Comment } from '../../entities/comment';
-import { Mood } from '../../entities/mood';
-import { Answer } from '../../entities/answer';
-import type { ModuleData, NestedComment } from '../../types/commonTypes';
-import logger from '../../logger';
-import { UserType } from '../../enums/enum';
+import { AppDataSource } from '../data-source';
+import { User } from '../entities/user';
+import { Progress } from '../entities/progress';
+import { Chapter } from '../entities/chapter';
+import { Comment } from '../entities/comment';
+import { Mood } from '../entities/mood';
+import { Answer } from '../entities/answer';
+import type { ModuleData, NestedComment } from '../types/commonTypes';
+import logger from '../utils/logger';
+import { UserType } from '../enums/enum';
 
 // Get all users
 const getAllUsers = (req: Request, res: Response) => {

@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { createUpdateProgress } from '../controllers/modules';
+import { createUpdateProgress } from '../controllers/modules_controller';
 
 const router = express.Router();
 
