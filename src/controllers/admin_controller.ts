@@ -19,6 +19,10 @@ import { Answer } from '../entities/answer';
 import type { ModuleData, NestedComment } from '../types/commonTypes';
 import logger from '../utils/logger';
 import { UserType } from '../enums/enum';
+import {Track} from "../entities/track";
+import { parse } from 'json2csv';
+import archiver from 'archiver';
+import StreamBuffers from 'stream-buffers';
 
 // Get all users
 const getAllUsers = (req: Request, res: Response) => {
@@ -396,6 +400,169 @@ const deleteUserPermanently = (req: Request, res: Response) => {
     });
 };
 
+const archiveData = async (req: Request, res: Response) => {
+  try {
+    const { userIdParam } = req.params; // Assuming the user ID is passed as a URL parameter
+    logger.info(`Archive UserId: ${userIdParam}`);
+
+    let userId: number | undefined;
+
+    if (userIdParam) {
+      userId = Number(userIdParam);
+      if (isNaN(userId)) {
+        throw createHttpError(400, 'Invalid userId parameter.');
+      }
+    }
+
+    // ================================
+    // Query Data Using TypeORM
+    // ================================
+
+    // 1. TRACK data
+    const trackRepo = AppDataSource.getRepository(Track);
+    const trackWhere = userId ? { userId } : {};
+    const tracks = await trackRepo.find({
+      where: trackWhere,
+      order: { startedAt: 'DESC' }
+    });
+    logger.info("Tracking Data reading is done.");
+
+    // 2. MOOD data
+    const moodRepo = AppDataSource.getRepository(Mood);
+    const moodWhere = userId ? { userId } : {};
+    const moods = await moodRepo.find({
+      where: moodWhere,
+      order: { createdAt: 'DESC' }
+    });
+    logger.info("Mood Data reading is done.");
+
+    // 3. PROGRESS data: we need to join with Chapter to get moduleIndex and chapterIndex.
+    const progressRepo = AppDataSource.getRepository(Progress);
+    const progressWhere = userId ? { userId } : {};
+    const progressResults = await progressRepo.find({
+      where: progressWhere,
+      relations: ['chapter'],
+      order: { chapterId: 'ASC' },
+    });
+
+    // Map progress data to include moduleIndex and chapterIndex (from Chapter)
+    const progressData = progressResults.map(pr => ({
+      userId: pr.userId,
+      moduleIndex: pr ? pr.chapter.moduleId : null, // Using moduleId as moduleIndex
+      chapterIndex: pr.chapter ? pr.chapter.index : null,
+      createdAt: pr.createdAt,
+      updatedAt: pr.updatedAt,
+      value: pr.value,
+    }));
+    logger.info("Progress Data reading is done.");
+
+    // 4. COMMENT data: join Chapter to get moduleIndex and chapterIndex.
+    const commentRepo = AppDataSource.getRepository(Comment);
+    const commentWhere = userId ? {chapterUserId: userId } : {};
+    const commentResults = await commentRepo.find({
+      where: commentWhere,
+      relations: ['chapter', 'parent', 'chapterUser', 'commentUser'],
+      order: { createdAt: 'DESC' }, // Ensure all records are fetched in order
+    });
+
+    const commentData = commentResults.map(c => ({
+      id: c.id,
+      parentId: c.parent ? c.parent.id : '',
+      userId: c.chapterUser ? c.chapterUser.id : null, // Assuming chapterUser is the user being commented on
+      commentUserId: c.commentUser ? c.commentUser.id : null,
+      moduleIndex: c.chapter ? c.chapter.moduleId : null,
+      chapterIndex: c.chapter ? c.chapter.index : null,
+      createdAt: c.createdAt,
+      text: c.text,
+    }));
+    logger.info("Comment Data reading is done.");
+
+    // 5. ANSWER data: join Chapter to get moduleIndex and chapterIndex.
+    const answerRepo = AppDataSource.getRepository(Answer);
+    const answerWhere = userId ? { userId } : {};
+    const answerResults = await answerRepo.find({
+      where: answerWhere,
+      relations: ['chapter'],
+      order: { createdAt: 'DESC' }, // Ensure all records are fetched in order
+    });
+
+    const answerData = answerResults.map(a => ({
+      userId: a.userId,
+      moduleIndex: a.chapter ? a.chapter.moduleId : null,
+      chapterIndex: a.chapter ? a.chapter.index : null,
+      createdAt: a.createdAt,
+      text: a.text,
+    }));
+    logger.info("Answer Data reading is done.");
+
+    // ================================
+    // Convert Data to CSV
+    // ================================
+    const csvOptions = { /* any additional options */ };
+
+    const trackCsv = parse(tracks, { fields: ["userId", "startedAt", "endedAt"], ...csvOptions });
+    const moodCsv = parse(moods, { fields: ["userId", "createdAt", "createdDate", "feeling", "motivation"], ...csvOptions });
+    const progressCsv = parse(progressData, { fields: ["userId", "moduleIndex", "chapterIndex", "createdAt", "updatedAt", "value"], ...csvOptions });
+    const commentCsv = parse(commentData, { fields: ["id", "parentId", "userId", "commentUserId", "moduleIndex", "chapterIndex", "createdAt", "text"], ...csvOptions });
+    const answerCsv = parse(answerData, { fields: ["userId", "moduleIndex", "chapterIndex", "createdAt", "text"], ...csvOptions });
+    logger.info("Converted to CSV");
+
+    // Package CSV Files into a ZIP Archive
+    const archive = archiver('zip', { zlib: { level: 9 } });
+    const outputBuffer = new StreamBuffers.WritableStreamBuffer({
+      initialSize: 100 * 1024,
+      incrementAmount: 10 * 1024,
+    });
+
+    // Pipe the archive to the outputBuffer
+    archive.pipe(outputBuffer);
+
+    // Optionally, put CSV files in a folder within the zip
+    const folderName = 'data';
+    archive.append(trackCsv, { name: `${folderName}/track.csv` });
+    archive.append(moodCsv, { name: `${folderName}/mood.csv` });
+    archive.append(progressCsv, { name: `${folderName}/progress.csv` });
+    archive.append(commentCsv, { name: `${folderName}/comment.csv` });
+    archive.append(answerCsv, { name: `${folderName}/answer.csv` });
+    logger.info("Packaged to Zip File");
+
+    // Get today's date string in YYYY-MM-DD format
+    const today = new Date();
+    const todayStr = today.toISOString().split('T')[0];
+
+    // Determine zip file name based on userId
+    let zipFileName: string;
+    if (userId) {
+      const userRepo = AppDataSource.getRepository(User);
+      const user = await userRepo.findOne({ where: { id: userId } });
+      zipFileName = user ? `${user.username}_${todayStr}.zip` : `User_${todayStr}.zip`;
+    } else {
+      zipFileName = `All_${todayStr}.zip`;
+    }
+    logger.info(`FileName: ${zipFileName}`);
+
+    // Attach event handlers before finalizing the archive
+    outputBuffer.on('finish', () => {
+      const zipContents = outputBuffer.getContents();
+      res.set({
+        'Content-Type': 'application/zip',
+        'Content-Disposition': `attachment; filename="${zipFileName}"`,
+      });
+      res.send(zipContents);
+    });
+
+    archive.on('end', () => {
+      logger.info('ZIP archive created.');
+    });
+
+    // Finalize the archive without awaiting it (to ensure event listeners catch the finish event)
+    archive.finalize();
+  } catch (error) {
+    console.error('Error in downloadUserData:', error);
+    res.status(500).send('Internal Server Error');
+  }
+};
+
 export default {
   getAllUsers,
   getUsersById,
@@ -403,5 +570,6 @@ export default {
   getUserMoodById,
   resetUserPassword,
   getAllDisabledUserAccount,
-  deleteUserPermanently
+  deleteUserPermanently,
+  archiveData
 };

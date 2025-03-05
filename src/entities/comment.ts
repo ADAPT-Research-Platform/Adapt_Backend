@@ -1,12 +1,12 @@
 import {
-    Column,
-    CreateDateColumn,
-    Entity,
-    JoinColumn,
-    ManyToOne,
-    OneToMany,
-    PrimaryGeneratedColumn,
-  } from 'typeorm';
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
   
   import { User } from './user';
   import { Chapter } from './chapter';
@@ -21,7 +21,10 @@ import {
   
     @Column({ type: 'text', nullable: false })
     text!: string;
-  
+
+    @Column({type: 'int' })
+    chapterUserId!: number;
+
     @ManyToOne(() => User, { nullable: false, onDelete: 'CASCADE' })
     @JoinColumn({ name: 'chapterUserId' })
     chapterUser!: User;

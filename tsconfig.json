@@ -25,7 +25,7 @@
     "noUnusedParameters": false,
     "typeRoots": ["@types", "./node_modules/@types"],  
   },
-  "include": ["src/**/*", "__tests__/**/*"],
+  "include": ["src/**/*", "types/**/*", "__tests__/**/*"],
   "exclude": ["node_modules", "build"],
   "files": ["@types/express/index.d.ts"]
 }

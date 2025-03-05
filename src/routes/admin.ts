@@ -98,4 +98,14 @@ router.route('/user/deleteRequest').get(AdminController.getAllDisabledUserAccoun
  */
 router.route('/deleteUser/:userId').delete(AdminController.deleteUserPermanently);
 
+/**
+ * @swagger
+ * /user/archiveData:
+ *   get:
+ *     summary: Download data for given user or all
+ *     tags:
+ *       - Admin
+ */
+router.route('/archiveData/:userId').get(AdminController.archiveData);
+
 export default router;

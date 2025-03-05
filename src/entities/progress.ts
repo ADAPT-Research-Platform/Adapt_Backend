@@ -3,8 +3,9 @@ import {
   Column,
   PrimaryColumn,
   CreateDateColumn,
-  UpdateDateColumn,
+  UpdateDateColumn, ManyToOne, JoinColumn,
 } from 'typeorm';
+import {Chapter} from "./chapter";
 
 @Entity()
 export class Progress {
@@ -22,4 +23,8 @@ export class Progress {
 
     @Column({ type: 'float', nullable: false })
     value!: number;
+
+    @ManyToOne(() => Chapter, (chapter) => chapter.answers, { nullable: false, onDelete: 'CASCADE' })
+    @JoinColumn({ name: 'chapterId' })
+    chapter!: Chapter;
 }

@@ -6,12 +6,13 @@ import {
   UpdateDateColumn,
   DeleteDateColumn,
   ManyToOne,
-  OneToMany,
+  OneToMany, OneToOne,
 } from 'typeorm';
 
 import { Comment } from './comment';
 import { Answer } from './answer';
 import { Module } from './module';
+import { Progress } from "./progress";
 
 @Entity()
 export class Chapter {
@@ -53,4 +54,7 @@ export class Chapter {
 
   @OneToMany(() => Answer, (answer) => answer.chapter)
   answers!: Answer[];
+
+  @OneToOne(() => Progress, (progress) => progress.chapter)
+  progress!: Progress;
 }
