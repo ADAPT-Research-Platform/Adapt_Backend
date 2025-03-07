@@ -1,0 +1,635 @@
+import type { Request, Response } from 'express';
+
+import type {
+  DisabledUsersGetResponse,
+  UsersGetResponse,
+} from 'src/types/users';
+
+import { In } from 'typeorm';
+
+import createHttpError from 'http-errors';
+
+import { parse } from 'json2csv';
+
+import archiver from 'archiver';
+
+import StreamBuffers from 'stream-buffers';
+
+import { AppDataSource } from '../data-source';
+import { User } from '../entities/user';
+import { Progress } from '../entities/progress';
+import { Chapter } from '../entities/chapter';
+import { Comment } from '../entities/comment';
+import { Mood } from '../entities/mood';
+import { Answer } from '../entities/answer';
+import type { ModuleData, NestedComment } from '../types/commonTypes';
+import logger from '../utils/logger';
+import { UserType } from '../enums/enum';
+import { Track } from '../entities/track';
+
+// Get all users
+const getAllUsers = (req: Request, res: Response) => {
+  const userRepo = AppDataSource.getRepository(User);
+
+  // Get all users with role 'user', isActive = true
+  userRepo
+    .find({
+      where: { isActive: true },
+    })
+    .then((users) => {
+      // Map the database entities to the UsersGetResponse interface
+      const userResponses: UsersGetResponse[] = users.map((user) => ({
+        id: user.id,
+        username: user.username,
+        role: user.role,
+        createdAt: user.createdAt,
+        updatedAt: user.updatedAt,
+        isActive: user.isActive,
+      }));
+
+      res.status(200).json(userResponses);
+    })
+    .catch((err) => {
+      console.error('Database error:', err); // Log the error for debugging
+      res.status(500).json({ message: 'Internal server error' });
+    });
+};
+
+// Get admin by ID
+const getUsersById = (req: Request, res: Response) => {
+  const userRepo = AppDataSource.getRepository(User);
+  const { id } = req.params;
+
+  const userId = parseInt(id, 10);
+  if (isNaN(userId) || userId < 1) {
+    return res.status(400).json({ message: 'Invalid user ID' });
+  }
+
+  userRepo
+    .findOneBy({ id: userId })
+    .then((user) => {
+      if (user) {
+        // Map the database entity to the UsersGetResponse interface
+        const userResponse: UsersGetResponse = {
+          id: user.id,
+          username: user.username,
+          role: user.role,
+          createdAt: user.createdAt,
+          updatedAt: user.updatedAt,
+          isActive: user.isActive,
+        };
+
+        res.status(200).json(userResponse);
+      } else {
+        res.status(404).json({ message: 'User not found' });
+      }
+    })
+    .catch((err) => {
+      console.error('Database error:', err);
+      res.status(500).json({ message: 'Internal server error' });
+    });
+};
+
+const getUserProgress = async (req: Request, res: Response): Promise<void> => {
+  const userProgressRepo = AppDataSource.getRepository(Progress);
+  const chapterRepo = AppDataSource.getRepository(Chapter);
+  const commentRepo = AppDataSource.getRepository(Comment);
+  const answerRepo = AppDataSource.getRepository(Answer); // Repository for the answer table
+
+  const { userId } = req.params;
+  const parsedUserId = parseInt(userId, 10);
+
+  if (isNaN(parsedUserId) || parsedUserId < 1) {
+    res.status(400).json({ message: 'Invalid user ID' });
+    return;
+  }
+
+  try {
+    const userProgress = await userProgressRepo.find({
+      where: { userId: parsedUserId },
+    });
+
+    if (userProgress.length === 0) {
+      res.status(404).json({ message: 'User progress not found' });
+      return;
+    }
+
+    const chapterIds = userProgress.map((progress) => progress.chapterId);
+    const chapters = await chapterRepo.find({
+      where: { id: In(chapterIds) },
+      relations: ['module'], // Explicitly load the `module` relation
+    });
+
+    const comments = await commentRepo
+      .createQueryBuilder('comment')
+      .leftJoinAndSelect('comment.replies', 'replies')
+      .leftJoinAndSelect('comment.parent', 'parent')
+      .leftJoinAndSelect('comment.chapter', 'chapter') // Include chapter relation
+      .leftJoinAndSelect('comment.chapterUser', 'chapterUser')
+      .leftJoinAndSelect('comment.commentUser', 'commentUser')
+      .where('comment.chapterId IN (:...chapterIds)', {
+        chapterIds: chapterIds,
+      })
+      .andWhere('comment.chapterUser.id = :userId', { userId: parsedUserId })
+      .getMany();
+
+    const answers = await answerRepo.find({
+      where: { chapterId: In(chapterIds), userId: parsedUserId }, // Fetch answers for the user and chapters
+    });
+
+    const buildNestedComments = (
+      parentId: number | null,
+      allComments: Comment[]
+    ): NestedComment[] =>
+      allComments
+        .filter((comment) => (comment.parent?.id || null) === parentId)
+        .map((comment) => ({
+          parentId: comment.parent?.id || null,
+          commentId: comment.id,
+          chapterUserId: comment.chapterUser.id,
+          chapterUsername: comment.chapterUser.username,
+          commentUserId: comment.commentUser.id,
+          commentUsername: comment.commentUser.username,
+          text: comment.text,
+          createdAt: comment.createdAt.toISOString(),
+          replies: buildNestedComments(comment.id, allComments),
+        }));
+
+    const modules: Record<string, ModuleData> = {};
+
+    userProgress.forEach((progress) => {
+      const chapter = chapters.find((s) => s.id === progress.chapterId);
+      if (!chapter) {
+        console.warn(`Chapter with ID ${progress.chapterId} not found.`);
+        return;
+      }
+
+      const moduleId = chapter.module.id;
+
+      const chapterComments = comments.filter(
+        (comment) => comment.chapter.id === chapter.id
+      );
+
+      type AnswerValue = string | { question: string; answer: string };
+
+      const parseAnswers = (
+        rawAnswers: Record<string, AnswerValue>
+      ): Record<string, { question: string; answer: string }> => {
+        const parsedAnswers: Record<
+          string,
+          { question: string; answer: string }
+        > = {};
+
+        Object.entries(rawAnswers).forEach(([key, value]) => {
+          if (typeof value === 'string') {
+            parsedAnswers[key] = {
+              question: `Default question for ${key}`,
+              answer: value,
+            };
+          } else if (
+            typeof value === 'object' &&
+            value !== null &&
+            'question' in value &&
+            'answer' in value
+          ) {
+            parsedAnswers[key] = {
+              question: value.question,
+              answer: value.answer,
+            };
+          } else {
+            console.warn(`Unexpected format for key: ${key}, value:`, value);
+          }
+        });
+
+        return parsedAnswers;
+      };
+
+      // Define the structure for each answer set, allowing for both the createdAt and the question-answer pairs
+      interface AnswerSet {
+        createdAt: string; // Timestamp for the answer set
+        [key: string]: { question: string; answer: string } | string; // Allow Q1, Q2, etc. as well as createdAt
+      }
+
+      const chapterAnswers: AnswerSet[] = [];
+
+      answers
+        .filter((answer) => answer.chapterId === chapter.id)
+        .forEach((answer) => {
+          if (
+            typeof answer.text === 'object' &&
+            answer.text !== null &&
+            !Array.isArray(answer.text)
+          ) {
+            const parsed = parseAnswers(
+              answer.text as Record<string, AnswerValue>
+            );
+
+            // Create an object to hold questions and answers for the entire answer set
+            const answerObject: AnswerSet = {
+              createdAt: new Date().toISOString(),
+            }; // Add createdAt as the first property
+
+            // Loop through each parsed question-answer pair and add them to the answerObject
+            Object.entries(parsed).forEach(([key, value]) => {
+              answerObject[key] = {
+                question: value.question,
+                answer: value.answer || 'No answer provided',
+              };
+            });
+
+            // Push the answer set to the chapterAnswers array
+            chapterAnswers.push(answerObject);
+          } else {
+            console.warn('Invalid answer.text format:', answer.text);
+          }
+        });
+
+      if (!modules[moduleId]) {
+        modules[moduleId] = { moduleId: moduleId.toString(), chapters: [] };
+      }
+
+      modules[moduleId].chapters.push({
+        chapterId: chapter.id,
+        name: chapter.title,
+        createdAt: progress.createdAt.toISOString(),
+        updatedAt: progress.updatedAt.toISOString(),
+        progressPercentage: progress.value,
+        comments: buildNestedComments(null, chapterComments),
+        answers: chapterAnswers, // Include the array of answer sets
+      });
+    }, {});
+
+    const formattedModules: ModuleData[] = Object.entries(modules).map(
+      ([moduleId, moduleData]) => ({
+        moduleId,
+        chapters: Object.values(moduleData.chapters),
+      })
+    );
+
+    res.status(200).json(formattedModules);
+  } catch (err) {
+    console.error('Error fetching user progress:', err);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+// Get user mood by user ID
+const getUserMoodById = async (req: Request, res: Response) => {
+  const moodRepo = AppDataSource.getRepository(Mood);
+  const { userId } = req.params;
+
+  const parsedUserId = parseInt(userId, 10);
+  if (isNaN(parsedUserId) || parsedUserId < 1) {
+    return res.status(400).json({ message: 'Invalid user ID' });
+  }
+
+  try {
+    const moods = await moodRepo.find({
+      where: { userId: parsedUserId },
+      order: { createdAt: 'ASC' },
+    });
+
+    const moodData: string[] = moods.map(
+      (data) => `${data.createdAt}|${data.feeling}|${data.motivation}`
+    );
+
+    res.status(200).json(moodData);
+  } catch (err) {
+    console.error('Error fetching user mood:', err);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+// function to reset user password
+const resetUserPassword = async (
+  req: TypedRequestBody<{ userId: number; newPassword: string }>,
+  res: Response
+) => {
+  // Extract userId and newPassword from the request body
+  const { userId, newPassword } = req.body;
+
+  if (!userId || !newPassword) {
+    throw createHttpError(400, 'User ID and new password are required!');
+  }
+
+  // Create a query runner
+  const queryRunner = AppDataSource.createQueryRunner();
+
+  try {
+    // Connect and start transaction
+    await queryRunner.connect();
+    await queryRunner.startTransaction();
+
+    const userRepo = queryRunner.manager.getRepository(User);
+
+    // Fetch the user by ID
+    const user = await userRepo.findOne({ where: { id: userId } });
+    if (!user) {
+      throw createHttpError(404, 'User not found!');
+    }
+
+    // Set the new password
+    user.setPassword(newPassword); // Assumes `setPassword` hashes the password internally
+    user.updatedAt = new Date();
+
+    // Save the updated user
+    await queryRunner.manager.save(user);
+
+    // Commit the transaction
+    await queryRunner.commitTransaction();
+
+    return res.status(200).json({ message: 'Password reset successfully!' });
+  } catch (err) {
+    // Rollback the transaction on error
+    if (queryRunner.isTransactionActive) {
+      await queryRunner.rollbackTransaction();
+    }
+
+    // Log and handle the error
+    logger.error('Error resetting user password:', err);
+
+    // Handle known error types
+    if (err instanceof createHttpError.HttpError) {
+      throw err;
+    } else {
+      throw createHttpError(500, 'Internal Server Error!');
+    }
+  } finally {
+    // Release the query runner
+    await queryRunner.release();
+  }
+};
+
+// Get all users
+const getAllDisabledUserAccount = (req: Request, res: Response) => {
+  const userRepo = AppDataSource.getRepository(User);
+
+  // Get all users with role 'user', isActive = false
+  userRepo
+    .find({
+      where: { isActive: false, role: UserType.CLIENT },
+      withDeleted: true, // Include soft-deleted rows
+    })
+    .then((users) => {
+      // Map the database entities to the UsersGetResponse interface
+      const userResponses: DisabledUsersGetResponse[] = users.map((user) => ({
+        id: user.id,
+        username: user.username,
+        role: user.role,
+        createdAt: user.createdAt,
+        updatedAt: user.updatedAt,
+        isActive: user.isActive,
+        deletedAt: user.deletedAt,
+      }));
+
+      res.status(200).json(userResponses);
+    })
+    .catch((err) => {
+      console.error('Database error:', err); // Log the error for debugging
+      res.status(500).json({ message: 'Internal server error' });
+    });
+};
+
+const deleteUserPermanently = (req: Request, res: Response) => {
+  const userRepo = AppDataSource.getRepository(User);
+  const { userId } = req.params; // Assuming the user ID is passed as a URL parameter
+
+  // Validate userId
+  if (!userId) {
+    return res.status(400).json({ message: 'User ID is required' });
+  }
+
+  userRepo
+    .findOne({
+      where: { id: Number(userId) },
+      withDeleted: true, // Include soft-deleted rows
+    })
+    .then(async (user) => {
+      if (!user) {
+        res.status(404).json({ message: 'User not found' });
+        return;
+      }
+
+      try {
+        // Permanently remove the user
+        await userRepo.remove(user);
+        res.status(200).json({ message: 'User deleted permanently' });
+      } catch (err) {
+        console.error('Error deleting user:', err); // Log the error for debugging
+        res.status(500).json({ message: 'Failed to delete user' });
+      }
+    })
+    .catch((err) => {
+      console.error('Database error:', err); // Log the error for debugging
+      res.status(500).json({ message: 'Internal server error' });
+    });
+};
+
+const archiveData = async (req: Request, res: Response) => {
+  try {
+    const { userIdParam } = req.params; // Assuming the user ID is passed as a URL parameter
+    logger.info(`Archive UserId: ${userIdParam}`);
+
+    let userId: number | undefined;
+
+    if (userIdParam) {
+      userId = Number(userIdParam);
+      if (isNaN(userId)) {
+        throw createHttpError(400, 'Invalid userId parameter.');
+      }
+    }
+
+    // ================================
+    // Query Data Using TypeORM
+    // ================================
+
+    // 1. TRACK data
+    const trackRepo = AppDataSource.getRepository(Track);
+    const trackWhere = userId ? { userId } : {};
+    const tracks = await trackRepo.find({
+      where: trackWhere,
+      order: { startedAt: 'DESC' },
+    });
+    logger.info('Tracking Data reading is done.');
+
+    // 2. MOOD data
+    const moodRepo = AppDataSource.getRepository(Mood);
+    const moodWhere = userId ? { userId } : {};
+    const moods = await moodRepo.find({
+      where: moodWhere,
+      order: { createdAt: 'DESC' },
+    });
+    logger.info('Mood Data reading is done.');
+
+    // 3. PROGRESS data: we need to join with Chapter to get moduleIndex and chapterIndex.
+    const progressRepo = AppDataSource.getRepository(Progress);
+    const progressWhere = userId ? { userId } : {};
+    const progressResults = await progressRepo.find({
+      where: progressWhere,
+      relations: ['chapter'],
+      order: { chapterId: 'ASC' },
+    });
+
+    // Map progress data to include moduleIndex and chapterIndex (from Chapter)
+    const progressData = progressResults.map((pr) => ({
+      userId: pr.userId,
+      moduleIndex: pr ? pr.chapter.moduleId : null, // Using moduleId as moduleIndex
+      chapterIndex: pr.chapter ? pr.chapter.index : null,
+      createdAt: pr.createdAt,
+      updatedAt: pr.updatedAt,
+      value: pr.value,
+    }));
+    logger.info('Progress Data reading is done.');
+
+    // 4. COMMENT data: join Chapter to get moduleIndex and chapterIndex.
+    const commentRepo = AppDataSource.getRepository(Comment);
+    const commentWhere = userId ? { chapterUserId: userId } : {};
+    const commentResults = await commentRepo.find({
+      where: commentWhere,
+      relations: ['chapter', 'parent', 'chapterUser', 'commentUser'],
+      order: { createdAt: 'DESC' }, // Ensure all records are fetched in order
+    });
+
+    const commentData = commentResults.map((c) => ({
+      id: c.id,
+      parentId: c.parent ? c.parent.id : '',
+      userId: c.chapterUser ? c.chapterUser.id : null, // Assuming chapterUser is the user being commented on
+      commentUserId: c.commentUser ? c.commentUser.id : null,
+      moduleIndex: c.chapter ? c.chapter.moduleId : null,
+      chapterIndex: c.chapter ? c.chapter.index : null,
+      createdAt: c.createdAt,
+      text: c.text,
+    }));
+    logger.info('Comment Data reading is done.');
+
+    // 5. ANSWER data: join Chapter to get moduleIndex and chapterIndex.
+    const answerRepo = AppDataSource.getRepository(Answer);
+    const answerWhere = userId ? { userId } : {};
+    const answerResults = await answerRepo.find({
+      where: answerWhere,
+      relations: ['chapter'],
+      order: { createdAt: 'DESC' }, // Ensure all records are fetched in order
+    });
+
+    const answerData = answerResults.map((a) => ({
+      userId: a.userId,
+      moduleIndex: a.chapter ? a.chapter.moduleId : null,
+      chapterIndex: a.chapter ? a.chapter.index : null,
+      createdAt: a.createdAt,
+      text: a.text,
+    }));
+    logger.info('Answer Data reading is done.');
+
+    // ================================
+    // Convert Data to CSV
+    // ================================
+    const csvOptions = {
+      /* any additional options */
+    };
+
+    const trackCsv = parse(tracks, {
+      fields: ['userId', 'startedAt', 'endedAt'],
+      ...csvOptions,
+    });
+    const moodCsv = parse(moods, {
+      fields: ['userId', 'createdAt', 'createdDate', 'feeling', 'motivation'],
+      ...csvOptions,
+    });
+    const progressCsv = parse(progressData, {
+      fields: [
+        'userId',
+        'moduleIndex',
+        'chapterIndex',
+        'createdAt',
+        'updatedAt',
+        'value',
+      ],
+      ...csvOptions,
+    });
+    const commentCsv = parse(commentData, {
+      fields: [
+        'id',
+        'parentId',
+        'userId',
+        'commentUserId',
+        'moduleIndex',
+        'chapterIndex',
+        'createdAt',
+        'text',
+      ],
+      ...csvOptions,
+    });
+    const answerCsv = parse(answerData, {
+      fields: ['userId', 'moduleIndex', 'chapterIndex', 'createdAt', 'text'],
+      ...csvOptions,
+    });
+    logger.info('Converted to CSV');
+
+    // Package CSV Files into a ZIP Archive
+    const archive = archiver('zip', { zlib: { level: 9 } });
+    const outputBuffer = new StreamBuffers.WritableStreamBuffer({
+      initialSize: 100 * 1024,
+      incrementAmount: 10 * 1024,
+    });
+
+    // Pipe the archive to the outputBuffer
+    archive.pipe(outputBuffer);
+
+    // Optionally, put CSV files in a folder within the zip
+    const folderName = 'data';
+    archive.append(trackCsv, { name: `${folderName}/track.csv` });
+    archive.append(moodCsv, { name: `${folderName}/mood.csv` });
+    archive.append(progressCsv, { name: `${folderName}/progress.csv` });
+    archive.append(commentCsv, { name: `${folderName}/comment.csv` });
+    archive.append(answerCsv, { name: `${folderName}/answer.csv` });
+    logger.info('Packaged to Zip File');
+
+    // Get today's date string in YYYY-MM-DD format
+    const today = new Date();
+    const todayStr = today.toISOString().split('T')[0];
+
+    // Determine zip file name based on userId
+    let zipFileName: string;
+    if (userId) {
+      const userRepo = AppDataSource.getRepository(User);
+      const user = await userRepo.findOne({ where: { id: userId } });
+      zipFileName = user
+        ? `${user.username}_${todayStr}.zip`
+        : `User_${todayStr}.zip`;
+    } else {
+      zipFileName = `All_${todayStr}.zip`;
+    }
+    logger.info(`FileName: ${zipFileName}`);
+
+    // Attach event handlers before finalizing the archive
+    outputBuffer.on('finish', () => {
+      const zipContents = outputBuffer.getContents();
+      res.set({
+        'Content-Type': 'application/zip',
+        'Content-Disposition': `attachment; filename="${zipFileName}"`,
+      });
+      res.send(zipContents);
+    });
+
+    archive.on('end', () => {
+      logger.info('ZIP archive created.');
+    });
+
+    // Finalize the archive without awaiting it (to ensure event listeners catch the finish event)
+    void archive.finalize();
+  } catch (error) {
+    console.error('Error in downloadUserData:', error);
+    res.status(500).send('Internal Server Error');
+  }
+};
+
+export default {
+  getAllUsers,
+  getUsersById,
+  getUserProgress,
+  getUserMoodById,
+  resetUserPassword,
+  getAllDisabledUserAccount,
+  deleteUserPermanently,
+  archiveData,
+};
