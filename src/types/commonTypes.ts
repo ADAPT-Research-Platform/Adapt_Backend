@@ -10,6 +10,11 @@ export type NestedComment = {
   replies: NestedComment[];
 };
 
+interface AnswerSet {
+  createdAt: string; // Timestamp for the answer set
+  [key: string]: { question: string; answer: string } | string; // Allow Q1, Q2, etc. as well as createdAt
+}
+
 export type ChapterData = {
   chapterId: number;
   name: string;
@@ -17,7 +22,7 @@ export type ChapterData = {
   updatedAt: string;
   progressPercentage: number;
   comments: NestedComment[];
-  answers: Record<string, { question: string; answer: string }>; // Add answers property
+  answers: AnswerSet[];
 };
 
 export type ModuleData = {

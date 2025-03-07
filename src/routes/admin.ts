@@ -1,5 +1,7 @@
 import express from 'express';
 
+import { isAdmin } from '../middlewares/auth';
+
 import AdminController from '../controllers/admin_controller';
 
 const router = express.Router();
@@ -106,6 +108,6 @@ router.route('/deleteUser/:userId').delete(AdminController.deleteUserPermanently
  *     tags:
  *       - Admin
  */
-router.route('/archiveData/:userId').get(AdminController.archiveData);
+router.route('/archiveData/:userId').get(isAdmin, AdminController.archiveData);
 
 export default router;

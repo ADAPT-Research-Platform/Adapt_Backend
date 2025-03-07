@@ -9,6 +9,12 @@ import { In } from 'typeorm';
 
 import createHttpError from 'http-errors';
 
+import { parse } from 'json2csv';
+
+import archiver from 'archiver';
+
+import StreamBuffers from 'stream-buffers';
+
 import { AppDataSource } from '../data-source';
 import { User } from '../entities/user';
 import { Progress } from '../entities/progress';
@@ -19,10 +25,7 @@ import { Answer } from '../entities/answer';
 import type { ModuleData, NestedComment } from '../types/commonTypes';
 import logger from '../utils/logger';
 import { UserType } from '../enums/enum';
-import {Track} from "../entities/track";
-import { parse } from 'json2csv';
-import archiver from 'archiver';
-import StreamBuffers from 'stream-buffers';
+import { Track } from '../entities/track';
 
 // Get all users
 const getAllUsers = (req: Request, res: Response) => {
@@ -201,9 +204,17 @@ const getUserProgress = async (req: Request, res: Response): Promise<void> => {
         return parsedAnswers;
       };
 
-      const chapterAnswers = answers
+      // Define the structure for each answer set, allowing for both the createdAt and the question-answer pairs
+      interface AnswerSet {
+        createdAt: string; // Timestamp for the answer set
+        [key: string]: { question: string; answer: string } | string; // Allow Q1, Q2, etc. as well as createdAt
+      }
+
+      const chapterAnswers: AnswerSet[] = [];
+
+      answers
         .filter((answer) => answer.chapterId === chapter.id)
-        .reduce((acc, answer) => {
+        .forEach((answer) => {
           if (
             typeof answer.text === 'object' &&
             answer.text !== null &&
@@ -211,13 +222,27 @@ const getUserProgress = async (req: Request, res: Response): Promise<void> => {
           ) {
             const parsed = parseAnswers(
               answer.text as Record<string, AnswerValue>
-            ); // Cast after check
-            Object.assign(acc, parsed); // Merge parsed data into the accumulator
+            );
+
+            // Create an object to hold questions and answers for the entire answer set
+            const answerObject: AnswerSet = {
+              createdAt: new Date().toISOString(),
+            }; // Add createdAt as the first property
+
+            // Loop through each parsed question-answer pair and add them to the answerObject
+            Object.entries(parsed).forEach(([key, value]) => {
+              answerObject[key] = {
+                question: value.question,
+                answer: value.answer || 'No answer provided',
+              };
+            });
+
+            // Push the answer set to the chapterAnswers array
+            chapterAnswers.push(answerObject);
           } else {
             console.warn('Invalid answer.text format:', answer.text);
           }
-          return acc;
-        }, {} as Record<string, { question: string; answer: string }>);
+        });
 
       if (!modules[moduleId]) {
         modules[moduleId] = { moduleId: moduleId.toString(), chapters: [] };
@@ -230,9 +255,9 @@ const getUserProgress = async (req: Request, res: Response): Promise<void> => {
         updatedAt: progress.updatedAt.toISOString(),
         progressPercentage: progress.value,
         comments: buildNestedComments(null, chapterComments),
-        answers: chapterAnswers, // Include answers here
+        answers: chapterAnswers, // Include the array of answer sets
       });
-    });
+    }, {});
 
     const formattedModules: ModuleData[] = Object.entries(modules).map(
       ([moduleId, moduleData]) => ({
@@ -423,18 +448,18 @@ const archiveData = async (req: Request, res: Response) => {
     const trackWhere = userId ? { userId } : {};
     const tracks = await trackRepo.find({
       where: trackWhere,
-      order: { startedAt: 'DESC' }
+      order: { startedAt: 'DESC' },
     });
-    logger.info("Tracking Data reading is done.");
+    logger.info('Tracking Data reading is done.');
 
     // 2. MOOD data
     const moodRepo = AppDataSource.getRepository(Mood);
     const moodWhere = userId ? { userId } : {};
     const moods = await moodRepo.find({
       where: moodWhere,
-      order: { createdAt: 'DESC' }
+      order: { createdAt: 'DESC' },
     });
-    logger.info("Mood Data reading is done.");
+    logger.info('Mood Data reading is done.');
 
     // 3. PROGRESS data: we need to join with Chapter to get moduleIndex and chapterIndex.
     const progressRepo = AppDataSource.getRepository(Progress);
@@ -446,7 +471,7 @@ const archiveData = async (req: Request, res: Response) => {
     });
 
     // Map progress data to include moduleIndex and chapterIndex (from Chapter)
-    const progressData = progressResults.map(pr => ({
+    const progressData = progressResults.map((pr) => ({
       userId: pr.userId,
       moduleIndex: pr ? pr.chapter.moduleId : null, // Using moduleId as moduleIndex
       chapterIndex: pr.chapter ? pr.chapter.index : null,
@@ -454,18 +479,18 @@ const archiveData = async (req: Request, res: Response) => {
       updatedAt: pr.updatedAt,
       value: pr.value,
     }));
-    logger.info("Progress Data reading is done.");
+    logger.info('Progress Data reading is done.');
 
     // 4. COMMENT data: join Chapter to get moduleIndex and chapterIndex.
     const commentRepo = AppDataSource.getRepository(Comment);
-    const commentWhere = userId ? {chapterUserId: userId } : {};
+    const commentWhere = userId ? { chapterUserId: userId } : {};
     const commentResults = await commentRepo.find({
       where: commentWhere,
       relations: ['chapter', 'parent', 'chapterUser', 'commentUser'],
       order: { createdAt: 'DESC' }, // Ensure all records are fetched in order
     });
 
-    const commentData = commentResults.map(c => ({
+    const commentData = commentResults.map((c) => ({
       id: c.id,
       parentId: c.parent ? c.parent.id : '',
       userId: c.chapterUser ? c.chapterUser.id : null, // Assuming chapterUser is the user being commented on
@@ -475,7 +500,7 @@ const archiveData = async (req: Request, res: Response) => {
       createdAt: c.createdAt,
       text: c.text,
     }));
-    logger.info("Comment Data reading is done.");
+    logger.info('Comment Data reading is done.');
 
     // 5. ANSWER data: join Chapter to get moduleIndex and chapterIndex.
     const answerRepo = AppDataSource.getRepository(Answer);
@@ -486,26 +511,59 @@ const archiveData = async (req: Request, res: Response) => {
       order: { createdAt: 'DESC' }, // Ensure all records are fetched in order
     });
 
-    const answerData = answerResults.map(a => ({
+    const answerData = answerResults.map((a) => ({
       userId: a.userId,
       moduleIndex: a.chapter ? a.chapter.moduleId : null,
       chapterIndex: a.chapter ? a.chapter.index : null,
       createdAt: a.createdAt,
       text: a.text,
     }));
-    logger.info("Answer Data reading is done.");
+    logger.info('Answer Data reading is done.');
 
     // ================================
     // Convert Data to CSV
     // ================================
-    const csvOptions = { /* any additional options */ };
+    const csvOptions = {
+      /* any additional options */
+    };
 
-    const trackCsv = parse(tracks, { fields: ["userId", "startedAt", "endedAt"], ...csvOptions });
-    const moodCsv = parse(moods, { fields: ["userId", "createdAt", "createdDate", "feeling", "motivation"], ...csvOptions });
-    const progressCsv = parse(progressData, { fields: ["userId", "moduleIndex", "chapterIndex", "createdAt", "updatedAt", "value"], ...csvOptions });
-    const commentCsv = parse(commentData, { fields: ["id", "parentId", "userId", "commentUserId", "moduleIndex", "chapterIndex", "createdAt", "text"], ...csvOptions });
-    const answerCsv = parse(answerData, { fields: ["userId", "moduleIndex", "chapterIndex", "createdAt", "text"], ...csvOptions });
-    logger.info("Converted to CSV");
+    const trackCsv = parse(tracks, {
+      fields: ['userId', 'startedAt', 'endedAt'],
+      ...csvOptions,
+    });
+    const moodCsv = parse(moods, {
+      fields: ['userId', 'createdAt', 'createdDate', 'feeling', 'motivation'],
+      ...csvOptions,
+    });
+    const progressCsv = parse(progressData, {
+      fields: [
+        'userId',
+        'moduleIndex',
+        'chapterIndex',
+        'createdAt',
+        'updatedAt',
+        'value',
+      ],
+      ...csvOptions,
+    });
+    const commentCsv = parse(commentData, {
+      fields: [
+        'id',
+        'parentId',
+        'userId',
+        'commentUserId',
+        'moduleIndex',
+        'chapterIndex',
+        'createdAt',
+        'text',
+      ],
+      ...csvOptions,
+    });
+    const answerCsv = parse(answerData, {
+      fields: ['userId', 'moduleIndex', 'chapterIndex', 'createdAt', 'text'],
+      ...csvOptions,
+    });
+    logger.info('Converted to CSV');
 
     // Package CSV Files into a ZIP Archive
     const archive = archiver('zip', { zlib: { level: 9 } });
@@ -524,7 +582,7 @@ const archiveData = async (req: Request, res: Response) => {
     archive.append(progressCsv, { name: `${folderName}/progress.csv` });
     archive.append(commentCsv, { name: `${folderName}/comment.csv` });
     archive.append(answerCsv, { name: `${folderName}/answer.csv` });
-    logger.info("Packaged to Zip File");
+    logger.info('Packaged to Zip File');
 
     // Get today's date string in YYYY-MM-DD format
     const today = new Date();
@@ -535,7 +593,9 @@ const archiveData = async (req: Request, res: Response) => {
     if (userId) {
       const userRepo = AppDataSource.getRepository(User);
       const user = await userRepo.findOne({ where: { id: userId } });
-      zipFileName = user ? `${user.username}_${todayStr}.zip` : `User_${todayStr}.zip`;
+      zipFileName = user
+        ? `${user.username}_${todayStr}.zip`
+        : `User_${todayStr}.zip`;
     } else {
       zipFileName = `All_${todayStr}.zip`;
     }
@@ -556,7 +616,7 @@ const archiveData = async (req: Request, res: Response) => {
     });
 
     // Finalize the archive without awaiting it (to ensure event listeners catch the finish event)
-    archive.finalize();
+    void archive.finalize();
   } catch (error) {
     console.error('Error in downloadUserData:', error);
     res.status(500).send('Internal Server Error');
@@ -571,5 +631,5 @@ export default {
   resetUserPassword,
   getAllDisabledUserAccount,
   deleteUserPermanently,
-  archiveData
+  archiveData,
 };
