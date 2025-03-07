@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   api:
     container_name: api
@@ -6,39 +8,76 @@ services:
       context: .        # Use the current directory for building the image
       dockerfile: Dockerfile  # Specify the Dockerfile name (optional if default is `Dockerfile`)
     ports:
-      - ${PORT}:${PORT}
+      - "${PORT}:${PORT}"
     depends_on:
-      - db
+      db:
+        condition: service_healthy  # Ensures API starts only after DB is ready
     environment:
-      - PORT=${PORT}              # Ensure the environment matches your Dockerfile setup
+      - PORT=${PORT}  # Ensure the environment matches your Dockerfile setup
+      - DB_HOST=db
+      - DB_PORT=5432
     volumes:
       - ./uploads:/app/uploads
       - ./logs:/app/logs
+      - ./ssl:/app/ssl:ro  # Ensure API has access to SSL (optional)
     env_file:
       - .env
+    networks:
+      - app_network
     stdin_open: true
     tty: true
+    restart: unless-stopped
 
   db:
     container_name: postgres
     image: postgres:15-alpine
     ports:
-      - '${DB_HOST_PORT}:${DB_PORT}'
+      - "${DB_HOST_PORT}:${DB_PORT}"
     volumes:
       - data:/var/lib/postgresql/data
       - ./src/schemas:/docker-entrypoint-initdb.d
     environment:
       - POSTGRES_PASSWORD=${DB_PASSWORD}
       - POSTGRES_DB=${DB_NAME}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    networks:
+      - app_network
 
   db_test:
     container_name: test_postgres
     image: postgres:15-alpine
     ports:
-      - '${TEST_DB_HOST_PORT}:${TEST_DB_PORT}'
+      - "${TEST_DB_HOST_PORT}:${DB_PORT}"
     environment:
       - POSTGRES_PASSWORD=${DB_PASSWORD}
       - POSTGRES_DB=${TEST_DB_NAME}
+    restart: unless-stopped
+    networks:
+      - app_network
+
+  nginx:
+    container_name: nginx
+    image: nginx:latest
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro  # Ensure Nginx has access to SSL
+    depends_on:
+      - api
+    networks:
+      - app_network
+    restart: unless-stopped
 
 volumes:
   data:
+
+networks:
+  app_network:
+    driver: bridge
