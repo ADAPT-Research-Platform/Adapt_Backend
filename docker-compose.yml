@@ -1,44 +1,66 @@
 services:
   api:
     container_name: api
-    image: api  # This specifies the image name
+    image: api
     build:
-      context: .        # Use the current directory for building the image
-      dockerfile: Dockerfile  # Specify the Dockerfile name (optional if default is `Dockerfile`)
+      context: .
+      dockerfile: Dockerfile
     ports:
-      - ${PORT}:${PORT}
+      - "${PORT}:${PORT}"  # API Exposes Port (e.g., 8001)
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     environment:
-      - PORT=${PORT}              # Ensure the environment matches your Dockerfile setup
+      - PORT=${PORT}
+      - DB_HOST=db
+      - DB_PORT=5432
     volumes:
       - ./uploads:/app/uploads
       - ./logs:/app/logs
+      - ./ssl:/app/ssl:ro
     env_file:
       - .env
+    networks:
+      - app_network
     stdin_open: true
     tty: true
+    restart: unless-stopped
 
   db:
     container_name: postgres
     image: postgres:15-alpine
     ports:
-      - '${DB_HOST_PORT}:${DB_PORT}'
+      - "${DB_HOST_PORT}:${DB_PORT}"
     volumes:
       - data:/var/lib/postgresql/data
       - ./src/schemas:/docker-entrypoint-initdb.d
     environment:
       - POSTGRES_PASSWORD=${DB_PASSWORD}
       - POSTGRES_DB=${DB_NAME}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    networks:
+      - app_network
 
   db_test:
     container_name: test_postgres
     image: postgres:15-alpine
     ports:
-      - '${TEST_DB_HOST_PORT}:${DB_PORT}'
+      - "${TEST_DB_HOST_PORT}:${DB_PORT}"
     environment:
       - POSTGRES_PASSWORD=${DB_PASSWORD}
       - POSTGRES_DB=${TEST_DB_NAME}
+    restart: unless-stopped
+    networks:
+      - app_network
 
 volumes:
   data:
+
+networks:
+  app_network:
+    driver: bridge
