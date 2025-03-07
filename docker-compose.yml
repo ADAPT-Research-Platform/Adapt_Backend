@@ -67,7 +67,7 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx:/etc/nginx:ro  # Ensure this is a directory, not a file
       - ./ssl:/etc/nginx/ssl:ro  # Ensure Nginx has access to SSL
     depends_on:
       - api
