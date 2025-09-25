@@ -1,0 +1,360 @@
+2025-09-25 13:18:55 [INFO]: ============================================================================================
+2025-09-25 13:18:55 [INFO]: Server is started at http://127.0.0.1:8080
+2025-09-25 13:22:17 [INFO]: OPTIONS /api/admin/getAllUsers 204 1.147 ms - 0
+2025-09-25 13:22:17 [INFO]: OPTIONS /api/auth/get 204 0.143 ms - 0
+2025-09-25 13:22:17 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.117 ms - 0
+2025-09-25 13:22:17 [INFO]: OPTIONS /api/auth/get 204 0.149 ms - 0
+2025-09-25 13:22:17 [INFO]: GET /api/admin/getAllUsers 200 84.592 ms - 1104
+2025-09-25 13:22:17 [INFO]: GET /api/admin/getAllUsers 304 54.528 ms - -
+2025-09-25 13:22:17 [INFO]: GET /api/auth/get 403 2.208 ms - 90
+2025-09-25 13:22:17 [INFO]: GET /api/auth/get 403 1.021 ms - 90
+2025-09-25 13:22:19 [INFO]: OPTIONS /api/auth/login 204 0.338 ms - 0
+2025-09-25 13:22:19 [INFO]: POST /api/auth/login 401 82.339 ms - 89
+2025-09-25 13:22:58 [INFO]: OPTIONS /api/auth/login 204 0.141 ms - 0
+2025-09-25 13:22:58 [INFO]: POST /api/auth/login 401 65.314 ms - 89
+2025-09-25 13:23:03 [INFO]: OPTIONS /api/auth/login 204 0.208 ms - 0
+2025-09-25 13:23:03 [INFO]: POST /api/auth/login 401 47.468 ms - 89
+2025-09-25 13:23:10 [INFO]: OPTIONS /api/auth/login 204 0.782 ms - 0
+2025-09-25 13:23:10 [INFO]: POST /api/auth/login 401 47.613 ms - 89
+2025-09-25 13:23:24 [INFO]: OPTIONS /api/auth/login 204 0.209 ms - 0
+2025-09-25 13:23:25 [INFO]: POST /api/auth/login 401 92.847 ms - 89
+2025-09-25 13:23:51 [INFO]: OPTIONS /api/auth/login 204 1.481 ms - 0
+2025-09-25 13:23:52 [INFO]: POST /api/auth/login 401 351.424 ms - 89
+2025-09-25 13:24:16 [INFO]: OPTIONS /api/auth/login 204 0.110 ms - 0
+2025-09-25 13:24:17 [INFO]: POST /api/auth/login 401 361.265 ms - 89
+2025-09-25 13:24:20 [INFO]: POST /api/auth/login 401 319.828 ms - 89
+2025-09-25 13:24:45 [INFO]: OPTIONS /api/auth/login 204 0.665 ms - 0
+2025-09-25 13:24:45 [INFO]: POST /api/auth/login 401 353.777 ms - 89
+2025-09-25 13:26:06 [INFO]: OPTIONS /api/auth/login 204 0.393 ms - 0
+2025-09-25 13:26:07 [INFO]: POST /api/auth/login 401 346.422 ms - 89
+2025-09-25 13:27:52 [INFO]: OPTIONS /api/auth/login 204 0.154 ms - 0
+2025-09-25 13:27:53 [INFO]: POST /api/auth/login 200 569.104 ms - 86
+2025-09-25 13:27:53 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.175 ms - 0
+2025-09-25 13:27:53 [INFO]: OPTIONS /api/auth/get 204 0.180 ms - 0
+2025-09-25 13:27:53 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.204 ms - 0
+2025-09-25 13:27:53 [INFO]: OPTIONS /api/auth/get 204 0.238 ms - 0
+2025-09-25 13:27:54 [INFO]: GET /api/admin/getAllUsers 304 46.002 ms - -
+2025-09-25 13:27:54 [INFO]: GET /api/admin/getAllUsers 304 58.959 ms - -
+2025-09-25 13:27:54 [INFO]: GET /api/auth/get 200 123.317 ms - 86
+2025-09-25 13:27:54 [INFO]: GET /api/auth/get 304 118.819 ms - -
+2025-09-25 13:28:10 [INFO]: OPTIONS /api/admin/user/renameUser 204 0.094 ms - 0
+2025-09-25 13:28:10 [INFO]: PUT /api/admin/user/renameUser 403 1.044 ms - 85
+2025-09-25 13:28:52 [INFO]: OPTIONS /api/admin/user/renameUser 204 0.143 ms - 0
+2025-09-25 13:28:52 [INFO]: PUT /api/admin/user/renameUser 403 1.666 ms - 85
+2025-09-25 13:31:38 [INFO]: ============================================================================================
+2025-09-25 13:31:38 [INFO]: Server is started at http://127.0.0.1:8080
+2025-09-25 13:32:04 [INFO]: OPTIONS /api/admin/user/renameUser 204 3.326 ms - 0
+2025-09-25 13:32:04 [INFO]: PUT /api/admin/user/renameUser 403 18.502 ms - 85
+2025-09-25 13:35:57 [INFO]: OPTIONS /api/admin/user/renameUser 204 0.659 ms - 0
+2025-09-25 13:35:57 [INFO]: PUT /api/admin/user/renameUser 403 3.007 ms - 85
+2025-09-25 13:36:02 [INFO]: OPTIONS /api/admin/user/deleteRequest 204 0.126 ms - 0
+2025-09-25 13:36:02 [INFO]: OPTIONS /api/admin/user/deleteRequest 204 0.156 ms - 0
+2025-09-25 13:36:02 [INFO]: GET /api/admin/user/deleteRequest 200 257.889 ms - 2
+2025-09-25 13:36:03 [INFO]: GET /api/admin/user/deleteRequest 304 167.231 ms - -
+2025-09-25 13:36:04 [INFO]: GET /api/admin/user/deleteRequest 304 156.653 ms - -
+2025-09-25 13:36:04 [INFO]: GET /api/admin/user/deleteRequest 304 150.165 ms - -
+2025-09-25 13:38:15 [INFO]: ============================================================================================
+2025-09-25 13:38:15 [INFO]: Server is started at http://127.0.0.1:8080
+2025-09-25 13:38:26 [INFO]: OPTIONS /api/admin/getUserProgress/3 204 1.778 ms - 0
+2025-09-25 13:38:26 [INFO]: GET /api/admin/getUserProgress/3 404 78.342 ms - 42
+2025-09-25 13:38:32 [INFO]: OPTIONS /api/admin/user/renameUser 204 0.148 ms - 0
+2025-09-25 13:38:32 [INFO]: PUT /api/admin/user/renameUser 200 171.420 ms - 392
+2025-09-25 13:38:32 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.316 ms - 0
+2025-09-25 13:38:32 [INFO]: GET /api/admin/getAllUsers 200 49.549 ms - 1109
+2025-09-25 13:39:58 [INFO]: ============================================================================================
+2025-09-25 13:39:58 [INFO]: Server is started at http://127.0.0.1:8080
+2025-09-25 13:40:07 [INFO]: ============================================================================================
+2025-09-25 13:40:07 [INFO]: Server is started at http://127.0.0.1:8080
+2025-09-25 13:40:25 [INFO]: OPTIONS /api/admin/getAllUsers 204 3.269 ms - 0
+2025-09-25 13:40:25 [INFO]: OPTIONS /api/auth/get 204 0.274 ms - 0
+2025-09-25 13:40:25 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.387 ms - 0
+2025-09-25 13:40:25 [INFO]: OPTIONS /api/auth/get 204 0.244 ms - 0
+2025-09-25 13:40:25 [INFO]: GET /api/admin/getAllUsers 304 82.463 ms - -
+2025-09-25 13:40:25 [INFO]: GET /api/admin/getAllUsers 304 53.564 ms - -
+2025-09-25 13:40:26 [INFO]: GET /api/auth/get 304 184.725 ms - -
+2025-09-25 13:40:26 [INFO]: GET /api/auth/get 304 103.042 ms - -
+2025-09-25 13:40:35 [INFO]: OPTIONS /api/admin/user/renameUser 204 0.165 ms - 0
+2025-09-25 13:40:35 [INFO]: isAdmin middleware: req.user: undefined
+2025-09-25 13:40:35 [INFO]: PUT /api/admin/user/renameUser 403 12.006 ms - 85
+2025-09-25 13:42:23 [INFO]: ============================================================================================
+2025-09-25 13:42:23 [INFO]: Server is started at http://127.0.0.1:8080
+2025-09-25 13:42:52 [INFO]: ============================================================================================
+2025-09-25 13:42:52 [INFO]: Server is started at http://127.0.0.1:8080
+2025-09-25 13:43:06 [INFO]: ============================================================================================
+2025-09-25 13:43:06 [INFO]: Server is started at http://127.0.0.1:8080
+2025-09-25 13:43:29 [INFO]: ============================================================================================
+2025-09-25 13:43:29 [INFO]: Server is started at http://127.0.0.1:8080
+2025-09-25 13:43:41 [INFO]: ============================================================================================
+2025-09-25 13:43:41 [INFO]: Server is started at http://127.0.0.1:8080
+2025-09-25 13:43:44 [INFO]: OPTIONS /api/admin/user/renameUser 204 1.106 ms - 0
+2025-09-25 13:43:44 [INFO]: PUT /api/admin/user/renameUser 403 14.442 ms - 85
+2025-09-25 13:43:47 [INFO]: PUT /api/admin/user/renameUser 403 2.359 ms - 85
+2025-09-25 13:43:58 [INFO]: ============================================================================================
+2025-09-25 13:43:58 [INFO]: Server is started at http://127.0.0.1:8080
+2025-09-25 13:44:09 [INFO]: ============================================================================================
+2025-09-25 13:44:09 [INFO]: Server is started at http://127.0.0.1:8080
+2025-09-25 13:44:12 [INFO]: OPTIONS /api/admin/user/renameUser 204 1.063 ms - 0
+2025-09-25 13:44:12 [INFO]: PUT /api/admin/user/renameUser 403 14.595 ms - 85
+2025-09-25 13:46:41 [INFO]: ============================================================================================
+2025-09-25 13:46:41 [INFO]: Server is started at http://127.0.0.1:8080
+2025-09-25 13:46:55 [INFO]: OPTIONS /api/admin/user/renameUser 204 2.649 ms - 0
+2025-09-25 13:46:55 [INFO]: PUT /api/admin/user/renameUser 403 14.619 ms - 90
+2025-09-25 13:48:43 [INFO]: ============================================================================================
+2025-09-25 13:48:43 [INFO]: Server is started at http://127.0.0.1:8080
+2025-09-25 13:50:03 [INFO]: OPTIONS /api/admin/user/renameUser 204 1.287 ms - 0
+2025-09-25 13:50:03 [INFO]: PUT /api/admin/user/renameUser 403 20.094 ms - 90
+2025-09-25 13:50:35 [INFO]: ============================================================================================
+2025-09-25 13:50:35 [INFO]: Server is started at http://127.0.0.1:8080
+2025-09-25 13:50:38 [INFO]: OPTIONS /api/admin/getAllUsers 204 1.886 ms - 0
+2025-09-25 13:50:38 [INFO]: OPTIONS /api/auth/get 204 0.213 ms - 0
+2025-09-25 13:50:38 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.130 ms - 0
+2025-09-25 13:50:38 [INFO]: OPTIONS /api/auth/get 204 0.105 ms - 0
+2025-09-25 13:50:38 [INFO]: GET /api/admin/getAllUsers 304 63.708 ms - -
+2025-09-25 13:50:38 [INFO]: GET /api/admin/getAllUsers 304 52.898 ms - -
+2025-09-25 13:50:39 [INFO]: deserializeUser: user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-09-25 13:50:39 [INFO]: GET /api/auth/get 304 165.600 ms - -
+2025-09-25 13:50:39 [INFO]: deserializeUser: user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-09-25 13:50:39 [INFO]: GET /api/auth/get 304 93.090 ms - -
+2025-09-25 13:50:42 [INFO]: OPTIONS /api/admin/user/renameUser 204 0.152 ms - 0
+2025-09-25 13:50:42 [INFO]: PUT /api/admin/user/renameUser 403 11.903 ms - 90
+2025-09-25 13:52:16 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.132 ms - 0
+2025-09-25 13:52:16 [INFO]: OPTIONS /api/auth/get 204 0.119 ms - 0
+2025-09-25 13:52:16 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.113 ms - 0
+2025-09-25 13:52:16 [INFO]: OPTIONS /api/auth/get 204 0.106 ms - 0
+2025-09-25 13:52:16 [INFO]: GET /api/admin/getAllUsers 304 60.032 ms - -
+2025-09-25 13:52:16 [INFO]: GET /api/admin/getAllUsers 304 48.330 ms - -
+2025-09-25 13:52:16 [INFO]: GET /api/auth/get 403 2.239 ms - 90
+2025-09-25 13:52:16 [INFO]: GET /api/auth/get 403 2.414 ms - 90
+2025-09-25 13:52:17 [INFO]: OPTIONS /api/auth/login 204 0.696 ms - 0
+2025-09-25 13:52:18 [INFO]: POST /api/auth/login 200 502.706 ms - 86
+2025-09-25 13:52:18 [INFO]: GET /api/admin/getAllUsers 304 55.265 ms - -
+2025-09-25 13:52:18 [INFO]: GET /api/admin/getAllUsers 304 46.205 ms - -
+2025-09-25 13:52:18 [INFO]: deserializeUser: user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-09-25 13:52:18 [INFO]: GET /api/auth/get 200 122.040 ms - 86
+2025-09-25 13:52:18 [INFO]: deserializeUser: user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-09-25 13:52:18 [INFO]: GET /api/auth/get 304 117.469 ms - -
+2025-09-25 13:52:28 [INFO]: OPTIONS /api/admin/user/renameUser 204 0.120 ms - 0
+2025-09-25 13:52:28 [INFO]: PUT /api/admin/user/renameUser 403 1.185 ms - 90
+2025-09-25 13:54:16 [INFO]: OPTIONS /api/admin/archiveData/2 204 0.102 ms - 0
+2025-09-25 13:54:16 [INFO]: deserializeUser: user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-09-25 13:54:16 [INFO]: Archive UserId: undefined
+2025-09-25 13:54:16 [INFO]: Tracking Data reading is done.
+2025-09-25 13:54:16 [INFO]: Mood Data reading is done.
+2025-09-25 13:54:16 [INFO]: Progress Data reading is done.
+2025-09-25 13:54:16 [INFO]: Comment Data reading is done.
+2025-09-25 13:54:16 [INFO]: Answer Data reading is done.
+2025-09-25 13:54:16 [INFO]: Converted to CSV
+2025-09-25 13:54:16 [INFO]: Packaged to Zip File
+2025-09-25 13:54:16 [INFO]: FileName: All_2025-09-25.zip
+2025-09-25 13:54:16 [INFO]: ZIP archive created.
+2025-09-25 13:54:16 [INFO]: GET /api/admin/archiveData/2 200 211.621 ms - 4345
+2025-09-25 13:54:16 [INFO]: OPTIONS /api/admin/archiveData/1 204 0.097 ms - 0
+2025-09-25 13:54:17 [INFO]: deserializeUser: user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-09-25 13:54:17 [INFO]: Archive UserId: undefined
+2025-09-25 13:54:17 [INFO]: Tracking Data reading is done.
+2025-09-25 13:54:17 [INFO]: Mood Data reading is done.
+2025-09-25 13:54:17 [INFO]: Progress Data reading is done.
+2025-09-25 13:54:17 [INFO]: Comment Data reading is done.
+2025-09-25 13:54:17 [INFO]: Answer Data reading is done.
+2025-09-25 13:54:17 [INFO]: Converted to CSV
+2025-09-25 13:54:17 [INFO]: Packaged to Zip File
+2025-09-25 13:54:17 [INFO]: FileName: All_2025-09-25.zip
+2025-09-25 13:54:17 [INFO]: ZIP archive created.
+2025-09-25 13:54:17 [INFO]: GET /api/admin/archiveData/1 200 133.836 ms - 4345
+2025-09-25 13:54:17 [INFO]: OPTIONS /api/admin/archiveData/4 204 0.090 ms - 0
+2025-09-25 13:54:17 [INFO]: deserializeUser: user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-09-25 13:54:17 [INFO]: Archive UserId: undefined
+2025-09-25 13:54:17 [INFO]: Tracking Data reading is done.
+2025-09-25 13:54:17 [INFO]: Mood Data reading is done.
+2025-09-25 13:54:17 [INFO]: Progress Data reading is done.
+2025-09-25 13:54:17 [INFO]: Comment Data reading is done.
+2025-09-25 13:54:17 [INFO]: Answer Data reading is done.
+2025-09-25 13:54:17 [INFO]: Converted to CSV
+2025-09-25 13:54:17 [INFO]: Packaged to Zip File
+2025-09-25 13:54:17 [INFO]: FileName: All_2025-09-25.zip
+2025-09-25 13:54:17 [INFO]: ZIP archive created.
+2025-09-25 13:54:17 [INFO]: GET /api/admin/archiveData/4 200 147.335 ms - 4345
+2025-09-25 13:54:17 [INFO]: OPTIONS /api/admin/archiveData/6 204 0.135 ms - 0
+2025-09-25 13:54:17 [INFO]: deserializeUser: user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-09-25 13:54:17 [INFO]: Archive UserId: undefined
+2025-09-25 13:54:17 [INFO]: Tracking Data reading is done.
+2025-09-25 13:54:17 [INFO]: Mood Data reading is done.
+2025-09-25 13:54:17 [INFO]: Progress Data reading is done.
+2025-09-25 13:54:17 [INFO]: Comment Data reading is done.
+2025-09-25 13:54:17 [INFO]: Answer Data reading is done.
+2025-09-25 13:54:17 [INFO]: Converted to CSV
+2025-09-25 13:54:17 [INFO]: Packaged to Zip File
+2025-09-25 13:54:17 [INFO]: FileName: All_2025-09-25.zip
+2025-09-25 13:54:17 [INFO]: ZIP archive created.
+2025-09-25 13:54:17 [INFO]: GET /api/admin/archiveData/6 200 141.330 ms - 4345
+2025-09-25 13:54:17 [INFO]: OPTIONS /api/admin/archiveData/5 204 0.102 ms - 0
+2025-09-25 13:54:17 [INFO]: deserializeUser: user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-09-25 13:54:17 [INFO]: Archive UserId: undefined
+2025-09-25 13:54:17 [INFO]: Tracking Data reading is done.
+2025-09-25 13:54:17 [INFO]: Mood Data reading is done.
+2025-09-25 13:54:17 [INFO]: Progress Data reading is done.
+2025-09-25 13:54:17 [INFO]: Comment Data reading is done.
+2025-09-25 13:54:17 [INFO]: Answer Data reading is done.
+2025-09-25 13:54:17 [INFO]: Converted to CSV
+2025-09-25 13:54:17 [INFO]: Packaged to Zip File
+2025-09-25 13:54:17 [INFO]: FileName: All_2025-09-25.zip
+2025-09-25 13:54:17 [INFO]: ZIP archive created.
+2025-09-25 13:54:17 [INFO]: GET /api/admin/archiveData/5 200 146.958 ms - 4345
+2025-09-25 13:54:17 [INFO]: OPTIONS /api/admin/archiveData/3 204 0.097 ms - 0
+2025-09-25 13:54:17 [INFO]: deserializeUser: user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-09-25 13:54:17 [INFO]: Archive UserId: undefined
+2025-09-25 13:54:17 [INFO]: Tracking Data reading is done.
+2025-09-25 13:54:17 [INFO]: Mood Data reading is done.
+2025-09-25 13:54:17 [INFO]: Progress Data reading is done.
+2025-09-25 13:54:17 [INFO]: Comment Data reading is done.
+2025-09-25 13:54:17 [INFO]: Answer Data reading is done.
+2025-09-25 13:54:17 [INFO]: Converted to CSV
+2025-09-25 13:54:17 [INFO]: Packaged to Zip File
+2025-09-25 13:54:17 [INFO]: FileName: All_2025-09-25.zip
+2025-09-25 13:54:17 [INFO]: ZIP archive created.
+2025-09-25 13:54:18 [INFO]: GET /api/admin/archiveData/3 200 181.509 ms - 4345
+2025-09-25 13:54:29 [INFO]: OPTIONS /api/admin/user/renameUser 204 0.143 ms - 0
+2025-09-25 13:54:29 [INFO]: PUT /api/admin/user/renameUser 403 1.347 ms - 90
+2025-09-25 13:57:46 [INFO]: ============================================================================================
+2025-09-25 13:57:46 [INFO]: Server is started at http://127.0.0.1:8080
+2025-09-25 13:58:26 [INFO]: OPTIONS /api/admin/getAllUsers 204 1.438 ms - 0
+2025-09-25 13:58:26 [INFO]: OPTIONS /api/auth/get 204 0.195 ms - 0
+2025-09-25 13:58:26 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.116 ms - 0
+2025-09-25 13:58:26 [INFO]: OPTIONS /api/auth/get 204 0.116 ms - 0
+2025-09-25 13:58:26 [INFO]: GET /api/admin/getAllUsers 304 74.042 ms - -
+2025-09-25 13:58:26 [INFO]: GET /api/admin/getAllUsers 304 54.419 ms - -
+2025-09-25 13:58:26 [INFO]: deserializeUser: user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-09-25 13:58:26 [INFO]: GET /api/auth/get 304 173.139 ms - -
+2025-09-25 13:58:27 [INFO]: deserializeUser: user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-09-25 13:58:27 [INFO]: GET /api/auth/get 304 101.188 ms - -
+2025-09-25 13:58:29 [INFO]: OPTIONS /api/admin/user/renameUser 204 0.208 ms - 0
+2025-09-25 13:58:29 [INFO]: PUT /api/admin/user/renameUser 403 11.590 ms - 90
+2025-09-25 14:00:57 [INFO]: ============================================================================================
+2025-09-25 14:00:57 [INFO]: Server is started at http://127.0.0.1:8080
+2025-09-25 14:01:01 [INFO]: OPTIONS /api/admin/getAllUsers 204 3.508 ms - 0
+2025-09-25 14:01:01 [INFO]: OPTIONS /api/auth/get 204 0.297 ms - 0
+2025-09-25 14:01:01 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.202 ms - 0
+2025-09-25 14:01:01 [INFO]: OPTIONS /api/auth/get 204 0.205 ms - 0
+2025-09-25 14:01:01 [INFO]: GET /api/admin/getAllUsers 304 66.472 ms - -
+2025-09-25 14:01:01 [INFO]: GET /api/admin/getAllUsers 304 53.748 ms - -
+2025-09-25 14:01:02 [INFO]: deserializeUser: user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-09-25 14:01:02 [INFO]: GET /api/auth/get 304 172.304 ms - -
+2025-09-25 14:01:02 [INFO]: deserializeUser: user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-09-25 14:01:02 [INFO]: GET /api/auth/get 304 95.645 ms - -
+2025-09-25 14:01:07 [INFO]: OPTIONS /api/admin/user/renameUser 204 0.165 ms - 0
+2025-09-25 14:01:07 [INFO]: isAdmin: req.user: undefined
+2025-09-25 14:01:07 [INFO]: PUT /api/admin/user/renameUser 403 12.569 ms - 90
+2025-09-25 14:01:46 [INFO]: ============================================================================================
+2025-09-25 14:01:46 [INFO]: Server is started at http://127.0.0.1:8080
+2025-09-25 14:01:52 [INFO]: OPTIONS /api/admin/user/renameUser 204 2.117 ms - 0
+2025-09-25 14:01:52 [INFO]: isAdmin middleware called $req
+2025-09-25 14:01:52 [INFO]: isAdmin: req.user: undefined
+2025-09-25 14:01:52 [INFO]: PUT /api/admin/user/renameUser 403 21.758 ms - 90
+2025-09-25 14:02:11 [INFO]: ============================================================================================
+2025-09-25 14:02:11 [INFO]: Server is started at http://127.0.0.1:8080
+2025-09-25 14:02:33 [INFO]: ============================================================================================
+2025-09-25 14:02:33 [INFO]: Server is started at http://127.0.0.1:8080
+2025-09-25 14:02:37 [INFO]: OPTIONS /api/admin/user/renameUser 204 1.076 ms - 0
+2025-09-25 14:02:37 [INFO]: isAdmin middleware called [object Object]
+2025-09-25 14:02:37 [INFO]: isAdmin: req.user: undefined
+2025-09-25 14:02:37 [INFO]: PUT /api/admin/user/renameUser 403 14.683 ms - 90
+2025-09-25 14:03:06 [INFO]: ============================================================================================
+2025-09-25 14:03:06 [INFO]: Server is started at http://127.0.0.1:8080
+2025-09-25 14:03:08 [INFO]: OPTIONS /api/admin/user/renameUser 204 2.230 ms - 0
+2025-09-25 14:03:08 [INFO]: isAdmin middleware called [object Object]
+2025-09-25 14:03:08 [INFO]: isAdmin: req.user: undefined
+2025-09-25 14:03:08 [INFO]: PUT /api/admin/user/renameUser 403 50.936 ms - 90
+2025-09-25 14:04:03 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.236 ms - 0
+2025-09-25 14:04:03 [INFO]: OPTIONS /api/auth/get 204 0.119 ms - 0
+2025-09-25 14:04:03 [INFO]: GET /api/admin/getAllUsers 304 75.003 ms - -
+2025-09-25 14:04:04 [INFO]: deserializeUser: user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-09-25 14:04:04 [INFO]: GET /api/auth/get 304 168.131 ms - -
+2025-09-25 14:04:27 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.151 ms - 0
+2025-09-25 14:04:27 [INFO]: OPTIONS /api/auth/get 204 0.130 ms - 0
+2025-09-25 14:04:27 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.212 ms - 0
+2025-09-25 14:04:27 [INFO]: OPTIONS /api/auth/get 204 0.338 ms - 0
+2025-09-25 14:04:27 [INFO]: GET /api/admin/getAllUsers 304 68.124 ms - -
+2025-09-25 14:04:27 [INFO]: GET /api/admin/getAllUsers 304 47.289 ms - -
+2025-09-25 14:04:27 [INFO]: deserializeUser: user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-09-25 14:04:28 [INFO]: GET /api/auth/get 304 136.935 ms - -
+2025-09-25 14:04:28 [INFO]: deserializeUser: user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-09-25 14:04:28 [INFO]: GET /api/auth/get 304 94.964 ms - -
+2025-09-25 14:04:31 [INFO]: OPTIONS /api/admin/user/renameUser 204 0.161 ms - 0
+2025-09-25 14:04:31 [INFO]: deserializeUser: user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-09-25 14:04:31 [INFO]: isAdmin middleware called [object Object]
+2025-09-25 14:04:31 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-09-25 14:04:31 [INFO]: PUT /api/admin/user/renameUser 200 269.076 ms - 390
+2025-09-25 14:04:31 [INFO]: GET /api/admin/getAllUsers 200 51.016 ms - 1112
+2025-09-25 14:06:09 [INFO]: ============================================================================================
+2025-09-25 14:06:09 [INFO]: Server is started at http://127.0.0.1:8080
+2025-09-25 14:06:18 [INFO]: OPTIONS /api/admin/user/renameUser 204 1.970 ms - 0
+2025-09-25 14:06:19 [INFO]: isAdmin middleware called [object Object]
+2025-09-25 14:06:19 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-09-25 14:06:19 [INFO]: PUT /api/admin/user/renameUser 200 363.932 ms - 399
+2025-09-25 14:06:19 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.249 ms - 0
+2025-09-25 14:06:19 [INFO]: GET /api/admin/getAllUsers 200 48.008 ms - 1119
+2025-09-25 14:07:47 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.215 ms - 0
+2025-09-25 14:07:47 [INFO]: OPTIONS /api/auth/get 204 0.400 ms - 0
+2025-09-25 14:07:47 [INFO]: GET /api/admin/getAllUsers 304 76.384 ms - -
+2025-09-25 14:07:47 [INFO]: GET /api/auth/get 304 123.921 ms - -
+2025-09-25 14:07:48 [INFO]: GET /api/admin/getAllUsers 304 52.357 ms - -
+2025-09-25 14:07:49 [INFO]: GET /api/auth/get 304 101.514 ms - -
+2025-09-25 14:07:54 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.271 ms - 0
+2025-09-25 14:07:54 [INFO]: OPTIONS /api/auth/get 204 0.215 ms - 0
+2025-09-25 14:07:54 [INFO]: GET /api/admin/getAllUsers 304 49.964 ms - -
+2025-09-25 14:07:55 [INFO]: GET /api/auth/get 304 97.185 ms - -
+2025-09-25 14:11:20 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.196 ms - 0
+2025-09-25 14:11:20 [INFO]: OPTIONS /api/auth/get 204 0.136 ms - 0
+2025-09-25 14:11:20 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.130 ms - 0
+2025-09-25 14:11:20 [INFO]: OPTIONS /api/auth/get 204 0.117 ms - 0
+2025-09-25 14:11:20 [INFO]: GET /api/admin/getAllUsers 304 64.775 ms - -
+2025-09-25 14:11:20 [INFO]: GET /api/admin/getAllUsers 304 47.616 ms - -
+2025-09-25 14:11:20 [INFO]: GET /api/auth/get 304 146.764 ms - -
+2025-09-25 14:11:21 [INFO]: GET /api/auth/get 304 95.743 ms - -
+2025-09-25 14:11:25 [INFO]: OPTIONS /api/admin/user/renameUser 204 0.160 ms - 0
+2025-09-25 14:11:26 [INFO]: isAdmin middleware called [object Object]
+2025-09-25 14:11:26 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-09-25 14:11:26 [INFO]: PUT /api/admin/user/renameUser 200 263.679 ms - 397
+2025-09-25 14:11:26 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.090 ms - 0
+2025-09-25 14:11:26 [INFO]: GET /api/admin/getAllUsers 200 53.149 ms - 1124
+2025-09-25 14:11:45 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.133 ms - 0
+2025-09-25 14:11:45 [INFO]: GET /api/admin/getAllUsers 304 63.210 ms - -
+2025-09-25 14:11:47 [INFO]: OPTIONS /api/users 204 0.097 ms - 0
+2025-09-25 14:11:47 [INFO]: POST /api/users 201 391.089 ms - 7
+2025-09-25 14:11:47 [INFO]: GET /api/admin/getAllUsers 200 44.395 ms - 1306
+2025-09-25 14:11:50 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.100 ms - 0
+2025-09-25 14:11:50 [INFO]: GET /api/admin/getAllUsers 304 44.059 ms - -
+2025-09-25 14:11:53 [INFO]: OPTIONS /api/users 204 0.087 ms - 0
+2025-09-25 14:11:53 [INFO]: POST /api/users 201 377.563 ms - 7
+2025-09-25 14:11:53 [INFO]: GET /api/admin/getAllUsers 200 46.629 ms - 1488
+2025-09-25 14:11:55 [INFO]: GET /api/admin/getAllUsers 304 47.689 ms - -
+2025-09-25 14:11:56 [INFO]: POST /api/users 201 388.662 ms - 7
+2025-09-25 14:11:56 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.229 ms - 0
+2025-09-25 14:11:56 [INFO]: GET /api/admin/getAllUsers 200 52.984 ms - 1670
+2025-09-25 14:11:58 [INFO]: GET /api/admin/getAllUsers 304 55.310 ms - -
+2025-09-25 14:11:58 [INFO]: OPTIONS /api/users 204 0.091 ms - 0
+2025-09-25 14:11:59 [INFO]: POST /api/users 201 386.373 ms - 7
+2025-09-25 14:11:59 [INFO]: GET /api/admin/getAllUsers 200 46.054 ms - 1853
+2025-09-25 14:12:06 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.161 ms - 0
+2025-09-25 14:12:06 [INFO]: GET /api/admin/getAllUsers 304 54.694 ms - -
+2025-09-25 14:12:07 [INFO]: OPTIONS /api/users 204 0.091 ms - 0
+2025-09-25 14:12:07 [INFO]: POST /api/users 201 376.354 ms - 7
+2025-09-25 14:12:07 [INFO]: GET /api/admin/getAllUsers 200 46.619 ms - 2036
+2025-09-25 14:12:11 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.133 ms - 0
+2025-09-25 14:12:11 [INFO]: GET /api/admin/getAllUsers 304 45.285 ms - -
+2025-09-25 14:12:13 [INFO]: OPTIONS /api/users 204 0.116 ms - 0
+2025-09-25 14:12:13 [INFO]: POST /api/users 201 376.905 ms - 7
+2025-09-25 14:12:14 [INFO]: GET /api/admin/getAllUsers 200 55.131 ms - 2219
+2025-09-25 14:12:15 [INFO]: GET /api/admin/getAllUsers 304 47.632 ms - -
+2025-09-25 14:12:17 [INFO]: POST /api/users 201 392.178 ms - 7
+2025-09-25 14:12:17 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.133 ms - 0
+2025-09-25 14:12:17 [INFO]: GET /api/admin/getAllUsers 200 52.617 ms - 2402
+2025-09-25 14:12:18 [INFO]: GET /api/admin/getAllUsers 304 51.128 ms - -
+2025-09-25 14:12:19 [INFO]: OPTIONS /api/users 204 0.102 ms - 0
+2025-09-25 14:12:19 [INFO]: POST /api/users 201 382.693 ms - 7
+2025-09-25 14:12:19 [INFO]: GET /api/admin/getAllUsers 200 46.965 ms - 2585
+2025-09-25 14:12:23 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.149 ms - 0
+2025-09-25 14:12:23 [INFO]: GET /api/admin/getAllUsers 304 50.667 ms - -
+2025-09-25 14:12:24 [INFO]: OPTIONS /api/users 204 0.114 ms - 0
+2025-09-25 14:12:25 [INFO]: POST /api/users 201 382.115 ms - 7
+2025-09-25 14:12:25 [INFO]: GET /api/admin/getAllUsers 200 46.376 ms - 2768

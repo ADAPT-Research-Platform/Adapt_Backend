@@ -1,0 +1,105 @@
+2025-07-10 16:34:26 [INFO]: ============================================================================================
+2025-07-10 16:34:26 [INFO]: Server is started at http://127.0.0.1:8080
+2025-07-10 19:53:48 [INFO]: OPTIONS /api/admin/getAllUsers 204 1.467 ms - 0
+2025-07-10 19:53:48 [INFO]: OPTIONS /api/auth/get 204 0.186 ms - 0
+2025-07-10 19:53:48 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.126 ms - 0
+2025-07-10 19:53:48 [INFO]: OPTIONS /api/auth/get 204 0.175 ms - 0
+2025-07-10 19:53:48 [INFO]: GET /api/admin/getAllUsers 200 86.788 ms - 1104
+2025-07-10 19:53:48 [INFO]: GET /api/admin/getAllUsers 304 52.683 ms - -
+2025-07-10 19:53:49 [INFO]: GET /api/auth/get 200 169.947 ms - 86
+2025-07-10 19:53:49 [INFO]: GET /api/auth/get 304 96.788 ms - -
+2025-07-10 19:57:40 [INFO]: OPTIONS /api/admin/user/resetUserPassword 204 0.249 ms - 0
+2025-07-10 19:57:41 [INFO]: PUT /api/admin/user/resetUserPassword 200 501.420 ms - 47
+2025-07-10 19:59:04 [INFO]: GET /api/auth/verify-cookie 401 63.980 ms - 96
+2025-07-10 19:59:18 [INFO]: POST /api/auth/login 200 515.688 ms - 83
+2025-07-10 19:59:18 [INFO]: GET /api/modules/diaryDates 401 65.055 ms - 89
+2025-07-10 19:59:19 [INFO]: GET /api/moods?startDate=2025-07-01T00%3A00%3A00.000&endDate=2025-07-31T00%3A00%3A00.000 401 82.527 ms - 89
+2025-07-10 19:59:19 [INFO]: GET /api/uploads/pages/contacts/content_de.md 200 87.194 ms - 4012
+2025-07-10 19:59:19 [INFO]: GET /api/modules/ids 200 114.795 ms - 51
+2025-07-10 20:01:09 [INFO]: GET /api/modules?moduleId=1 200 327.512 ms - 1522
+2025-07-10 20:01:10 [INFO]: GET /api/uploads/module_01/chapter_01/image_01.png 200 2.671 ms - 50526
+2025-07-10 20:01:10 [INFO]: GET /api/uploads/module_01/chapter_01/content_de.md 200 127.436 ms - 2333
+2025-07-10 20:02:57 [INFO]: POST /api/tracks 201 281.137 ms - 7
+2025-07-10 20:03:22 [INFO]: OPTIONS /api/admin/getUserProgress/5 204 0.139 ms - 0
+2025-07-10 20:03:22 [INFO]: GET /api/admin/getUserProgress/5 200 225.731 ms - 9097
+2025-07-10 20:03:38 [INFO]: GET /api/modules?moduleId=3 200 325.790 ms - 1752
+2025-07-10 20:07:28 [INFO]: GET /api/modules?moduleId=7 200 318.053 ms - 2076
+2025-07-10 20:12:37 [INFO]: StartDate: 2025-06-30T22:00:00.000Z EndDate: 2025-07-30T22:00:00.000Z
+2025-07-10 20:12:37 [INFO]: GET /api/uploads/pages/contacts/content_de.md 200 137.356 ms - 4012
+2025-07-10 20:12:37 [INFO]: GET /api/moods?startDate=2025-07-01T00%3A00%3A00.000&endDate=2025-07-31T00%3A00%3A00.000 200 189.155 ms - 2
+2025-07-10 20:12:38 [INFO]: StartDate: 2025-06-30T22:00:00.000Z EndDate: 2025-07-30T22:00:00.000Z
+2025-07-10 20:12:38 [INFO]: GET /api/uploads/pages/contacts/content_de.md 200 95.499 ms - 4012
+2025-07-10 20:12:38 [INFO]: GET /api/moods?startDate=2025-07-01T00%3A00%3A00.000&endDate=2025-07-31T00%3A00%3A00.000 200 144.901 ms - 2
+2025-07-10 20:13:33 [INFO]: GET /api/auth/verify-cookie 200 65.016 ms - 15
+2025-07-10 20:13:34 [INFO]: StartDate: 2025-06-30T22:00:00.000Z EndDate: 2025-07-30T22:00:00.000Z
+2025-07-10 20:13:34 [INFO]: GET /api/uploads/pages/contacts/content_de.md 200 153.917 ms - 4012
+2025-07-10 20:13:34 [INFO]: GET /api/modules/diaryDates 200 181.132 ms - 18
+2025-07-10 20:13:34 [INFO]: GET /api/modules/ids 200 178.212 ms - 51
+2025-07-10 20:13:34 [INFO]: GET /api/moods?startDate=2025-07-01T00%3A00%3A00.000&endDate=2025-07-31T00%3A00%3A00.000 200 194.036 ms - 2
+2025-07-10 20:13:34 [INFO]: Thu Jul 10 2025 20:13:33 GMT+0200 (Central European Summer Time) Thu Jul 10 2025 02:00:00 GMT+0200 (Central European Summer Time) Fri Jul 11 2025 01:59:59 GMT+0200 (Central European Summer Time)
+2025-07-10 20:13:34 [INFO]: [object Object]
+2025-07-10 20:13:34 [INFO]: Filter Range: 2025-07-10T00:00:00.000Z - 2025-07-10T23:59:59.999Z
+2025-07-10 20:13:34 [INFO]: Size: 0
+2025-07-10 20:13:34 [INFO]: GET /api/answers/getByDate?date=2025-07-10T20%3A13%3A33.947864 200 152.309 ms - 2
+2025-07-10 20:13:34 [INFO]: GET /api/comments?date=2025-07-10T20%3A13%3A33.947864 200 154.050 ms - 2
+2025-07-10 20:13:49 [INFO]: GET /api/modules?moduleId=1 200 336.006 ms - 1522
+2025-07-10 20:13:51 [INFO]: GET /api/uploads/module_01/chapter_02/image_01.png 200 1.269 ms - 186702
+2025-07-10 20:13:51 [INFO]: GET /api/uploads/module_01/chapter_02/content_de.md 200 98.539 ms - 46
+2025-07-10 20:13:58 [INFO]: GET /api/uploads/module_01/chapter_04/content_de.md 200 105.176 ms - 2742
+2025-07-10 20:14:57 [INFO]: GET /api/modules?moduleId=3 200 324.311 ms - 1752
+2025-07-10 20:15:42 [INFO]: POST /api/tracks 201 274.392 ms - 7
+2025-07-10 20:17:31 [INFO]: GET /api/modules?moduleId=6 200 321.639 ms - 2029
+2025-07-10 21:23:04 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.210 ms - 0
+2025-07-10 21:23:04 [INFO]: OPTIONS /api/auth/get 204 0.179 ms - 0
+2025-07-10 21:23:04 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.105 ms - 0
+2025-07-10 21:23:04 [INFO]: OPTIONS /api/auth/get 204 0.206 ms - 0
+2025-07-10 21:23:04 [INFO]: GET /api/admin/getAllUsers 200 62.096 ms - 1104
+2025-07-10 21:23:04 [INFO]: GET /api/admin/getAllUsers 304 57.702 ms - -
+2025-07-10 21:23:04 [INFO]: GET /api/auth/get 304 113.442 ms - -
+2025-07-10 21:23:04 [INFO]: GET /api/auth/get 304 102.623 ms - -
+2025-07-10 23:06:16 [INFO]: GET /api/auth/verify-cookie 200 48.203 ms - 15
+2025-07-10 23:06:16 [INFO]: StartDate: 2025-06-30T22:00:00.000Z EndDate: 2025-07-30T22:00:00.000Z
+2025-07-10 23:06:16 [INFO]: GET /api/uploads/pages/contacts/content_de.md 200 158.622 ms - 4012
+2025-07-10 23:06:16 [INFO]: GET /api/modules/ids 200 168.139 ms - 51
+2025-07-10 23:06:16 [INFO]: GET /api/modules/diaryDates 200 200.883 ms - 18
+2025-07-10 23:06:16 [INFO]: GET /api/moods?startDate=2025-07-01T00%3A00%3A00.000&endDate=2025-07-31T00%3A00%3A00.000 200 205.593 ms - 2
+2025-07-10 23:06:17 [INFO]: Filter Range: 2025-07-10T00:00:00.000Z - 2025-07-10T23:59:59.999Z
+2025-07-10 23:06:17 [INFO]: Thu Jul 10 2025 23:06:17 GMT+0200 (Central European Summer Time) Thu Jul 10 2025 02:00:00 GMT+0200 (Central European Summer Time) Fri Jul 11 2025 01:59:59 GMT+0200 (Central European Summer Time)
+2025-07-10 23:06:17 [INFO]: [object Object]
+2025-07-10 23:06:17 [INFO]: Size: 0
+2025-07-10 23:06:17 [INFO]: GET /api/comments?date=2025-07-10T23%3A06%3A17.331336 200 156.464 ms - 2
+2025-07-10 23:06:17 [INFO]: GET /api/answers/getByDate?date=2025-07-10T23%3A06%3A17.331336 200 165.025 ms - 2
+2025-07-10 23:06:19 [INFO]: GET /api/modules?moduleId=7 200 294.527 ms - 2076
+2025-07-10 23:06:24 [INFO]: GET /api/modules?moduleId=5 200 300.292 ms - 1739
+2025-07-10 23:06:33 [INFO]: GET /api/modules?moduleId=1 200 297.606 ms - 1522
+2025-07-10 23:06:49 [INFO]: GET /api/modules?moduleId=2 200 316.237 ms - 1795
+2025-07-10 23:07:01 [INFO]: GET /api/modules?moduleId=3 200 323.473 ms - 1752
+2025-07-10 23:07:32 [INFO]: POST /api/tracks 201 283.237 ms - 7
+2025-07-10 23:09:23 [INFO]: POST /api/tracks 200 282.352 ms - 2
+2025-07-10 23:09:23 [INFO]: GET /api/uploads/module_03/chapter_05/content_de.md 200 111.820 ms - 2917
+2025-07-10 23:09:23 [INFO]: GET /api/answers/getByChapterId?chapterId=18 404 180.458 ms - 79
+2025-07-10 23:09:24 [INFO]: POST /api/progress 201 259.175 ms - 7
+2025-07-10 23:10:45 [INFO]: GET /api/modules?moduleId=4 200 325.621 ms - 2051
+2025-07-10 23:10:50 [INFO]: GET /api/modules?moduleId=5 200 292.982 ms - 1739
+2025-07-10 23:11:59 [INFO]: GET /api/modules?moduleId=6 200 331.402 ms - 2029
+2025-07-10 23:12:08 [INFO]: GET /api/modules?moduleId=7 200 296.658 ms - 2076
+2025-07-10 23:12:31 [INFO]: POST /api/tracks 201 281.965 ms - 7
+2025-07-10 23:13:52 [INFO]: POST /api/tracks 200 289.685 ms - 2
+2025-07-10 23:13:54 [INFO]: GET /api/modules?moduleId=3 200 301.340 ms - 1752
+2025-07-10 23:14:00 [INFO]: POST /api/tracks 201 257.452 ms - 7
+2025-07-11 01:44:39 [INFO]: GET /api/auth/verify-cookie 200 72.498 ms - 15
+2025-07-11 01:44:40 [INFO]: StartDate: 2025-06-30T22:00:00.000Z EndDate: 2025-07-30T22:00:00.000Z
+2025-07-11 01:44:40 [INFO]: GET /api/uploads/pages/contacts/content_de.md 200 157.524 ms - 4012
+2025-07-11 01:44:40 [INFO]: GET /api/modules/ids 200 185.416 ms - 51
+2025-07-11 01:44:40 [INFO]: GET /api/moods?startDate=2025-07-01T00%3A00%3A00.000&endDate=2025-07-31T00%3A00%3A00.000 200 184.613 ms - 2
+2025-07-11 01:44:40 [INFO]: GET /api/modules/diaryDates 200 206.687 ms - 18
+2025-07-11 01:44:40 [INFO]: Fri Jul 11 2025 01:44:40 GMT+0200 (Central European Summer Time) Fri Jul 11 2025 02:00:00 GMT+0200 (Central European Summer Time) Sat Jul 12 2025 01:59:59 GMT+0200 (Central European Summer Time)
+2025-07-11 01:44:40 [INFO]: [object Object]
+2025-07-11 01:44:40 [INFO]: Filter Range: 2025-07-11T00:00:00.000Z - 2025-07-11T23:59:59.999Z
+2025-07-11 01:44:40 [INFO]: Size: 0
+2025-07-11 01:44:40 [INFO]: GET /api/answers/getByDate?date=2025-07-11T01%3A44%3A40.164402 200 151.040 ms - 2
+2025-07-11 01:44:40 [INFO]: GET /api/comments?date=2025-07-11T01%3A44%3A40.164402 200 152.972 ms - 2
+2025-07-11 01:45:10 [INFO]: GET /api/modules?moduleId=5 200 318.015 ms - 2458
+2025-07-11 01:45:13 [INFO]: GET /api/uploads/module_05/chapter_01/content_de.md 200 104.414 ms - 2419
+2025-07-11 01:45:24 [INFO]: POST /api/tracks 201 275.335 ms - 7
+2025-07-11 01:47:48 [INFO]: GET /api/modules?moduleId=6 200 320.309 ms - 2370

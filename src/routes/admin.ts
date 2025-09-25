@@ -72,7 +72,7 @@ router.route('/getUserMoods/:userId').get(AdminController.getUserMoodById);
  *     tags:
  *       - Admin
  */
-router.route('/user/resetUserPassword').put(AdminController.resetUserPassword);
+router.route('/user/resetUserPassword').put(isAdmin, AdminController.resetUserPassword);
 
 /**
  * @swagger
@@ -98,7 +98,7 @@ router.route('/user/deleteRequest').get(AdminController.getAllDisabledUserAccoun
  *         schema:
  *           type: string
  */
-router.route('/deleteUser/:userId').delete(AdminController.deleteUserPermanently);
+router.route('/deleteUser/:userId').delete(isAdmin, AdminController.deleteUserPermanently);
 
 /**
  * @swagger
@@ -109,5 +109,15 @@ router.route('/deleteUser/:userId').delete(AdminController.deleteUserPermanently
  *       - Admin
  */
 router.route('/archiveData/:userId').get(isAdmin, AdminController.archiveData);
+
+/**
+ * @swagger
+ * /admin/user/renameUser:
+ *   put:
+ *     summary: Rename a user
+ *     tags:
+ *       - Admin
+ */
+router.route('/user/renameUser').put(isAdmin, AdminController.renameUser);
 
 export default router;
