@@ -28,3 +28,14 @@ export interface UsersGetResponse {
 export interface DisabledUsersGetResponse extends UsersGetResponse {
   deletedAt: Date | null;
 }
+
+export interface UsersTotalTimeResponse {
+  hours: number;
+  minutes: number;
+  seconds: number;
+}
+
+export interface ChangeUserRoleBody {
+  role: UserType;
+}
+

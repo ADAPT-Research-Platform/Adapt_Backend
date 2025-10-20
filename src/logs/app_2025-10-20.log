@@ -1,0 +1,1675 @@
+2025-10-20 08:41:46 [INFO]: ============================================================================================
+2025-10-20 08:41:46 [INFO]: Server is started at http://127.0.0.1:8080
+2025-10-20 08:45:33 [INFO]: OPTIONS /api/auth/login 204 1.958 ms - 0
+2025-10-20 08:45:34 [INFO]: POST /api/auth/login 200 674.875 ms - 86
+2025-10-20 08:45:34 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.282 ms - 0
+2025-10-20 08:45:34 [INFO]: OPTIONS /api/auth/get 204 0.299 ms - 0
+2025-10-20 08:45:34 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.346 ms - 0
+2025-10-20 08:45:34 [INFO]: OPTIONS /api/auth/get 204 0.171 ms - 0
+2025-10-20 08:45:34 [INFO]: GET /api/auth/get 403 3.019 ms - 90
+2025-10-20 08:45:34 [INFO]: GET /api/auth/get 403 1.267 ms - 90
+2025-10-20 08:45:34 [INFO]: GET /api/admin/getAllUsers 200 55.854 ms - 2768
+2025-10-20 08:45:34 [INFO]: GET /api/admin/getAllUsers 304 46.475 ms - -
+2025-10-20 08:45:37 [INFO]: POST /api/auth/login 200 420.414 ms - 86
+2025-10-20 08:45:37 [INFO]: GET /api/auth/get 403 1.226 ms - 90
+2025-10-20 08:45:37 [INFO]: GET /api/auth/get 403 1.375 ms - 90
+2025-10-20 08:45:38 [INFO]: GET /api/admin/getAllUsers 304 53.589 ms - -
+2025-10-20 08:45:38 [INFO]: GET /api/admin/getAllUsers 304 45.256 ms - -
+2025-10-20 08:45:39 [INFO]: OPTIONS /api/auth/login 204 0.143 ms - 0
+2025-10-20 08:45:40 [INFO]: POST /api/auth/login 200 422.472 ms - 86
+2025-10-20 08:45:40 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.246 ms - 0
+2025-10-20 08:45:40 [INFO]: OPTIONS /api/auth/get 204 0.120 ms - 0
+2025-10-20 08:45:40 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.300 ms - 0
+2025-10-20 08:45:40 [INFO]: OPTIONS /api/auth/get 204 0.224 ms - 0
+2025-10-20 08:45:40 [INFO]: GET /api/auth/get 403 1.368 ms - 90
+2025-10-20 08:45:40 [INFO]: GET /api/auth/get 403 1.500 ms - 90
+2025-10-20 08:45:40 [INFO]: GET /api/admin/getAllUsers 304 47.074 ms - -
+2025-10-20 08:45:40 [INFO]: GET /api/admin/getAllUsers 304 46.493 ms - -
+2025-10-20 08:46:30 [INFO]: OPTIONS /api/auth/login 204 0.194 ms - 0
+2025-10-20 08:46:31 [INFO]: POST /api/auth/login 200 475.205 ms - 86
+2025-10-20 08:46:31 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.130 ms - 0
+2025-10-20 08:46:31 [INFO]: OPTIONS /api/auth/get 204 0.211 ms - 0
+2025-10-20 08:46:31 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.166 ms - 0
+2025-10-20 08:46:31 [INFO]: OPTIONS /api/auth/get 204 0.195 ms - 0
+2025-10-20 08:46:31 [INFO]: GET /api/auth/get 403 1.466 ms - 90
+2025-10-20 08:46:31 [INFO]: GET /api/auth/get 403 1.220 ms - 90
+2025-10-20 08:46:31 [INFO]: GET /api/admin/getAllUsers 304 47.908 ms - -
+2025-10-20 08:46:31 [INFO]: GET /api/admin/getAllUsers 304 48.296 ms - -
+2025-10-20 08:46:40 [INFO]: OPTIONS /api/auth/login 204 0.114 ms - 0
+2025-10-20 08:46:41 [INFO]: POST /api/auth/login 200 429.200 ms - 86
+2025-10-20 08:46:41 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.118 ms - 0
+2025-10-20 08:46:41 [INFO]: OPTIONS /api/auth/get 204 0.141 ms - 0
+2025-10-20 08:46:41 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.169 ms - 0
+2025-10-20 08:46:41 [INFO]: OPTIONS /api/auth/get 204 0.175 ms - 0
+2025-10-20 08:46:41 [INFO]: GET /api/auth/get 403 1.514 ms - 90
+2025-10-20 08:46:41 [INFO]: GET /api/auth/get 403 1.177 ms - 90
+2025-10-20 08:46:41 [INFO]: GET /api/admin/getAllUsers 304 63.325 ms - -
+2025-10-20 08:46:41 [INFO]: GET /api/admin/getAllUsers 304 47.617 ms - -
+2025-10-20 08:47:35 [INFO]: OPTIONS /api/auth/login 204 0.126 ms - 0
+2025-10-20 08:47:35 [INFO]: POST /api/auth/login 200 467.732 ms - 86
+2025-10-20 08:47:35 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.213 ms - 0
+2025-10-20 08:47:35 [INFO]: OPTIONS /api/auth/get 204 0.234 ms - 0
+2025-10-20 08:47:35 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.179 ms - 0
+2025-10-20 08:47:35 [INFO]: OPTIONS /api/auth/get 204 0.337 ms - 0
+2025-10-20 08:47:35 [INFO]: GET /api/auth/get 403 1.809 ms - 90
+2025-10-20 08:47:35 [INFO]: GET /api/auth/get 403 2.387 ms - 90
+2025-10-20 08:47:35 [INFO]: GET /api/admin/getAllUsers 304 53.574 ms - -
+2025-10-20 08:47:36 [INFO]: GET /api/admin/getAllUsers 304 71.559 ms - -
+2025-10-20 08:47:45 [INFO]: OPTIONS /api/auth/login 204 0.087 ms - 0
+2025-10-20 08:47:45 [INFO]: POST /api/auth/login 200 433.610 ms - 86
+2025-10-20 08:47:46 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.300 ms - 0
+2025-10-20 08:47:46 [INFO]: OPTIONS /api/auth/get 204 0.326 ms - 0
+2025-10-20 08:47:46 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.209 ms - 0
+2025-10-20 08:47:46 [INFO]: OPTIONS /api/auth/get 204 0.197 ms - 0
+2025-10-20 08:47:46 [INFO]: GET /api/auth/get 403 1.141 ms - 90
+2025-10-20 08:47:46 [INFO]: GET /api/auth/get 403 1.095 ms - 90
+2025-10-20 08:47:46 [INFO]: GET /api/admin/getAllUsers 304 46.569 ms - -
+2025-10-20 08:47:46 [INFO]: GET /api/admin/getAllUsers 304 49.240 ms - -
+2025-10-20 08:47:49 [INFO]: POST /api/auth/login 200 421.495 ms - 86
+2025-10-20 08:47:49 [INFO]: GET /api/auth/get 403 0.730 ms - 90
+2025-10-20 08:47:49 [INFO]: GET /api/auth/get 403 0.549 ms - 90
+2025-10-20 08:47:49 [INFO]: GET /api/admin/getAllUsers 304 54.229 ms - -
+2025-10-20 08:47:49 [INFO]: GET /api/admin/getAllUsers 304 46.767 ms - -
+2025-10-20 08:48:14 [INFO]: OPTIONS /api/auth/login 204 0.086 ms - 0
+2025-10-20 08:48:20 [INFO]: OPTIONS /api/auth/login 204 0.109 ms - 0
+2025-10-20 08:48:23 [INFO]: OPTIONS /api/auth/login 204 0.287 ms - 0
+2025-10-20 08:49:50 [INFO]: OPTIONS /api/auth/login 204 0.098 ms - 0
+2025-10-20 08:49:55 [INFO]: OPTIONS /api/auth/login 204 0.126 ms - 0
+2025-10-20 08:50:44 [ERROR]: Error creating user: Username already exists!
+2025-10-20 08:50:44 [INFO]: POST /api/users 409 78.979 ms - 87
+2025-10-20 08:50:58 [INFO]: POST /api/users 201 423.305 ms - 7
+2025-10-20 08:51:26 [INFO]: OPTIONS /api/auth/login 204 0.119 ms - 0
+2025-10-20 08:51:31 [INFO]: OPTIONS /api/auth/login 204 0.092 ms - 0
+2025-10-20 08:51:45 [INFO]: OPTIONS /api/auth/login 204 0.155 ms - 0
+2025-10-20 08:51:45 [INFO]: POST /api/auth/login 200 489.879 ms - 86
+2025-10-20 08:51:45 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.267 ms - 0
+2025-10-20 08:51:45 [INFO]: OPTIONS /api/auth/get 204 0.173 ms - 0
+2025-10-20 08:51:45 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.159 ms - 0
+2025-10-20 08:51:45 [INFO]: OPTIONS /api/auth/get 204 0.158 ms - 0
+2025-10-20 08:51:45 [INFO]: GET /api/auth/get 403 1.776 ms - 90
+2025-10-20 08:51:45 [INFO]: GET /api/auth/get 403 0.896 ms - 90
+2025-10-20 08:51:45 [INFO]: GET /api/admin/getAllUsers 200 50.832 ms - 2952
+2025-10-20 08:51:45 [INFO]: GET /api/admin/getAllUsers 304 48.028 ms - -
+2025-10-20 08:53:01 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.104 ms - 0
+2025-10-20 08:53:01 [INFO]: OPTIONS /api/auth/get 204 0.100 ms - 0
+2025-10-20 08:53:01 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.073 ms - 0
+2025-10-20 08:53:01 [INFO]: OPTIONS /api/auth/get 204 0.079 ms - 0
+2025-10-20 08:53:01 [INFO]: GET /api/auth/get 403 0.484 ms - 90
+2025-10-20 08:53:01 [INFO]: GET /api/auth/get 403 0.654 ms - 90
+2025-10-20 08:53:01 [INFO]: GET /api/admin/getAllUsers 304 70.419 ms - -
+2025-10-20 08:53:01 [INFO]: GET /api/admin/getAllUsers 304 47.814 ms - -
+2025-10-20 08:53:02 [INFO]: OPTIONS /api/auth/login 204 0.093 ms - 0
+2025-10-20 08:53:03 [INFO]: POST /api/auth/login 200 454.239 ms - 86
+2025-10-20 08:53:03 [INFO]: GET /api/auth/get 403 0.810 ms - 90
+2025-10-20 08:53:03 [INFO]: GET /api/auth/get 403 1.221 ms - 90
+2025-10-20 08:53:03 [INFO]: GET /api/admin/getAllUsers 304 52.604 ms - -
+2025-10-20 08:53:03 [INFO]: GET /api/admin/getAllUsers 304 48.874 ms - -
+2025-10-20 08:55:08 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.158 ms - 0
+2025-10-20 08:55:08 [INFO]: OPTIONS /api/auth/get 204 0.125 ms - 0
+2025-10-20 08:55:08 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.126 ms - 0
+2025-10-20 08:55:08 [INFO]: OPTIONS /api/auth/get 204 0.088 ms - 0
+2025-10-20 08:55:08 [INFO]: GET /api/auth/get 403 0.550 ms - 90
+2025-10-20 08:55:08 [INFO]: GET /api/auth/get 403 0.963 ms - 90
+2025-10-20 08:55:09 [INFO]: GET /api/admin/getAllUsers 304 66.505 ms - -
+2025-10-20 08:55:09 [INFO]: GET /api/admin/getAllUsers 304 54.224 ms - -
+2025-10-20 08:55:10 [INFO]: OPTIONS /api/auth/login 204 0.103 ms - 0
+2025-10-20 08:55:10 [INFO]: POST /api/auth/login 200 433.378 ms - 86
+2025-10-20 08:55:10 [INFO]: GET /api/auth/get 403 0.793 ms - 90
+2025-10-20 08:55:10 [INFO]: GET /api/auth/get 403 0.869 ms - 90
+2025-10-20 08:55:10 [INFO]: GET /api/admin/getAllUsers 304 45.540 ms - -
+2025-10-20 08:55:10 [INFO]: GET /api/admin/getAllUsers 304 49.425 ms - -
+2025-10-20 08:55:53 [INFO]: ============================================================================================
+2025-10-20 08:55:53 [INFO]: Server is started at http://127.0.0.1:8080
+2025-10-20 08:55:59 [INFO]: GET / 404 8.406 ms - 81
+2025-10-20 08:56:00 [INFO]: GET /favicon.ico 404 0.895 ms - 81
+2025-10-20 08:56:03 [INFO]: OPTIONS /api/auth/login 204 0.225 ms - 0
+2025-10-20 08:56:04 [INFO]: POST /api/auth/login 200 536.552 ms - 86
+2025-10-20 08:56:04 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.339 ms - 0
+2025-10-20 08:56:04 [INFO]: OPTIONS /api/auth/get 204 0.129 ms - 0
+2025-10-20 08:56:04 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.100 ms - 0
+2025-10-20 08:56:04 [INFO]: OPTIONS /api/auth/get 204 0.260 ms - 0
+2025-10-20 08:56:04 [INFO]: GET /api/auth/get 403 1.766 ms - 90
+2025-10-20 08:56:04 [INFO]: GET /api/auth/get 403 0.995 ms - 90
+2025-10-20 08:56:04 [INFO]: GET /api/admin/getAllUsers 304 54.904 ms - -
+2025-10-20 08:56:04 [INFO]: GET /api/admin/getAllUsers 304 49.516 ms - -
+2025-10-20 08:57:18 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.138 ms - 0
+2025-10-20 08:57:18 [INFO]: OPTIONS /api/auth/get 204 0.125 ms - 0
+2025-10-20 08:57:18 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.108 ms - 0
+2025-10-20 08:57:18 [INFO]: OPTIONS /api/auth/get 204 0.167 ms - 0
+2025-10-20 08:57:18 [INFO]: GET /api/admin/getAllUsers 200 67.053 ms - 2952
+2025-10-20 08:57:18 [INFO]: GET /api/admin/getAllUsers 304 47.769 ms - -
+2025-10-20 08:57:18 [INFO]: GET /api/auth/get 403 0.932 ms - 90
+2025-10-20 08:57:18 [INFO]: GET /api/auth/get 403 0.795 ms - 90
+2025-10-20 08:57:20 [INFO]: OPTIONS /api/auth/login 204 0.126 ms - 0
+2025-10-20 08:57:21 [INFO]: POST /api/auth/login 200 450.256 ms - 86
+2025-10-20 08:57:21 [INFO]: GET /api/admin/getAllUsers 304 53.756 ms - -
+2025-10-20 08:57:21 [INFO]: GET /api/admin/getAllUsers 304 79.119 ms - -
+2025-10-20 08:57:21 [INFO]: GET /api/auth/get 200 101.374 ms - 86
+2025-10-20 08:57:21 [INFO]: GET /api/auth/get 304 108.712 ms - -
+2025-10-20 08:57:38 [INFO]: OPTIONS /api/admin/getUserProgress/3 204 0.171 ms - 0
+2025-10-20 08:57:38 [INFO]: GET /api/admin/getUserProgress/3 404 68.767 ms - 42
+2025-10-20 08:57:39 [INFO]: OPTIONS /api/admin/getUserProgress/7 204 0.091 ms - 0
+2025-10-20 08:57:39 [INFO]: GET /api/admin/getUserProgress/7 404 51.408 ms - 42
+2025-10-20 08:57:39 [INFO]: OPTIONS /api/admin/getUserProgress/5 204 0.136 ms - 0
+2025-10-20 08:57:40 [INFO]: GET /api/admin/getUserProgress/5 200 232.796 ms - 9489
+2025-10-20 08:57:41 [INFO]: OPTIONS /api/admin/getUserMoods/5 204 0.164 ms - 0
+2025-10-20 08:57:41 [INFO]: GET /api/admin/getUserMoods/5 200 52.314 ms - 2519
+2025-10-20 08:57:41 [INFO]: GET /api/admin/getUserMoods/5 304 52.738 ms - -
+2025-10-20 09:51:33 [INFO]: OPTIONS /api/admin/getUserMoods/7 204 0.137 ms - 0
+2025-10-20 09:51:33 [INFO]: OPTIONS /api/admin/getUserProgress/7 204 0.084 ms - 0
+2025-10-20 09:51:33 [INFO]: GET /api/admin/getUserProgress/7 404 67.934 ms - 42
+2025-10-20 09:51:33 [INFO]: GET /api/admin/getUserMoods/7 200 70.401 ms - 2
+2025-10-20 09:51:34 [INFO]: OPTIONS /api/admin/getUserMoods/3 204 0.132 ms - 0
+2025-10-20 09:51:34 [INFO]: OPTIONS /api/admin/getUserProgress/3 204 0.147 ms - 0
+2025-10-20 09:51:35 [INFO]: GET /api/admin/getUserProgress/3 404 51.428 ms - 42
+2025-10-20 09:51:35 [INFO]: GET /api/admin/getUserMoods/3 200 57.700 ms - 7511
+2025-10-20 09:51:36 [INFO]: OPTIONS /api/admin/getUserMoods/5 204 0.189 ms - 0
+2025-10-20 09:51:36 [INFO]: OPTIONS /api/admin/getUserProgress/5 204 0.254 ms - 0
+2025-10-20 09:51:36 [INFO]: GET /api/admin/getUserMoods/5 304 53.903 ms - -
+2025-10-20 09:51:36 [INFO]: GET /api/admin/getUserProgress/5 200 199.444 ms - 9489
+2025-10-20 09:51:39 [INFO]: GET /api/admin/getUserProgress/3 404 60.647 ms - 42
+2025-10-20 09:51:39 [INFO]: GET /api/admin/getUserMoods/3 304 69.458 ms - -
+2025-10-20 09:51:40 [INFO]: GET /api/admin/getUserMoods/5 304 49.679 ms - -
+2025-10-20 09:51:40 [INFO]: GET /api/admin/getUserProgress/5 200 197.872 ms - 9489
+2025-10-20 10:05:07 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.149 ms - 0
+2025-10-20 10:05:07 [INFO]: OPTIONS /api/admin/getUserProgress/5 204 0.103 ms - 0
+2025-10-20 10:05:07 [INFO]: OPTIONS /api/auth/get 204 0.093 ms - 0
+2025-10-20 10:05:07 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.102 ms - 0
+2025-10-20 10:05:07 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.118 ms - 0
+2025-10-20 10:05:07 [INFO]: GET /api/admin/getAllUsers 304 59.220 ms - -
+2025-10-20 10:05:07 [INFO]: GET /api/admin/getUserProgress/5 200 244.141 ms - 9489
+2025-10-20 10:05:07 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:05:07 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:05:07 [INFO]: GET /api/auth/get 304 121.537 ms - -
+2025-10-20 10:05:07 [INFO]: GET /api/admin/user/5/total-time 200 167.753 ms - 50
+2025-10-20 10:05:07 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:05:07 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:05:07 [INFO]: GET /api/admin/user/5/total-time 304 152.654 ms - -
+2025-10-20 10:07:22 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.120 ms - 0
+2025-10-20 10:07:22 [INFO]: OPTIONS /api/admin/getUserProgress/5 204 0.105 ms - 0
+2025-10-20 10:07:22 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.102 ms - 0
+2025-10-20 10:07:22 [INFO]: OPTIONS /api/auth/get 204 0.108 ms - 0
+2025-10-20 10:07:22 [INFO]: GET /api/admin/getAllUsers 304 65.603 ms - -
+2025-10-20 10:07:22 [INFO]: GET /api/admin/getUserProgress/5 200 215.098 ms - 9489
+2025-10-20 10:07:22 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:07:22 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:07:22 [INFO]: GET /api/auth/get 304 119.870 ms - -
+2025-10-20 10:07:22 [INFO]: GET /api/admin/user/5/total-time 304 161.432 ms - -
+2025-10-20 10:07:34 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.249 ms - 0
+2025-10-20 10:07:34 [INFO]: OPTIONS /api/admin/getUserProgress/5 204 0.121 ms - 0
+2025-10-20 10:07:34 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.143 ms - 0
+2025-10-20 10:07:34 [INFO]: OPTIONS /api/auth/get 204 0.271 ms - 0
+2025-10-20 10:07:35 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:07:35 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:07:35 [INFO]: GET /api/admin/getUserProgress/5 200 209.735 ms - 9489
+2025-10-20 10:07:35 [INFO]: GET /api/admin/user/5/total-time 304 178.974 ms - -
+2025-10-20 10:07:35 [INFO]: GET /api/admin/getAllUsers 304 47.013 ms - -
+2025-10-20 10:07:35 [INFO]: GET /api/auth/get 304 105.388 ms - -
+2025-10-20 10:07:41 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.105 ms - 0
+2025-10-20 10:07:41 [INFO]: OPTIONS /api/admin/getUserProgress/5 204 0.085 ms - 0
+2025-10-20 10:07:41 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.093 ms - 0
+2025-10-20 10:07:41 [INFO]: OPTIONS /api/auth/get 204 0.169 ms - 0
+2025-10-20 10:07:41 [INFO]: GET /api/admin/getAllUsers 304 47.371 ms - -
+2025-10-20 10:07:41 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:07:41 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:07:42 [INFO]: GET /api/admin/getUserProgress/5 200 197.769 ms - 9489
+2025-10-20 10:07:42 [INFO]: GET /api/admin/user/5/total-time 304 149.438 ms - -
+2025-10-20 10:07:42 [INFO]: GET /api/auth/get 304 95.854 ms - -
+2025-10-20 10:08:06 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.282 ms - 0
+2025-10-20 10:08:06 [INFO]: OPTIONS /api/auth/get 204 0.307 ms - 0
+2025-10-20 10:08:06 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.256 ms - 0
+2025-10-20 10:08:06 [INFO]: OPTIONS /api/auth/get 204 0.134 ms - 0
+2025-10-20 10:08:06 [INFO]: GET /api/admin/getAllUsers 304 60.234 ms - -
+2025-10-20 10:08:06 [INFO]: GET /api/admin/getAllUsers 304 46.213 ms - -
+2025-10-20 10:08:06 [INFO]: GET /api/auth/get 304 120.761 ms - -
+2025-10-20 10:08:06 [INFO]: GET /api/auth/get 304 96.395 ms - -
+2025-10-20 10:08:09 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.135 ms - 0
+2025-10-20 10:08:09 [INFO]: OPTIONS /api/admin/getUserProgress/5 204 0.121 ms - 0
+2025-10-20 10:08:09 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.190 ms - 0
+2025-10-20 10:08:09 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:08:09 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:08:09 [INFO]: GET /api/admin/getUserProgress/5 200 201.410 ms - 9489
+2025-10-20 10:08:09 [INFO]: GET /api/admin/user/5/total-time 304 153.030 ms - -
+2025-10-20 10:08:09 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:08:09 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:08:09 [INFO]: GET /api/admin/user/5/total-time 304 146.365 ms - -
+2025-10-20 10:08:58 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.183 ms - 0
+2025-10-20 10:08:58 [INFO]: OPTIONS /api/admin/getUserProgress/5 204 0.167 ms - 0
+2025-10-20 10:08:58 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.176 ms - 0
+2025-10-20 10:08:58 [INFO]: OPTIONS /api/auth/get 204 0.153 ms - 0
+2025-10-20 10:08:58 [INFO]: GET /api/admin/getAllUsers 304 72.129 ms - -
+2025-10-20 10:08:59 [INFO]: GET /api/admin/getUserProgress/5 200 223.122 ms - 9489
+2025-10-20 10:08:59 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:08:59 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:08:59 [INFO]: GET /api/auth/get 304 128.047 ms - -
+2025-10-20 10:08:59 [INFO]: GET /api/admin/user/5/total-time 304 181.430 ms - -
+2025-10-20 10:09:17 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.283 ms - 0
+2025-10-20 10:09:17 [INFO]: OPTIONS /api/auth/get 204 0.237 ms - 0
+2025-10-20 10:09:17 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.120 ms - 0
+2025-10-20 10:09:17 [INFO]: OPTIONS /api/auth/get 204 0.165 ms - 0
+2025-10-20 10:09:17 [INFO]: GET /api/admin/getAllUsers 304 73.179 ms - -
+2025-10-20 10:09:17 [INFO]: GET /api/admin/getAllUsers 304 47.172 ms - -
+2025-10-20 10:09:17 [INFO]: GET /api/auth/get 304 126.915 ms - -
+2025-10-20 10:09:17 [INFO]: GET /api/auth/get 304 95.666 ms - -
+2025-10-20 10:09:19 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.093 ms - 0
+2025-10-20 10:09:19 [INFO]: OPTIONS /api/admin/getUserProgress/5 204 0.095 ms - 0
+2025-10-20 10:09:19 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.209 ms - 0
+2025-10-20 10:09:19 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:09:19 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:09:19 [INFO]: GET /api/admin/user/5/total-time 304 151.427 ms - -
+2025-10-20 10:09:19 [INFO]: GET /api/admin/getUserProgress/5 200 220.834 ms - 9489
+2025-10-20 10:09:19 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:09:19 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:09:19 [INFO]: GET /api/admin/user/5/total-time 304 145.971 ms - -
+2025-10-20 10:09:22 [INFO]: OPTIONS /api/admin/getUserMoods/5 204 0.136 ms - 0
+2025-10-20 10:09:22 [INFO]: GET /api/admin/getUserMoods/5 304 51.457 ms - -
+2025-10-20 10:09:22 [INFO]: GET /api/admin/getUserMoods/5 304 47.171 ms - -
+2025-10-20 10:10:07 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.106 ms - 0
+2025-10-20 10:10:07 [INFO]: OPTIONS /api/auth/get 204 0.089 ms - 0
+2025-10-20 10:10:07 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.087 ms - 0
+2025-10-20 10:10:07 [INFO]: OPTIONS /api/auth/get 204 0.079 ms - 0
+2025-10-20 10:10:07 [INFO]: GET /api/admin/getAllUsers 304 65.735 ms - -
+2025-10-20 10:10:07 [INFO]: GET /api/admin/getAllUsers 304 48.560 ms - -
+2025-10-20 10:10:08 [INFO]: GET /api/auth/get 304 115.662 ms - -
+2025-10-20 10:10:08 [INFO]: GET /api/auth/get 304 95.258 ms - -
+2025-10-20 10:10:19 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.341 ms - 0
+2025-10-20 10:10:19 [INFO]: OPTIONS /api/auth/get 204 0.166 ms - 0
+2025-10-20 10:10:19 [INFO]: GET /api/admin/getAllUsers 304 75.165 ms - -
+2025-10-20 10:10:20 [INFO]: GET /api/auth/get 304 143.392 ms - -
+2025-10-20 10:10:28 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.166 ms - 0
+2025-10-20 10:10:28 [INFO]: OPTIONS /api/auth/get 204 0.113 ms - 0
+2025-10-20 10:10:28 [INFO]: GET /api/admin/getAllUsers 304 51.271 ms - -
+2025-10-20 10:10:29 [INFO]: GET /api/auth/get 304 96.852 ms - -
+2025-10-20 10:10:38 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.106 ms - 0
+2025-10-20 10:10:38 [INFO]: OPTIONS /api/auth/get 204 0.080 ms - 0
+2025-10-20 10:10:38 [INFO]: GET /api/admin/getAllUsers 304 50.633 ms - -
+2025-10-20 10:10:38 [INFO]: GET /api/auth/get 304 98.084 ms - -
+2025-10-20 10:10:42 [INFO]: GET /api/admin/getAllUsers 304 51.749 ms - -
+2025-10-20 10:10:43 [INFO]: GET /api/auth/get 304 119.752 ms - -
+2025-10-20 10:10:48 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.143 ms - 0
+2025-10-20 10:10:48 [INFO]: OPTIONS /api/admin/getUserProgress/5 204 0.138 ms - 0
+2025-10-20 10:10:48 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.111 ms - 0
+2025-10-20 10:10:48 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:10:48 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:10:48 [INFO]: GET /api/admin/user/5/total-time 304 144.353 ms - -
+2025-10-20 10:10:48 [INFO]: GET /api/admin/getUserProgress/5 200 202.690 ms - 9489
+2025-10-20 10:10:48 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:10:48 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:10:48 [INFO]: GET /api/admin/user/5/total-time 304 145.595 ms - -
+2025-10-20 10:11:46 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.237 ms - 0
+2025-10-20 10:11:46 [INFO]: OPTIONS /api/auth/get 204 0.300 ms - 0
+2025-10-20 10:11:46 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.164 ms - 0
+2025-10-20 10:11:46 [INFO]: OPTIONS /api/auth/get 204 0.116 ms - 0
+2025-10-20 10:11:46 [INFO]: GET /api/admin/getAllUsers 304 67.512 ms - -
+2025-10-20 10:11:46 [INFO]: GET /api/admin/getAllUsers 304 48.415 ms - -
+2025-10-20 10:11:46 [INFO]: GET /api/auth/get 304 117.126 ms - -
+2025-10-20 10:11:46 [INFO]: GET /api/auth/get 304 95.078 ms - -
+2025-10-20 10:11:47 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.374 ms - 0
+2025-10-20 10:11:47 [INFO]: OPTIONS /api/admin/getUserProgress/5 204 0.184 ms - 0
+2025-10-20 10:11:47 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.120 ms - 0
+2025-10-20 10:11:48 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:11:48 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:11:48 [INFO]: GET /api/admin/getUserProgress/5 200 207.272 ms - 9489
+2025-10-20 10:11:48 [INFO]: GET /api/admin/user/5/total-time 304 159.556 ms - -
+2025-10-20 10:11:48 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:11:48 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:11:48 [INFO]: GET /api/admin/user/5/total-time 304 146.720 ms - -
+2025-10-20 10:14:10 [INFO]: ============================================================================================
+2025-10-20 10:14:10 [INFO]: Server is started at http://127.0.0.1:8080
+2025-10-20 10:14:13 [INFO]: OPTIONS /api/admin/getAllUsers 204 2.287 ms - 0
+2025-10-20 10:14:13 [INFO]: OPTIONS /api/auth/get 204 0.413 ms - 0
+2025-10-20 10:14:13 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.218 ms - 0
+2025-10-20 10:14:13 [INFO]: OPTIONS /api/auth/get 204 0.199 ms - 0
+2025-10-20 10:14:13 [INFO]: GET /api/admin/getAllUsers 304 70.494 ms - -
+2025-10-20 10:14:14 [INFO]: GET /api/admin/getAllUsers 304 51.008 ms - -
+2025-10-20 10:14:14 [INFO]: GET /api/auth/get 304 181.135 ms - -
+2025-10-20 10:14:14 [INFO]: GET /api/auth/get 304 95.117 ms - -
+2025-10-20 10:14:17 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.223 ms - 0
+2025-10-20 10:14:17 [INFO]: OPTIONS /api/admin/getUserProgress/5 204 0.263 ms - 0
+2025-10-20 10:14:17 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.219 ms - 0
+2025-10-20 10:14:17 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:14:17 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:14:17 [INFO]: GET /api/admin/getUserProgress/5 200 198.294 ms - 9489
+2025-10-20 10:14:17 [INFO]: GET /api/admin/user/5/total-time 304 159.780 ms - -
+2025-10-20 10:14:17 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:14:17 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:14:17 [INFO]: GET /api/admin/user/5/total-time 304 147.385 ms - -
+2025-10-20 10:16:18 [INFO]: ============================================================================================
+2025-10-20 10:16:18 [INFO]: Server is started at http://127.0.0.1:8080
+2025-10-20 10:16:46 [INFO]: OPTIONS /api/admin/getAllUsers 204 2.395 ms - 0
+2025-10-20 10:16:46 [INFO]: OPTIONS /api/auth/get 204 0.365 ms - 0
+2025-10-20 10:16:46 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.289 ms - 0
+2025-10-20 10:16:46 [INFO]: OPTIONS /api/auth/get 204 0.228 ms - 0
+2025-10-20 10:16:46 [INFO]: GET /api/admin/getAllUsers 304 108.085 ms - -
+2025-10-20 10:16:47 [INFO]: GET /api/admin/getAllUsers 304 50.387 ms - -
+2025-10-20 10:16:47 [INFO]: GET /api/auth/get 304 162.166 ms - -
+2025-10-20 10:16:47 [INFO]: GET /api/auth/get 304 95.156 ms - -
+2025-10-20 10:16:48 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.419 ms - 0
+2025-10-20 10:16:48 [INFO]: OPTIONS /api/admin/getUserProgress/5 204 0.163 ms - 0
+2025-10-20 10:16:48 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.132 ms - 0
+2025-10-20 10:16:49 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:16:49 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:16:49 [INFO]: GET /api/admin/getUserProgress/5 200 209.899 ms - 9489
+2025-10-20 10:16:49 [INFO]: GET /api/admin/user/5/total-time 304 164.848 ms - -
+2025-10-20 10:16:49 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:16:49 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:16:49 [INFO]: GET /api/admin/user/5/total-time 304 144.469 ms - -
+2025-10-20 10:21:20 [INFO]: OPTIONS /api/admin/user/5/total-time?_=1760948479868 204 0.137 ms - 0
+2025-10-20 10:21:20 [INFO]: OPTIONS /api/admin/getUserProgress/5 204 0.155 ms - 0
+2025-10-20 10:21:20 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.220 ms - 0
+2025-10-20 10:21:20 [INFO]: OPTIONS /api/auth/get 204 0.179 ms - 0
+2025-10-20 10:21:20 [INFO]: GET /api/admin/getAllUsers 304 70.306 ms - -
+2025-10-20 10:21:20 [INFO]: GET /api/admin/getUserProgress/5 200 227.768 ms - 9489
+2025-10-20 10:21:20 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:21:20 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:21:20 [INFO]: GET /api/auth/get 304 131.783 ms - -
+2025-10-20 10:21:20 [INFO]: GET /api/admin/user/5/total-time?_=1760948479868 200 174.214 ms - 50
+2025-10-20 10:22:25 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.101 ms - 0
+2025-10-20 10:22:25 [INFO]: OPTIONS /api/admin/getUserProgress/5 204 0.078 ms - 0
+2025-10-20 10:22:25 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.094 ms - 0
+2025-10-20 10:22:25 [INFO]: OPTIONS /api/auth/get 204 0.160 ms - 0
+2025-10-20 10:22:25 [INFO]: GET /api/admin/getAllUsers 304 63.445 ms - -
+2025-10-20 10:22:25 [INFO]: GET /api/admin/getUserProgress/5 200 212.717 ms - 9489
+2025-10-20 10:22:25 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:22:25 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:22:25 [INFO]: GET /api/auth/get 304 139.216 ms - -
+2025-10-20 10:22:25 [INFO]: GET /api/admin/user/5/total-time 304 187.593 ms - -
+2025-10-20 10:22:52 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.116 ms - 0
+2025-10-20 10:22:52 [INFO]: OPTIONS /api/admin/getUserProgress/5 204 0.120 ms - 0
+2025-10-20 10:22:52 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.149 ms - 0
+2025-10-20 10:22:52 [INFO]: OPTIONS /api/auth/get 204 0.421 ms - 0
+2025-10-20 10:22:53 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:22:53 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:22:53 [INFO]: GET /api/admin/getUserProgress/5 200 213.089 ms - 9489
+2025-10-20 10:22:53 [INFO]: GET /api/admin/user/5/total-time 304 182.343 ms - -
+2025-10-20 10:22:53 [INFO]: GET /api/admin/getAllUsers 304 46.396 ms - -
+2025-10-20 10:22:53 [INFO]: GET /api/auth/get 304 96.150 ms - -
+2025-10-20 10:22:57 [INFO]: GET /api/admin/getAllUsers 304 48.552 ms - -
+2025-10-20 10:22:57 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:22:57 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:22:58 [INFO]: GET /api/auth/get 304 116.929 ms - -
+2025-10-20 10:22:58 [INFO]: GET /api/admin/getUserProgress/5 200 200.157 ms - 9489
+2025-10-20 10:22:58 [INFO]: GET /api/admin/user/5/total-time 304 151.934 ms - -
+2025-10-20 10:23:11 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.208 ms - 0
+2025-10-20 10:23:11 [INFO]: OPTIONS /api/auth/get 204 0.184 ms - 0
+2025-10-20 10:23:11 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.253 ms - 0
+2025-10-20 10:23:11 [INFO]: OPTIONS /api/auth/get 204 0.367 ms - 0
+2025-10-20 10:23:11 [INFO]: GET /api/admin/getAllUsers 304 79.107 ms - -
+2025-10-20 10:23:11 [INFO]: GET /api/admin/getAllUsers 304 55.121 ms - -
+2025-10-20 10:23:11 [INFO]: GET /api/auth/get 304 116.771 ms - -
+2025-10-20 10:23:11 [INFO]: GET /api/auth/get 304 95.088 ms - -
+2025-10-20 10:23:14 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.155 ms - 0
+2025-10-20 10:23:14 [INFO]: OPTIONS /api/admin/getUserProgress/5 204 0.125 ms - 0
+2025-10-20 10:23:14 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.222 ms - 0
+2025-10-20 10:23:14 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:23:14 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:23:14 [INFO]: GET /api/admin/getUserProgress/5 200 208.075 ms - 9489
+2025-10-20 10:23:14 [INFO]: GET /api/admin/user/5/total-time 304 171.496 ms - -
+2025-10-20 10:23:14 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:23:14 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:23:14 [INFO]: GET /api/admin/user/5/total-time 304 147.162 ms - -
+2025-10-20 10:25:27 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.219 ms - 0
+2025-10-20 10:25:27 [INFO]: OPTIONS /api/admin/getUserProgress/5 204 0.211 ms - 0
+2025-10-20 10:25:27 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.170 ms - 0
+2025-10-20 10:25:27 [INFO]: OPTIONS /api/auth/get 204 0.216 ms - 0
+2025-10-20 10:25:27 [INFO]: GET /api/admin/getAllUsers 304 83.351 ms - -
+2025-10-20 10:25:27 [INFO]: GET /api/admin/getUserProgress/5 200 262.097 ms - 9489
+2025-10-20 10:25:27 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:25:27 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:25:27 [INFO]: GET /api/auth/get 304 115.617 ms - -
+2025-10-20 10:25:27 [INFO]: GET /api/admin/user/5/total-time 304 167.416 ms - -
+2025-10-20 10:25:29 [INFO]: GET /api/admin/getAllUsers 304 50.052 ms - -
+2025-10-20 10:25:30 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:25:30 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:25:30 [INFO]: GET /api/auth/get 304 108.554 ms - -
+2025-10-20 10:25:30 [INFO]: GET /api/admin/getUserProgress/5 200 202.140 ms - 9489
+2025-10-20 10:25:30 [INFO]: GET /api/admin/user/5/total-time 304 183.924 ms - -
+2025-10-20 10:25:51 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.114 ms - 0
+2025-10-20 10:25:51 [INFO]: OPTIONS /api/admin/getUserProgress/5 204 0.109 ms - 0
+2025-10-20 10:25:51 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.202 ms - 0
+2025-10-20 10:25:51 [INFO]: OPTIONS /api/auth/get 204 0.186 ms - 0
+2025-10-20 10:25:52 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:25:52 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:25:52 [INFO]: GET /api/admin/getUserProgress/5 200 237.540 ms - 9489
+2025-10-20 10:25:52 [INFO]: GET /api/admin/user/5/total-time 304 188.025 ms - -
+2025-10-20 10:25:52 [INFO]: GET /api/admin/getAllUsers 304 48.989 ms - -
+2025-10-20 10:25:52 [INFO]: GET /api/auth/get 304 103.978 ms - -
+2025-10-20 10:25:54 [INFO]: GET /api/admin/getAllUsers 304 45.024 ms - -
+2025-10-20 10:25:54 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:25:54 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:25:55 [INFO]: GET /api/auth/get 304 112.070 ms - -
+2025-10-20 10:25:55 [INFO]: GET /api/admin/getUserProgress/5 200 195.149 ms - 9489
+2025-10-20 10:25:55 [INFO]: GET /api/admin/user/5/total-time 304 166.735 ms - -
+2025-10-20 10:26:20 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.339 ms - 0
+2025-10-20 10:26:20 [INFO]: OPTIONS /api/auth/get 204 0.160 ms - 0
+2025-10-20 10:26:20 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.139 ms - 0
+2025-10-20 10:26:20 [INFO]: OPTIONS /api/auth/get 204 0.385 ms - 0
+2025-10-20 10:26:20 [INFO]: GET /api/admin/getAllUsers 304 63.621 ms - -
+2025-10-20 10:26:20 [INFO]: GET /api/admin/getAllUsers 304 47.908 ms - -
+2025-10-20 10:26:20 [INFO]: GET /api/auth/get 304 137.374 ms - -
+2025-10-20 10:26:20 [INFO]: GET /api/auth/get 304 107.174 ms - -
+2025-10-20 10:26:22 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.174 ms - 0
+2025-10-20 10:26:22 [INFO]: OPTIONS /api/admin/getUserProgress/5 204 0.132 ms - 0
+2025-10-20 10:26:22 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.127 ms - 0
+2025-10-20 10:26:22 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:26:22 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:26:22 [INFO]: GET /api/admin/getUserProgress/5 200 196.975 ms - 9489
+2025-10-20 10:26:22 [INFO]: GET /api/admin/user/5/total-time 304 169.171 ms - -
+2025-10-20 10:26:23 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:26:23 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:26:23 [INFO]: GET /api/admin/user/5/total-time 304 146.765 ms - -
+2025-10-20 10:27:33 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.225 ms - 0
+2025-10-20 10:27:33 [INFO]: OPTIONS /api/admin/getUserProgress/5 204 0.152 ms - 0
+2025-10-20 10:27:33 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.127 ms - 0
+2025-10-20 10:27:33 [INFO]: OPTIONS /api/auth/get 204 0.121 ms - 0
+2025-10-20 10:27:33 [INFO]: GET /api/admin/getAllUsers 304 61.057 ms - -
+2025-10-20 10:27:33 [INFO]: GET /api/admin/getUserProgress/5 200 211.766 ms - 9489
+2025-10-20 10:27:33 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:27:33 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:27:33 [INFO]: GET /api/auth/get 304 120.706 ms - -
+2025-10-20 10:27:33 [INFO]: GET /api/admin/user/5/total-time 304 184.524 ms - -
+2025-10-20 10:27:34 [INFO]: GET /api/admin/getAllUsers 304 45.909 ms - -
+2025-10-20 10:27:35 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:27:35 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:27:35 [INFO]: GET /api/auth/get 304 101.418 ms - -
+2025-10-20 10:27:35 [INFO]: GET /api/admin/getUserProgress/5 200 195.117 ms - 9489
+2025-10-20 10:27:35 [INFO]: GET /api/admin/user/5/total-time 304 176.642 ms - -
+2025-10-20 10:27:40 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.175 ms - 0
+2025-10-20 10:27:40 [INFO]: OPTIONS /api/admin/getUserProgress/5 204 0.378 ms - 0
+2025-10-20 10:27:40 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.180 ms - 0
+2025-10-20 10:27:40 [INFO]: OPTIONS /api/auth/get 204 0.273 ms - 0
+2025-10-20 10:27:40 [INFO]: GET /api/admin/getAllUsers 304 53.972 ms - -
+2025-10-20 10:27:40 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:27:40 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:27:41 [INFO]: GET /api/auth/get 304 110.158 ms - -
+2025-10-20 10:27:41 [INFO]: GET /api/admin/getUserProgress/5 200 200.065 ms - 9489
+2025-10-20 10:27:41 [INFO]: GET /api/admin/user/5/total-time 304 171.330 ms - -
+2025-10-20 10:28:32 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.136 ms - 0
+2025-10-20 10:28:32 [INFO]: OPTIONS /api/admin/getUserProgress/5 204 0.133 ms - 0
+2025-10-20 10:28:32 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.121 ms - 0
+2025-10-20 10:28:32 [INFO]: OPTIONS /api/auth/get 204 0.161 ms - 0
+2025-10-20 10:28:32 [INFO]: GET /api/admin/getAllUsers 304 71.188 ms - -
+2025-10-20 10:28:32 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:28:32 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:28:32 [INFO]: GET /api/admin/getUserProgress/5 200 219.478 ms - 9489
+2025-10-20 10:28:32 [INFO]: GET /api/admin/user/5/total-time 304 173.100 ms - -
+2025-10-20 10:28:32 [INFO]: GET /api/auth/get 304 95.248 ms - -
+2025-10-20 10:29:18 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.217 ms - 0
+2025-10-20 10:29:18 [INFO]: OPTIONS /api/auth/get 204 0.138 ms - 0
+2025-10-20 10:29:18 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.153 ms - 0
+2025-10-20 10:29:18 [INFO]: OPTIONS /api/auth/get 204 0.176 ms - 0
+2025-10-20 10:29:19 [INFO]: GET /api/admin/getAllUsers 304 93.389 ms - -
+2025-10-20 10:29:19 [INFO]: GET /api/admin/getAllUsers 304 48.069 ms - -
+2025-10-20 10:29:19 [INFO]: GET /api/auth/get 304 179.342 ms - -
+2025-10-20 10:29:19 [INFO]: GET /api/auth/get 304 102.391 ms - -
+2025-10-20 10:29:20 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.176 ms - 0
+2025-10-20 10:29:20 [INFO]: OPTIONS /api/admin/getUserProgress/5 204 0.166 ms - 0
+2025-10-20 10:29:20 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.228 ms - 0
+2025-10-20 10:29:20 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:29:20 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:29:20 [INFO]: GET /api/admin/user/5/total-time 304 163.319 ms - -
+2025-10-20 10:29:20 [INFO]: GET /api/admin/getUserProgress/5 200 232.910 ms - 9489
+2025-10-20 10:29:20 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:29:20 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:29:20 [INFO]: GET /api/admin/user/5/total-time 304 156.860 ms - -
+2025-10-20 10:29:34 [INFO]: OPTIONS /api/admin/changeUserRole/5 204 0.117 ms - 0
+2025-10-20 10:29:34 [INFO]: PUT /api/admin/changeUserRole/5 404 162.719 ms - 165
+2025-10-20 10:30:11 [INFO]: OPTIONS /api/admin/changeUserRole/5 204 0.140 ms - 0
+2025-10-20 10:30:11 [INFO]: PUT /api/admin/changeUserRole/5 404 170.417 ms - 165
+2025-10-20 10:32:47 [INFO]: OPTIONS /api/admin/changeUserRole/5 204 0.202 ms - 0
+2025-10-20 10:32:47 [INFO]: PUT /api/admin/changeUserRole/5 404 120.006 ms - 165
+2025-10-20 10:38:00 [INFO]: ============================================================================================
+2025-10-20 10:38:00 [INFO]: Server is started at http://127.0.0.1:8080
+2025-10-20 10:39:42 [INFO]: ============================================================================================
+2025-10-20 10:39:42 [INFO]: Server is started at http://127.0.0.1:8080
+2025-10-20 10:40:05 [INFO]: OPTIONS /api/admin/changeUserRole/5 204 3.604 ms - 0
+2025-10-20 10:40:05 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:40:05 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:40:05 [INFO]: PUT /api/admin/changeUserRole/5 400 208.728 ms - 31
+2025-10-20 10:50:13 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.189 ms - 0
+2025-10-20 10:50:13 [INFO]: OPTIONS /api/auth/get 204 0.137 ms - 0
+2025-10-20 10:50:13 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.286 ms - 0
+2025-10-20 10:50:13 [INFO]: OPTIONS /api/auth/get 204 0.192 ms - 0
+2025-10-20 10:50:13 [INFO]: GET /api/admin/getAllUsers 304 75.764 ms - -
+2025-10-20 10:50:13 [INFO]: GET /api/admin/getAllUsers 304 46.716 ms - -
+2025-10-20 10:50:14 [INFO]: GET /api/auth/get 304 125.079 ms - -
+2025-10-20 10:50:14 [INFO]: GET /api/auth/get 304 95.439 ms - -
+2025-10-20 10:50:15 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.211 ms - 0
+2025-10-20 10:50:15 [INFO]: OPTIONS /api/admin/getUserProgress/5 204 0.325 ms - 0
+2025-10-20 10:50:15 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.257 ms - 0
+2025-10-20 10:50:15 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:50:15 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:50:15 [INFO]: GET /api/admin/getUserProgress/5 200 200.460 ms - 9489
+2025-10-20 10:50:15 [INFO]: GET /api/admin/user/5/total-time 304 172.403 ms - -
+2025-10-20 10:50:15 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:50:15 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:50:15 [INFO]: GET /api/admin/user/5/total-time 304 147.921 ms - -
+2025-10-20 10:50:17 [INFO]: OPTIONS /api/admin/changeUserRole/5 204 0.156 ms - 0
+2025-10-20 10:50:17 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:50:17 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:50:17 [INFO]: PUT /api/admin/changeUserRole/5 400 97.051 ms - 31
+2025-10-20 10:52:54 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.147 ms - 0
+2025-10-20 10:52:54 [INFO]: OPTIONS /api/admin/getUserProgress/5 204 0.094 ms - 0
+2025-10-20 10:52:54 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.090 ms - 0
+2025-10-20 10:52:54 [INFO]: OPTIONS /api/auth/get 204 0.184 ms - 0
+2025-10-20 10:52:54 [INFO]: GET /api/admin/getAllUsers 304 64.620 ms - -
+2025-10-20 10:52:54 [INFO]: GET /api/admin/getUserProgress/5 200 214.297 ms - 9489
+2025-10-20 10:52:54 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:52:54 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:52:54 [INFO]: GET /api/auth/get 304 109.751 ms - -
+2025-10-20 10:52:54 [INFO]: GET /api/admin/user/5/total-time 304 171.050 ms - -
+2025-10-20 10:53:04 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.116 ms - 0
+2025-10-20 10:53:04 [INFO]: OPTIONS /api/admin/getUserProgress/5 204 0.097 ms - 0
+2025-10-20 10:53:04 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.117 ms - 0
+2025-10-20 10:53:04 [INFO]: OPTIONS /api/auth/get 204 0.098 ms - 0
+2025-10-20 10:53:05 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:53:05 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:53:05 [INFO]: GET /api/admin/getUserProgress/5 200 224.266 ms - 9489
+2025-10-20 10:53:05 [INFO]: GET /api/admin/user/5/total-time 304 200.800 ms - -
+2025-10-20 10:53:05 [INFO]: GET /api/admin/getAllUsers 304 52.175 ms - -
+2025-10-20 10:53:05 [INFO]: GET /api/auth/get 304 102.765 ms - -
+2025-10-20 10:53:07 [INFO]: GET /api/admin/getAllUsers 304 70.446 ms - -
+2025-10-20 10:53:08 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:53:08 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:53:08 [INFO]: GET /api/auth/get 304 130.422 ms - -
+2025-10-20 10:53:08 [INFO]: GET /api/admin/getUserProgress/5 200 213.957 ms - 9489
+2025-10-20 10:53:08 [INFO]: GET /api/admin/user/5/total-time 304 209.504 ms - -
+2025-10-20 10:53:14 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.223 ms - 0
+2025-10-20 10:53:14 [INFO]: OPTIONS /api/admin/getUserProgress/5 204 0.136 ms - 0
+2025-10-20 10:53:14 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.095 ms - 0
+2025-10-20 10:53:14 [INFO]: OPTIONS /api/auth/get 204 0.162 ms - 0
+2025-10-20 10:53:14 [INFO]: GET /api/admin/getAllUsers 304 49.687 ms - -
+2025-10-20 10:53:15 [INFO]: GET /api/admin/getUserProgress/5 200 204.160 ms - 9489
+2025-10-20 10:53:15 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:53:15 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:53:15 [INFO]: GET /api/auth/get 304 108.040 ms - -
+2025-10-20 10:53:15 [INFO]: GET /api/admin/user/5/total-time 304 159.551 ms - -
+2025-10-20 10:53:15 [INFO]: GET /api/admin/getAllUsers 304 47.460 ms - -
+2025-10-20 10:53:15 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:53:15 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:53:16 [INFO]: GET /api/auth/get 304 103.022 ms - -
+2025-10-20 10:53:16 [INFO]: GET /api/admin/user/5/total-time 304 157.349 ms - -
+2025-10-20 10:53:16 [INFO]: GET /api/admin/getUserProgress/5 200 218.145 ms - 9489
+2025-10-20 10:53:22 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.128 ms - 0
+2025-10-20 10:53:22 [INFO]: OPTIONS /api/admin/getUserProgress/5 204 0.205 ms - 0
+2025-10-20 10:53:22 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.160 ms - 0
+2025-10-20 10:53:22 [INFO]: OPTIONS /api/auth/get 204 0.161 ms - 0
+2025-10-20 10:53:22 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:53:22 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:53:23 [INFO]: GET /api/admin/user/5/total-time 304 152.428 ms - -
+2025-10-20 10:53:23 [INFO]: GET /api/admin/getUserProgress/5 200 213.402 ms - 9489
+2025-10-20 10:53:23 [INFO]: GET /api/admin/getAllUsers 304 46.927 ms - -
+2025-10-20 10:53:23 [INFO]: GET /api/auth/get 304 96.315 ms - -
+2025-10-20 10:53:25 [INFO]: GET /api/admin/getAllUsers 304 48.555 ms - -
+2025-10-20 10:53:25 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:53:25 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:53:26 [INFO]: GET /api/auth/get 304 99.983 ms - -
+2025-10-20 10:53:26 [INFO]: GET /api/admin/user/5/total-time 304 162.093 ms - -
+2025-10-20 10:53:26 [INFO]: GET /api/admin/getUserProgress/5 200 223.700 ms - 9489
+2025-10-20 10:53:38 [INFO]: OPTIONS /api/admin/changeUserRole/5 204 0.207 ms - 0
+2025-10-20 10:53:38 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:53:38 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:53:39 [INFO]: PUT /api/admin/changeUserRole/5 200 299.707 ms - 49
+2025-10-20 10:53:50 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.214 ms - 0
+2025-10-20 10:53:50 [INFO]: OPTIONS /api/auth/get 204 0.216 ms - 0
+2025-10-20 10:53:50 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.358 ms - 0
+2025-10-20 10:53:50 [INFO]: OPTIONS /api/auth/get 204 0.227 ms - 0
+2025-10-20 10:53:50 [INFO]: GET /api/admin/getAllUsers 200 74.518 ms - 2951
+2025-10-20 10:53:50 [INFO]: GET /api/admin/getAllUsers 304 52.666 ms - -
+2025-10-20 10:53:50 [INFO]: GET /api/auth/get 304 159.151 ms - -
+2025-10-20 10:53:50 [INFO]: GET /api/auth/get 304 96.567 ms - -
+2025-10-20 10:53:52 [INFO]: OPTIONS /api/admin/user/3/total-time 204 0.219 ms - 0
+2025-10-20 10:53:52 [INFO]: OPTIONS /api/admin/getUserProgress/3 204 0.258 ms - 0
+2025-10-20 10:53:52 [INFO]: OPTIONS /api/admin/user/3/total-time 204 0.174 ms - 0
+2025-10-20 10:53:52 [INFO]: GET /api/admin/getUserProgress/3 404 49.980 ms - 42
+2025-10-20 10:53:52 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:53:52 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:53:52 [INFO]: GET /api/admin/user/3/total-time 200 152.171 ms - 48
+2025-10-20 10:53:52 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:53:52 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:53:52 [INFO]: GET /api/admin/user/3/total-time 304 156.735 ms - -
+2025-10-20 10:54:22 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.126 ms - 0
+2025-10-20 10:54:22 [INFO]: OPTIONS /api/auth/get 204 0.102 ms - 0
+2025-10-20 10:54:22 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.147 ms - 0
+2025-10-20 10:54:22 [INFO]: OPTIONS /api/auth/get 204 0.128 ms - 0
+2025-10-20 10:54:22 [INFO]: GET /api/admin/getAllUsers 200 77.991 ms - 2952
+2025-10-20 10:54:22 [INFO]: GET /api/admin/getAllUsers 304 45.608 ms - -
+2025-10-20 10:54:22 [INFO]: GET /api/auth/get 304 140.971 ms - -
+2025-10-20 10:54:23 [INFO]: GET /api/auth/get 304 106.779 ms - -
+2025-10-20 10:54:24 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.212 ms - 0
+2025-10-20 10:54:24 [INFO]: OPTIONS /api/admin/getUserProgress/5 204 0.130 ms - 0
+2025-10-20 10:54:24 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.197 ms - 0
+2025-10-20 10:54:24 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:54:24 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:54:24 [INFO]: GET /api/admin/getUserProgress/5 200 194.806 ms - 9489
+2025-10-20 10:54:24 [INFO]: GET /api/admin/user/5/total-time 304 146.002 ms - -
+2025-10-20 10:54:24 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:54:24 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:54:24 [INFO]: GET /api/admin/user/5/total-time 304 145.484 ms - -
+2025-10-20 10:54:26 [INFO]: OPTIONS /api/admin/changeUserRole/5 204 0.218 ms - 0
+2025-10-20 10:54:26 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:54:26 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:54:26 [INFO]: PUT /api/admin/changeUserRole/5 200 254.516 ms - 49
+2025-10-20 10:54:36 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.263 ms - 0
+2025-10-20 10:54:36 [INFO]: OPTIONS /api/auth/get 204 0.156 ms - 0
+2025-10-20 10:54:36 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.178 ms - 0
+2025-10-20 10:54:36 [INFO]: OPTIONS /api/auth/get 204 0.154 ms - 0
+2025-10-20 10:54:36 [INFO]: GET /api/admin/getAllUsers 200 47.507 ms - 2951
+2025-10-20 10:54:36 [INFO]: GET /api/admin/getAllUsers 304 49.215 ms - -
+2025-10-20 10:54:36 [INFO]: GET /api/auth/get 304 151.938 ms - -
+2025-10-20 10:54:36 [INFO]: GET /api/auth/get 304 100.827 ms - -
+2025-10-20 10:54:52 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.104 ms - 0
+2025-10-20 10:54:52 [INFO]: OPTIONS /api/auth/get 204 0.083 ms - 0
+2025-10-20 10:54:52 [INFO]: GET /api/admin/getAllUsers 304 61.951 ms - -
+2025-10-20 10:54:53 [INFO]: GET /api/auth/get 304 129.838 ms - -
+2025-10-20 10:55:07 [INFO]: OPTIONS /api/admin/user/3/total-time 204 0.099 ms - 0
+2025-10-20 10:55:07 [INFO]: OPTIONS /api/admin/getUserProgress/3 204 0.101 ms - 0
+2025-10-20 10:55:07 [INFO]: OPTIONS /api/admin/user/3/total-time 204 0.140 ms - 0
+2025-10-20 10:55:07 [INFO]: GET /api/admin/getUserProgress/3 404 61.353 ms - 42
+2025-10-20 10:55:08 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:55:08 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:55:08 [INFO]: GET /api/admin/user/3/total-time 304 167.470 ms - -
+2025-10-20 10:55:08 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:55:08 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:55:08 [INFO]: GET /api/admin/user/3/total-time 304 144.096 ms - -
+2025-10-20 10:55:38 [INFO]: OPTIONS /api/admin/getUserProgress/3 204 0.109 ms - 0
+2025-10-20 10:55:38 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.089 ms - 0
+2025-10-20 10:55:38 [INFO]: OPTIONS /api/auth/get 204 0.089 ms - 0
+2025-10-20 10:55:38 [INFO]: GET /api/admin/getUserProgress/3 404 68.505 ms - 42
+2025-10-20 10:55:38 [INFO]: GET /api/admin/getAllUsers 304 45.222 ms - -
+2025-10-20 10:55:39 [INFO]: GET /api/auth/get 304 134.416 ms - -
+2025-10-20 10:57:34 [INFO]: OPTIONS /api/admin/getUserProgress/3 204 0.350 ms - 0
+2025-10-20 10:57:34 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.205 ms - 0
+2025-10-20 10:57:34 [INFO]: OPTIONS /api/auth/get 204 0.243 ms - 0
+2025-10-20 10:57:34 [INFO]: GET /api/admin/getAllUsers 304 68.600 ms - -
+2025-10-20 10:57:34 [INFO]: GET /api/admin/getUserProgress/3 404 80.745 ms - 42
+2025-10-20 10:57:34 [INFO]: GET /api/auth/get 304 114.884 ms - -
+2025-10-20 10:57:52 [INFO]: OPTIONS /api/admin/user/1/total-time 204 0.130 ms - 0
+2025-10-20 10:57:52 [INFO]: OPTIONS /api/admin/getUserProgress/1 204 0.115 ms - 0
+2025-10-20 10:57:52 [INFO]: GET /api/admin/getUserProgress/1 404 63.024 ms - 42
+2025-10-20 10:57:52 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:57:52 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:57:52 [INFO]: GET /api/admin/user/1/total-time 200 184.043 ms - 48
+2025-10-20 10:57:54 [INFO]: OPTIONS /api/admin/user/3/total-time 204 0.090 ms - 0
+2025-10-20 10:57:54 [INFO]: OPTIONS /api/admin/getUserProgress/3 204 0.102 ms - 0
+2025-10-20 10:57:54 [INFO]: GET /api/admin/getUserProgress/3 404 46.971 ms - 42
+2025-10-20 10:57:54 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:57:54 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:57:54 [INFO]: GET /api/admin/user/3/total-time 304 149.309 ms - -
+2025-10-20 10:57:58 [INFO]: OPTIONS /api/admin/changeUserRole/3 204 0.319 ms - 0
+2025-10-20 10:57:58 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:57:58 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:57:59 [INFO]: PUT /api/admin/changeUserRole/3 200 251.429 ms - 49
+2025-10-20 10:58:28 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.249 ms - 0
+2025-10-20 10:58:28 [INFO]: OPTIONS /api/admin/getUserProgress/5 204 0.443 ms - 0
+2025-10-20 10:58:28 [INFO]: GET /api/admin/getUserProgress/5 200 214.560 ms - 9489
+2025-10-20 10:58:28 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:58:28 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:58:28 [INFO]: GET /api/admin/user/5/total-time 304 177.806 ms - -
+2025-10-20 10:58:28 [INFO]: OPTIONS /api/admin/changeUserRole/5 204 0.131 ms - 0
+2025-10-20 10:58:28 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:58:28 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:58:28 [INFO]: PUT /api/admin/changeUserRole/5 400 99.643 ms - 31
+2025-10-20 10:58:31 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:58:31 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:58:31 [INFO]: PUT /api/admin/changeUserRole/5 400 101.095 ms - 31
+2025-10-20 10:58:42 [INFO]: OPTIONS /api/admin/changeUserRole/5 204 0.158 ms - 0
+2025-10-20 10:58:43 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:58:43 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:58:43 [INFO]: PUT /api/admin/changeUserRole/5 400 123.318 ms - 31
+2025-10-20 10:59:00 [INFO]: OPTIONS /api/admin/changeUserRole/5 204 0.384 ms - 0
+2025-10-20 10:59:01 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:59:01 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:59:01 [INFO]: PUT /api/admin/changeUserRole/5 400 140.443 ms - 31
+2025-10-20 10:59:52 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.114 ms - 0
+2025-10-20 10:59:52 [INFO]: OPTIONS /api/admin/getUserProgress/5 204 0.127 ms - 0
+2025-10-20 10:59:52 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.115 ms - 0
+2025-10-20 10:59:52 [INFO]: OPTIONS /api/auth/get 204 0.188 ms - 0
+2025-10-20 10:59:53 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:59:53 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:59:53 [INFO]: GET /api/admin/getUserProgress/5 200 220.732 ms - 9489
+2025-10-20 10:59:53 [INFO]: GET /api/admin/user/5/total-time 304 199.381 ms - -
+2025-10-20 10:59:53 [INFO]: GET /api/admin/getAllUsers 200 51.223 ms - 2950
+2025-10-20 10:59:53 [INFO]: GET /api/auth/get 304 94.286 ms - -
+2025-10-20 10:59:56 [INFO]: GET /api/admin/getAllUsers 304 63.131 ms - -
+2025-10-20 10:59:57 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 10:59:57 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 10:59:57 [INFO]: GET /api/auth/get 304 121.475 ms - -
+2025-10-20 10:59:57 [INFO]: GET /api/admin/getUserProgress/5 200 194.427 ms - 9489
+2025-10-20 10:59:57 [INFO]: GET /api/admin/user/5/total-time 304 168.650 ms - -
+2025-10-20 11:00:19 [INFO]: ============================================================================================
+2025-10-20 11:00:19 [INFO]: Server is started at http://127.0.0.1:8080
+2025-10-20 11:00:34 [INFO]: OPTIONS /api/admin/getAllUsers 204 1.795 ms - 0
+2025-10-20 11:00:34 [INFO]: OPTIONS /api/auth/get 204 0.408 ms - 0
+2025-10-20 11:00:34 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.233 ms - 0
+2025-10-20 11:00:34 [INFO]: OPTIONS /api/auth/get 204 0.520 ms - 0
+2025-10-20 11:00:34 [INFO]: GET /api/admin/getAllUsers 304 103.202 ms - -
+2025-10-20 11:00:34 [INFO]: GET /api/admin/getAllUsers 304 52.508 ms - -
+2025-10-20 11:00:34 [INFO]: GET /api/auth/get 304 168.319 ms - -
+2025-10-20 11:00:35 [INFO]: GET /api/auth/get 304 102.547 ms - -
+2025-10-20 11:02:01 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.186 ms - 0
+2025-10-20 11:02:01 [INFO]: OPTIONS /api/auth/get 204 0.219 ms - 0
+2025-10-20 11:02:01 [INFO]: GET /api/admin/getAllUsers 304 69.673 ms - -
+2025-10-20 11:02:01 [INFO]: GET /api/auth/get 304 113.983 ms - -
+2025-10-20 11:02:05 [INFO]: GET /api/admin/getAllUsers 304 48.022 ms - -
+2025-10-20 11:02:06 [INFO]: GET /api/auth/get 304 116.128 ms - -
+2025-10-20 11:02:08 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.671 ms - 0
+2025-10-20 11:02:08 [INFO]: OPTIONS /api/auth/get 204 0.169 ms - 0
+2025-10-20 11:02:08 [INFO]: GET /api/admin/getAllUsers 304 47.861 ms - -
+2025-10-20 11:02:09 [INFO]: GET /api/auth/get 304 103.527 ms - -
+2025-10-20 11:02:13 [INFO]: GET /api/admin/getAllUsers 304 47.805 ms - -
+2025-10-20 11:02:14 [INFO]: GET /api/auth/get 304 93.735 ms - -
+2025-10-20 11:02:24 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.450 ms - 0
+2025-10-20 11:02:24 [INFO]: OPTIONS /api/auth/get 204 0.452 ms - 0
+2025-10-20 11:02:24 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.274 ms - 0
+2025-10-20 11:02:24 [INFO]: OPTIONS /api/auth/get 204 0.175 ms - 0
+2025-10-20 11:02:24 [INFO]: GET /api/admin/getAllUsers 304 84.901 ms - -
+2025-10-20 11:02:24 [INFO]: GET /api/admin/getAllUsers 304 74.632 ms - -
+2025-10-20 11:02:24 [INFO]: GET /api/auth/get 304 128.259 ms - -
+2025-10-20 11:02:24 [INFO]: GET /api/auth/get 304 94.961 ms - -
+2025-10-20 11:02:28 [INFO]: OPTIONS /api/admin/user/3/total-time 204 0.148 ms - 0
+2025-10-20 11:02:28 [INFO]: OPTIONS /api/admin/getUserProgress/3 204 0.205 ms - 0
+2025-10-20 11:02:28 [INFO]: OPTIONS /api/admin/user/3/total-time 204 0.190 ms - 0
+2025-10-20 11:02:28 [INFO]: GET /api/admin/getUserProgress/3 404 46.405 ms - 42
+2025-10-20 11:02:28 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:02:28 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:02:28 [INFO]: GET /api/admin/user/3/total-time 304 149.020 ms - -
+2025-10-20 11:02:28 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:02:28 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:02:28 [INFO]: GET /api/admin/user/3/total-time 304 145.154 ms - -
+2025-10-20 11:02:29 [INFO]: OPTIONS /api/admin/changeUserRole/3 204 0.203 ms - 0
+2025-10-20 11:02:30 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:02:30 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:02:30 [INFO]: PUT /api/admin/changeUserRole/3 400 128.304 ms - 31
+2025-10-20 11:02:35 [INFO]: OPTIONS /api/admin/changeUserRole/3 204 0.119 ms - 0
+2025-10-20 11:02:35 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:02:35 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:02:36 [INFO]: PUT /api/admin/changeUserRole/3 400 96.562 ms - 31
+2025-10-20 11:02:36 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:02:36 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:02:36 [INFO]: PUT /api/admin/changeUserRole/3 400 94.347 ms - 31
+2025-10-20 11:02:37 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:02:37 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:02:37 [INFO]: PUT /api/admin/changeUserRole/3 400 101.373 ms - 31
+2025-10-20 11:02:40 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.204 ms - 0
+2025-10-20 11:02:40 [INFO]: OPTIONS /api/auth/get 204 0.255 ms - 0
+2025-10-20 11:02:40 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.184 ms - 0
+2025-10-20 11:02:40 [INFO]: OPTIONS /api/auth/get 204 0.132 ms - 0
+2025-10-20 11:02:40 [INFO]: GET /api/admin/getAllUsers 304 54.761 ms - -
+2025-10-20 11:02:40 [INFO]: GET /api/admin/getAllUsers 304 45.932 ms - -
+2025-10-20 11:02:40 [INFO]: GET /api/auth/get 304 127.363 ms - -
+2025-10-20 11:02:40 [INFO]: GET /api/auth/get 304 104.069 ms - -
+2025-10-20 11:02:42 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.148 ms - 0
+2025-10-20 11:02:42 [INFO]: OPTIONS /api/admin/getUserProgress/5 204 0.257 ms - 0
+2025-10-20 11:02:42 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.351 ms - 0
+2025-10-20 11:02:42 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:02:42 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:02:42 [INFO]: GET /api/admin/user/5/total-time 304 181.760 ms - -
+2025-10-20 11:02:42 [INFO]: GET /api/admin/getUserProgress/5 200 246.803 ms - 9489
+2025-10-20 11:02:42 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:02:42 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:02:42 [INFO]: GET /api/admin/user/5/total-time 304 168.780 ms - -
+2025-10-20 11:02:43 [INFO]: OPTIONS /api/admin/changeUserRole/5 204 0.159 ms - 0
+2025-10-20 11:02:43 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:02:43 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:02:43 [INFO]: PUT /api/admin/changeUserRole/5 400 104.636 ms - 31
+2025-10-20 11:02:46 [INFO]: OPTIONS /api/admin/user/8/total-time 204 0.135 ms - 0
+2025-10-20 11:02:46 [INFO]: OPTIONS /api/admin/getUserProgress/8 204 0.100 ms - 0
+2025-10-20 11:02:46 [INFO]: GET /api/admin/getUserProgress/8 404 51.806 ms - 42
+2025-10-20 11:02:46 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:02:46 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:02:46 [INFO]: GET /api/admin/user/8/total-time 200 144.066 ms - 48
+2025-10-20 11:02:47 [INFO]: OPTIONS /api/admin/changeUserRole/8 204 0.138 ms - 0
+2025-10-20 11:02:47 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:02:47 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:02:48 [INFO]: PUT /api/admin/changeUserRole/8 200 266.026 ms - 49
+2025-10-20 11:02:48 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.131 ms - 0
+2025-10-20 11:02:48 [INFO]: GET /api/admin/getAllUsers 200 51.914 ms - 2949
+2025-10-20 11:02:51 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.131 ms - 0
+2025-10-20 11:02:51 [INFO]: OPTIONS /api/admin/getUserProgress/5 204 0.144 ms - 0
+2025-10-20 11:02:51 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:02:51 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:02:52 [INFO]: GET /api/admin/user/5/total-time 304 149.614 ms - -
+2025-10-20 11:02:52 [INFO]: GET /api/admin/getUserProgress/5 200 210.131 ms - 9489
+2025-10-20 11:02:52 [INFO]: OPTIONS /api/admin/changeUserRole/5 204 0.090 ms - 0
+2025-10-20 11:02:52 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:02:52 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:02:53 [INFO]: PUT /api/admin/changeUserRole/5 400 95.766 ms - 31
+2025-10-20 11:03:11 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.107 ms - 0
+2025-10-20 11:03:11 [INFO]: OPTIONS /api/admin/getUserProgress/5 204 0.091 ms - 0
+2025-10-20 11:03:11 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.093 ms - 0
+2025-10-20 11:03:11 [INFO]: OPTIONS /api/auth/get 204 0.095 ms - 0
+2025-10-20 11:03:12 [INFO]: GET /api/admin/getUserProgress/5 200 226.613 ms - 9489
+2025-10-20 11:03:12 [INFO]: GET /api/admin/getAllUsers 304 62.100 ms - -
+2025-10-20 11:03:12 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:03:12 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:03:12 [INFO]: GET /api/auth/get 304 160.317 ms - -
+2025-10-20 11:03:12 [INFO]: GET /api/admin/user/5/total-time 304 192.708 ms - -
+2025-10-20 11:03:14 [INFO]: GET /api/admin/getAllUsers 304 53.418 ms - -
+2025-10-20 11:03:14 [INFO]: GET /api/admin/getAllUsers 304 56.582 ms - -
+2025-10-20 11:03:14 [INFO]: GET /api/auth/get 304 103.955 ms - -
+2025-10-20 11:03:15 [INFO]: GET /api/auth/get 304 99.883 ms - -
+2025-10-20 11:03:16 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:03:16 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:03:16 [INFO]: GET /api/admin/user/5/total-time 304 150.405 ms - -
+2025-10-20 11:03:16 [INFO]: GET /api/admin/getUserProgress/5 200 208.954 ms - 9489
+2025-10-20 11:03:16 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:03:16 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:03:16 [INFO]: GET /api/admin/user/5/total-time 304 145.720 ms - -
+2025-10-20 11:03:17 [INFO]: OPTIONS /api/admin/changeUserRole/5 204 0.121 ms - 0
+2025-10-20 11:03:17 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:03:17 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:03:18 [INFO]: PUT /api/admin/changeUserRole/5 200 263.570 ms - 49
+2025-10-20 11:03:18 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.168 ms - 0
+2025-10-20 11:03:18 [INFO]: GET /api/admin/getAllUsers 200 44.189 ms - 2950
+2025-10-20 11:03:22 [INFO]: OPTIONS /api/admin/user/8/total-time 204 0.216 ms - 0
+2025-10-20 11:03:22 [INFO]: OPTIONS /api/admin/getUserProgress/8 204 0.243 ms - 0
+2025-10-20 11:03:23 [INFO]: GET /api/admin/getUserProgress/8 404 45.420 ms - 42
+2025-10-20 11:03:23 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:03:23 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:03:23 [INFO]: GET /api/admin/user/8/total-time 304 149.603 ms - -
+2025-10-20 11:03:24 [INFO]: OPTIONS /api/admin/changeUserRole/8 204 0.089 ms - 0
+2025-10-20 11:03:24 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:03:24 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:03:24 [INFO]: PUT /api/admin/changeUserRole/8 200 251.669 ms - 49
+2025-10-20 11:03:24 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.333 ms - 0
+2025-10-20 11:03:24 [INFO]: GET /api/admin/getAllUsers 200 51.466 ms - 2951
+2025-10-20 11:03:26 [INFO]: OPTIONS /api/admin/user/16/total-time 204 0.121 ms - 0
+2025-10-20 11:03:26 [INFO]: OPTIONS /api/admin/getUserProgress/16 204 0.094 ms - 0
+2025-10-20 11:03:26 [INFO]: GET /api/admin/getUserProgress/16 404 47.657 ms - 42
+2025-10-20 11:03:26 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:03:26 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:03:26 [INFO]: GET /api/admin/user/16/total-time 200 152.845 ms - 48
+2025-10-20 11:03:26 [INFO]: OPTIONS /api/admin/changeUserRole/16 204 0.109 ms - 0
+2025-10-20 11:03:26 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:03:26 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:03:27 [INFO]: PUT /api/admin/changeUserRole/16 200 260.359 ms - 49
+2025-10-20 11:03:27 [INFO]: GET /api/admin/getAllUsers 200 60.181 ms - 2952
+2025-10-20 11:03:27 [INFO]: OPTIONS /api/admin/user/6/total-time 204 0.239 ms - 0
+2025-10-20 11:03:27 [INFO]: OPTIONS /api/admin/getUserProgress/6 204 0.273 ms - 0
+2025-10-20 11:03:27 [INFO]: GET /api/admin/getUserProgress/6 404 52.619 ms - 42
+2025-10-20 11:03:27 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:03:27 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:03:27 [INFO]: GET /api/admin/user/6/total-time 200 152.357 ms - 48
+2025-10-20 11:03:28 [INFO]: OPTIONS /api/admin/changeUserRole/6 204 0.129 ms - 0
+2025-10-20 11:03:28 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:03:28 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-06-07T09:47:02.806Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:03:28 [INFO]: PUT /api/admin/changeUserRole/6 200 266.535 ms - 49
+2025-10-20 11:03:28 [INFO]: GET /api/admin/getAllUsers 200 50.213 ms - 2953
+2025-10-20 11:03:29 [INFO]: OPTIONS /api/admin/user/4/total-time 204 0.135 ms - 0
+2025-10-20 11:03:29 [INFO]: OPTIONS /api/admin/getUserProgress/4 204 0.118 ms - 0
+2025-10-20 11:03:29 [INFO]: GET /api/admin/getUserProgress/4 404 49.000 ms - 42
+2025-10-20 11:03:29 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:03:29 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:03:29 [INFO]: GET /api/admin/user/4/total-time 403 101.162 ms - 112
+2025-10-20 11:03:29 [INFO]: OPTIONS /api/admin/changeUserRole/4 204 0.176 ms - 0
+2025-10-20 11:03:30 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:03:30 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:03:30 [INFO]: PUT /api/admin/changeUserRole/4 403 102.225 ms - 112
+2025-10-20 11:03:31 [INFO]: OPTIONS /api/admin/user/3/total-time 204 0.100 ms - 0
+2025-10-20 11:03:31 [INFO]: OPTIONS /api/admin/getUserProgress/3 204 0.083 ms - 0
+2025-10-20 11:03:31 [INFO]: GET /api/admin/getUserProgress/3 404 43.417 ms - 42
+2025-10-20 11:03:31 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:03:31 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:03:32 [INFO]: GET /api/admin/user/3/total-time 403 95.712 ms - 112
+2025-10-20 11:03:32 [INFO]: OPTIONS /api/admin/changeUserRole/3 204 0.101 ms - 0
+2025-10-20 11:03:33 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:03:33 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:03:33 [INFO]: PUT /api/admin/changeUserRole/3 403 96.906 ms - 112
+2025-10-20 11:03:38 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.220 ms - 0
+2025-10-20 11:03:38 [INFO]: OPTIONS /api/auth/get 204 0.354 ms - 0
+2025-10-20 11:03:38 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.160 ms - 0
+2025-10-20 11:03:38 [INFO]: OPTIONS /api/auth/get 204 0.170 ms - 0
+2025-10-20 11:03:38 [INFO]: GET /api/admin/getAllUsers 304 56.396 ms - -
+2025-10-20 11:03:38 [INFO]: GET /api/admin/getAllUsers 304 50.089 ms - -
+2025-10-20 11:03:38 [INFO]: GET /api/auth/get 200 99.426 ms - 87
+2025-10-20 11:03:38 [INFO]: GET /api/auth/get 304 124.090 ms - -
+2025-10-20 11:03:40 [INFO]: OPTIONS /api/admin/user/4/total-time 204 0.193 ms - 0
+2025-10-20 11:03:40 [INFO]: OPTIONS /api/admin/getUserProgress/4 204 0.136 ms - 0
+2025-10-20 11:03:40 [INFO]: OPTIONS /api/admin/user/4/total-time 204 0.103 ms - 0
+2025-10-20 11:03:40 [INFO]: GET /api/admin/getUserProgress/4 404 45.804 ms - 42
+2025-10-20 11:03:40 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:03:40 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:03:40 [INFO]: GET /api/admin/user/4/total-time 403 98.046 ms - 112
+2025-10-20 11:03:40 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:03:40 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:03:40 [INFO]: GET /api/admin/user/4/total-time 403 98.070 ms - 112
+2025-10-20 11:03:42 [INFO]: OPTIONS /api/admin/changeUserRole/4 204 0.205 ms - 0
+2025-10-20 11:03:42 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:03:42 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:03:42 [INFO]: PUT /api/admin/changeUserRole/4 403 111.777 ms - 112
+2025-10-20 11:03:43 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:03:43 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:03:43 [INFO]: PUT /api/admin/changeUserRole/4 403 103.176 ms - 112
+2025-10-20 11:03:45 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.186 ms - 0
+2025-10-20 11:03:45 [INFO]: OPTIONS /api/auth/get 204 0.102 ms - 0
+2025-10-20 11:03:45 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.168 ms - 0
+2025-10-20 11:03:45 [INFO]: OPTIONS /api/auth/get 204 0.193 ms - 0
+2025-10-20 11:03:45 [INFO]: GET /api/admin/getAllUsers 304 62.967 ms - -
+2025-10-20 11:03:45 [INFO]: GET /api/admin/getAllUsers 304 51.307 ms - -
+2025-10-20 11:03:45 [INFO]: GET /api/auth/get 304 99.069 ms - -
+2025-10-20 11:03:45 [INFO]: GET /api/auth/get 304 101.278 ms - -
+2025-10-20 11:03:50 [INFO]: OPTIONS /api/admin/user/4/total-time 204 0.123 ms - 0
+2025-10-20 11:03:50 [INFO]: OPTIONS /api/admin/getUserProgress/4 204 0.258 ms - 0
+2025-10-20 11:03:50 [INFO]: OPTIONS /api/admin/user/4/total-time 204 0.254 ms - 0
+2025-10-20 11:03:50 [INFO]: GET /api/admin/getUserProgress/4 404 45.021 ms - 42
+2025-10-20 11:03:50 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:03:50 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:03:50 [INFO]: GET /api/admin/user/4/total-time 403 98.193 ms - 112
+2025-10-20 11:03:50 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:03:50 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:03:51 [INFO]: GET /api/admin/user/4/total-time 403 94.526 ms - 112
+2025-10-20 11:03:51 [INFO]: OPTIONS /api/admin/changeUserRole/4 204 0.183 ms - 0
+2025-10-20 11:03:51 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:03:51 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:03:52 [INFO]: PUT /api/admin/changeUserRole/4 403 112.028 ms - 112
+2025-10-20 11:03:58 [INFO]: OPTIONS /api/admin/user/3/total-time 204 0.150 ms - 0
+2025-10-20 11:03:58 [INFO]: OPTIONS /api/admin/getUserProgress/3 204 0.191 ms - 0
+2025-10-20 11:03:59 [INFO]: GET /api/admin/getUserProgress/3 404 47.563 ms - 42
+2025-10-20 11:03:59 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:03:59 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:03:59 [INFO]: GET /api/admin/user/3/total-time 403 100.105 ms - 112
+2025-10-20 11:04:00 [INFO]: OPTIONS /api/admin/changeUserRole/3 204 0.132 ms - 0
+2025-10-20 11:04:00 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:04:00 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:04:00 [INFO]: PUT /api/admin/changeUserRole/3 403 99.316 ms - 112
+2025-10-20 11:04:06 [INFO]: OPTIONS /api/admin/changeUserRole/3 204 0.137 ms - 0
+2025-10-20 11:04:07 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:04:07 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:04:07 [INFO]: PUT /api/admin/changeUserRole/3 403 98.434 ms - 112
+2025-10-20 11:04:10 [INFO]: OPTIONS /api/admin/user/1/total-time 204 0.100 ms - 0
+2025-10-20 11:04:10 [INFO]: OPTIONS /api/admin/getUserProgress/1 204 0.199 ms - 0
+2025-10-20 11:04:11 [INFO]: GET /api/admin/getUserProgress/1 404 51.632 ms - 42
+2025-10-20 11:04:11 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:04:11 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:04:11 [INFO]: GET /api/admin/user/1/total-time 403 115.448 ms - 112
+2025-10-20 11:04:11 [INFO]: OPTIONS /api/admin/changeUserRole/1 204 0.139 ms - 0
+2025-10-20 11:04:11 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:04:11 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:04:11 [INFO]: PUT /api/admin/changeUserRole/1 403 94.533 ms - 112
+2025-10-20 11:05:02 [INFO]: OPTIONS /api/admin/user/3/total-time 204 0.206 ms - 0
+2025-10-20 11:05:02 [INFO]: OPTIONS /api/admin/getUserProgress/3 204 0.235 ms - 0
+2025-10-20 11:05:02 [INFO]: GET /api/admin/getUserProgress/3 404 68.599 ms - 42
+2025-10-20 11:05:02 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:05:02 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:05:02 [INFO]: GET /api/admin/user/3/total-time 403 121.369 ms - 112
+2025-10-20 11:05:03 [INFO]: OPTIONS /api/admin/getUserMoods/3 204 0.100 ms - 0
+2025-10-20 11:05:03 [INFO]: GET /api/admin/getUserMoods/3 304 56.509 ms - -
+2025-10-20 11:05:03 [INFO]: GET /api/admin/getUserMoods/3 304 54.607 ms - -
+2025-10-20 11:05:10 [INFO]: OPTIONS /api/admin/getUserMoods/2 204 0.103 ms - 0
+2025-10-20 11:05:10 [INFO]: OPTIONS /api/admin/user/2/total-time 204 0.145 ms - 0
+2025-10-20 11:05:10 [INFO]: OPTIONS /api/admin/getUserProgress/2 204 0.139 ms - 0
+2025-10-20 11:05:10 [INFO]: GET /api/admin/getUserMoods/2 200 47.650 ms - 2
+2025-10-20 11:05:10 [INFO]: GET /api/admin/getUserProgress/2 404 47.497 ms - 42
+2025-10-20 11:05:10 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:05:10 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:05:10 [INFO]: GET /api/admin/user/2/total-time 403 99.124 ms - 112
+2025-10-20 11:05:11 [INFO]: OPTIONS /api/admin/changeUserRole/2 204 0.095 ms - 0
+2025-10-20 11:05:11 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:05:11 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:05:11 [INFO]: PUT /api/admin/changeUserRole/2 403 103.126 ms - 112
+2025-10-20 11:05:13 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:05:13 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:05:13 [INFO]: PUT /api/admin/changeUserRole/2 403 106.184 ms - 112
+2025-10-20 11:05:14 [INFO]: OPTIONS /api/admin/getUserMoods/6 204 0.147 ms - 0
+2025-10-20 11:05:14 [INFO]: OPTIONS /api/admin/user/6/total-time 204 0.096 ms - 0
+2025-10-20 11:05:14 [INFO]: OPTIONS /api/admin/getUserProgress/6 204 0.122 ms - 0
+2025-10-20 11:05:14 [INFO]: GET /api/admin/getUserMoods/6 200 50.982 ms - 2
+2025-10-20 11:05:14 [INFO]: GET /api/admin/getUserProgress/6 404 57.875 ms - 42
+2025-10-20 11:05:14 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:05:14 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:05:14 [INFO]: GET /api/admin/user/6/total-time 403 99.250 ms - 112
+2025-10-20 11:05:15 [INFO]: OPTIONS /api/admin/changeUserRole/6 204 0.091 ms - 0
+2025-10-20 11:05:15 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:05:15 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:05:16 [INFO]: PUT /api/admin/changeUserRole/6 403 102.100 ms - 112
+2025-10-20 11:05:22 [INFO]: OPTIONS /api/admin/getUserMoods/8 204 0.392 ms - 0
+2025-10-20 11:05:22 [INFO]: OPTIONS /api/admin/user/8/total-time 204 0.310 ms - 0
+2025-10-20 11:05:22 [INFO]: OPTIONS /api/admin/getUserProgress/8 204 0.250 ms - 0
+2025-10-20 11:05:22 [INFO]: GET /api/admin/getUserMoods/8 200 60.324 ms - 2
+2025-10-20 11:05:22 [INFO]: GET /api/admin/getUserProgress/8 404 63.836 ms - 42
+2025-10-20 11:05:22 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:05:22 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:05:22 [INFO]: GET /api/admin/user/8/total-time 403 130.510 ms - 112
+2025-10-20 11:05:28 [INFO]: OPTIONS /api/admin/changeUserRole/8 204 0.093 ms - 0
+2025-10-20 11:05:29 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:05:29 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:05:29 [INFO]: PUT /api/admin/changeUserRole/8 403 94.055 ms - 112
+2025-10-20 11:06:49 [INFO]: ============================================================================================
+2025-10-20 11:06:49 [INFO]: Server is started at http://127.0.0.1:8080
+2025-10-20 11:06:54 [INFO]: OPTIONS /api/admin/getUserMoods/4 204 3.543 ms - 0
+2025-10-20 11:06:54 [INFO]: OPTIONS /api/admin/user/4/total-time 204 0.361 ms - 0
+2025-10-20 11:06:54 [INFO]: OPTIONS /api/admin/getUserProgress/4 204 0.256 ms - 0
+2025-10-20 11:06:54 [INFO]: GET /api/admin/getUserMoods/4 200 71.926 ms - 2
+2025-10-20 11:06:54 [INFO]: GET /api/admin/getUserProgress/4 404 77.281 ms - 42
+2025-10-20 11:06:54 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:06:54 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:06:55 [INFO]: GET /api/admin/user/4/total-time 403 181.834 ms - 112
+2025-10-20 11:06:55 [INFO]: OPTIONS /api/admin/getUserMoods/3 204 0.264 ms - 0
+2025-10-20 11:06:55 [INFO]: OPTIONS /api/admin/user/3/total-time 204 0.092 ms - 0
+2025-10-20 11:06:55 [INFO]: OPTIONS /api/admin/getUserProgress/3 204 0.136 ms - 0
+2025-10-20 11:06:55 [INFO]: GET /api/admin/getUserProgress/3 404 43.765 ms - 42
+2025-10-20 11:06:55 [INFO]: GET /api/admin/getUserMoods/3 304 52.807 ms - -
+2025-10-20 11:06:55 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:06:55 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:06:55 [INFO]: GET /api/admin/user/3/total-time 403 96.330 ms - 112
+2025-10-20 11:06:56 [INFO]: OPTIONS /api/admin/changeUserRole/3 204 0.187 ms - 0
+2025-10-20 11:06:56 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:06:56 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:06:57 [INFO]: PUT /api/admin/changeUserRole/3 403 112.306 ms - 112
+2025-10-20 11:06:58 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:06:58 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:06:58 [INFO]: PUT /api/admin/changeUserRole/3 403 95.540 ms - 112
+2025-10-20 11:07:35 [INFO]: OPTIONS /api/admin/user/3/total-time 204 0.188 ms - 0
+2025-10-20 11:07:35 [INFO]: OPTIONS /api/admin/getUserProgress/3 204 0.158 ms - 0
+2025-10-20 11:07:35 [INFO]: OPTIONS /api/admin/user/3/total-time 204 0.208 ms - 0
+2025-10-20 11:07:35 [INFO]: GET /api/admin/getUserProgress/3 404 73.584 ms - 42
+2025-10-20 11:07:35 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:07:35 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:07:35 [INFO]: GET /api/admin/user/3/total-time 403 147.612 ms - 112
+2025-10-20 11:07:35 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:07:35 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:07:35 [INFO]: GET /api/admin/user/3/total-time 403 95.398 ms - 112
+2025-10-20 11:07:42 [INFO]: OPTIONS /api/admin/user/4/total-time 204 0.131 ms - 0
+2025-10-20 11:07:42 [INFO]: OPTIONS /api/admin/getUserProgress/4 204 0.135 ms - 0
+2025-10-20 11:07:42 [INFO]: GET /api/admin/getUserProgress/4 404 44.323 ms - 42
+2025-10-20 11:07:42 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:07:42 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:07:42 [INFO]: GET /api/admin/user/4/total-time 403 97.068 ms - 112
+2025-10-20 11:07:42 [INFO]: OPTIONS /api/admin/user/3/total-time 204 0.104 ms - 0
+2025-10-20 11:07:42 [INFO]: OPTIONS /api/admin/getUserProgress/3 204 0.083 ms - 0
+2025-10-20 11:07:42 [INFO]: GET /api/admin/getUserProgress/3 404 47.239 ms - 42
+2025-10-20 11:07:42 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:07:42 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:07:42 [INFO]: GET /api/admin/user/3/total-time 403 112.284 ms - 112
+2025-10-20 11:07:43 [INFO]: OPTIONS /api/admin/user/1/total-time 204 0.144 ms - 0
+2025-10-20 11:07:43 [INFO]: OPTIONS /api/admin/getUserProgress/1 204 0.118 ms - 0
+2025-10-20 11:07:43 [INFO]: GET /api/admin/getUserProgress/1 404 48.486 ms - 42
+2025-10-20 11:07:43 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:07:43 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:07:43 [INFO]: GET /api/admin/user/1/total-time 403 101.495 ms - 112
+2025-10-20 11:07:45 [INFO]: OPTIONS /api/admin/user/6/total-time 204 0.159 ms - 0
+2025-10-20 11:07:45 [INFO]: OPTIONS /api/admin/getUserProgress/6 204 0.165 ms - 0
+2025-10-20 11:07:45 [INFO]: GET /api/admin/getUserProgress/6 404 50.798 ms - 42
+2025-10-20 11:07:45 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:07:45 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:07:45 [INFO]: GET /api/admin/user/6/total-time 403 103.359 ms - 112
+2025-10-20 11:07:46 [INFO]: OPTIONS /api/admin/changeUserRole/6 204 0.126 ms - 0
+2025-10-20 11:07:46 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:07:46 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:07:46 [INFO]: PUT /api/admin/changeUserRole/6 403 96.370 ms - 112
+2025-10-20 11:07:48 [INFO]: OPTIONS /api/admin/user/12/total-time 204 0.136 ms - 0
+2025-10-20 11:07:48 [INFO]: OPTIONS /api/admin/getUserProgress/12 204 0.246 ms - 0
+2025-10-20 11:07:48 [INFO]: GET /api/admin/getUserProgress/12 404 44.176 ms - 42
+2025-10-20 11:07:48 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:07:48 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:07:48 [INFO]: GET /api/admin/user/12/total-time 403 95.884 ms - 112
+2025-10-20 11:07:49 [INFO]: OPTIONS /api/admin/changeUserRole/12 204 0.160 ms - 0
+2025-10-20 11:07:49 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:07:49 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:07:49 [INFO]: PUT /api/admin/changeUserRole/12 403 97.181 ms - 112
+2025-10-20 11:08:48 [INFO]: OPTIONS /api/admin/changeUserRole/12 204 0.212 ms - 0
+2025-10-20 11:08:48 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:08:48 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:08:48 [INFO]: PUT /api/admin/changeUserRole/12 403 153.985 ms - 112
+2025-10-20 11:10:27 [INFO]: OPTIONS /api/admin/user/4/total-time 204 0.161 ms - 0
+2025-10-20 11:10:27 [INFO]: OPTIONS /api/admin/getUserProgress/4 204 0.157 ms - 0
+2025-10-20 11:10:27 [INFO]: GET /api/admin/getUserProgress/4 404 63.078 ms - 42
+2025-10-20 11:10:27 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:10:27 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:10:28 [INFO]: GET /api/admin/user/4/total-time 403 120.027 ms - 112
+2025-10-20 11:10:28 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.116 ms - 0
+2025-10-20 11:10:28 [INFO]: OPTIONS /api/admin/getUserProgress/5 204 0.171 ms - 0
+2025-10-20 11:10:28 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:10:28 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:10:28 [INFO]: GET /api/admin/user/5/total-time 403 129.870 ms - 112
+2025-10-20 11:10:28 [INFO]: GET /api/admin/getUserProgress/5 200 209.220 ms - 9489
+2025-10-20 11:10:29 [INFO]: OPTIONS /api/admin/user/7/total-time 204 0.136 ms - 0
+2025-10-20 11:10:29 [INFO]: OPTIONS /api/admin/getUserProgress/7 204 0.157 ms - 0
+2025-10-20 11:10:29 [INFO]: GET /api/admin/getUserProgress/7 404 49.664 ms - 42
+2025-10-20 11:10:29 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:10:29 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:10:29 [INFO]: GET /api/admin/user/7/total-time 403 101.145 ms - 112
+2025-10-20 11:10:29 [INFO]: OPTIONS /api/admin/user/6/total-time 204 0.139 ms - 0
+2025-10-20 11:10:29 [INFO]: OPTIONS /api/admin/getUserProgress/6 204 0.119 ms - 0
+2025-10-20 11:10:29 [INFO]: GET /api/admin/getUserProgress/6 404 50.828 ms - 42
+2025-10-20 11:10:29 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:10:29 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:10:30 [INFO]: GET /api/admin/user/6/total-time 403 104.036 ms - 112
+2025-10-20 11:10:31 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:10:31 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:10:31 [INFO]: GET /api/admin/user/5/total-time 403 98.392 ms - 112
+2025-10-20 11:10:31 [INFO]: GET /api/admin/getUserProgress/5 200 197.580 ms - 9489
+2025-10-20 11:10:31 [INFO]: GET /api/admin/getUserProgress/6 404 46.000 ms - 42
+2025-10-20 11:10:32 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:10:32 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:10:32 [INFO]: GET /api/admin/user/6/total-time 403 97.991 ms - 112
+2025-10-20 11:10:32 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:10:32 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:10:32 [INFO]: GET /api/admin/user/5/total-time 403 108.389 ms - 112
+2025-10-20 11:10:33 [INFO]: GET /api/admin/getUserProgress/5 200 241.473 ms - 9489
+2025-10-20 11:10:34 [INFO]: OPTIONS /api/admin/user/7/total-time 204 0.126 ms - 0
+2025-10-20 11:10:34 [INFO]: OPTIONS /api/admin/getUserProgress/7 204 0.124 ms - 0
+2025-10-20 11:10:34 [INFO]: GET /api/admin/getUserProgress/7 404 42.947 ms - 42
+2025-10-20 11:10:34 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:10:34 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:10:34 [INFO]: GET /api/admin/user/7/total-time 403 94.651 ms - 112
+2025-10-20 11:10:34 [INFO]: OPTIONS /api/admin/user/10/total-time 204 0.207 ms - 0
+2025-10-20 11:10:34 [INFO]: OPTIONS /api/admin/getUserProgress/10 204 0.259 ms - 0
+2025-10-20 11:10:34 [INFO]: GET /api/admin/getUserProgress/10 404 53.120 ms - 42
+2025-10-20 11:10:34 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:10:34 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:10:34 [INFO]: GET /api/admin/user/10/total-time 403 95.647 ms - 112
+2025-10-20 11:10:35 [INFO]: OPTIONS /api/admin/user/12/total-time 204 0.131 ms - 0
+2025-10-20 11:10:35 [INFO]: OPTIONS /api/admin/getUserProgress/12 204 0.112 ms - 0
+2025-10-20 11:10:35 [INFO]: GET /api/admin/getUserProgress/12 404 49.858 ms - 42
+2025-10-20 11:10:35 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:10:35 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:10:35 [INFO]: GET /api/admin/user/12/total-time 403 102.679 ms - 112
+2025-10-20 11:10:36 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.229 ms - 0
+2025-10-20 11:10:36 [INFO]: OPTIONS /api/auth/get 204 0.178 ms - 0
+2025-10-20 11:10:36 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.102 ms - 0
+2025-10-20 11:10:36 [INFO]: OPTIONS /api/auth/get 204 0.176 ms - 0
+2025-10-20 11:10:36 [INFO]: GET /api/admin/getAllUsers 304 53.353 ms - -
+2025-10-20 11:10:36 [INFO]: GET /api/admin/getAllUsers 304 54.529 ms - -
+2025-10-20 11:10:36 [INFO]: GET /api/auth/get 304 102.815 ms - -
+2025-10-20 11:10:36 [INFO]: GET /api/auth/get 304 101.498 ms - -
+2025-10-20 11:10:37 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.100 ms - 0
+2025-10-20 11:10:37 [INFO]: OPTIONS /api/admin/getUserProgress/5 204 0.192 ms - 0
+2025-10-20 11:10:37 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.196 ms - 0
+2025-10-20 11:10:37 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:10:37 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:10:37 [INFO]: GET /api/admin/user/5/total-time 403 97.770 ms - 112
+2025-10-20 11:10:37 [INFO]: GET /api/admin/getUserProgress/5 200 195.250 ms - 9489
+2025-10-20 11:10:37 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:10:37 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:10:37 [INFO]: GET /api/admin/user/5/total-time 403 115.237 ms - 112
+2025-10-20 11:10:38 [INFO]: OPTIONS /api/admin/user/6/total-time 204 0.172 ms - 0
+2025-10-20 11:10:38 [INFO]: OPTIONS /api/admin/getUserProgress/6 204 0.204 ms - 0
+2025-10-20 11:10:38 [INFO]: GET /api/admin/getUserProgress/6 404 48.239 ms - 42
+2025-10-20 11:10:38 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:10:38 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:10:38 [INFO]: GET /api/admin/user/6/total-time 403 99.614 ms - 112
+2025-10-20 11:10:39 [INFO]: OPTIONS /api/admin/user/7/total-time 204 0.134 ms - 0
+2025-10-20 11:10:39 [INFO]: OPTIONS /api/admin/getUserProgress/7 204 0.120 ms - 0
+2025-10-20 11:10:39 [INFO]: GET /api/admin/getUserProgress/7 404 48.528 ms - 42
+2025-10-20 11:10:39 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:10:39 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:10:39 [INFO]: GET /api/admin/user/7/total-time 403 100.072 ms - 112
+2025-10-20 11:10:40 [INFO]: OPTIONS /api/admin/user/10/total-time 204 0.133 ms - 0
+2025-10-20 11:10:40 [INFO]: OPTIONS /api/admin/getUserProgress/10 204 0.180 ms - 0
+2025-10-20 11:10:40 [INFO]: GET /api/admin/getUserProgress/10 404 45.302 ms - 42
+2025-10-20 11:10:40 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:10:40 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:10:40 [INFO]: GET /api/admin/user/10/total-time 403 96.474 ms - 112
+2025-10-20 11:10:40 [INFO]: OPTIONS /api/admin/user/12/total-time 204 0.104 ms - 0
+2025-10-20 11:10:40 [INFO]: OPTIONS /api/admin/getUserProgress/12 204 0.091 ms - 0
+2025-10-20 11:10:40 [INFO]: GET /api/admin/getUserProgress/12 404 45.525 ms - 42
+2025-10-20 11:10:40 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:10:40 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:10:40 [INFO]: GET /api/admin/user/12/total-time 403 96.849 ms - 112
+2025-10-20 11:10:41 [INFO]: OPTIONS /api/admin/user/11/total-time 204 0.088 ms - 0
+2025-10-20 11:10:41 [INFO]: OPTIONS /api/admin/getUserProgress/11 204 0.075 ms - 0
+2025-10-20 11:10:41 [INFO]: GET /api/admin/getUserProgress/11 404 48.924 ms - 42
+2025-10-20 11:10:41 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:10:41 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:10:41 [INFO]: GET /api/admin/user/11/total-time 403 101.007 ms - 112
+2025-10-20 11:10:41 [INFO]: OPTIONS /api/admin/user/8/total-time 204 0.214 ms - 0
+2025-10-20 11:10:41 [INFO]: OPTIONS /api/admin/getUserProgress/8 204 0.279 ms - 0
+2025-10-20 11:10:41 [INFO]: GET /api/admin/getUserProgress/8 404 45.248 ms - 42
+2025-10-20 11:10:41 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:10:41 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:10:41 [INFO]: GET /api/admin/user/8/total-time 403 96.826 ms - 112
+2025-10-20 11:10:41 [INFO]: GET /api/admin/getUserProgress/6 404 46.606 ms - 42
+2025-10-20 11:10:41 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:10:41 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:10:41 [INFO]: GET /api/admin/user/6/total-time 403 98.648 ms - 112
+2025-10-20 11:10:42 [INFO]: OPTIONS /api/admin/user/2/total-time 204 0.095 ms - 0
+2025-10-20 11:10:42 [INFO]: OPTIONS /api/admin/getUserProgress/2 204 0.080 ms - 0
+2025-10-20 11:10:42 [INFO]: GET /api/admin/getUserProgress/2 404 49.697 ms - 42
+2025-10-20 11:10:42 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:10:42 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:10:42 [INFO]: GET /api/admin/user/2/total-time 403 102.018 ms - 112
+2025-10-20 11:10:43 [INFO]: OPTIONS /api/admin/user/3/total-time 204 0.130 ms - 0
+2025-10-20 11:10:43 [INFO]: OPTIONS /api/admin/getUserProgress/3 204 0.133 ms - 0
+2025-10-20 11:10:43 [INFO]: GET /api/admin/getUserProgress/3 404 45.168 ms - 42
+2025-10-20 11:10:43 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:10:43 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:10:43 [INFO]: GET /api/admin/user/3/total-time 403 96.849 ms - 112
+2025-10-20 11:10:43 [INFO]: OPTIONS /api/admin/user/4/total-time 204 0.140 ms - 0
+2025-10-20 11:10:43 [INFO]: OPTIONS /api/admin/getUserProgress/4 204 0.111 ms - 0
+2025-10-20 11:10:44 [INFO]: GET /api/admin/getUserProgress/4 404 47.747 ms - 42
+2025-10-20 11:10:44 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:10:44 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:10:44 [INFO]: GET /api/admin/user/4/total-time 403 98.948 ms - 112
+2025-10-20 11:10:44 [INFO]: OPTIONS /api/admin/user/1/total-time 204 0.129 ms - 0
+2025-10-20 11:10:44 [INFO]: OPTIONS /api/admin/getUserProgress/1 204 0.107 ms - 0
+2025-10-20 11:10:44 [INFO]: GET /api/admin/getUserProgress/1 404 45.982 ms - 42
+2025-10-20 11:10:44 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:10:44 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:10:44 [INFO]: GET /api/admin/user/1/total-time 403 97.147 ms - 112
+2025-10-20 11:10:45 [INFO]: GET /api/admin/getUserProgress/3 404 45.862 ms - 42
+2025-10-20 11:10:45 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:10:45 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:10:45 [INFO]: GET /api/admin/user/3/total-time 403 97.459 ms - 112
+2025-10-20 11:10:46 [INFO]: OPTIONS /api/admin/user/6/total-time 204 0.110 ms - 0
+2025-10-20 11:10:46 [INFO]: OPTIONS /api/admin/getUserProgress/6 204 0.093 ms - 0
+2025-10-20 11:10:46 [INFO]: GET /api/admin/getUserProgress/6 404 51.310 ms - 42
+2025-10-20 11:10:46 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:10:46 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:10:46 [INFO]: GET /api/admin/user/6/total-time 403 102.666 ms - 112
+2025-10-20 11:10:46 [INFO]: GET /api/admin/getUserProgress/8 404 50.201 ms - 42
+2025-10-20 11:10:46 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:10:46 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:10:46 [INFO]: GET /api/admin/user/8/total-time 403 102.212 ms - 112
+2025-10-20 11:10:46 [INFO]: OPTIONS /api/admin/user/11/total-time 204 0.093 ms - 0
+2025-10-20 11:10:46 [INFO]: OPTIONS /api/admin/getUserProgress/11 204 0.176 ms - 0
+2025-10-20 11:10:46 [INFO]: GET /api/admin/getUserProgress/11 404 43.168 ms - 42
+2025-10-20 11:10:46 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:10:46 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:10:47 [INFO]: GET /api/admin/user/11/total-time 403 94.639 ms - 112
+2025-10-20 11:10:47 [INFO]: OPTIONS /api/admin/user/12/total-time 204 0.124 ms - 0
+2025-10-20 11:10:47 [INFO]: OPTIONS /api/admin/getUserProgress/12 204 0.156 ms - 0
+2025-10-20 11:10:47 [INFO]: GET /api/admin/getUserProgress/12 404 51.653 ms - 42
+2025-10-20 11:10:48 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:10:48 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:10:48 [INFO]: GET /api/admin/user/12/total-time 403 102.822 ms - 112
+2025-10-20 11:10:48 [INFO]: OPTIONS /api/admin/user/13/total-time 204 0.134 ms - 0
+2025-10-20 11:10:48 [INFO]: OPTIONS /api/admin/getUserProgress/13 204 0.113 ms - 0
+2025-10-20 11:10:48 [INFO]: GET /api/admin/getUserProgress/13 404 46.513 ms - 42
+2025-10-20 11:10:48 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:10:48 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:10:48 [INFO]: GET /api/admin/user/13/total-time 403 97.171 ms - 112
+2025-10-20 11:10:48 [INFO]: OPTIONS /api/admin/user/14/total-time 204 0.088 ms - 0
+2025-10-20 11:10:48 [INFO]: OPTIONS /api/admin/getUserProgress/14 204 0.081 ms - 0
+2025-10-20 11:10:48 [INFO]: GET /api/admin/getUserProgress/14 404 47.715 ms - 42
+2025-10-20 11:10:48 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:10:48 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:10:48 [INFO]: GET /api/admin/user/14/total-time 403 104.473 ms - 112
+2025-10-20 11:10:49 [INFO]: OPTIONS /api/admin/user/15/total-time 204 0.128 ms - 0
+2025-10-20 11:10:49 [INFO]: OPTIONS /api/admin/getUserProgress/15 204 0.112 ms - 0
+2025-10-20 11:10:49 [INFO]: GET /api/admin/getUserProgress/15 404 48.926 ms - 42
+2025-10-20 11:10:49 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:10:49 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:10:49 [INFO]: GET /api/admin/user/15/total-time 403 100.498 ms - 112
+2025-10-20 11:10:49 [INFO]: OPTIONS /api/admin/user/16/total-time 204 0.089 ms - 0
+2025-10-20 11:10:49 [INFO]: OPTIONS /api/admin/getUserProgress/16 204 0.085 ms - 0
+2025-10-20 11:10:49 [INFO]: GET /api/admin/getUserProgress/16 404 50.160 ms - 42
+2025-10-20 11:10:49 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:10:49 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:10:49 [INFO]: GET /api/admin/user/16/total-time 403 100.750 ms - 112
+2025-10-20 11:10:50 [INFO]: GET /api/admin/getUserProgress/13 404 48.563 ms - 42
+2025-10-20 11:10:50 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:10:50 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:10:50 [INFO]: GET /api/admin/user/13/total-time 403 97.749 ms - 112
+2025-10-20 11:10:50 [INFO]: OPTIONS /api/admin/user/9/total-time 204 0.138 ms - 0
+2025-10-20 11:10:50 [INFO]: OPTIONS /api/admin/getUserProgress/9 204 0.130 ms - 0
+2025-10-20 11:10:50 [INFO]: GET /api/admin/getUserProgress/9 404 51.565 ms - 42
+2025-10-20 11:10:50 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:10:50 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:10:50 [INFO]: GET /api/admin/user/9/total-time 403 104.065 ms - 112
+2025-10-20 11:10:51 [INFO]: OPTIONS /api/admin/user/3/total-time 204 0.148 ms - 0
+2025-10-20 11:10:51 [INFO]: OPTIONS /api/admin/getUserProgress/3 204 0.096 ms - 0
+2025-10-20 11:10:51 [INFO]: GET /api/admin/getUserProgress/3 404 44.036 ms - 42
+2025-10-20 11:10:51 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:10:51 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:10:51 [INFO]: GET /api/admin/user/3/total-time 403 95.793 ms - 112
+2025-10-20 11:11:21 [INFO]: ============================================================================================
+2025-10-20 11:11:21 [INFO]: Server is started at http://127.0.0.1:8080
+2025-10-20 11:11:39 [INFO]: OPTIONS /api/admin/getAllUsers 204 1.173 ms - 0
+2025-10-20 11:11:39 [INFO]: OPTIONS /api/auth/get 204 0.144 ms - 0
+2025-10-20 11:11:39 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.139 ms - 0
+2025-10-20 11:11:39 [INFO]: OPTIONS /api/auth/get 204 0.097 ms - 0
+2025-10-20 11:11:39 [INFO]: GET /api/admin/getAllUsers 304 84.322 ms - -
+2025-10-20 11:11:39 [INFO]: GET /api/admin/getAllUsers 304 53.432 ms - -
+2025-10-20 11:11:39 [INFO]: GET /api/auth/get 304 176.966 ms - -
+2025-10-20 11:11:39 [INFO]: GET /api/auth/get 304 103.259 ms - -
+2025-10-20 11:11:43 [INFO]: OPTIONS /api/admin/user/3/total-time 204 0.192 ms - 0
+2025-10-20 11:11:43 [INFO]: OPTIONS /api/admin/getUserProgress/3 204 0.179 ms - 0
+2025-10-20 11:11:43 [INFO]: OPTIONS /api/admin/user/3/total-time 204 0.131 ms - 0
+2025-10-20 11:11:43 [INFO]: GET /api/admin/getUserProgress/3 404 47.692 ms - 42
+2025-10-20 11:11:43 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:11:43 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:11:43 [INFO]: GET /api/admin/user/3/total-time 403 112.258 ms - 112
+2025-10-20 11:11:43 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:11:43 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:11:43 [INFO]: GET /api/admin/user/3/total-time 403 116.168 ms - 112
+2025-10-20 11:11:44 [INFO]: OPTIONS /api/admin/user/4/total-time 204 0.213 ms - 0
+2025-10-20 11:11:44 [INFO]: OPTIONS /api/admin/getUserProgress/4 204 0.225 ms - 0
+2025-10-20 11:11:44 [INFO]: GET /api/admin/getUserProgress/4 404 52.296 ms - 42
+2025-10-20 11:11:44 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:11:44 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:11:44 [INFO]: GET /api/admin/user/4/total-time 403 111.296 ms - 112
+2025-10-20 11:11:45 [INFO]: OPTIONS /api/admin/user/2/total-time 204 0.140 ms - 0
+2025-10-20 11:11:45 [INFO]: OPTIONS /api/admin/getUserProgress/2 204 0.171 ms - 0
+2025-10-20 11:11:45 [INFO]: GET /api/admin/getUserProgress/2 404 48.894 ms - 42
+2025-10-20 11:11:45 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:11:45 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:11:45 [INFO]: GET /api/admin/user/2/total-time 403 106.270 ms - 112
+2025-10-20 11:11:46 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.154 ms - 0
+2025-10-20 11:11:46 [INFO]: OPTIONS /api/admin/getUserProgress/5 204 0.098 ms - 0
+2025-10-20 11:11:46 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:11:46 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:11:46 [INFO]: GET /api/admin/user/5/total-time 403 104.039 ms - 112
+2025-10-20 11:11:46 [INFO]: GET /api/admin/getUserProgress/5 200 217.558 ms - 9489
+2025-10-20 11:11:46 [INFO]: OPTIONS /api/admin/user/6/total-time 204 0.131 ms - 0
+2025-10-20 11:11:46 [INFO]: OPTIONS /api/admin/getUserProgress/6 204 0.119 ms - 0
+2025-10-20 11:11:46 [INFO]: GET /api/admin/getUserProgress/6 404 47.525 ms - 42
+2025-10-20 11:11:46 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:11:46 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:11:46 [INFO]: GET /api/admin/user/6/total-time 403 100.039 ms - 112
+2025-10-20 11:14:10 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.104 ms - 0
+2025-10-20 11:14:10 [INFO]: OPTIONS /api/admin/getUserProgress/5 204 0.099 ms - 0
+2025-10-20 11:14:10 [INFO]: GET /api/admin/getUserProgress/5 200 239.868 ms - 9489
+2025-10-20 11:14:11 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:14:11 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"client","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:14:11 [INFO]: GET /api/admin/user/5/total-time 403 129.738 ms - 112
+2025-10-20 11:15:03 [INFO]: OPTIONS /api/admin/changeUserRole/5 204 0.135 ms - 0
+2025-10-20 11:15:03 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:15:03 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:15:03 [INFO]: Changing role for user ID 5 to admin
+2025-10-20 11:15:03 [INFO]: PUT /api/admin/changeUserRole/5 200 308.022 ms - 49
+2025-10-20 11:15:03 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.260 ms - 0
+2025-10-20 11:15:03 [INFO]: GET /api/admin/getAllUsers 200 52.162 ms - 2951
+2025-10-20 11:15:06 [INFO]: OPTIONS /api/admin/user/4/total-time 204 0.211 ms - 0
+2025-10-20 11:15:06 [INFO]: OPTIONS /api/admin/getUserProgress/4 204 0.158 ms - 0
+2025-10-20 11:15:07 [INFO]: GET /api/admin/getUserProgress/4 404 44.530 ms - 42
+2025-10-20 11:15:07 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:15:07 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:15:07 [INFO]: GET /api/admin/user/4/total-time 200 148.386 ms - 48
+2025-10-20 11:15:08 [INFO]: OPTIONS /api/admin/changeUserRole/4 204 0.136 ms - 0
+2025-10-20 11:15:08 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:15:08 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:15:08 [INFO]: Changing role for user ID 4 to client
+2025-10-20 11:15:08 [INFO]: PUT /api/admin/changeUserRole/4 200 254.430 ms - 49
+2025-10-20 11:15:08 [INFO]: GET /api/admin/getAllUsers 200 51.422 ms - 2952
+2025-10-20 11:15:12 [INFO]: OPTIONS /api/admin/user/6/total-time 204 0.154 ms - 0
+2025-10-20 11:15:12 [INFO]: OPTIONS /api/admin/getUserProgress/6 204 0.227 ms - 0
+2025-10-20 11:15:12 [INFO]: GET /api/admin/getUserProgress/6 404 47.870 ms - 42
+2025-10-20 11:15:12 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:15:12 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:15:12 [INFO]: GET /api/admin/user/6/total-time 200 169.020 ms - 48
+2025-10-20 11:18:31 [INFO]: OPTIONS /api/admin/getUserProgress/6 204 0.110 ms - 0
+2025-10-20 11:18:31 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.124 ms - 0
+2025-10-20 11:18:31 [INFO]: OPTIONS /api/auth/get 204 0.079 ms - 0
+2025-10-20 11:18:31 [INFO]: GET /api/admin/getAllUsers 304 67.924 ms - -
+2025-10-20 11:18:31 [INFO]: GET /api/admin/getUserProgress/6 404 78.821 ms - 42
+2025-10-20 11:18:31 [INFO]: GET /api/auth/get 200 110.533 ms - 86
+2025-10-20 11:18:40 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.162 ms - 0
+2025-10-20 11:18:40 [INFO]: OPTIONS /api/auth/get 204 0.108 ms - 0
+2025-10-20 11:18:40 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.109 ms - 0
+2025-10-20 11:18:40 [INFO]: OPTIONS /api/auth/get 204 0.174 ms - 0
+2025-10-20 11:18:40 [INFO]: GET /api/admin/getAllUsers 304 45.363 ms - -
+2025-10-20 11:18:40 [INFO]: GET /api/admin/getAllUsers 304 47.861 ms - -
+2025-10-20 11:18:41 [INFO]: GET /api/auth/get 304 100.525 ms - -
+2025-10-20 11:18:41 [INFO]: GET /api/auth/get 304 96.677 ms - -
+2025-10-20 11:19:07 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.097 ms - 0
+2025-10-20 11:19:07 [INFO]: OPTIONS /api/auth/get 204 0.078 ms - 0
+2025-10-20 11:19:07 [INFO]: GET /api/admin/getAllUsers 304 66.125 ms - -
+2025-10-20 11:19:08 [INFO]: GET /api/auth/get 304 118.343 ms - -
+2025-10-20 11:19:11 [INFO]: GET /api/admin/getAllUsers 304 48.908 ms - -
+2025-10-20 11:19:12 [INFO]: GET /api/auth/get 304 107.193 ms - -
+2025-10-20 11:19:15 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.187 ms - 0
+2025-10-20 11:19:15 [INFO]: OPTIONS /api/auth/get 204 0.147 ms - 0
+2025-10-20 11:19:15 [INFO]: GET /api/admin/getAllUsers 304 47.915 ms - -
+2025-10-20 11:19:16 [INFO]: GET /api/auth/get 304 94.042 ms - -
+2025-10-20 11:19:19 [INFO]: GET /api/admin/getAllUsers 304 50.846 ms - -
+2025-10-20 11:19:20 [INFO]: GET /api/auth/get 304 99.209 ms - -
+2025-10-20 11:19:25 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.094 ms - 0
+2025-10-20 11:19:25 [INFO]: OPTIONS /api/auth/get 204 0.080 ms - 0
+2025-10-20 11:19:25 [INFO]: GET /api/admin/getAllUsers 304 46.762 ms - -
+2025-10-20 11:19:26 [INFO]: GET /api/auth/get 304 93.701 ms - -
+2025-10-20 11:19:28 [INFO]: GET /api/admin/getAllUsers 304 49.501 ms - -
+2025-10-20 11:19:29 [INFO]: GET /api/auth/get 304 100.938 ms - -
+2025-10-20 11:19:32 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.286 ms - 0
+2025-10-20 11:19:32 [INFO]: OPTIONS /api/auth/get 204 0.290 ms - 0
+2025-10-20 11:19:32 [INFO]: GET /api/admin/getAllUsers 304 61.631 ms - -
+2025-10-20 11:19:33 [INFO]: GET /api/auth/get 304 118.685 ms - -
+2025-10-20 11:19:46 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.097 ms - 0
+2025-10-20 11:19:46 [INFO]: OPTIONS /api/auth/get 204 0.141 ms - 0
+2025-10-20 11:19:46 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.258 ms - 0
+2025-10-20 11:19:46 [INFO]: OPTIONS /api/auth/get 204 0.117 ms - 0
+2025-10-20 11:19:46 [INFO]: GET /api/admin/getAllUsers 304 74.760 ms - -
+2025-10-20 11:19:46 [INFO]: GET /api/admin/getAllUsers 304 45.954 ms - -
+2025-10-20 11:19:46 [INFO]: GET /api/auth/get 304 148.807 ms - -
+2025-10-20 11:19:47 [INFO]: GET /api/auth/get 304 98.876 ms - -
+2025-10-20 11:19:48 [INFO]: OPTIONS /api/admin/user/6/total-time 204 0.130 ms - 0
+2025-10-20 11:19:48 [INFO]: OPTIONS /api/admin/getUserProgress/6 204 0.104 ms - 0
+2025-10-20 11:19:48 [INFO]: OPTIONS /api/admin/user/6/total-time 204 0.082 ms - 0
+2025-10-20 11:19:48 [INFO]: GET /api/admin/getUserProgress/6 404 48.301 ms - 42
+2025-10-20 11:19:48 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:19:48 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:19:48 [INFO]: GET /api/admin/user/6/total-time 304 150.615 ms - -
+2025-10-20 11:19:48 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:19:48 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:19:49 [INFO]: GET /api/admin/user/6/total-time 304 154.482 ms - -
+2025-10-20 11:19:51 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.156 ms - 0
+2025-10-20 11:19:51 [INFO]: OPTIONS /api/admin/getUserProgress/5 204 0.093 ms - 0
+2025-10-20 11:19:51 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:19:51 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:19:51 [INFO]: GET /api/admin/getUserProgress/5 200 199.494 ms - 9489
+2025-10-20 11:19:51 [INFO]: GET /api/admin/user/5/total-time 200 152.686 ms - 50
+2025-10-20 11:19:52 [INFO]: GET /api/admin/getUserProgress/6 404 50.005 ms - 42
+2025-10-20 11:19:52 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:19:52 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:19:52 [INFO]: GET /api/admin/user/6/total-time 304 171.947 ms - -
+2025-10-20 11:19:55 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:19:55 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:19:55 [INFO]: GET /api/admin/getUserProgress/5 200 200.987 ms - 9489
+2025-10-20 11:19:55 [INFO]: GET /api/admin/user/5/total-time 304 153.211 ms - -
+2025-10-20 11:19:57 [INFO]: OPTIONS /api/admin/changeUserRole/5 204 0.125 ms - 0
+2025-10-20 11:19:57 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:19:57 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:19:57 [INFO]: Changing role for user ID 5 to client
+2025-10-20 11:19:57 [INFO]: PUT /api/admin/changeUserRole/5 200 264.805 ms - 49
+2025-10-20 11:19:57 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.228 ms - 0
+2025-10-20 11:19:57 [INFO]: GET /api/admin/getAllUsers 200 49.232 ms - 2953
+2025-10-20 11:19:59 [INFO]: OPTIONS /api/admin/user/7/total-time 204 0.143 ms - 0
+2025-10-20 11:19:59 [INFO]: OPTIONS /api/admin/getUserProgress/7 204 0.126 ms - 0
+2025-10-20 11:19:59 [INFO]: GET /api/admin/getUserProgress/7 404 48.511 ms - 42
+2025-10-20 11:19:59 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:19:59 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:19:59 [INFO]: GET /api/admin/user/7/total-time 200 171.391 ms - 48
+2025-10-20 11:20:00 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.143 ms - 0
+2025-10-20 11:20:00 [INFO]: OPTIONS /api/admin/getUserProgress/5 204 0.111 ms - 0
+2025-10-20 11:20:00 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:20:00 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:20:00 [INFO]: GET /api/admin/getUserProgress/5 200 196.111 ms - 9489
+2025-10-20 11:20:00 [INFO]: GET /api/admin/user/5/total-time 304 147.472 ms - -
+2025-10-20 11:20:01 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:20:01 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:20:01 [INFO]: Changing role for user ID 5 to admin
+2025-10-20 11:20:01 [INFO]: PUT /api/admin/changeUserRole/5 200 262.971 ms - 49
+2025-10-20 11:20:02 [INFO]: GET /api/admin/getAllUsers 200 51.102 ms - 2952
+2025-10-20 11:20:04 [INFO]: OPTIONS /api/admin/user/3/total-time 204 0.118 ms - 0
+2025-10-20 11:20:04 [INFO]: OPTIONS /api/admin/getUserProgress/3 204 0.110 ms - 0
+2025-10-20 11:20:04 [INFO]: GET /api/admin/getUserProgress/3 404 45.258 ms - 42
+2025-10-20 11:20:04 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:20:04 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:20:04 [INFO]: GET /api/admin/user/3/total-time 200 146.067 ms - 48
+2025-10-20 11:20:06 [INFO]: OPTIONS /api/admin/user/1/total-time 204 0.131 ms - 0
+2025-10-20 11:20:06 [INFO]: OPTIONS /api/admin/getUserProgress/1 204 0.115 ms - 0
+2025-10-20 11:20:06 [INFO]: GET /api/admin/getUserProgress/1 404 51.167 ms - 42
+2025-10-20 11:20:06 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:20:06 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:20:06 [INFO]: GET /api/admin/user/1/total-time 200 153.487 ms - 48
+2025-10-20 11:22:23 [INFO]: OPTIONS /api/admin/user/1/total-time 204 0.203 ms - 0
+2025-10-20 11:22:23 [INFO]: OPTIONS /api/admin/getUserProgress/1 204 0.422 ms - 0
+2025-10-20 11:22:23 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.238 ms - 0
+2025-10-20 11:22:23 [INFO]: OPTIONS /api/auth/get 204 0.281 ms - 0
+2025-10-20 11:22:23 [INFO]: GET /api/admin/getUserProgress/1 404 100.388 ms - 42
+2025-10-20 11:22:23 [INFO]: GET /api/admin/getAllUsers 304 105.529 ms - -
+2025-10-20 11:22:23 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:22:23 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:22:23 [INFO]: GET /api/auth/get 304 135.416 ms - -
+2025-10-20 11:22:23 [INFO]: GET /api/admin/user/1/total-time 304 204.513 ms - -
+2025-10-20 11:22:26 [INFO]: GET /api/admin/getUserProgress/1 404 51.029 ms - 42
+2025-10-20 11:22:26 [INFO]: GET /api/admin/getAllUsers 304 51.723 ms - -
+2025-10-20 11:22:26 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:22:26 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:22:27 [INFO]: GET /api/auth/get 304 97.895 ms - -
+2025-10-20 11:22:27 [INFO]: GET /api/admin/user/1/total-time 304 163.510 ms - -
+2025-10-20 11:22:30 [INFO]: OPTIONS /api/admin/getUserProgress/1 204 0.100 ms - 0
+2025-10-20 11:22:30 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.074 ms - 0
+2025-10-20 11:22:30 [INFO]: OPTIONS /api/auth/get 204 0.089 ms - 0
+2025-10-20 11:22:30 [INFO]: GET /api/admin/getAllUsers 304 51.908 ms - -
+2025-10-20 11:22:30 [INFO]: GET /api/admin/getUserProgress/1 404 54.616 ms - 42
+2025-10-20 11:22:31 [INFO]: GET /api/auth/get 304 99.339 ms - -
+2025-10-20 11:22:40 [INFO]: OPTIONS /api/admin/changeUserRole/1 204 0.211 ms - 0
+2025-10-20 11:22:40 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:22:40 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:22:40 [INFO]: Changing role for user ID 1 to client
+2025-10-20 11:22:41 [INFO]: PUT /api/admin/changeUserRole/1 200 262.860 ms - 49
+2025-10-20 11:22:41 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.341 ms - 0
+2025-10-20 11:22:41 [INFO]: GET /api/admin/getAllUsers 200 48.669 ms - 2953
+2025-10-20 11:22:45 [INFO]: OPTIONS /api/admin/user/6/total-time 204 0.098 ms - 0
+2025-10-20 11:22:45 [INFO]: OPTIONS /api/admin/getUserProgress/6 204 0.165 ms - 0
+2025-10-20 11:22:45 [INFO]: GET /api/admin/getUserProgress/6 404 45.400 ms - 42
+2025-10-20 11:22:45 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:22:45 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:22:45 [INFO]: GET /api/admin/user/6/total-time 304 157.227 ms - -
+2025-10-20 11:22:46 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.137 ms - 0
+2025-10-20 11:22:46 [INFO]: OPTIONS /api/admin/getUserProgress/5 204 0.115 ms - 0
+2025-10-20 11:22:46 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:22:46 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:22:46 [INFO]: GET /api/admin/getUserProgress/5 200 201.240 ms - 9489
+2025-10-20 11:22:46 [INFO]: GET /api/admin/user/5/total-time 304 152.521 ms - -
+2025-10-20 11:22:47 [INFO]: OPTIONS /api/admin/user/3/total-time 204 0.164 ms - 0
+2025-10-20 11:22:47 [INFO]: OPTIONS /api/admin/getUserProgress/3 204 0.129 ms - 0
+2025-10-20 11:22:47 [INFO]: GET /api/admin/getUserProgress/3 404 43.985 ms - 42
+2025-10-20 11:22:47 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:22:47 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:22:47 [INFO]: GET /api/admin/user/3/total-time 304 146.298 ms - -
+2025-10-20 11:22:50 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:22:50 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:22:50 [INFO]: GET /api/admin/user/5/total-time 304 149.290 ms - -
+2025-10-20 11:22:50 [INFO]: GET /api/admin/getUserProgress/5 200 207.548 ms - 9489
+2025-10-20 11:25:09 [INFO]: ============================================================================================
+2025-10-20 11:25:09 [INFO]: Server is started at http://127.0.0.1:8080
+2025-10-20 11:26:36 [INFO]: ============================================================================================
+2025-10-20 11:26:36 [INFO]: Server is started at http://127.0.0.1:8080
+2025-10-20 11:26:55 [INFO]: ============================================================================================
+2025-10-20 11:26:55 [INFO]: Server is started at http://127.0.0.1:8080
+2025-10-20 11:27:29 [INFO]: OPTIONS /api/admin/user/5/total-time 204 3.798 ms - 0
+2025-10-20 11:27:29 [INFO]: OPTIONS /api/admin/getUserProgress/5 204 0.288 ms - 0
+2025-10-20 11:27:29 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.242 ms - 0
+2025-10-20 11:27:29 [INFO]: OPTIONS /api/auth/get 204 0.175 ms - 0
+2025-10-20 11:27:29 [INFO]: GET /api/admin/getAllUsers 304 76.614 ms - -
+2025-10-20 11:27:29 [INFO]: GET /api/admin/getUserProgress/5 200 233.592 ms - 9489
+2025-10-20 11:27:29 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:27:29 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:27:29 [INFO]: GET /api/auth/get 304 165.644 ms - -
+2025-10-20 11:27:29 [INFO]: GET /api/admin/user/5/total-time 304 211.939 ms - -
+2025-10-20 11:27:33 [INFO]: GET /api/admin/getAllUsers 304 51.275 ms - -
+2025-10-20 11:27:33 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:27:33 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:27:34 [INFO]: GET /api/auth/get 304 117.839 ms - -
+2025-10-20 11:27:34 [INFO]: GET /api/admin/getUserProgress/5 200 211.801 ms - 9489
+2025-10-20 11:27:34 [INFO]: GET /api/admin/user/5/total-time 304 175.046 ms - -
+2025-10-20 11:27:38 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.135 ms - 0
+2025-10-20 11:27:38 [INFO]: OPTIONS /api/admin/getUserProgress/5 204 0.168 ms - 0
+2025-10-20 11:27:38 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.288 ms - 0
+2025-10-20 11:27:38 [INFO]: OPTIONS /api/auth/get 204 0.245 ms - 0
+2025-10-20 11:27:38 [INFO]: GET /api/admin/getAllUsers 304 52.479 ms - -
+2025-10-20 11:27:38 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:27:38 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:27:39 [INFO]: GET /api/auth/get 304 96.517 ms - -
+2025-10-20 11:27:39 [INFO]: GET /api/admin/getUserProgress/5 200 200.416 ms - 9489
+2025-10-20 11:27:39 [INFO]: GET /api/admin/user/5/total-time 304 152.604 ms - -
+2025-10-20 11:27:53 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.183 ms - 0
+2025-10-20 11:27:53 [INFO]: OPTIONS /api/auth/get 204 0.174 ms - 0
+2025-10-20 11:27:53 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.377 ms - 0
+2025-10-20 11:27:53 [INFO]: OPTIONS /api/auth/get 204 0.182 ms - 0
+2025-10-20 11:27:53 [INFO]: GET /api/admin/getAllUsers 304 102.692 ms - -
+2025-10-20 11:27:53 [INFO]: GET /api/admin/getAllUsers 304 55.348 ms - -
+2025-10-20 11:27:53 [INFO]: GET /api/auth/get 304 189.322 ms - -
+2025-10-20 11:27:53 [INFO]: GET /api/auth/get 304 118.808 ms - -
+2025-10-20 11:27:54 [INFO]: OPTIONS /api/admin/user/6/total-time 204 0.086 ms - 0
+2025-10-20 11:27:54 [INFO]: OPTIONS /api/admin/getUserProgress/6 204 0.075 ms - 0
+2025-10-20 11:27:54 [INFO]: OPTIONS /api/admin/user/6/total-time 204 0.079 ms - 0
+2025-10-20 11:27:54 [INFO]: GET /api/admin/getUserProgress/6 404 49.096 ms - 42
+2025-10-20 11:27:55 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:27:55 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:27:55 [INFO]: GET /api/admin/user/6/total-time 304 150.849 ms - -
+2025-10-20 11:27:55 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:27:55 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:27:55 [INFO]: GET /api/admin/user/6/total-time 304 152.305 ms - -
+2025-10-20 11:27:56 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.094 ms - 0
+2025-10-20 11:27:56 [INFO]: OPTIONS /api/admin/getUserProgress/5 204 0.137 ms - 0
+2025-10-20 11:27:56 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:27:56 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:27:56 [INFO]: GET /api/admin/user/5/total-time 304 153.948 ms - -
+2025-10-20 11:27:56 [INFO]: GET /api/admin/getUserProgress/5 200 210.663 ms - 9489
+2025-10-20 11:27:57 [INFO]: OPTIONS /api/admin/user/3/total-time 204 0.128 ms - 0
+2025-10-20 11:27:57 [INFO]: OPTIONS /api/admin/getUserProgress/3 204 0.120 ms - 0
+2025-10-20 11:27:57 [INFO]: GET /api/admin/getUserProgress/3 404 44.983 ms - 42
+2025-10-20 11:27:57 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:27:57 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:27:57 [INFO]: GET /api/admin/user/3/total-time 304 146.742 ms - -
+2025-10-20 11:27:58 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:27:58 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:27:58 [INFO]: GET /api/admin/getUserProgress/5 200 200.883 ms - 9489
+2025-10-20 11:27:58 [INFO]: GET /api/admin/user/5/total-time 304 152.156 ms - -
+2025-10-20 11:27:58 [INFO]: GET /api/admin/getUserProgress/6 404 47.732 ms - 42
+2025-10-20 11:27:58 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:27:58 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:27:58 [INFO]: GET /api/admin/user/6/total-time 304 147.394 ms - -
+2025-10-20 11:27:59 [INFO]: OPTIONS /api/admin/user/1/total-time 204 0.090 ms - 0
+2025-10-20 11:27:59 [INFO]: OPTIONS /api/admin/getUserProgress/1 204 0.095 ms - 0
+2025-10-20 11:27:59 [INFO]: GET /api/admin/getUserProgress/1 404 47.755 ms - 42
+2025-10-20 11:27:59 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:27:59 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:28:00 [INFO]: GET /api/admin/user/1/total-time 304 147.099 ms - -
+2025-10-20 11:28:00 [INFO]: OPTIONS /api/admin/user/2/total-time 204 0.127 ms - 0
+2025-10-20 11:28:00 [INFO]: OPTIONS /api/admin/getUserProgress/2 204 0.110 ms - 0
+2025-10-20 11:28:00 [INFO]: GET /api/admin/getUserProgress/2 404 50.278 ms - 42
+2025-10-20 11:28:00 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:28:00 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:28:00 [INFO]: GET /api/admin/user/2/total-time 200 150.354 ms - 48
+2025-10-20 11:28:01 [INFO]: OPTIONS /api/admin/user/4/total-time 204 0.158 ms - 0
+2025-10-20 11:28:01 [INFO]: OPTIONS /api/admin/getUserProgress/4 204 0.117 ms - 0
+2025-10-20 11:28:01 [INFO]: OPTIONS /api/admin/user/4/total-time 204 0.078 ms - 0
+2025-10-20 11:28:01 [INFO]: GET /api/admin/getUserProgress/4 404 51.764 ms - 42
+2025-10-20 11:28:01 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:28:01 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:28:01 [INFO]: GET /api/admin/user/4/total-time 304 143.431 ms - -
+2025-10-20 11:28:01 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:28:01 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:28:01 [INFO]: GET /api/admin/user/4/total-time 304 145.255 ms - -
+2025-10-20 11:28:02 [INFO]: OPTIONS /api/admin/user/7/total-time 204 0.130 ms - 0
+2025-10-20 11:28:02 [INFO]: OPTIONS /api/admin/getUserProgress/7 204 0.106 ms - 0
+2025-10-20 11:28:02 [INFO]: GET /api/admin/getUserProgress/7 404 45.488 ms - 42
+2025-10-20 11:28:02 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:28:02 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:28:02 [INFO]: GET /api/admin/user/7/total-time 304 147.037 ms - -
+2025-10-20 11:28:04 [INFO]: OPTIONS /api/admin/user/5/total-time 204 0.094 ms - 0
+2025-10-20 11:28:04 [INFO]: OPTIONS /api/admin/getUserProgress/5 204 0.169 ms - 0
+2025-10-20 11:28:04 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:28:04 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:28:04 [INFO]: GET /api/admin/getUserProgress/5 200 207.509 ms - 9489
+2025-10-20 11:28:04 [INFO]: GET /api/admin/user/5/total-time 304 153.418 ms - -
+2025-10-20 11:28:06 [INFO]: OPTIONS /api/admin/changeUserRole/5 204 0.139 ms - 0
+2025-10-20 11:28:06 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:28:06 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:28:06 [INFO]: Changing role for user ID 5 to client
+2025-10-20 11:28:06 [INFO]: PUT /api/admin/changeUserRole/5 200 278.614 ms - 49
+2025-10-20 11:28:06 [INFO]: OPTIONS /api/admin/getAllUsers 204 0.119 ms - 0
+2025-10-20 11:28:06 [INFO]: GET /api/admin/getAllUsers 200 45.041 ms - 2954
+2025-10-20 11:28:07 [INFO]: OPTIONS /api/admin/getUserMoods/5 204 0.087 ms - 0
+2025-10-20 11:28:07 [INFO]: GET /api/admin/getUserMoods/5 304 49.318 ms - -
+2025-10-20 11:28:07 [INFO]: GET /api/admin/getUserMoods/5 304 48.408 ms - -
+2025-10-20 11:28:10 [INFO]: OPTIONS /api/admin/archiveData/5 204 0.118 ms - 0
+2025-10-20 11:28:10 [INFO]: isAdmin middleware called [object Object]
+2025-10-20 11:28:10 [INFO]: isAdmin: req.user: {"id":6,"createdAt":"2025-06-07T09:47:02.806Z","updatedAt":"2025-10-20T07:03:28.643Z","deletedAt":null,"isActive":true,"username":"Binayak Adhikari","role":"admin","hashPassword":"$2a$12$PuPws.xOdRvMVwmtHnfnB.1KMPXy4VIgY8/k3Np27RUOL5e1p4sri","salt":"$2a$12$PuPws.xOdRvMVwmtHnfnB."}
+2025-10-20 11:28:10 [INFO]: Archive UserId: undefined
+2025-10-20 11:28:10 [INFO]: Tracking Data reading is done.
+2025-10-20 11:28:10 [INFO]: Mood Data reading is done.
+2025-10-20 11:28:10 [INFO]: Progress Data reading is done.
+2025-10-20 11:28:10 [INFO]: Comment Data reading is done.
+2025-10-20 11:28:10 [INFO]: Answer Data reading is done.
+2025-10-20 11:28:10 [INFO]: Converted to CSV
+2025-10-20 11:28:10 [INFO]: Packaged to Zip File
+2025-10-20 11:28:10 [INFO]: FileName: All_2025-10-20.zip
+2025-10-20 11:28:10 [INFO]: ZIP archive created.
+2025-10-20 11:28:10 [INFO]: GET /api/admin/archiveData/5 200 177.215 ms - 4345
+2025-10-20 11:28:10 [INFO]: GET /api/admin/getAllUsers 304 47.723 ms - -

@@ -120,4 +120,36 @@ router.route('/archiveData/:userId').get(isAdmin, AdminController.archiveData);
  */
 router.route('/user/renameUser').put(isAdmin, AdminController.renameUser);
 
+/**
+ * @swagger
+ * /admin/changeUserRole/{userId}:
+ *   put:
+ *     summary: Change a user role
+ *     tags:
+ *       - Admin
+ *     parameters:
+ *       - name: userId
+ *         in: path
+ *         required: true
+ *         schema:
+ *           type: string
+ */
+router.route('/changeUserRole/:userId').put(isAdmin, AdminController.changeUserRole);
+
+/**
+ * @swagger
+ * /user/{userId}/total-time:
+ *   get:
+ *     summary: Get total time spent by a user
+ *     tags:
+ *       - Admin
+ *     parameters:
+ *       - name: userId
+ *         in: path
+ *         required: true
+ *         schema:
+ *           type: string
+ */
+router.route('/user/:userId/total-time').get(isAdmin, AdminController.getTotalTime);
+
 export default router;

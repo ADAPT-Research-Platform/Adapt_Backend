@@ -649,6 +649,73 @@ const renameUser = async (req: Request, res: Response) => {
   }
 };
 
+const getTotalTime = async (req: Request, res: Response) => {
+  const { userId } = req.params;
+  console.log(`Getting total time for user: ${userId}`);
+
+  const parsedUserId = parseInt(userId, 10);
+  if (isNaN(parsedUserId) || parsedUserId < 1) {
+    return res.status(400).json({ message: 'Invalid user ID' });
+  }
+
+  try {
+    const trackRepo = AppDataSource.getRepository(Track);
+    const tracks = await trackRepo.find({
+      where: { userId: parsedUserId },
+    });
+    console.log(`Found ${tracks.length} tracks for user: ${userId}`);
+
+    let totalTime = 0;
+    for (const track of tracks) {
+      if (track.startedAt && track.endedAt) {
+        totalTime += track.endedAt.getTime() - track.startedAt.getTime();
+      }
+    }
+
+    const hours = Math.floor(totalTime / 3600000);
+    const minutes = Math.floor((totalTime % 3600000) / 60000);
+    const seconds = Math.floor(((totalTime % 360000) % 60000) / 1000);
+
+    res.setHeader('Cache-Control', 'no-cache');
+    res.status(200).json({ hours, minutes, seconds });
+  } catch (err) {
+    console.error('Error fetching user tracks:', err);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+const changeUserRole = async (req: Request, res: Response) => {
+  const { userId } = req.params;
+  const { role } = req.body;
+
+  const parsedUserId = parseInt(userId, 10);
+  if (isNaN(parsedUserId) || parsedUserId < 1) {
+    return res.status(400).json({ message: 'Invalid user ID' });
+  }
+
+  logger.info(`Changing role for user ID ${parsedUserId} to ${role}`);
+  if (!role || !Object.values(UserType).includes(role)) {
+    return res.status(400).json({ message: 'Invalid role' });
+  }
+
+  try {
+    const userRepo = AppDataSource.getRepository(User);
+    const user = await userRepo.findOne({ where: { id: parsedUserId } });
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    user.role = role;
+    await userRepo.save(user);
+
+    res.status(200).json({ message: 'User role updated successfully' });
+  } catch (err) {
+    console.error('Error updating user role:', err);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
 export default {
   getAllUsers,
   getUsersById,
@@ -659,4 +726,6 @@ export default {
   deleteUserPermanently,
   archiveData,
   renameUser,
+  getTotalTime,
+  changeUserRole,
 };
