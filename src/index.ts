@@ -12,13 +12,15 @@ import { AppDataSource } from './data-source';
 
 const host = process.env.HOST || '0.0.0.0';
 const port = process.env.PORT || '8080';
+const passphrase = process.env.KEY_PASSPHRASE || '';
 
 const app = createServer();
 
 // Load SSL certificate and private key
 const options = {
   key: fs.readFileSync(path.join(process.cwd(), 'ssl/adapt.key')),
-  cert: fs.readFileSync(path.join(process.cwd(), 'ssl/fullchain.pem')),  // Use full chain here
+  cert: fs.readFileSync(path.join(process.cwd(), 'ssl/fullchain.pem')),
+  passphrase: passphrase,  // Use full chain here
   ca: fs.readFileSync(path.join(process.cwd(), 'ssl/harica-chain.pem'))  // Add the CA bundle
 };
 
