@@ -35,6 +35,9 @@ INSERT INTO "chapter" ("moduleId", "index", "folderUrl", "title", "isExercise") 
 INSERT INTO "chapter" ("moduleId", "index", "folderUrl", "title", "isExercise") VALUES (3, 5, 'module_03/chapter_05', 'PMR für Zuhause', true);
 INSERT INTO "chapter" ("moduleId", "index", "folderUrl", "title", "isExercise") VALUES (3, 6, 'module_03/chapter_06', 'Autogenes Training', false);
 INSERT INTO "chapter" ("moduleId", "index", "folderUrl", "title", "isExercise") VALUES (3, 7, 'module_03/chapter_07', 'Unser Team', true);
+INSERT INTO "chapter" ("moduleId", "index", "folderUrl", "title", "isExercise") VALUES (3, 8, 'module_03/chapter_08', '', false);
+INSERT INTO "chapter" ("moduleId", "index", "folderUrl", "title", "isExercise") VALUES (3, 9, 'module_03/chapter_09', '', false);
+INSERT INTO "chapter" ("moduleId", "index", "folderUrl", "title", "isExercise") VALUES (3, 10, 'module_03/chapter_10', '', false);
 
 INSERT INTO "chapter" ("moduleId", "index", "folderUrl", "title", "isExercise") VALUES (4, 1, 'module_04/chapter_01', 'Was ist Vermeidung?', false);
 INSERT INTO "chapter" ("moduleId", "index", "folderUrl", "title", "isExercise") VALUES (4, 2, 'module_04/chapter_02', 'Verpasste Chancen', true);
@@ -52,6 +55,8 @@ INSERT INTO "chapter" ("moduleId", "index", "folderUrl", "title", "isExercise") 
 INSERT INTO "chapter" ("moduleId", "index", "folderUrl", "title", "isExercise") VALUES (5, 5, 'module_05/chapter_05', 'Zuwendung', false);
 INSERT INTO "chapter" ("moduleId", "index", "folderUrl", "title", "isExercise") VALUES (5, 6, 'module_05/chapter_06', 'Loben', true);
 INSERT INTO "chapter" ("moduleId", "index", "folderUrl", "title", "isExercise") VALUES (5, 7, 'module_05/chapter_07', 'Check-up', false);
+INSERT INTO "chapter" ("moduleId", "index", "folderUrl", "title", "isExercise") VALUES (5, 8, 'module_05/chapter_08', '', false);
+INSERT INTO "chapter" ("moduleId", "index", "folderUrl", "title", "isExercise") VALUES (5, 9, 'module_05/chapter_09', '', false);
 
 INSERT INTO "chapter" ("moduleId", "index", "folderUrl", "title", "isExercise") VALUES (6, 1, 'module_06/chapter_01', 'Auf die Balance kommt es an', false);
 INSERT INTO "chapter" ("moduleId", "index", "folderUrl", "title", "isExercise") VALUES (6, 2, 'module_06/chapter_02', 'Was Autonomie bedeutet', false);
@@ -61,6 +66,7 @@ INSERT INTO "chapter" ("moduleId", "index", "folderUrl", "title", "isExercise") 
 INSERT INTO "chapter" ("moduleId", "index", "folderUrl", "title", "isExercise") VALUES (6, 6, 'module_06/chapter_06', 'Fehler zulassen', true);
 INSERT INTO "chapter" ("moduleId", "index", "folderUrl", "title", "isExercise") VALUES (6, 7, 'module_06/chapter_07', 'Problemlösetraining', true);
 INSERT INTO "chapter" ("moduleId", "index", "folderUrl", "title", "isExercise") VALUES (6, 8, 'module_06/chapter_08', 'Tippps und Formulierungen', false);
+INSERT INTO "chapter" ("moduleId", "index", "folderUrl", "title", "isExercise") VALUES (6, 9, 'module_06/chapter_09', '', false);
 
 INSERT INTO "chapter" ("moduleId", "index", "folderUrl", "title", "isExercise") VALUES (7, 1, 'module_07/chapter_01', 'Abschluss', false);
 INSERT INTO "chapter" ("moduleId", "index", "folderUrl", "title", "isExercise") VALUES (7, 2, 'module_07/chapter_02', 'Fazit Modul 1: Einleitung', false);
